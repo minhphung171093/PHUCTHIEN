@@ -28,6 +28,8 @@ class Parser(report_sxw.rml_parse):
             'get_so_hd':self.get_so_hd,
             'get_ngay_hd':self.get_ngay_hd,
             'get_ngay_hethan':self.get_ngay_hethan,
+            'get_nhietdo_di':self.get_nhietdo_di,
+            'get_nhietdo_den': self.get_nhietdo_den,
         })
         
     
@@ -68,5 +70,22 @@ class Parser(report_sxw.rml_parse):
         else:
             ngay_hh = ''
         return ngay_hh
+    
+    def get_nhietdo_di(self, picking):
+        nhietdo_di = ''
+        if picking.picking_packaging_line:
+            package = picking.picking_packaging_line[0]
+            nhietdo_di = package.nhietdo_packaging_di
+                
+        return nhietdo_di
+    
+    def get_nhietdo_den(self, picking):
+        nhietdo_den = ''
+        if picking.picking_packaging_line:
+            package = picking.picking_packaging_line[0]
+            nhietdo_den = package.nhietdo_packaging_den
+                
+        return nhietdo_den
+    
     
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
