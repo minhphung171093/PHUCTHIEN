@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		       
+        <!-- Create contract_bhxh VT Input -->
+    	<record id="contract_bhxh" model="ir.actions.report.xml">
+	        <field name="name">contract_bhxh</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">hr.contract</field>
+	        <field name="report_name">contract_bhxh</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">vsis_hr_report/report/contract_bhxh.py</field>
+	        <field name="report_rml">vsis_hr_report/report/contract_bhxh.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="True" 
+			menu="True"
+			id="contract_bhxh" 
+			model="hr.contract" 
+			name="contract_bhxh"
+	        string="Contract Bhxh"
+	        rml="vsis_hr_report/report/contract_bhxh.odt"/>	    
+	        
+	    
+	    <!-- Create contract_tv VT Input -->
+    	<record id="contract_tv" model="ir.actions.report.xml">
+	        <field name="name">contract_tv</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">hr.contract</field>
+	        <field name="report_name">contract_tv</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">vsis_hr_report/report/contract_bhxh.py</field>
+	        <field name="report_rml">vsis_hr_report/report/contract_tv.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="True" 
+			menu="True"
+			id="contract_tv" 
+			model="hr.contract" 
+			name="contract_tv"
+	        string="contract tv"
+	        rml="vsis_hr_report/report/contract_tv.odt"/>	
+	        
+	     
+	    <!-- Create contract_tvu -->
+    	<record id="contract_tvu" model="ir.actions.report.xml">
+	        <field name="name">contract_tvu</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">hr.contract</field>
+	        <field name="report_name">contract_tvu</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">vsis_hr_report/report/contract_bhxh.py</field>
+	        <field name="report_rml">vsis_hr_report/report/contract_tvu.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="True" 
+			menu="True"
+			id="contract_tvu" 
+			model="hr.contract" 
+			name="contract_tvu"
+	        string="Contract Tvu"
+	        rml="vsis_hr_report/report/contract_tvu.odt"/>	 	    
+    #===========================================================================
+    # Hợp đồng
+    #===========================================================================   
+		<!-- Create contract_tvu -->
+    	<record id="contract" model="ir.actions.report.xml">
+	        <field name="name">contract</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">hr.contract</field>
+	        <field name="report_name">contract</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">vsis_hr_report/report/contract_bhxh.py</field>
+	        <field name="report_rml">vsis_hr_report/report/contract.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="True" 
+			menu="True"
+			id="contract" 
+			model="hr.contract" 
+			name="contract"
+	        string="contract"
+	        rml="vsis_hr_report/report/contract.odt"/>	 
+	        
+	   
+	#===========================================================================
+    # payslip 
+    #===========================================================================   
+    	<record id="payslip_employers" model="ir.actions.report.xml">
+	        <field name="name">payslip_employers</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">hr.payslip</field>
+	        <field name="report_name">payslip_employers</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">vsis_hr_report/report/payslip.py</field>
+	        <field name="report_rml">vsis_hr_report/report/payslip.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="True" 
+			menu="True"
+			id="payslip_employers" 
+			model="hr.payslip" 
+			name="payslip_employers"
+	        string="payslip"
+	        rml="vsis_hr_report/report/payslip.ods"/>	 
+	     
+   #===========================================================================
+    # To Khai Bao Hiem Xa Hoi 
+    #===========================================================================   
+    	<record id="to_khai_bhxh" model="ir.actions.report.xml">
+	        <field name="name">to_khai_bhxh</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">hr.employee</field>
+	        <field name="report_name">to_khai_bhxh</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-doc'),('compatible_types','=','oo-odt')]"/>
+	        <field name="parser_loc">vsis_hr_report/report/to_khai_bhxh.py</field>
+	        <field name="report_rml">vsis_hr_report/report/to_khai_bhxh.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		
+    	
+    	<report 
+			auto="True" 
+			menu="True"
+			id="to_khai_bhxh" 
+			model="hr.employee" 
+			name="to_khai_bhxh"
+	        string="To Khai BHXH"
+	        rml="vsis_hr_report/report/to_khai_bhxh.odt"/>	
+   
+   #===========================================================================
+    # To Khai Giam Tru Gia Canh
+    #===========================================================================   
+    	<record id="to_khai_gtgc" model="ir.actions.report.xml">
+	        <field name="name">to_khai_gtgc</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">hr.employee</field>
+	        <field name="report_name">to_khai_gtgc</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-doc'),('compatible_types','=','oo-odt')]"/>
+	        <field name="parser_loc">vsis_hr_report/report/to_khai_gtgc.py</field>
+	        <field name="report_rml">vsis_hr_report/report/to_khai_gtgc.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="True" 
+			menu="True"
+			id="to_khai_gtgc" 
+			model="hr.employee" 
+			name="to_khai_gtgc"
+	        string="To Khai GTGC"
+	        rml="vsis_hr_report/report/to_khai_gtgc.odt"/>	
+	        
+#===========================================================================
+    # To Khai Ma So Thue
+#===========================================================================   
+    	<record id="to_khai_mst" model="ir.actions.report.xml">
+	        <field name="name">to_khai_mst</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">hr.employee</field>
+	        <field name="report_name">to_khai_mst</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-doc'),('compatible_types','=','oo-odt')]"/>
+	        <field name="parser_loc">vsis_hr_report/report/to_khai_mst.py</field>
+	        <field name="report_rml">vsis_hr_report/report/to_khai_mst.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="True" 
+			menu="True"
+			id="to_khai_mst" 
+			model="hr.employee" 
+			name="to_khai_mst"
+	        string="To Khai MST"
+	        rml="vsis_hr_report/report/to_khai_mst.odt"/>	
+
+#===========================================================================
+    # list employee tv
+#===========================================================================   
+    	<record id="list_employee_tv" model="ir.actions.report.xml">
+	        <field name="name">List Employee Tv</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">list.employee.tv</field>
+	        <field name="report_name">list_employee_tv</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-ods'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">vsis_hr_report/report/list_employee_tv.py</field>
+	        <field name="report_rml">vsis_hr_report/report/list_employee_tv.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="list_employee_tv" 
+			model="list.employee.tv" 
+			name="list_employee_tv"
+	        string="list Employee Tv"
+	        rml="vsis_hr_report/report/list_employee_tv.ods"/>     
+
+#===========================================================================
+    # vsis.giam.ld
+#===========================================================================   
+    	<record id="giam_ld" model="ir.actions.report.xml">
+	        <field name="name">Giam Ld</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">vsis.giam.ld</field>
+	        <field name="report_name">giam_ld</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-ods'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">vsis_hr_report/report/giam_ld.py</field>
+	        <field name="report_rml">vsis_hr_report/report/giam_ld.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="giam_ld" 
+			model="vsis.giam.ld" 
+			name="giam_ld"
+	        string="Giam Ld"
+	        rml="vsis_hr_report/report/giam_ld.ods"/>   
+	        
+#===========================================================================
+    # Su Dung Lao Dong
+#===========================================================================   
+    	<record id="su_dung_ld" model="ir.actions.report.xml">
+	        <field name="name">Su Dung ld</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">vsis.su.dung.ld</field>
+	        <field name="report_name">su_dung_ld</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-ods'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">vsis_hr_report/report/su_dung_ld.py</field>
+	        <field name="report_rml">vsis_hr_report/report/su_dung_ld.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="su_dung_ld" 
+			model="vsis.su.dung.ld" 
+			name="su_dung_ld"
+	        string="Su Dung Ld"
+	        rml="vsis_hr_report/report/su_dung_ld.ods"/> 
+
+#===========================================================================
+    # employee_payslip
+#===========================================================================   
+    	<record id="employee_payslip" model="ir.actions.report.xml">
+	        <field name="name">employee_payslip</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">vsis.employee.payslip</field>
+	        <field name="report_name">employee_payslip</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-ods'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">vsis_hr_report/report/employee_payslip.py</field>
+	        <field name="report_rml">vsis_hr_report/report/employee_payslip.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="employee_payslip" 
+			model="vsis.employee.payslip" 
+			name="employee_payslip"
+	        string="Employee Payslip"
+	        rml="vsis_hr_report/report/employee_payslip.ods"/> 
+	               	
+	</data>
+</openerp>

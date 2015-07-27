@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="hr_timesheet_invoice.timesheet_invoice_factor1" model="hr_timesheet_invoice.factor">
+            <field name="customer_name">TIME_NORMAL</field>
+            <field name="name">Default</field>
+            <field name="factor">0.0</field>
+        </record>
+        <record id="hr_timesheet_invoice.timesheet_invoice_factor2" model="hr_timesheet_invoice.factor">
+            <field name="customer_name">TIME_OT150</field>
+            <field name="name">OT 150</field>
+            <field name="factor">-50.0</field>
+        </record>
+        <record id="hr_timesheet_invoice.timesheet_invoice_factor3" model="hr_timesheet_invoice.factor">
+            <field name="customer_name">TIME_OT200</field>
+            <field name="name">OT 200</field>
+            <field name="factor">-100.0</field>
+        </record>
+        <record id="hr_timesheet_invoice.timesheet_invoice_factor4" model="hr_timesheet_invoice.factor">
+            <field name="customer_name">TIME_OT300</field>
+            <field name="name">OT 300</field>
+            <field name="factor">-200.0</field>
+        </record>
+
+        <record id="hr_timesheet_status_t" model="hr.timesheet.status">
+            <field name="name">T</field>
+            <field name="description">Late</field>
+        </record>
+        <record id="hr_timesheet_status_s" model="hr.timesheet.status">
+            <field name="name">S</field>
+            <field name="description">Early</field>
+        </record>
+        <record id="hr_timesheet_status_ts" model="hr.timesheet.status">
+            <field name="name">TS</field>
+            <field name="description">Late &amp; Early</field>
+        </record>
+        <record id="hr_timesheet_status_si" model="hr.timesheet.status">
+            <field name="name">SI</field>
+            <field name="description">In Early</field>
+        </record>
+        <record id="hr_timesheet_status_to" model="hr.timesheet.status">
+            <field name="name">TO</field>
+            <field name="description">Out Late</field>
+        </record>
+        <record id="hr_timesheet_status_v" model="hr.timesheet.status">
+            <field name="name">V</field>
+            <field name="description">Absent</field>
+        </record>
+        <record id="hr_timesheet_status_x" model="hr.timesheet.status">
+            <field name="name">X</field>
+            <field name="description">Worked</field>
+        </record>
+        <record id="hr_timesheet_status_e" model="hr.timesheet.status">
+            <field name="name">E</field>
+            <field name="description">Error</field>
+        </record>
+        <record id="hr_timesheet_status_p" model="hr.timesheet.status">
+            <field name="name">P</field>
+            <field name="description">Leave</field>
+        </record>
+        <record id="hr_timesheet_status_l" model="hr.timesheet.status">
+            <field name="name">H</field>
+            <field name="description">Holiday</field>
+        </record>
+    </data>
+</openerp>

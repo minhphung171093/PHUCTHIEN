@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_change_calendar" model="ir.ui.view">
+            <field name="name">Change calendar </field>
+            <field name="model">change.calendar</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+               <form string="Change Working Calendar" version="7.0">
+	               <group>
+	       				<!--<field name="calendar_id"/>-->
+	       				<field name="cate_id" on_change="onchange_category(cate_id)"/>        			
+	        			<separator string="Employees Validate" colspan="4"/>
+	        			<field name="employee_ids" colspan="4" nolabel="1">
+		        			<tree string="">
+		        				<field name="code"/>    
+			               		<field name="code_new"/>                  
+			               		<field name="last_name" />
+			               		<field name="name" />	                
+			               		<field name="department_id"/>
+			               		<field name="job_id"/>
+		               		</tree>
+	        			</field>
+        			</group>   
+        			<footer>	               		
+	               		<button name="action_open_window" string="Apply" type="object" icon="gtk-ok" class="oe_highlight"/>
+	               		or
+	               		<button special="cancel" string="_Cancel" class="oe_link"/>
+           	    	</footer>     			        			
+    			</form>
+            </field>
+		</record>
+
+        <!--<record id="change_calendar_action" model="ir.actions.act_window">
+            <field name="name">Set/Update Calendar for Employees</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">change.calendar</field>   
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>-->
+ 
+		<act_window 
+            name="Update Working Calendar for Employees"
+            res_model="change.calendar"
+            src_model="resource.calendar"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="change_calendar_action" />
+            
+		    
+         <record id="resource_calendar_form" model="ir.ui.view">
+            <field name="name">resource.calendar.form</field>
+            <field name="model">resource.calendar</field>
+            <field name="inherit_id" ref="resource.resource_calendar_form"/>
+            <field name="arch" type="xml">
+            	<field name="attendance_ids" position="before" version="7.0">
+            		<button type="action" colspan="2"
+                            name="%(change_calendar_action)d"
+                            string="Update for Employees" class="oe_highlight"/>
+            	</field>                
+            </field>
+        </record>
+        
+	</data>      
+</openerp>

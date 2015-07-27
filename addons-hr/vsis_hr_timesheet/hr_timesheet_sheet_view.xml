@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="hr_timesheet_sheet_form" model="ir.ui.view">
+            <field name="name">hr.timesheet.sheet.form</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_form"/>
+            <field name="arch" type="xml">
+                <widget type="weekly_timesheet" position="replace">
+                    <widget type="weekly_timesheet"/>
+                </widget>
+                <field name="department_id" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                </field>
+                <field name="employee_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <label for="employee_id" position="replace"/>
+                <xpath expr="/form/sheet/notebook/page/field[@name='timesheet_ids']/tree/field[@name='date']" position="after">
+                    <field name="employee_id"/>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page/field[@name='timesheet_ids']/tree/field[@name='to_invoice']" position="after">
+                    <field name="timesheet_status" widget="selection"/>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page/field[@name='timesheet_ids']/tree/field[@name='unit_amount']" position="attributes">
+                    <attribute name="string">Qty</attribute>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page/field[@name='timesheet_ids']/tree/field[@name='to_invoice']" position="attributes">
+                    <attribute name="string">Rate</attribute>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page/group/field[@name='attendances_ids']/tree/field[@name='employee_id']" position="replace">
+                    <field name="employee_id"/>
+                </xpath>
+                <xpath expr="/form/sheet/div/button[@string='Timesheet Activities']" position="before">
+                    <button name="%(action_timesheet_from_attendance)d"
+                        states="new,draft" string="Timesheet from Attendance" type="action" />
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page[@string='Attendances']/field[@name='period_ids']" position="replace">
+                    <button name="%(action_import_attendance)d"
+                        states="new,draft" string="Import Attendance" type="action" />
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page[@string='Attendances']/group/group" position="replace"/>
+                <xpath expr="/form/sheet/group/group/field[@name='total_attendance']" position="replace"/>
+                <xpath expr="/form/sheet/group/group/field[@name='total_timesheet']" position="replace"/>
+                <xpath expr="/form/sheet/group/group/field[@name='total_difference']" position="replace"/>
+            </field>
+        </record>
+
+        <record id="hr_timesheet_sheet_tree_simplified" model="ir.ui.view">
+            <field name="name">hr.timesheet.sheet.tree</field>
+            <field name="model">hr_timesheet_sheet.sheet</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_tree_simplified"/>
+            <field name="arch" type="xml">
+                <field name="employee_id" position="attributes">
+                    <attribute name="string">Manager</attribute>
+                </field>
+                <field name="department_id" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                </field>
+                <field name="total_attendance" position="replace"/>
+                <field name="total_difference" position="replace"/>
+            </field>
+        </record>
+
+        <record id="hr_timesheet_sheet.act_hr_timesheet_sheet_form" model="ir.actions.act_window">
+            <field name="context">{'search_default_new':1,'search_default_to_approve':1}</field>
+        </record>
+
+        <record id="hr_timesheet_line_tree" model="ir.ui.view">
+            <field name="name">hr.analytic.timesheet.tree</field>
+            <field name="model">hr.analytic.timesheet</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="unit_amount" position="attributes">
+                    <attribute name="string">Qty</attribute>
+                </field>
+                <field name="user_id" position="after">
+                    <field name="employee_id" options='{"no_open": True}'/>
+                </field>
+                <field name="user_id" position="after">
+                    <field name="day" invisible="1"/>
+                    <field name="month" invisible="1"/> 
+                    <field name="department" invisible="1"/>                    
+                </field>
+               
+            </field>
+        </record>
+        <record id="hr_timesheet_line_tree_invoice" model="ir.ui.view">
+            <field name="name">hr.analytic.timesheet.tree.invoice</field>
+            <field name="model">hr.analytic.timesheet</field>
+            <field name="inherit_id" ref="hr_timesheet_invoice.hr_timesheet_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="to_invoice" position="attributes">
+                    <attribute name="widget">selection</attribute>
+                    <attribute name="string">Rate</attribute>
+                </field>
+                <field name="to_invoice" position="after">
+                    <field name="timesheet_status" widget="selection"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_timesheet_line_form" model="ir.ui.view">
+            <field name="name">hr.analytic.timesheet.form</field>
+            <field name="model">hr.analytic.timesheet</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="user_id" position="after">
+                    <field name="employee_id"/>
+                </field>
+            </field>
+        </record>
+        <record id="hr_timesheet_line_form_invoice" model="ir.ui.view">
+            <field name="name">hr.analytic.timesheet.form.invoice</field>
+            <field name="model">hr.analytic.timesheet</field>
+            <field name="inherit_id" ref="hr_timesheet_invoice.hr_timesheet_line_form"/>
+            <field name="arch" type="xml">
+                <field name="to_invoice" position="attributes">
+                    <attribute name="string">Rate</attribute>
+                </field>
+                <field name="to_invoice" position="after">
+                    <field name="timesheet_status" widget="selection"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_hr_timesheet_rate_search" model="ir.ui.view">
+            <field name="name">hr_timesheet_invoice.factor.rate.search</field>
+            <field name="model">hr_timesheet_invoice.factor</field>
+            <field name="arch" type="xml">
+                <search string="Timesheet Rate">
+                    <field name="name" string="Rate Name"/>
+                </search>
+            </field>
+        </record>
+        <record id="view_hr_timesheet_rate_form" model="ir.ui.view">
+            <field name="name">hr_timesheet_invoice.factor.rate.form</field>
+            <field name="model">hr_timesheet_invoice.factor</field>
+            <field name="arch" type="xml">
+                <form string="Timesheet Rate" version="7.0">
+                    <group col="4">
+                        <field name="name" string="Rate Name"/>
+                        <field name="customer_name" string="Code"/>
+                        <field name="factor"/>
+                        <field name="default_analytic_account" domain="[('type','in',['normal', 'contract']),('state', '&lt;&gt;', 'close'),('use_timesheets','=',1)]"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="view_hr_timesheet_rate_tree" model="ir.ui.view">
+            <field name="name">hr_timesheet_invoice.factor.rate.tree</field>
+            <field name="model">hr_timesheet_invoice.factor</field>
+            <field name="arch" type="xml">
+                <tree string="Timesheet Rate">
+                    <field name="name" string="Rate Name"/>
+                    <field name="customer_name" string="Code"/>
+                    <field name="factor"/>
+                    <field name="default_analytic_account"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_hr_timesheet_rate_form" model="ir.actions.act_window">
+            <field name="name">Timesheet Rate</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr_timesheet_invoice.factor</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" ref="view_hr_timesheet_rate_search"/>
+        </record>
+        <record id="action_hr_timesheet_rate_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_hr_timesheet_rate_tree"/>
+            <field name="act_window_id" ref="action_hr_timesheet_rate_form"/>
+        </record>
+
+        <record id="action_hr_timesheet_rate_view2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_hr_timesheet_rate_form"/>
+            <field name="act_window_id" ref="action_hr_timesheet_rate_form"/>
+        </record>
+        <menuitem
+            action="action_hr_timesheet_rate_form"
+            id="action_hr_timesheet_rate_menu"
+            parent="hr.menu_hr_configuration" sequence="24" groups="base.group_no_one"/>
+
+        <!-- <record id="view_hr_timesheet_invoice_factor_form" model="ir.ui.view">
+            <field name="name">hr_timesheet_invoice.factor.form</field>
+            <field name="model">hr_timesheet_invoice.factor</field>
+            <field name="inherit_id" ref="hr_timesheet_invoice.view_hr_timesheet_invoice_factor_form"/>
+            <field name="arch" type="xml">
+                <field name="factor" position="after">
+                    <field name="default_analytic_account" domain="[('type','in',['normal', 'contract']),('state', '&lt;&gt;', 'close'),('use_timesheets','=',1)]"/>
+                </field>
+            </field>
+        </record> -->
+
+        <!-- Holiday status rate -->
+        <record model="ir.ui.view" id="edit_holiday_status_form">
+            <field name="name">hr.holidays.status.form</field>
+            <field name="model">hr.holidays.status</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+            <field name="arch" type="xml">
+                <field name="categ_id" position="after">
+                    <field name="leave_rate" />
+                </field>
+            </field>
+        </record>
+        <record id="hr_timesheet_line_search" model="ir.ui.view">
+            <field name="name">hr.analytic.timesheet.search</field>
+            <field name="model">hr.analytic.timesheet</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
+            <field name="arch" type="xml">
+                        <filter string="Date" icon="terp-go-month" domain="[]" context="{'group_by':'date'}" position ="replace">
+                        <filter string="Employee" icon="terp-personal" domain="[]" context="{'group_by':'employee_id'}"/>
+                        <filter string="Day" icon="terp-go-today" domain="[]" context="{'group_by':'day'}" />
+                        <filter string="Month" icon="terp-go-today" domain="[]" context="{'group_by':'month'}" />
+                        <filter string="Department" icon="terp-personal" domain="[]" context="{'group_by':'department'}" />
+                        </filter>					
+            </field>
+        </record>
+    </data>
+</openerp>

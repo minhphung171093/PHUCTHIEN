@@ -1,0 +1,53 @@
+@charset "utf-8";
+.openerp .oe_timesheet_weekly th {
+  min-width: 81px;
+}
+.openerp .oe_timesheet_weekly .oe_timesheet_weekly_employee {
+  text-align: left;
+}
+.openerp .oe_timesheet_weekly td input.oe_timesheet_weekly_input {
+  text-transform: uppercase;
+}
+.openerp .oe_timesheet_weekly td .oe_timesheet_weekly_box_none {
+  color: #0000ff;
+}
+.openerp .oe_timesheet_weekly td .oe_timesheet_weekly_box_V {
+  color: #ff0000;
+}
+.openerp .oe_timesheet_weekly td .oe_timesheet_weekly_box_T {
+  color: #990099;
+}
+.openerp .oe_timesheet_weekly td .oe_timesheet_weekly_box_S {
+  color: #660099;
+}
+.openerp .oe_timesheet_weekly td .oe_timesheet_weekly_box_X {
+  color: #009900;
+}
+.openerp .oe_timesheet_weekly td .oe_timesheet_weekly_box_H {
+  color: #990099;
+}
+.openerp .oe_timesheet_weekly td .oe_timesheet_weekly_box_P {
+  color: #990099;
+}
+.openerp .oe_timesheet_weekly td .oe_timesheet_weekly_box_E {
+  color: #990099;
+}
+.openerp .oe_timesheet_weekly .oe_timesheet_weekly_ot {
+  width: 25px;
+}
+.openerp .oe_timesheet_weekly td input.oe_timesheet_weekly_input_ot {
+  padding: 2px 2px !important;
+  width: 30px;
+  text-align: right;
+  min-width: 0 !important;
+}
+.openerp .oe_timesheet_weekly .oe_timesheet_total_ot {
+  background: #eeeeee;
+  width: 20px;
+}
+.openerp .oe_timesheet_weekly td.oe_timesheet_total_ot {
+  padding: 5px 3px !important;
+}
+.uppercase {
+  text-transform: uppercase;
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<record id="hr_attendance_report" model="ir.actions.report.xml">
+	        <field name="name">hr_attendance_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">hr.attendance.report</field>
+	        <field name="report_name">hr_attendance_report</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-ods'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">vsis_hr_attendance/report/hr_attendance_report.py</field>
+	        <field name="report_rml">vsis_hr_attendance/report/hr_attendance_report.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="True" 
+			menu="True"
+			id="hr_attendance_report" 
+			model="hr.attendance.report" 
+			name="hr_attendance_report"
+	        string="Attendance Report"
+	        rml="vsis_hr_attendance/report/hr_attendance_report.ods"/>	     
+
+    </data>
+</openerp>

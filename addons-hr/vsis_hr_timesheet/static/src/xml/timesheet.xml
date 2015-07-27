@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+    <t t-name="gs_mkp_timesheet.GSWeeklyTimesheet">
+        <div class="oe_timesheet_weekly">
+            <table>
+                <tr>
+                    <th class="oe_timesheet_first_col"> </th>
+                    <t t-foreach="widget.dates" t-as="date">
+                        <th colspan="2" t-att-class="'oe_timesheet_weekly_date_head' + (Date.compare(date, Date.today()) === 0 ? ' oe_timesheet_weekly_today' : '')">
+                            <t t-esc="date.toString('ddd')"/><br />
+                            <t t-esc="date.toString('MMM d')"/>
+                        </th>
+                    </t>
+                    <th class="oe_timesheet_weekly_date_head" colspan="2">Total</th>
+                </tr>
+                <tr>
+                    <th> </th>
+                    <t t-foreach="widget.dates" t-as="date">
+                        <th colspan="2" t-att-class="'oe_timesheet_weekly_date_filter' + (Date.compare(date, Date.today()) === 0 ? ' oe_timesheet_weekly_today' : '')">
+                            <select t-att-id="'oe-timesheet-date-filter-' + date.toString('yyMMdd')">
+                                <option t-if="widget.visible_status[date] === 'ALL'" selected="selected" value="ALL">All</option>
+                                <option t-if="widget.visible_status[date] !== 'ALL'" value="ALL">All</option>
+                                <option t-if="widget.visible_status[date] === 'X'" selected="selected" value="X">X - Working</option>
+                                <option t-if="widget.visible_status[date] !== 'X'" value="X">X - Worked</option>
+                                <option t-if="widget.visible_status[date] === 'V'" selected="selected" value="V">V - Absent</option>
+                                <option t-if="widget.visible_status[date] !== 'V'" value="V">V - Absent</option>
+                                <option t-if="widget.visible_status[date] === 'T'" selected="selected" value="T">T - Late</option>
+                                <option t-if="widget.visible_status[date] !== 'T'" value="T">T - Late</option>
+                                <option t-if="widget.visible_status[date] === 'S'" selected="selected" value="S">S - Early</option>
+                                <option t-if="widget.visible_status[date] !== 'S'" value="S">S - Early</option>
+                                <option t-if="widget.visible_status[date] === 'E'" selected="selected" value="E">E - Error</option>
+                                <option t-if="widget.visible_status[date] !== 'E'" value="E">E - Error</option>
+                                <option t-if="widget.visible_status[date] === 'P'" selected="selected" value="P">P - Leave</option>
+                                <option t-if="widget.visible_status[date] !== 'P'" value="P">P - Leave</option>
+                                <option t-if="widget.visible_status[date] === 'H'" selected="selected" value="H">H - Holiday</option>
+                                <option t-if="widget.visible_status[date] !== 'H'" value="H">H - Holiday</option>
+                                <option t-if="widget.visible_status[date] === 'SI'" selected="selected" value="SI">SI - In Early</option>
+                                <option t-if="widget.visible_status[date] !== 'SI'" value="SI">SI - In Early</option>
+                                <option t-if="widget.visible_status[date] === 'TO'" selected="selected" value="TO">TO - Out Late</option>
+                                <option t-if="widget.visible_status[date] !== 'TO'" value="TO">TO - Out Late</option>
+                                <option t-if="widget.visible_status[date] === 'TS'" selected="selected" value="TS">TS - Late &amp; Early</option>
+                                <option t-if="widget.visible_status[date] !== 'TS'" value="TS">TS - Late &amp; Early</option>
+                            </select>
+                        </th>
+                    </t>
+                    <th colspan="2"> </th>
+                </tr>                
+                <tr t-foreach="widget.employees" t-if ="widget.employee_names[employee.employee] !== False" t-as="employee" t-att-id="'oe-timesheet-employee-row-'+employee.employee">
+                    <td class="oe_timesheet_weekly_employee"><t t-esc="widget.employee_names[employee.employee]"/></td>
+                    <!-- <td class="oe_timesheet_weekly_employee"><a href="javascript:void(0)" t-att-data-id="JSON.stringify(employee.employee)"><t t-esc="widget.employee_names[employee.employee]"/></a></td> -->
+                    <!--<td class="oe_timesheet_weekly_employee"><t t-esc="widget.employee_names[employee.employee]"/></td>-->
+                    <t t-set="day_count" t-value="0"/>
+                    <t t-foreach="employee.days" t-as="day">
+                        <td t-att-class="(Date.compare(day.day, Date.today()) === 0 ? 'oe_timesheet_weekly_today' : '')">
+                            <input t-if="!widget.get('effective_readonly')" t-att-class="day.main_status ? 'oe_timesheet_weekly_input oe_timesheet_weekly_box_'+day.main_status : 'oe_timesheet_weekly_input oe_timesheet_weekly_box_none'" t-att-data-employee="employee.employee"
+                                t-att-data-account="day.account" t-att-data-day-count="day_count" type="text"/>
+                            <span t-if="widget.get('effective_readonly')" t-att-data-employee="employee.employee"
+                                t-att-data-account="day.account" t-att-data-day-count="day_count" t-att-class="day.main_status ? 'oe_timesheet_weekly_box_'+day.main_status : 'oe_timesheet_weekly_box_none'"/>
+                        </td>
+                        <td t-att-class="(Date.compare(day.day, Date.today()) === 0 ? 'oe_timesheet_weekly_today oe_timesheet_weekly_ot' : 'oe_timesheet_weekly_ot')">
+                            <input t-if="!widget.get('effective_readonly')" class="oe_timesheet_weekly_input_ot" t-att-data-employee-ot="employee.employee"
+                                t-att-data-account-ot="day.ot.account" t-att-data-day-count-ot="day_count" type="text"/>
+                            <span t-if="widget.get('effective_readonly')" t-att-data-employee-ot="employee.employee"
+                                t-att-data-account-ot="day.ot.account" t-att-data-day-count-ot="day_count" class="oe_timesheet_weekly_box_ot"/>
+                        </td>
+                        <t t-set="day_count" t-value="day_count + 1"/>
+                    </t>
+                    <td t-att-data-employee-total="employee.employee" class="oe_timesheet_total"> </td>
+                    <td t-att-data-employee-total-ot="employee.employee" class="oe_timesheet_total_ot"> </td>
+                </tr>
+                <tr class="oe_timesheet_weekly_add_row" style="display: none">
+                    <td t-att-colspan="widget.dates.length + 2">
+                        <button class="oe_highlight">Add</button>
+                    </td>
+                </tr>
+                <tr class="oe_timesheet_total">
+                    <td>
+                        <div class="oe_timesheet_weekly_adding_tot">
+                            <!-- <div class="oe_timesheet_weekly_adding"><button class="oe_timesheet_button_add">Add a Line</button></div> -->
+                            <div class="oe_timesheet_weekly_tottot"><span>Total</span></div>
+                        </div>
+                    </td>
+                    <t t-set="day_count" t-value="0"/>
+                    <t t-foreach="widget.dates" t-as="date">
+                        <td class="oe_timesheet_total">
+                            <span class="oe_timesheet_weekly_box" t-att-data-day-total="day_count">
+                            </span>
+                        </td>
+                        <td class="oe_timesheet_total_ot">
+                            <span class="oe_timesheet_weekly_box_ot" t-att-data-day-total-ot="day_count">
+                            </span>
+                        </td>
+                        <t t-set="day_count" t-value="day_count + 1"/>
+                    </t>
+                    <td class="oe_timesheet_weekly_supertotal oe_timesheet_total"> </td>
+                    <td class="oe_timesheet_weekly_supertotal_ot oe_timesheet_total_ot"> </td>
+                </tr>
+            </table>
+            <div t-if="widget.employees.length == 0">
+                <div class="oe_view_nocontent">
+                    <p>
+                        You are not allow to edit timesheet! Just manager of your department can do this!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_change_company_basic" model="ir.ui.view">
+            <field name="name">Change Company Basic Salary</field>
+            <field name="model">change.company.basic</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+               <form string="Change Comapny Basic Salary" version="7.0">
+        			<group>        			        			
+       				<field name="department_id" on_change="onchange_department(department_id)"/>
+       				<separator string="Employee List" colspan="4" />
+        			<field name="employee_ids" nolabel="1" colspan="4"/>        			
+        			</group>    			
+	    			<footer>
+	           	    	<button name="action_open_window" string="Apply" type="object" icon="gtk-ok" class="oe_highlight"/>
+	           	    	or 
+	    				<button special="cancel" string="Cancel" class="oe_link"/>
+	    			</footer>
+    			</form>
+            </field>
+		</record>
+		
+        <act_window name="Change Company Basic Salary"		    
+		    res_model="change.company.basic"
+		    src_model="hr.basic.company"
+		    view_mode="form"
+		    target="new" 
+            key2="client_action_multi"    
+		    id="change_company_basic_action"/>			
+                  
+    	<record id="view_hr_basic_company_form_inherit" model="ir.ui.view">
+            <field name="name">view.hr.basic.company.form</field>
+            <field name="model">hr.basic.company</field>
+            <field name="inherit_id" ref="view_hr_basic_company_form"/>
+            <field name="arch" type="xml">	
+            	<div name="button_box" position="inside">
+            		<button type="action" colspan="2"
+                            name="%(change_company_basic_action)d"
+                            string="Update for Employees" class="oe_highlight"/>
+                    
+            	</div>
+           	</field>
+        </record>  
+
+    </data>      
+</openerp>

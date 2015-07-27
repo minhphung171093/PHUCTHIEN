@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		
+		<record model="ir.ui.view" id="wizard_gs_purvey_insurance">
+			<field name="name">gs.purvey.insurance.form</field>
+			<field name="model">gs.purvey.insurance</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Purvey Insurance Request" version="7.0">
+					<separator string="Purvey Insurance Request"/>					
+					<group col="4" colspan="4">			
+						<field name="date_start" />
+						<field name="date_stop" />								
+					</group>	
+					<footer>
+	                        <button string="Print" name="print_report" type="object" class="oe_highlight"/> or
+	                        <button string="Cancel" class="oe_link" special="cancel"/>
+	                </footer>			
+				</form>
+			</field>
+		</record>
+		
+
+         <record id="action_gs_purvey_insurance" model="ir.actions.act_window">
+            <field name="name">Purvey Insurance Request</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">gs.purvey.insurance</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+      
+        
+        
+     	<menuitem action="action_gs_purvey_insurance" 
+        		id="menu_action_gs_purvey_insurance" 
+        		parent="menu_tax_bhxh"
+				icon = "STOCK_PRINT"
+				 />	 	 
+	</data>
+</openerp>

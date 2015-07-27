@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_timesheet_from_attendance" model="ir.ui.view">
+            <field name="name">timesheet.from.attendance.form</field>
+            <field name="model">timesheet.from.attendance</field>
+            <field name="arch" type="xml">
+                <form string="Timesheet from attendance" version="7.0">
+                    <group string="Load Attendance">
+                        <field name="load_machine" on_change="on_change_load_machine(load_machine, context)"/>
+                        <field name="auto_delete"/>
+                    </group>
+                    <group string="Calculation">
+                        <field name="date_from" class="oe_inline"/>
+                        <field name="date_to" class="oe_inline"/>
+                    </group>
+                    <footer>
+                        <button name="confirm" string="Calculate" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" special="cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_timesheet_from_attendance" model="ir.actions.act_window">
+            <field name="name">Timesheet from attendance</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">timesheet.from.attendance</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <!--<record model="ir.values" id="timesheet_from_attendance_value">
+            <field name="model_id" ref="hr.model_hr_employee" />
+            <field name="name">Leaves Summary</field>
+            <field name="key2">client_print_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_hr_holidays_summary_employee'))" />
+            <field name="key">action</field>
+            <field name="model">hr.employee</field>
+        </record>-->
+
+    </data>
+</openerp>

@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<menuitem id="menu_hr_configuration_employee" name="Employee" parent="hr.menu_hr_configuration" sequence="25"/>
+    
+============
+Employee Category
+============
+       	<record id="hr.view_employee_category_filter" model="ir.ui.view">
+            <field name="name">hr.employee.category.filter</field>
+            <field name="model">hr.employee.category</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Employee Category">
+                	
+                    <field name="code" />
+                    <field name="name" />
+                    <field name="parent_id"/>                    
+                </search>
+            </field>
+        </record>
+       <record id="hr.view_employee_category_form" model="ir.ui.view">
+            <field name="name">hr.employee.category.form</field>
+            <field name="model">hr.employee.category</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Employee Category" version="7.0">
+                	<group col="4">
+	                    <field name="code"/>
+	                    <field name="name" />
+	                    <field name="active"/>
+	                    <field name="parent_id"/>
+	                    <field name="employee_ids" colspan="4"/>
+                    </group>                    
+                </form>
+            </field>
+        </record>
+
+        <record id="hr.view_employee_category_list" model="ir.ui.view">
+            <field name="name">hr.employee.category.list</field>
+            <field name="model">hr.employee.category</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Employees Categories">
+                    <field name="code"/>
+                    <field name="complete_name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+       
+        <record id="hr.open_view_categ_form" model="ir.actions.act_window">
+            <field name="name">Categories of Employee</field>
+            <field name="res_model">hr.employee.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_active_filter': 1}</field>
+        </record>
+==============
+Department
+==============
+		<record id="hr.view_department_filter" model="ir.ui.view">
+            <field name="name">Departments</field>
+            <field name="model">hr.department</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Departments">
+                	
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="manager_id"/>
+                   
+                </search>
+             </field>
+         	</record>
+		<record id="view_department_form" model="ir.ui.view">
+            <field name="name">hr.department.form</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                	<field name="code"/>              
+               	</xpath>
+               	<xpath expr="//field[@name='name']" position="after">
+                	<field name="active"/>              
+               	</xpath>
+            </field>
+       	</record>
+        	
+       	<record id="hr.view_department_tree" model="ir.ui.view">
+            <field name="name">hr.department.tree</field>
+            <field name="model">hr.department</field>
+            <field name="type">tree</field>
+            <field name="field_parent">child_ids</field>
+            <field name="arch" type="xml">
+                <tree string="Companies">
+                	<field name="code"/>
+                    <field name="complete_name"/>
+                    <field name="active"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="manager_id"/>
+                </tree>
+            </field>
+        	</record>
+         	
+       	<record id="hr.open_module_tree_department" model="ir.actions.act_window">
+            <field name="name">Departments</field>
+            <field name="res_model">hr.department</field>
+            <field name="view_type">form</field>
+            <field name="context">{'search_default_active_filter': 1}</field>
+            <field name="search_view_id" ref="hr.view_department_filter"/>
+            <field name="help">Your Company's Department Structure is used to manage all documents related to employees by departments: expenses and timesheet validation, leaves management, recruitments, etc.</field>
+       	</record>
+       	<menuitem action="hr.open_module_tree_department" id="hr.menu_hr_department_tree" parent="menu_hr_configuration_employee" />
+       	
+        <record id="view_hr_department_tree" model="ir.ui.view">
+            <field name="name">hr.department.tree</field>
+            <field name="model">hr.department</field>
+            <field name="field_parent">child_ids</field>
+            <field name="arch" type="xml">
+                <tree string="Department">
+                    <field name="name"/>                                          
+                </tree>
+            </field>
+        </record>   
+        <record id="action_hr_department_tree" model="ir.actions.act_window">
+            <field name="name">Department Structure</field>
+            <field name="res_model">hr.department</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="domain">[('parent_id','=',False)]</field>
+            <field name="view_type">tree</field>
+            <field name="view_id" ref="view_hr_department_tree"/>
+        </record>          	
+        <menuitem action="action_hr_department_tree" id="menu_hr_department_tree" parent="menu_hr_configuration_employee" />
+==============
+degree 
+==============
+		<!-- Degree Search View -->
+		    <record model="ir.ui.view" id="hr_recruitment_degree_filter">
+		        <field name="name">hr.recruitment.degree.filter</field>
+		        <field name="model">hr.recruitment.degree</field>
+		        <field name="type">search</field>
+		        <field name="arch" type="xml">
+		            <search string="Degree" position="replace">		            	
+		                <field name="code"/>
+		                <field name="name"/>
+		            </search>
+		        </field>
+		    </record>
+		<!-- Degree Tree View -->
+		    <record model="ir.ui.view" id="hr_recruitment.hr_recruitment_degree_tree">
+		        <field name="name">hr.recruitment.degree.tree</field>
+		        <field name="model">hr.recruitment.degree</field>
+		        <field name="arch" type="xml">
+		            <tree string="Degree">
+		                <field name="code"/>
+		                <field name="name"/>
+		                <field name="active"/>
+		            </tree>
+		        </field>
+		    </record>
+		
+		<!-- Degree Form View -->		
+		    <record model="ir.ui.view" id="hr_recruitment_degree_form">
+		        <field name="name">hr.recruitment.degree.form</field>
+		        <field name="model">hr.recruitment.degree</field>
+		        <field name="inherit_id" ref="hr_recruitment.hr_recruitment_degree_form"/>
+		        <field name="arch" type="xml">
+		            <form string="Degree" position="replace">
+		            	<form string="Degree">
+		            		<group col="8" colspan="4">
+			                    <field name="code"/>
+			                    <field name="name" colspan="4"/>
+			                    <field name="active"/>
+		                    </group>
+		                </form>
+		            </form>
+		        </field>
+			</record>
+		
+			<record id="hr_recruitment.hr_recruitment_degree_action" model="ir.actions.act_window">
+	        	<field name="name">Level</field>
+	        	<field name="res_model">hr.recruitment.degree</field>
+	        	<field name="view_type">form</field>
+	        	<field name="context">{'search_default_active_filter': 1}</field>
+	        	<field name="view_id" ref="hr_recruitment.hr_recruitment_degree_tree"/>
+	    	</record>
+	    	<menuitem
+	            id="hr_recruitment.menu_hr_recruitment_degree"
+	            name="Level"
+	            parent="menu_hr_configuration_employee"
+	            action="hr_recruitment.hr_recruitment_degree_action"
+	            sequence="1"/>
+==============
+ hr.maternity
+==============
+			<record model="ir.ui.view" id="hr_maternity_filter">
+		        <field name="name">hr.maternity.filter</field>
+		        <field name="model">hr.maternity</field>
+		        <field name="type">search</field>
+		        <field name="arch" type="xml">
+		            <search string="Search Maternity">		            	
+		                <field name="code"/>
+		                <field name="name"/>
+		                <field name="date_start"/>
+		                <field name="date_stop"/>
+		                <field name="month"/>
+		                <field name="hour"/>                
+		            </search>
+		        </field>
+		    </record>
+		    
+		<!-- Maternity Tree View -->
+		    <record model="ir.ui.view" id="hr_maternity_tree">
+		        <field name="name">hr.maternity.tree</field>
+		        <field name="model">hr.maternity</field>
+		        <field name="type">tree</field>
+		        <field name="arch" type="xml">
+		            <tree string="Maternity">		     	
+		                <field name="code"/>
+		                <field name="name"/>
+		                <field name="date_start"/>
+		                <field name="date_stop"/>
+		                <field name="month"/>
+		                <field name="hour"/>
+		                <field name="active"/>
+		            </tree>
+		        </field>
+		    </record>
+		
+		<!-- Maternity Form View -->
+		    <record model="ir.ui.view" id="hr_maternity_form">
+		        <field name="name">hr.maternity.form</field>
+		        <field name="model">hr.maternity</field>
+		        <field name="type">form</field>
+		        <field name="arch" type="xml">
+		            <form string="Maternity" version="7.0">		
+		            	<group col="6">     	
+			                <field name="code"/>
+			                <field name="name"/>
+			                <field name="active"/>
+			                <label for="date_start" string="Duration"/>
+			                <div>
+				                <field name="date_start" class="oe_inline"/> - 
+				                <field name="date_stop" class="oe_inline"/>
+			                </div>			                
+			                <field name="month"/>
+			                <field name="hour"/>
+		                </group>		                
+		            </form>
+		        </field>
+		    </record>
+		
+			<record id="hr_maternity_action" model="ir.actions.act_window">
+		        <field name="name">Maternity</field>
+		        <field name="res_model">hr.maternity</field>
+		        <field name="view_type">form</field>
+		        <field name="context">{'search_default_active_filter': 1}</field>
+		        <field name="view_id" ref="hr_maternity_tree"/>
+		    </record>
+	    
+	    	<menuitem
+	            id="hr_maternity_menu"
+	            name="Maternity"
+	            parent="menu_hr_configuration_employee"
+	            action="hr_maternity_action"
+	            sequence="1"/>	            
+==============
+reason stop working 
+==============   
+		<record model="ir.ui.view" id="view_hr_reason_filter">
+            <field name="name">hr.reason.filter</field>
+            <field name="model">hr.reason</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+            <search string="Reason">
+            	
+             	<field name="code"/>
+                <field name="name"/>
+     
+            </search>            
+            </field>
+        </record>  
+                   
+        <record model="ir.ui.view" id="view_hr_reason_form">
+            <field name="name">hr.reason.form</field>
+            <field name="model">hr.reason</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Reason">
+             	<group col="8" colspan="4">
+             		<field name="code"/>
+                	<field name="name" />
+                    <field name="type" />                    
+                	<field name="active"/>  
+                </group>
+            </form>            
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_reason_tree">
+            <field name="name">hr.reason</field>
+            <field name="model">hr.reason</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+            <tree string="reason">
+            	<field name="code"/>
+                <field name="name"/>    
+                <field name="active"/> 
+            </tree>            
+            </field>
+        </record>
+        
+        <record id="action_reason" model="ir.actions.act_window">
+            <field name="name">Reason</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.reason</field>
+            <field name="context">{'search_default_active_filter': 1}</field>
+            <field name="view_type">form</field>
+        </record>
+        
+         <menuitem 
+            id="menu_hr_reason"  
+            action="action_reason"
+            parent="menu_hr_configuration_employee"/>
+            
+==============
+accident type
+==============                
+        <record model="ir.ui.view" id="view_hr_accident_type_filter">
+            <field name="name">hr.accident.type.filter</field>
+            <field name="model">hr.accident.type</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+            <search string="Accident Insurance Type">    
+            	         
+                <field name="code"/>
+                <field name="name"/>
+                        
+            </search>            
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_accident_type_tree">
+            <field name="name">hr.accident.type.tree</field>
+            <field name="model">hr.accident.type</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+            <tree string="Accident Insurance Type">             
+                <field name="code"/>
+                <field name="name"/>
+                <field name="active"/>        
+            </tree>            
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_accident_type_form">
+            <field name="name">hr.accident.type.form</field>
+            <field name="model">hr.accident.type</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Accident Insurance Type">             
+                <group col="6">
+             		<field name="code"/>
+                	<field name="name" />  
+                	<field name="active"/>  
+                </group>        
+            </form>            
+            </field>
+        </record>
+        
+        <record id="action_accident_type" model="ir.actions.act_window">
+            <field name="name">Accident Insurance Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.accident.type</field>
+            <field name="context">{'search_default_active_filter': 1}</field>
+            <field name="view_type">form</field>
+        </record>
+        
+         <menuitem 
+            id="menu_hr_accident_type"  
+            action="action_accident_type"
+            parent="menu_hr_configuration_employee"/>
+            
+==============
+function
+==============                
+        <record model="ir.ui.view" id="view_hr_function_filter">
+            <field name="name">hr.function.filter</field>
+            <field name="model">hr.function</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+            <search string="Function">    
+            	         
+                <field name="code"/>
+                <field name="name"/>
+                        
+            </search>            
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_function_tree">
+            <field name="name">hr.function.tree</field>
+            <field name="model">hr.function</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+            <tree string="Function">             
+                <field name="code"/>
+                <field name="name"/>
+                <field name="active"/>        
+            </tree>            
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_function_form">
+            <field name="name">hr.function.form</field>
+            <field name="model">hr.function</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Function">             
+                <group col="6">
+             		<field name="code"/>
+                	<field name="name" />  
+                	<field name="active"/>  
+                </group>        
+            </form>            
+            </field>
+        </record>
+        
+        <record id="action_function" model="ir.actions.act_window">
+            <field name="name">Function</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.function</field>
+            <field name="context">{'search_default_active_filter': 1}</field>
+            <field name="view_type">form</field>
+        </record>
+        
+         <menuitem 
+            id="menu_hr_function"  
+            action="action_function"
+            parent="menu_hr_configuration_employee"/>
+    
+==============
+religion
+==============         
+        <record model="ir.ui.view" id="view_hr_religion_filter">
+            <field name="name">hr.religion.filter</field>
+            <field name="model">hr.religion</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+            <search string="Religion">
+            	
+                <field name="code"/>          
+                <field name="name"/> 
+                   
+            </search>            
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_religion_form">
+            <field name="name">hr.religion.form</field>
+            <field name="model">hr.religion</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Religion">
+                <group col="8" colspan="4">
+             		<field name="code"/>
+                	<field name="name" colspan="4"/>  
+                	<field name="active"/>  
+                </group>  
+            </form>            
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_religion_tree">
+            <field name="name">hr.religion.tree</field>
+            <field name="model">hr.religion</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+            <tree string="Religion">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="active"/>    
+            </tree>            
+            </field>
+        </record>
+        
+        <record id="action_religion" model="ir.actions.act_window">
+            <field name="name">Religion</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.religion</field>
+            <field name="context">{'search_default_active_filter': 1}</field>
+            <field name="view_type">form</field>
+        </record>
+        
+         <menuitem 
+            id="menu_hr_religion"  
+            action="action_religion"
+            parent="menu_hr_configuration_employee"/>
+            
+==========
+ethnic
+==========      
+        <record model="ir.ui.view" id="view_hr_ethnic_filter">
+            <field name="name">hr.ethnic.filter</field>
+            <field name="model">hr.ethnic</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+            <search string="Ethnic">
+            	
+                <field name="code"/>
+                <field name="name"/>
+                    
+            </search>            
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_ethnic_form">
+            <field name="name">hr.ethnic.form</field>
+            <field name="model">hr.ethnic</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Ethnic">
+                <group col="8" colspan="4">
+             		<field name="code"/>
+                	<field name="name" colspan="4"/>  
+                	<field name="active"/>  
+                </group>  
+            </form>            
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_ethnic_tree">
+            <field name="name">hr.ethnic.tree</field>
+            <field name="model">hr.ethnic</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+            <tree string="Ethnic">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="active"/>    
+            </tree>            
+            </field>
+        </record>
+        
+        <record id="action_ethnic" model="ir.actions.act_window">
+            <field name="name">Ethnic</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.ethnic</field>
+            <field name="context">{'search_default_active_filter': 1}</field>
+            <field name="view_type">form</field>
+        </record>
+        
+        <menuitem 
+            id="menu_hr_ethnic"  
+            action="action_ethnic"
+            parent="menu_hr_configuration_employee"/>
+
+==============
+certification
+==============   
+		<record model="ir.ui.view" id="view_hr_certification_filter">
+            <field name="name">hr.certification.filter</field>
+            <field name="model">hr.certification</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+            <search string="Major">
+            	
+                <field name="code"/>
+                <field name="name"/>  
+                  
+            </search>            
+            </field>
+        </record>
+		             
+        <record model="ir.ui.view" id="view_hr_certification_form">
+            <field name="name">hr.certification.form</field>
+            <field name="model">hr.certification</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Major">
+                <group col="8" colspan="4">
+             		<field name="code"/>
+                	<field name="name" colspan="4"/>  
+                	<field name="active"/>  
+                </group>
+            </form>            
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_certification_tree">
+            <field name="name">hr.certification</field>
+            <field name="model">hr.certification</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+             <tree string="Major">
+                <field name="code"/>
+                <field name="name"/>  
+                <field name="active"/>  
+             </tree>            
+            </field>
+        </record>
+        
+        <record id="action_certification" model="ir.actions.act_window">
+            <field name="name">Major</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.certification</field>
+            <field name="view_type">form</field>
+            <field name="context">{'search_default_active_filter': 1}</field>
+        </record>
+        
+         <menuitem 
+            id="menu_hr_certification"  
+            action="action_certification"
+            parent="menu_hr_configuration_employee"/>
+            
+==============
+major
+==============   
+		<record model="ir.ui.view" id="view_hr_major_filter">
+            <field name="name">hr.major.filter</field>
+            <field name="model">hr.major</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+            <search string="Certification">
+            	
+                <field name="code"/>
+                <field name="name"/>  
+                  
+            </search>            
+            </field>
+        </record>
+		             
+        <record model="ir.ui.view" id="view_hr_major_form">
+            <field name="name">hr.major.form</field>
+            <field name="model">hr.major</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Certification">
+                <group col="8" colspan="4">
+             		<field name="code"/>
+                	<field name="name" colspan="4"/>  
+                	<field name="active"/>  
+                </group>
+            </form>            
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_major_tree">
+            <field name="name">hr.major</field>
+            <field name="model">hr.major</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+             <tree string="Certification">
+                <field name="code"/>
+                <field name="name"/>  
+                <field name="active"/>  
+             </tree>            
+            </field>
+        </record>
+        
+        <record id="action_major" model="ir.actions.act_window">
+            <field name="name">Certification</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.major</field>
+            <field name="view_type">form</field>
+            <field name="context">{'search_default_active_filter': 1}</field>
+        </record>
+        
+         <menuitem 
+            id="menu_hr_major"  
+            action="action_major"
+            parent="menu_hr_configuration_employee"/>
+
+================
+family relation
+================     
+        <record model="ir.ui.view" id="view_hr_relation_filter">
+            <field name="name">hr.relation.filter</field>
+            <field name="model">hr.relation</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+            <search string="Relation">   
+            	            
+                <field name="code"/> 
+                <field name="name"/>
+                   
+            </search>            
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_relation_form">
+            <field name="name">hr.relation.form</field>
+            <field name="model">hr.relation</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Relation">               
+                <group col="8" colspan="4">
+             		<field name="code"/>
+                	<field name="name" colspan="4"/>  
+                	<field name="active"/>  
+                </group>  
+            </form>            
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_hr_relation_tree">
+            <field name="name">hr.relation.tree</field>
+            <field name="model">hr.relation</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+            <tree string="Relation">               
+                <field name="code"/> 
+                <field name="name"/>
+                <field name="active"/>    
+            </tree>            
+            </field>
+        </record>
+        
+        <record id="action_relation" model="ir.actions.act_window">
+            <field name="name">Family Relationship</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.relation</field>
+            <field name="view_type">form</field>
+            <field name="context">{'search_default_active_filter': 1}</field>
+        </record>
+        
+         <menuitem 
+            id="menu_hr_relation"  
+            action="action_relation"
+            parent="menu_hr_configuration_employee"/>
+
+    </data>      
+</openerp>

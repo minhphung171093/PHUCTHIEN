@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_change_structure" model="ir.ui.view">
+            <field name="name">Change Salary Structure </field>
+            <field name="model">change.structure</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+               <form string="Change salary structure" version="7.0">
+        			<group>
+        			<!--<field name="struct_id"/>-->        			
+       				<field name="department_id" on_change="onchange_department(department_id)"/>
+       				<separator string="Employee List" colspan="4" />
+        			<field name="employee_ids" nolabel="1" colspan="4"/>        			
+        			</group>    			
+	    			<footer>
+	           	    	<button name="action_open_window" string="Apply" type="object" icon="gtk-ok" class="oe_highlight"/>
+	           	    	or 
+	    				<button special="cancel" string="Cancel" class="oe_link"/>
+	    			</footer>
+    			</form>
+            </field>
+		</record>
+		
+        <act_window name="Change Salary Structure"		    
+		    res_model="change.structure"
+		    src_model="hr.payroll.structure"
+		    view_mode="form"
+		    target="new" 
+            key2="client_action_multi"    
+		    id="change_structure_action"/>			
+         
+         <!--<menuitem 
+            sequence="30"
+            id="menu_change_structure"  
+            action="change_structure_action"
+            parent="hr_payroll.payroll_configure"/>
+    	-->
+    	
+    	<record id="view_hr_employee_grade_form" model="ir.ui.view">
+            <field name="name">hr.payroll.structure.form.inherit</field>
+            <field name="model">hr.payroll.structure</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_employee_grade_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='parent_id']" position="after">
+            		<button type="action" colspan="2"
+                            name="%(change_structure_action)d"
+                            string="Update for Contract" class="oe_highlight"/>                           
+            	</xpath>              
+            </field>
+        </record>
+    </data>      
+</openerp>

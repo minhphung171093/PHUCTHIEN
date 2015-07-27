@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="hr_employee_calendar_form" model="ir.ui.view">
+            <field name="name">hr.employee.form.calendar</field>
+            <field name="model">hr.employee</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <field name="coach_id" position="before">
+                    <field name="calendar_id"/>
+                </field>
+            </field>
+        </record>
+
+        <!--<record id="view_employee_tree" model="ir.ui.view">
+            <field name="name">hr.employee.tree.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="job_id" position="after">
+                    <field name="calendar_id"/>
+                </field>
+            </field>
+        </record>-->
+
+        <!-- Shift -->
+        <record id="hr_shift_filter" model="ir.ui.view">
+            <field name="name">hr.shift.filter</field>
+            <field name="model">hr.shift</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Shift">
+                    <field name="code"/>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="hr_shift_form" model="ir.ui.view">
+            <field name="name">hr.shift.form</field>
+            <field name="model">hr.shift</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Shift" >
+                      <field name="code"/>
+                      <field name="name" />
+                      <field name="shift_rate" />
+                      <newline/>
+                      <field name="hour_from" widget="float_time"/>
+                      <field name="hour_to" widget="float_time"/>
+                      <field name="is_end_next_day"/>
+                      <field name="break_time"/>
+                      <newline/>
+                      <field name="break_from" widget="float_time"/>
+                      <field name="break_to" widget="float_time"/>
+                      <separator string="Limit" colspan="4" col="4"/>
+                      <field name="limit_in_early"/>
+                      <field name="limit_in_late"/>
+                      <field name="limit_out_early"/>
+                      <field name="limit_out_late"/>
+                      <separator string="Allowing Difference" colspan="4" col="4"/>
+                      <field name="allow_in_early"/>
+                      <field name="allow_in_late"/>
+                      <field name="allow_out_early"/>
+                      <field name="allow_out_late"/>
+                      <separator string="Overtime Setting" colspan="4" col="4"/>
+                      <field name="ot_hour_from" widget="float_time" />
+                      <field name="ot_hour_to" widget="float_time"/>
+                      <field name="ot_rate"/>
+                      <field name="ot_break_time" />
+                      <field name="ot_break_from" widget="float_time"/>
+                      <field name="ot_break_to" widget="float_time"/>
+                 </form>
+            </field>
+        </record>
+        <record id="hr_shift_tree" model="ir.ui.view">
+            <field name="name">hr.shift.tree</field>
+            <field name="model">hr.shift</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Shift">
+                        <field name="code"/>
+                        <field name="name"/>
+                        <field name="hour_from" widget="float_time"/>
+                        <field name="hour_to" widget="float_time"/>
+                        <field name="is_end_next_day"/>
+                        <field name="break_from" widget="float_time"/>
+                        <field name="break_to" widget="float_time"/>
+                        <field name="break_time"/>
+                        <field name="limit_in_early"/>
+                        <field name="limit_in_late"/>
+                        <field name="limit_out_early"/>
+                        <field name="limit_out_late"/>
+                        <field name="allow_in_early"/>
+                        <field name="allow_in_late"/>
+                        <field name="allow_out_early"/>
+                        <field name="allow_out_late"/>
+                        <field name="ot_rate"/>
+                        <field name="ot_hour_from" widget="float_time"/>
+                        <field name="ot_hour_to" widget="float_time"/>
+                    </tree>
+            </field>
+        </record>
+        <record id="action_hr_shift" model="ir.actions.act_window">
+            <field name="name">Shift</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.shift</field>
+            <field name="context">{'search_default_active_filter': 1}</field>
+            <field name="view_type">form</field>
+        </record>
+        <menuitem action="action_hr_shift" id="menu_hr_shift" parent="hr.menu_hr_configuration" sequence="21" groups="base.group_hr_attendance"/>
+
+        <!-- hr_timesheet_status -->
+        <record id="hr_timesheet_status_form" model="ir.ui.view">
+            <field name="name">hr.timesheet.status.form</field>
+            <field name="model">hr.timesheet.status</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Timesheet Status" version="7.0">
+                    <sheet>
+                         <group>
+                               <field name="name"/>
+                               <field name="description" />
+                         </group>
+                     </sheet>
+                 </form>
+            </field>
+        </record>
+        <record id="hr_timesheet_status_tree" model="ir.ui.view">
+            <field name="name">hr.timesheet.status.tree</field>
+            <field name="model">hr.timesheet.status</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Timesheet Status">
+                     <field name="name"/>
+                     <field name="description" />
+                </tree>
+            </field>
+        </record>
+        <record id="action_hr_timesheet_status" model="ir.actions.act_window">
+            <field name="name">Timesheet Status</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.timesheet.status</field>
+            <field name="context">{'search_default_active_filter': 1}</field>
+            <field name="view_type">form</field>
+        </record>
+        <menuitem action="action_hr_timesheet_status" id="menu_hr_timesheet_status" parent="hr.menu_hr_configuration" sequence="22" groups="base.group_hr_attendance"/>
+
+        <!-- Working time -->
+        <record id="resource_calendar_form" model="ir.ui.view">
+            <field name="name">resource.calendar.form</field>
+            <field name="model">resource.calendar</field>
+            <field name="inherit_id" ref="resource.resource_calendar_form"/>
+            <field name="arch" type="xml">
+                <field name="manager" position="after" >
+                    <field name="apply_start"/>
+                    <field name="apply_date" attrs="{'readonly': [('apply_start','!=', 'manual')], 'required': [('apply_start','=', 'manual')]}"/>
+                </field>
+                <field name="attendance_ids" position="replace">
+                    <notebook>
+                      <page string="Working Time">
+                          <field name="attendance_ids" />
+                      </page>
+                      <page string="Employees">
+                          <field name="employee_ids" />
+                      </page>
+                    </notebook>
+                </field>
+            </field>
+        </record>
+       <menuitem action="resource.action_resource_calendar_form" id="menu_action_resource_calendar_form" parent="hr.menu_hr_configuration" sequence="23"/>
+
+       <!-- Resource calendar attendance -->
+       <record id="view_resource_calendar_attendance_tree" model="ir.ui.view">
+            <field name="name">resource.calendar.attendance.tree</field>
+            <field name="model">resource.calendar.attendance</field>
+            <field name="inherit_id" ref="resource.view_resource_calendar_attendance_tree"/>
+            <field name="arch" type="xml">
+                <tree string="Working Time" position="replace">
+                    <tree string="Working Time" editable="bottom">
+                        <field name="week_no"/>
+                        <field name="dayofweek"/>
+                        <field name="shift_id"/>
+                    </tree>
+                </tree>
+            </field>
+        </record>
+        <record id="view_resource_calendar_attendance_form" model="ir.ui.view">
+            <field name="name">resource.calendar.attendance.form</field>
+            <field name="model">resource.calendar.attendance</field>
+            <field name="inherit_id" ref="resource.view_resource_calendar_attendance_form"/>
+            <field name="arch" type="xml">
+                <form string="Working Time" position="replace">
+                    <form string="Working Time">
+                        <field name="week_no"/>
+                        <field name="dayofweek"/>
+                        <field name="shift_id"/>
+                    </form>
+                </form>
+            </field>
+        </record>
+
+        <!-- working_schedule_mapping -->
+        <record id="working_schedule_mapping_form" model="ir.ui.view">
+            <field name="name">working.schedule.mapping.form</field>
+            <field name="model">working.schedule.mapping</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Working Schedule Mapping" version="7.0">
+                    <header>
+                        <button string="Approve" name="action_approve" states="confirm" type="object" class="oe_highlight"/>
+                        <button string="Confirm" name="action_confirm" states="draft" type="object" class="oe_highlight"/>
+                        <button string="Cancel" name="action_cancel" states="confirm,approved" type="object" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,approved" statusbar_colors='{"draft":"red","confirm":"blue","approved":"blue"}'/>
+                    </header>
+                    <sheet string="Working Schedule Mapping">
+                        <group colspan="4">
+                            <field name="name"/>
+                            <newline />
+                            <field name="mapping_date" />
+                            <field name="new_date" />
+                            <field name="mapping_shift"/>
+                            <field name="new_shift"/>
+                        </group>
+                        <group colspan="4"  expand="1">
+                            <field name="note" />
+                        </group>
+                    </sheet>
+                 </form>
+            </field>
+        </record>
+        <record id="working_schedule_mapping_tree" model="ir.ui.view">
+            <field name="name">working.schedule.mapping.tree</field>
+            <field name="model">working.schedule.mapping</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Working Schedule Mapping">
+                     <field name="name"/>
+                     <field name="mapping_date" />
+                     <field name="mapping_shift"/>
+                     <field name="new_date" />
+                     <field name="new_shift"/>
+                     <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <record id="action_working_schedule_mapping" model="ir.actions.act_window">
+            <field name="name">Working Schedule Mapping</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">working.schedule.mapping</field>
+            <field name="context">{'search_default_active_filter': 1}</field>
+            <field name="view_type">form</field>
+        </record>
+        <menuitem action="action_working_schedule_mapping" id="menu_working_schedule_mapping" parent="hr.menu_hr_configuration" sequence="24" groups="base.group_hr_attendance"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+     <data>
+
+      <record id="view_hr_manual_rule" model="ir.ui.view">
+            <field name="name">view_hr_manual_rule</field>
+            <field name="model">hr.manual.rule</field>
+            <field name="arch" type="xml">
+                <form string="Add Manual Salary Rule" version="7.0">                    
+                    <group string="Rules">                        
+                        <field name="rule_ids" nolabel="1"/>
+                    </group>
+                    <footer>	               		
+	               		<button icon="gtk-execute" string="Aplly" name="compute_sheet" type="object" class="oe_highlight"/>
+	               		or
+	               		<button special="cancel" string="_Cancel" class="oe_link"/>
+           	    	</footer> 
+               </form>
+            </field>
+        </record>
+
+        <record id="action_hr_manual_rule" model="ir.actions.act_window">
+            <field name="name">Add Manual Salary Rule</field>
+            <field name="res_model">hr.manual.rule</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_hr_manual_rule"/>
+            <field name="target">new</field>
+        </record>
+
+  </data>
+</openerp>

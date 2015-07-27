@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<!-- Salary rule category template --> 
+	    <record model="ir.ui.view" id="hr_template_filter">
+	        <field name="name">hr.template.filter</field>
+	        <field name="model">hr.template</field>
+	        <field name="type">search</field>
+	        <field name="arch" type="xml">
+	            <search string="Rule Category Template Search">		            			                
+	                <field name="name"/>		                
+	            </search>
+	        </field>
+	    </record>
+	
+	    <record model="ir.ui.view" id="hr_template_tree">
+	        <field name="name">hr.template.tree</field>
+	        <field name="model">hr.template</field>
+	        <field name="arch" type="xml">
+	            <tree string="Rule Category Template">
+	                <field name="name"/>
+	                <field name="template_line"/>		                
+	            </tree>
+	        </field>
+	    </record>
+	
+	    <record model="ir.ui.view" id="hr_template_form">
+	        <field name="name">hr.template.form</field>
+	        <field name="model">hr.template</field>
+	        <field name="arch" type="xml">
+	            <form string="Rule Category Template" version="7.0">
+	            	<group col="4">
+		                <field name="name"/>
+		                <separator sring="Template Line" colspan="4"/>
+		                <field name="template_line" colspan="4" nolabel="1">
+		                	<tree string="Template Line" editable="top">
+		                		<field name="name"/>
+		                		<field name="sequence"/>
+		                	</tree>
+		                </field>
+		            </group>		                
+	            </form>
+	        </field>
+		</record>
+	
+		<record id="hr_template_action" model="ir.actions.act_window">
+        	<field name="name">Rule Category Template</field>
+        	<field name="res_model">hr.template</field>
+        	<field name="view_type">form</field>
+        	<field name="view_id" ref="hr_template_tree"/>	        	
+    	</record>
+    	
+    	<menuitem
+            id="hr_template_menu"	            
+            parent="hr_payroll.payroll_configure"
+            action="hr_template_action"
+            />
+	            
+    <!-- salary rule category  -->
+    	<record id="hr_salary_rule_category_form" model="ir.ui.view">
+            <field name="name">hr.salary.rule.category.form</field>
+            <field name="model">hr.salary.rule.category</field>
+            <field name="inherit_id" ref="hr_payroll.hr_salary_rule_category_form"/>
+            <field name="arch" type="xml">
+            	<form string="Salary Categories" position="replace">
+	                <form string="Salary Categories">
+	                    <group col="4">
+	                        <field name="name"/>
+	                        <field name="code"/>
+	                        <field name="sequence"/>
+	                        <field name="parent_id"/>
+	                    </group>
+	                    <newline/>
+	                    <group string="Notes">
+	                    	<field name="note" nolabel="1" colspan="4"/>
+	                    </group>
+	                </form>
+                </form>
+            </field>
+        </record>
+    <!-- Contract View -->
+        <record id="hr_payroll.hr_contract_form_inherit" model="ir.ui.view">
+            <field name="name">hr.contract.view.form.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+            <data> 
+                 <xpath expr="//field[@name='working_hours']" position="after">
+                    <field name="schedule_pay"/>
+                </xpath>
+            </data>
+            </field>
+        </record>
+        <record id="hr_contract_form_inherit_struct" model="ir.ui.view">
+            <field name="name">hr.contract.view.form.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="vsis_hr.hr_contract_view_form_inherit"/>
+            <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='total_wage']" position="after">
+                    <field name="struct_id" required="1"/>
+                </xpath>
+            </data>
+            </field>
+        </record>
+===========
+rule
+===========
+    	<record id="hr_salary_rule_form_inherit" model="ir.ui.view">
+            <field name="name">hr.salary.rule.form.inherit</field>
+            <field name="model">hr.salary.rule</field>
+            <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='condition_select']" position="before">
+            		<field name="compute_option"/><newline/>
+            	</xpath>
+            </field>
+        </record>
+        <record id="hr_salary_rule_list_inherit" model="ir.ui.view">
+            <field name="name">hr.salary.rule.list.inherit</field>
+            <field name="model">hr.salary.rule</field>
+            <field name="inherit_id" ref="hr_payroll.hr_salary_rule_list"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='category_id']" position="after">
+            		<field name="compute_option"/>
+            	</xpath>
+            </field>
+        </record>
+===========
+structure
+=========== 
+		<record id="view_hr_employee_grade_form_inherit" model="ir.ui.view">
+            <field name="name">hr.payroll.structure.form.inherit</field>
+            <field name="model">hr.payroll.structure</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_employee_grade_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='category_id']" position="after">
+            		<field name="compute_option"/>
+            	</xpath>              
+            </field>
+        </record>
+        
+===========
+payslip
+=========== 
+		<record id="hr_payroll.view_hr_payslip_tree" model="ir.ui.view">
+            <field name="name">hr.payslip.tree</field>
+            <field name="model">hr.payslip</field>
+            <field name="arch" type="xml">
+                <tree colors="blue:state =='draft';gray:state == 'cancel';black:state == 'done'" string="Payslips">
+                    <field name="number"/>
+                    <field name="employee_id"/>
+                    <field name="department_id" invisible="1"/>
+                    <field name="period_id" invisible="1"/>
+                    <field name="name"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="state"/>
+                    <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                    <field name="payslip_run_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_hr_payslip_filter" model="ir.ui.view">
+            <field name="name">hr.payslip.select</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_filter"/>
+            <field name="arch" type="xml">
+            	<filter name="employee_id" position="after">
+            		<filter string="department_id" icon="terp-personal" name="department_id" context="{'group_by':'department_id'}"/>
+            		<filter string="period_id" icon="terp-personal" name="period_id" context="{'group_by':'period_id'}"/>
+            	</filter>                        
+            </field>
+        </record>
+        
+		<record id="view_hr_payslip_form_inherit" model="ir.ui.view">
+            <field name="name">hr.payslip.form.inherit</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+            	<field name="number_of_hours" position="after">
+            		<field name="real_number_of_days" sum="Total"/>
+            	</field>
+            	
+            	<xpath expr="//header" position="replace">
+            		<header>
+	                    <button string="Confirm" name="hr_verify_sheet" states="draft" class="oe_highlight"/>
+	                    <button string="Refund" name="refund_sheet" states="confirm,done" type='object' />
+	                    <button string="Set to Draft" name="draft" states="cancel"/>
+	                    <button string="Compute Sheet" name="compute_sheet" type="object" states="draft" class="oe_highlight"/>
+	                    <button string="Cancel" name="cancel_sheet" states="draft,hr_check,confirm,verify"/>
+	                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                	</header>	
+            	</xpath>
+            	<xpath expr="//button[@name='compute_sheet']" position="after">
+            		<button string="Add Manual Salary Rule" name="%(action_hr_manual_rule)d" type="action" states="draft" class="oe_highlight"/>
+            	</xpath>
+            	<xpath expr="//page[@string='Details By Salary Rule Category']" position="after">
+            		<page string="History Payslips">            			
+            			<field name="p_payslips"/>
+            		</page>
+            	</xpath>
+            	<field name="date_to" position="attributes" version="7.0">
+            		<attribute name="on_change">onchange_employee_id(date_from, date_to, employee_id, contract_id)</attribute>
+            	</field>
+            	<field name="employee_id" position="after">
+            		<field name="department_id" invisible="1"/>
+            	</field>
+           	</field>
+       	</record>
+       	
+       	<record model="ir.ui.view" id="hr_payroll_account.view_hr_payslip_inherit_form">
+            <field name="name">hr.payslip.inherit.form</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+                <field name="paid" position="after">
+                                       
+                    <field name="move_id" readonly="1"/>
+                </field>
+                <field name="name" position="after">
+                    <field name="period_id" required="1"/> 
+                    <field name="journal_id" required="1"/>
+                </field>
+            </field>
+        </record>
+	</data>      
+</openerp>

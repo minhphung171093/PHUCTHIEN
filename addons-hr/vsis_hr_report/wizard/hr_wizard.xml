@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+	
+		<menuitem id="hr.menu_hr_reporting_timesheet" name="Reports TimeSheet"
+            parent="hr.menu_hr_reporting" sequence="6"/>
+		
+		<menuitem 
+			id="menu_infor_employee"
+	        name="Report Infor Employee"
+	        parent="hr.menu_hr_reporting"/>
+	        
+	    <menuitem 
+			id="menu_infor_payslip"
+	        name="Report Payslip"
+	        parent="hr.menu_hr_reporting"/>
+	        
+	    <menuitem 
+			id="menu_tax_bhxh"
+	        name="Report Tax BHXH"
+	        parent="hr.menu_hr_reporting"/>
+	     
+#===========================================================================
+# 
+#===========================================================================
+	
+	<record model="ir.ui.view" id="wizard_list_employee_tv">
+			<field name="name">list.employee.tv.form</field>
+			<field name="model">list.employee.tv</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="List Employee Subcontract" version="7.0">					
+					<group col="4" colspan="4">						
+						<field name="date_from"/>
+						<field name="date_to"/>						
+					</group>
+					<group col="4" colspan="4">						
+						<field name="department" />							
+					</group>		
+					<footer>
+	                        <button string="Print" name="print_report" type="object" class="oe_highlight"/> or
+	                        <button string="Cancel" class="oe_link" special="cancel"/>
+	                </footer>			
+				</form>
+			</field>
+		</record>
+		
+		<record id="action_list_employee_tv" model="ir.actions.act_window">
+            <field name="name">List Employee Subcontract</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">list.employee.tv</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+      
+        <menuitem action="action_list_employee_tv" 
+        		id="menu_action_list_employee_tv" 
+        		parent="menu_infor_employee"
+				icon = "STOCK_PRINT"
+				 />
+				 
+	
+	
+#===========================================================================
+# 
+#===========================================================================	
+	
+	<record model="ir.ui.view" id="wizard_vsis_giam_ld">
+			<field name="name">vsis.giam.ld.form</field>
+			<field name="model">vsis.giam.ld</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Reduction Employee" version="7.0">
+					<separator string="Reduction Employee"/>					
+					<group col="4" colspan="4">			
+						<field name="date_start" />
+						<field name="date_stop" />								
+					</group>	
+					<footer>
+	                        <button string="Print" name="print_report" type="object" class="oe_highlight"/> or
+	                        <button string="Cancel" class="oe_link" special="cancel"/>
+	                </footer>			
+				</form>
+			</field>
+		</record>
+		
+
+         <record id="action_vsis_giam_ld" model="ir.actions.act_window">
+            <field name="name">Reduct Labor</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vsis.giam.ld</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        
+     	<menuitem action="action_vsis_giam_ld" 
+        		id="menu_action_vsis_giam_ld" 
+        		parent="menu_tax_bhxh"
+				icon = "STOCK_PRINT"
+				 />	
+#===========================================================================
+# 
+#===========================================================================	
+		<record model="ir.ui.view" id="vsis_su_dung_ld">
+			<field name="name">vsis.su.dung.ld.form</field>
+			<field name="model">vsis.su.dung.ld</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Employer" version="7.0">
+					<separator string="Employer"/>					
+					<group col="4" colspan="4">
+						<field name="date_start" />
+						<field name="date_stop" />								
+					</group>	
+					<footer>
+	                        <button string="Print" name="print_report" type="object" class="oe_highlight"/> or
+	                        <button string="Cancel" class="oe_link" special="cancel"/>
+	                </footer>				
+				</form>
+			</field>
+		</record>
+		
+
+         <record id="action_vsis_su_dung_ld" model="ir.actions.act_window">
+            <field name="name">Labor Use</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vsis.su.dung.ld</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+      
+        
+     	<menuitem action="action_vsis_su_dung_ld" 
+        		id="menu_action_vsis_su_dung_ld" 
+        		parent="menu_tax_bhxh"
+				icon = "STOCK_PRINT"
+				 />	
+				 
+#===========================================================================
+# employee.payslip
+#===========================================================================	
+
+		<record model="ir.ui.view" id="vsis_employee_payslip">
+			<field name="name">vsis.employee.payslip.form</field>
+			<field name="model">vsis.employee.payslip</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Employee Payslip" version="7.0">	
+					<group col="2" colspan="4">						
+						<field name="template"/>
+					</group>					
+					<group col="4" colspan="4">		
+						<field name="date_start" on_change="check(date_stop,date_start)"/>	
+						<field name="date_stop" />											
+					</group>
+					<group col="4" colspan="4">						
+						<field name="department"/>
+					</group>		
+					<footer>
+	                        <button string="Print" name="print_report" type="object" class="oe_highlight"/> or
+	                        <button string="Cancel" class="oe_link" special="cancel"/>
+	                </footer>			
+				</form>
+			</field>
+		</record>	 
+		
+		 <record id="action_vsis_employee_payslip" model="ir.actions.act_window">
+            <field name="name">Employee Payslip</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vsis.employee.payslip</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+      
+        
+     	<menuitem action="action_vsis_employee_payslip" 
+        		id="menu_action_vsis_employee_payslip" 
+        		parent="menu_infor_payslip"
+				icon = "STOCK_PRINT"
+				 />	
+
+	</data>
+</openerp>

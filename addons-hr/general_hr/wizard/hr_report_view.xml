@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>   
+    	<menuitem id="menu_hr_report" name="Report" parent="hr.menu_hr_root" sequence="51"/>
+        <record id="view_list_employee_slog_report" model="ir.ui.view">
+            <field name="name">list.employee.slog.report</field>
+            <field name="model">list.employee.slog.report</field>
+            <field name="arch" type="xml">
+                <form string="List Employee Slog Report" version="7.0">
+	                <sheet>
+	                	<group>
+		                	<group>
+			                    <field name='from_date'/>  
+		                 	</group>
+		                 	<group>
+			                    <field name='to_date'/>
+		                 	</group>
+		                </group>
+	                    <group>
+		                    <field name="department_id" />
+	                    </group>
+	         		</sheet>          
+                    <footer>
+                        <button name="print_report" string="Print Report" type="object" class="oe_highlight" context="{'type':'appointments'}"/>
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>        
+        <record id="action_list_employee_slog_report" model="ir.actions.act_window">
+            <field name="name">List Employee Slog Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">list.employee.slog.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_list_employee_slog_report" name="Employee Slog Report" action="action_list_employee_slog_report" parent="menu_hr_report" sequence="1"/>
+        
+        <record id="view_list_employee_birthday_report" model="ir.ui.view">
+            <field name="name">list.employee.birthday.report</field>
+            <field name="model">list.employee.birthday.report</field>
+            <field name="arch" type="xml">
+                <form string="List Employee Birthday Report" version="7.0">
+	                <sheet>
+	                	<group>
+		                	<group>
+			                    <field name='from_birthday'/>  
+		                 	</group>
+		                 	<group>
+			                    <field name='to_birthday'/>
+		                 	</group>
+		                </group>
+	                    <group>
+		                    <field name="department_id" />
+	                    </group>
+	         		</sheet>          
+                    <footer>
+                        <button name="print_report" string="Print Report" type="object" class="oe_highlight" context="{'type':'appointments'}"/>
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>        
+        <record id="action_list_employee_birthday_report" model="ir.actions.act_window">
+            <field name="name">List Employee Birthday Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">list.employee.birthday.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_list_employee_birthday_report" name="Employee Birthday Report" action="action_list_employee_birthday_report" parent="menu_hr_report" sequence="2"/>
+        
+        <record id="view_list_employee_vehicles_report" model="ir.ui.view">
+            <field name="name">list.employee.vehicles.report</field>
+            <field name="model">list.employee.vehicles.report</field>
+            <field name="arch" type="xml">
+                <form string="List Employee Vehicles Report" version="7.0">
+	                <sheet>
+	                    <group>
+		                    <field name="department_id" />
+	                    </group>
+	         		</sheet>          
+                    <footer>
+                        <button name="print_report" string="Print Report" type="object" class="oe_highlight" context="{'type':'appointments'}"/>
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>        
+        <record id="action_list_employee_vehicles_report" model="ir.actions.act_window">
+            <field name="name">List Employee Vehicles Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">list.employee.vehicles.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_list_employee_vehicles_report" name="Employee Vehicles Report" action="action_list_employee_vehicles_report" parent="menu_hr_report" sequence="3"/>
+        
+        <record id="view_list_employee_felicitation_report" model="ir.ui.view">
+            <field name="name">list.employee.felicitation.report</field>
+            <field name="model">list.employee.felicitation.report</field>
+            <field name="arch" type="xml">
+                <form string="List Employee Felicitation Report" version="7.0">
+	                <sheet>
+	                	<group>
+		                	<group>
+			                    <field name='from_efficiency_date'/>  
+		                 	</group>
+		                 	<group>
+			                    <field name='to_efficiency_date'/>
+		                 	</group>
+		                </group>
+	                    <group>
+		                    <field name="department_id" />
+	                    </group>
+	         		</sheet>          
+                    <footer>
+                        <button name="print_report" string="Print Report" type="object" class="oe_highlight" context="{'type':'appointments'}"/>
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>        
+        <record id="action_list_employee_felicitation_report" model="ir.actions.act_window">
+            <field name="name">List Employee Felicitation Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">list.employee.felicitation.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_list_employee_felicitation_report" name="Employee Felicitation Report" action="action_list_employee_felicitation_report" parent="menu_hr_report" sequence="4"/>
+        
+        <record id="view_list_employee_discipline_report" model="ir.ui.view">
+            <field name="name">list.employee.discipline.report</field>
+            <field name="model">list.employee.discipline.report</field>
+            <field name="arch" type="xml">
+                <form string="List Employee Discipline Report" version="7.0">
+	                <sheet>
+	                	<group>
+		                	<group>
+			                    <field name='efficiency_date_from'/>  
+		                 	</group>
+		                 	<group>
+			                    <field name='efficiency_date_to'/>
+		                 	</group>
+		                 	<group>
+			                    <field name='violation_date_from'/>  
+		                 	</group>
+		                 	<group>
+			                    <field name='violation_date_to'/>
+		                 	</group>
+		                 	<group>
+			                    <field name='discipline_date_from'/>  
+		                 	</group>
+		                 	<group>
+			                    <field name='discipline_date_to'/>
+		                 	</group>
+		                </group>
+	                    <group>
+		                    <field name="department_id" />
+	                    </group>
+	         		</sheet>          
+                    <footer>
+                        <button name="print_report" string="Print Report" type="object" class="oe_highlight" context="{'type':'appointments'}"/>
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>        
+        <record id="action_list_employee_discipline_report" model="ir.actions.act_window">
+            <field name="name">List Employee Discipline Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">list.employee.discipline.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_list_employee_discipline_report" name="Employee Discipline Report" action="action_list_employee_discipline_report" parent="menu_hr_report" sequence="5"/>
+        
+        <record id="view_list_employee_accident_report" model="ir.ui.view">
+            <field name="name">list.employee.accident.report</field>
+            <field name="model">list.employee.accident.report</field>
+            <field name="arch" type="xml">
+                <form string="List Employee Accident Report" version="7.0">
+	                <sheet>
+	                	<group>
+		                	<group>
+			                    <field name='from_date'/>  
+		                 	</group>
+		                 	<group>
+			                    <field name='to_date'/>
+		                 	</group>
+		                </group>
+		                <group>
+		                    <field name='accident_type_id'/>  
+	                 	</group>
+	                    <group>
+		                    <field name="department_id" />
+	                    </group>
+	         		</sheet>          
+                    <footer>
+                        <button name="print_report" string="Print Report" type="object" class="oe_highlight" context="{'type':'appointments'}"/>
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>        
+        <record id="action_list_employee_accident_report" model="ir.actions.act_window">
+            <field name="name">List Employee Accident Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">list.employee.accident.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_list_employee_accident_report" name="Employee Accident Report" action="action_list_employee_accident_report" parent="menu_hr_report" sequence="6"/>
+        
+        <record id="view_list_employee_qualification_report" model="ir.ui.view">
+            <field name="name">list.employee.qualification.report</field>
+            <field name="model">list.employee.qualification.report</field>
+            <field name="arch" type="xml">
+                <form string="List Employee Qualification Report" version="7.0">
+	                <sheet>
+	                	<group>
+		                	<group>
+			                    <field name='from_date'/>  
+		                 	</group>
+		                 	<group>
+			                    <field name='to_date'/>
+		                 	</group>
+		                </group>
+	                    <group>
+		                    <field name="department_id" />
+	                    </group>
+	         		</sheet>          
+                    <footer>
+                        <button name="print_report" string="Print Report" type="object" class="oe_highlight" context="{'type':'appointments'}"/>
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>        
+        <record id="action_list_employee_qualification_report" model="ir.actions.act_window">
+            <field name="name">List Employee Qualification Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">list.employee.qualification.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_list_employee_qualification_report" name="Employee Qualification Report" action="action_list_employee_qualification_report" parent="menu_hr_report" sequence="7"/>
+        
+    </data>
+</openerp>
+

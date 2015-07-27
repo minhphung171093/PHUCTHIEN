@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record id="list_employee_discipline_report" model="ir.actions.report.xml">
+	        <field name="name">list_employee_discipline_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">list.employee.discipline.report</field>
+	        <field name="report_name">list_employee_discipline_report</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_hr/report/list_employee_discipline_report.py</field>
+	        <field name="report_rml">general_hr/report/list_employee_discipline_report.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="True" 
+			menu="False"
+			id="list_employee_discipline_report" 
+			model="list.employee.discipline.report" 
+			name="list_employee_discipline_report"
+	        string="List Employee Discipline Report"
+	        rml="general_hr/report/list_employee_discipline_report.ods"/>	
+    </data>
+</openerp>

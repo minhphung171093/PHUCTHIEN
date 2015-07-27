@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<!-- Late IN -->
+    	<record id="vsis_view_hr_attendance_late_form" model="ir.ui.view">
+            <field name="model">hr.attendance.late</field>
+            <field name="arch" type="xml">
+                <form string="Late In Request" version="7.0">
+                   	<header>
+	                    <button string="Approve" name="confirm" states="draft" type="object" groups="base.group_hr_manager" class="oe_highlight"/>
+	                    <button string="Refuse" name="refuse" states="confirm,cancel" type="object" groups="base.group_hr_manager"/>
+	                    <button string="Cancelled" name="cancel" states="confirm,draft" type="object"/>
+	                    <field name="state" widget="statusbar" statusbar_colors='{"confirm":"blue","cancel":"red"}'/>
+                	</header>	
+                   	<sheet>
+                   		<group>
+                   			<group>
+	                        	<field name="name" />
+	                    		<field name="employee_id" options="{'create': false, 'create_edit': false}"/>
+	                    	</group>
+	                    	<group>
+		                        <field name="date"/>
+		                        <field name="number_of_hours" widget="float_time"/>
+		                    </group>
+	                    </group>
+                  </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="vsis_view_hr_attendance_late_tree" model="ir.ui.view">
+            <field name="model">hr.attendance.late</field>
+            <field name="arch" type="xml">
+                <tree string="Late In Request">
+                    <field name="name"/>
+            		<field name="employee_id"/>
+            		<field name="date" />
+            		<field name="number_of_hours" widget="float_time"/>
+            		<field name="state" />
+                </tree>
+            </field>
+        </record>
+        <record id="vsis_view_hr_attendance_late_search" model="ir.ui.view">
+            <field name="model">hr.attendance.late</field>
+            <field name="arch" type="xml">
+                <search string="Late In Request">
+                    <field name="name"/>
+                    <separator/>
+                    <filter icon="terp-check" domain="[('state','=','draft')]" string="Draft"/>
+                    <filter icon="terp-camera_test" domain="[('state','=','confirm')]" string="Approve" name="approve"/>
+                    <filter icon="terp-camera_test" domain="[('state','=','cancel')]" string="Cancelled" name="cancel"/>
+                    <separator/>
+                    <field name="employee_id"/>
+                    <field name="date"/>
+                    <group expand="0" string="Group By...">
+                        <filter name="group_date" string="Date" icon="terp-personal" domain="[]" context="{'group_by':'date'}"/>
+                        <filter name="group_employee" string="Employee" icon="terp-personal" domain="[]" context="{'group_by':'employee_id'}"/>
+                        <filter string="Status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="vsis_action_hr_attendance_late" model="ir.actions.act_window">
+            <field name="name">Late In Request</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.attendance.late</field>
+            <field name="view_type">form</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" ref="vsis_view_hr_attendance_late_search"/>
+        </record>
+        <menuitem action="vsis_action_hr_attendance_late" id="menu_vsis_hr_attendance_late" parent="hr_attendance.menu_hr_attendance" sequence="20"/>
+        
+        <!-- Early Out -->
+    	<record id="vsis_view_hr_attendance_early_form" model="ir.ui.view">
+            <field name="model">hr.attendance.early</field>
+            <field name="arch" type="xml">
+                <form string="Early Out Request" version="7.0">
+                   	<header>
+	                    <button string="Approve" name="confirm" states="draft" type="object" groups="base.group_hr_manager" class="oe_highlight"/>
+	                    <button string="Refuse" name="refuse" states="confirm,cancel" type="object" groups="base.group_hr_manager"/>
+	                    <button string="Cancelled" name="cancel" states="confirm,draft" type="object"/>
+	                    <field name="state" widget="statusbar" statusbar_colors='{"confirm":"blue","cancel":"red"}'/>
+                	</header>	
+                   	<sheet>
+                   		<group>
+                   			<group>
+	                        	<field name="name" />
+	                    		<field name="employee_id" options="{'create': false, 'create_edit': false}"/>
+	                    	</group>
+	                    	<group>
+		                        <field name="date"/>
+		                        <field name="number_of_hours" widget="float_time"/>
+		                    </group>
+	                    </group>
+                  </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="vsis_view_hr_attendance_early_tree" model="ir.ui.view">
+            <field name="model">hr.attendance.early</field>
+            <field name="arch" type="xml">
+                <tree string="Early Out Request">
+                    <field name="name"/>
+            		<field name="employee_id"/>
+            		<field name="date" />
+            		<field name="number_of_hours" widget="float_time"/>
+            		<field name="state" />
+                </tree>
+            </field>
+        </record>
+        <record id="vsis_view_hr_attendance_early_search" model="ir.ui.view">
+            <field name="model">hr.attendance.early</field>
+            <field name="arch" type="xml">
+                <search string="Early Out Request">
+                    <field name="name"/>
+                    <separator/>
+                    <filter icon="terp-check" domain="[('state','=','draft')]" string="Draft"/>
+                    <filter icon="terp-camera_test" domain="[('state','=','confirm')]" string="Approve" name="approve"/>
+                    <filter icon="terp-camera_test" domain="[('state','=','cancel')]" string="Cancelled" name="cancel"/>
+                    <separator/>
+                    <field name="employee_id"/>
+                    <field name="date"/>
+                    <group expand="0" string="Group By...">
+                        <filter name="group_date" string="Date" icon="terp-personal" domain="[]" context="{'group_by':'date'}"/>
+                        <filter name="group_employee" string="Employee" icon="terp-personal" domain="[]" context="{'group_by':'employee_id'}"/>
+                        <filter string="Status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="vsis_action_hr_attendance_early" model="ir.actions.act_window">
+            <field name="name">Early Out Request</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.attendance.early</field>
+            <field name="view_type">form</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" ref="vsis_view_hr_attendance_early_search"/>
+        </record>
+        <menuitem action="vsis_action_hr_attendance_early" id="menu_vsis_hr_attendance_early" parent="hr_attendance.menu_hr_attendance" sequence="21"/>
+        
+        <!-- Attendance Timesheet -->
+        <record id="vsis_view_hr_attendance_timesheet_tree" model="ir.ui.view">
+            <field name="model">hr.attendance.timesheet</field>
+            <field name="arch" type="xml">
+                <tree string="Attendance Timesheet" create="false">
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="shift_id"/>
+            		<field name="date" />
+            		<field name="time_normal" widget="float_time"/>
+            		<field name="time_ot" widget="float_time"/>
+            		<field name="time_late" widget="float_time"/>
+            		<field name="time_early" widget="float_time"/>
+                </tree>
+            </field>
+        </record>
+        <record id="vsis_view_hr_attendance_timesheet_search" model="ir.ui.view">
+            <field name="model">hr.attendance.timesheet</field>
+            <field name="arch" type="xml">
+                <search string="Attendance Timesheet">
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="date"/>
+                    <group expand="0" string="Group By...">
+                        <filter name="group_date" string="Date" icon="terp-personal" domain="[]" context="{'group_by':'date'}"/>
+                        <filter name="group_employee" string="Employee" icon="terp-personal" domain="[]" context="{'group_by':'employee_id'}"/>
+                        <filter name="group_name" string="Status" icon="terp-personal" domain="[]" context="{'group_by':'name'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="vsis_action_hr_attendance_timesheet" model="ir.actions.act_window">
+            <field name="name">Attendance Timesheet</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.attendance.timesheet</field>
+            <field name="view_type">form</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" ref="vsis_view_hr_attendance_timesheet_search"/>
+        </record>
+        <menuitem action="vsis_action_hr_attendance_timesheet" id="menu_vsis_hr_attendance_timesheet" parent="hr_attendance.menu_hr_attendance" sequence="23"/>
+    	
+	</data>      
+</openerp>

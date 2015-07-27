@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_hr_payroll" model="ir.ui.view">
+            <field name="name">Run Payslip</field>
+            <field name="model">hr.payroll</field>
+            <field name="arch" type="xml">
+               <form string="Run Payslip" version="7.0">
+                    <group>
+                        <separator string="Are you sure you want to run payslip?"/>                        
+                    </group>                    
+                    <footer>
+                        <button name="run_payslip" string="Run Payslip" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="Run Payslip"
+            context="{'search_default_draft': 1, 'search_default_approved': False}"
+            res_model="hr.payroll"
+            src_model="hr.payslip"
+            view_mode="form"
+            target="new"
+            multi="True"
+            key2="client_action_multi"
+            id="action_view_hr_payroll"/>
+
+    </data>
+</openerp>
+

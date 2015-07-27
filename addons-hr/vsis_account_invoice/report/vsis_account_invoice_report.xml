@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<!-- Create contract_bhxh VT Input -->
+    	<record id="vsis_account_invoice_report" model="ir.actions.report.xml">
+	        <field name="name">vsis_account_invoice_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.invoice</field>
+	        <field name="report_name">vsis_account_invoice_report</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-odt'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">vsis_account_invoice/report/vsis_account_invoice_report.py</field>
+	        <field name="report_rml">vsis_account_invoice/report/vsis_account_invoice_report.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="True" 
+			menu="True"
+			id="vsis_account_invoice_report" 
+			model="account.invoice" 
+			name="vsis_account_invoice_report"
+	        string="Hóa Đơn "
+	        rml="vsis_account_invoice/report/vsis_account_invoice_report.odt"/>	    
+
+    </data>
+</openerp>

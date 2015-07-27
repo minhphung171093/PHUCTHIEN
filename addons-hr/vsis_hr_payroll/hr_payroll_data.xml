@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Casual leave -->
+        <record model="hr.holidays.status" id="hr_holidays.holiday_status_cl">
+            <field name="name" eval="'ANNUAL_LEAVE_'+time.strftime('%Y')"/>
+            <field name="des" eval="'Legal Leaves '+time.strftime('%Y')"/>
+            <field name="color_name">black</field>
+        </record>
+
+        <!-- Sick leave override paid leave-->
+        <record model="hr.holidays.status" id="hr_holidays.holiday_status_sl">
+            <field name="name">PAID_LEAVE</field>
+            <field name="des">Paid Leaves</field>
+            <field name="limit">True</field>
+            <field name="color_name">blue</field>
+        </record>
+        
+        <!-- wait leave -->
+        <record model="hr.holidays.status" id="holiday_status_wt">
+        	<field name="name">WAIT_LEAVE</field>
+            <field name="des">Wait Leaves</field>
+            <field name="limit">True</field>
+            <field name="color_name">blue</field>
+        </record>
+        
+        <!-- unpaid leave -->
+        <record model="hr.holidays.status" id="hr_holidays.holiday_status_unpaid">
+        	<field name="name">UNPAID_LEAVE</field>
+            <field name="des">Unpaid Leaves</field>
+            <field name="limit">True</field>
+            <field name="color_name">brown</field>
+        </record>
+        
+        <!-- Compensatory Days -->
+        <record model="hr.holidays.status" id="hr_holidays.holiday_status_comp">
+            <field name="name">COMP_LEAVE</field>
+            <field name="des">Compensatory Days</field>
+            <field name="limit">True</field>
+            <field name="color_name">lavender</field>
+        </record>
+        <!-- timesheet data -->
+		<record id="hr_timesheet_invoice.timesheet_invoice_factor4" model="hr_timesheet_invoice.factor">
+            <field name="customer_name">TIME_OT195</field>
+            <field name="name">OT 195</field>
+            <field name="factor">-95.0</field>
+        </record>
+        <record id="hr_timesheet_invoice.timesheet_invoice_factor5" model="hr_timesheet_invoice.factor">
+            <field name="customer_name">TIME_OTNIGHT</field>
+            <field name="name">OT NIGHT</field>
+            <field name="factor">0</field>
+        </record>
+   	</data>
+</openerp>

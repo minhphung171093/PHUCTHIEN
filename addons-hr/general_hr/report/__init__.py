@@ -1,0 +1,9 @@
+# -*- encoding: utf-8 -*-
+
+import list_employee_slog_report
+import list_employee_birthday_report
+import list_employee_vehicles_report
+import list_employee_felicitation_report
+import list_employee_discipline_report
+import list_employee_accident_report
+import list_employee_qualification_report

@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+	
+	<record model="ir.ui.view" id="vsis_hr_attendance_wizard">
+			<field name="name">hr.attendance.wizard.form</field>
+			<field name="model">hr.attendance.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Compute Attendance Timesheet" version="7.0">					
+					<group col="4" colspan="4">						
+						<field name="date_from"/>
+						<field name="date_to"/>	
+						<field name="employee_ids" nolabel='1' colspan='4'>
+	                    	<tree>
+	                    		<field name='name'/>
+	                    		<field name='department_id'/>
+	                    		<field name='work_email'/>
+	                    	</tree>
+	                    </field>					
+					</group>
+					<footer>
+	                        <button string="Compute" name="compute_attendance_timesheet" type="object" class="oe_highlight"/> or
+	                        <button string="Cancel" class="oe_link" special="cancel"/>
+	                </footer>			
+				</form>
+			</field>
+		</record>
+		
+		<record id="action_vsis_hr_attendance_wizard" model="ir.actions.act_window">
+            <field name="name">Compute Attendance Timesheet</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.attendance.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+      
+        <menuitem action="action_vsis_hr_attendance_wizard" id="menu_vsis_hr_attendance_wizard" parent="hr_attendance.menu_hr_attendance" sequence="24" />
+				 
+		<record model="ir.ui.view" id="wizard_hr_attendance_report">
+			<field name="name">hr.attendance.report.form</field>
+			<field name="model">hr.attendance.report</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Attendance Report" version="7.0">					
+					<group col="4" colspan="4">						
+						<field name="month"/>
+						<field name="year"/>						
+					</group>
+					<group col="4" colspan="4">						
+						<field name="employee_ids" />							
+					</group>		
+					<footer>
+	                        <button string="Print" name="print_report" type="object" class="oe_highlight"/> or
+	                        <button string="Cancel" class="oe_link" special="cancel"/>
+	                </footer>			
+				</form>
+			</field>
+		</record>
+		
+		<record id="action_hr_attendance_report" model="ir.actions.act_window">
+            <field name="name">Attendance Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.attendance.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+      
+        <menuitem action="action_hr_attendance_report" id="menu_hr_attendance_report" parent="hr_attendance.menu_hr_attendance" sequence="25"/>
+				 
+	</data>
+</openerp>
