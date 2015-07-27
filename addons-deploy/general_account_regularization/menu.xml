@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+    	<menuitem id="menu_account_regularization"
+            name="Regularization" parent="account.menu_finance_periodical_processing"
+            sequence="30"/>
+            
+	        <menuitem
+	            id="menu_action_account_regularization_form"
+	            parent="menu_account_regularization"
+	            action="action_account_regularization_form"
+	            sequence="10"/>
+	        
+	        <menuitem
+	            id="menu_action_view_wizard_regularize_form"
+	            parent="menu_account_regularization"
+	            action="action_view_wizard_regularize_form"
+	            sequence="20"/>
+	            
+            
+    </data>
+</openerp>

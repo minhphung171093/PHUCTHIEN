@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	 <record id="bangke_point_of_sale_form" model="ir.ui.view">
+            <field name="name">bangke.point.of.sale.form</field>
+            <field name="model">bangke.point.of.sale</field>
+            <field name="arch" type="xml">
+            <form string="Group Bill" version="7.0">
+    			<group col='4'>
+            		<field name="from_date"/>
+            		<field name="to_date"/>
+            		<field name="section_id"/>
+            	</group>
+            	<newline/>
+                <footer>
+                  <button name="print_bangke" string="In bảng kê" type="object" class="oe_highlight"/>
+                  or
+                  <button string="Cancel" class="oe_link" special="cancel" />
+              	</footer>
+       		 </form>
+    	</field>
+     </record>
+     
+        <record id="action_bangke_point_of_sale" model="ir.actions.act_window">
+            <field name="name">Bảng kê</field>
+            <field name="res_model">bangke.point.of.sale</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+  		
+		<menuitem parent="point_of_sale.menu_point_of_sale" id="menu_action_bangke_point_of_sale" action="action_bangke_point_of_sale" sequence="11" />
+		
+		<record id="doanhthu_point_of_sale_form" model="ir.ui.view">
+            <field name="name">doanhthu.point.of.sale.form</field>
+            <field name="model">doanhthu.point.of.sale</field>
+            <field name="arch" type="xml">
+            <form string="Group Bill" version="7.0">
+    			<group col='4'>
+            		<field name="from_date"/>
+            		<field name="to_date"/>
+            		<field name="section_id" invisible="0"/>
+            	</group>
+            	<newline/>
+                <footer>
+                  <button name="print_bangke" string="In Doanh thu" type="object" class="oe_highlight"/>
+                  or
+                  <button string="Cancel" class="oe_link" special="cancel" />
+              	</footer>
+       		 </form>
+    	</field>
+     </record>
+     
+        <record id="action_doanhthu_point_of_sale" model="ir.actions.act_window">
+            <field name="name">Doanh thu</field>
+            <field name="res_model">doanhthu.point.of.sale</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+  		
+		<menuitem parent="point_of_sale.menu_point_of_sale" id="menu_action_doanhthu_point_of_sale" 
+		action="action_doanhthu_point_of_sale" sequence="12" />
+		
+    </data>
+</openerp>

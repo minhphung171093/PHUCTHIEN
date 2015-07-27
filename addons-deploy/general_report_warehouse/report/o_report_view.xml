@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		
+	    <!--  ========================= REPORT: GENERAL REPORT STOCK LEDGER ================= -->
+	    <!-- Create new stock ledger -->
+	    <record id="general_stock_ledger" model="ir.actions.report.xml">
+	        <field name="name">general_stock_ledger</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.reporting</field>
+	        <field name="report_name">general_stock_ledger</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/general_stock_ledger.py</field>
+	        <field name="report_rml">general_report_warehouse/report/general_stock_ledger.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_stock_ledger" 
+			model="stock.reporting" 
+			name="general_stock_ledger"
+	        string="Stock Ledger"
+	        rml="general_report_warehouse/report/general_stock_ledger.ods"/>
+	        
+	        
+	   <!-- Create new stock ledger PDF  -->
+	    <record id="general_stock_ledger_pdf" model="ir.actions.report.xml">
+	        <field name="name">general_stock_ledger_pdf</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.reporting</field>
+	        <field name="report_name">general_stock_ledger_pdf</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/general_stock_ledger.py</field>
+	        <field name="report_rml">general_report_warehouse/report/general_stock_ledger.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_stock_ledger_pdf" 
+			model="stock.reporting" 
+			name="general_stock_ledger_pdf"
+	        string="Stock Ledger"
+	        rml="general_report_warehouse/report/general_stock_ledger.ods"/>
+	        
+	        
+	    <!--  ========================= REPORT: GENERAL REPORT STOCK JOURNAL ================= -->
+	    <!-- Create new stock journal -->
+	    <record id="general_stock_journal" model="ir.actions.report.xml">
+	        <field name="name">general_stock_journal</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.reporting</field>
+	        <field name="report_name">general_stock_journal</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/general_stock_journal.py</field>
+	        <field name="report_rml">general_report_warehouse/report/general_stock_journal.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_stock_journal" 
+			model="stock.reporting" 
+			name="general_stock_journal"
+	        string="Stock journal"
+	        rml="general_report_warehouse/report/general_stock_journal.ods"/>
+	        
+	        
+	   <!-- Create new stock journal PDF  -->
+	    <record id="general_stock_journal_pdf" model="ir.actions.report.xml">
+	        <field name="name">general_stock_journal_pdf</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.reporting</field>
+	        <field name="report_name">general_stock_journal_pdf</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/general_stock_journal.py</field>
+	        <field name="report_rml">general_report_warehouse/report/general_stock_journal.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_stock_journal_pdf" 
+			model="stock.reporting" 
+			name="general_stock_journal_pdf"
+	        string="Stock journal"
+	        rml="general_report_warehouse/report/general_stock_journal.ods"/>
+	        
+	    <!--  ========================= REPORT: GENERAL REPORT STOCK REPORT IN OUT ================= -->
+	    <!-- Create new stock report in out by skus-->
+	    <record id="general_stock_in_out_by_skus" model="ir.actions.report.xml">
+	        <field name="name">general_stock_in_out_by_skus</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.reporting</field>
+	        <field name="report_name">general_stock_in_out_by_skus</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/general_stock_in_out.py</field>
+	        <field name="report_rml">general_report_warehouse/report/general_stock_in_out_by_skus.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_stock_in_out_by_skus" 
+			model="stock.reporting" 
+			name="general_stock_in_out_by_skus"
+	        string="Stock In Out By Skus"
+	        rml="general_report_warehouse/report/general_stock_in_out_by_skus.ods"/>
+	        
+	        
+	   <!-- Create new stock Report In Out PDF  -->
+	    <record id="general_stock_in_out_by_skus_pdf" model="ir.actions.report.xml">
+	        <field name="name">general_stock_in_out_by_skus_pdf</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.reporting</field>
+	        <field name="report_name">ggeneral_stock_in_out_by_skus_pdf</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/general_stock_in_out.py</field>
+	        <field name="report_rml">general_report_warehouse/report/general_stock_in_out_by_skus.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_stock_in_out_by_skus_pdf" 
+			model="stock.reporting" 
+			name="general_stock_in_out_by_skus_pdf"
+	        string="Stock In Out By Skus"
+	        rml="general_report_warehouse/report/general_stock_in_out_by_skus.ods"/>
+	        
+	    
+	    <!-- Create new stock report in out by Category -->
+	    <record id="general_stock_in_out_by_category" model="ir.actions.report.xml">
+	        <field name="name">general_stock_in_out_by_category</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.reporting</field>
+	        <field name="report_name">general_stock_in_out_by_category</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/general_stock_in_out.py</field>
+	        <field name="report_rml">general_report_warehouse/report/general_stock_in_out_by_category.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_stock_in_out_by_category" 
+			model="stock.reporting" 
+			name="general_stock_in_out_by_category"
+	        string="Stock In Out By Category"
+	        rml="general_report_warehouse/report/general_stock_in_out_by_category.ods"/>
+	        
+	        
+	   <!-- Create new stock Report In Out category PDF  -->
+	    <record id="general_stock_in_out_by_category_pdf" model="ir.actions.report.xml">
+	        <field name="name">general_stock_in_out_by_category_pdf</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.reporting</field>
+	        <field name="report_name">general_stock_in_out_by_category_pdf</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/general_stock_in_out.py</field>
+	        <field name="report_rml">general_report_warehouse/report/general_stock_in_out_by_category.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_stock_in_out_by_category_pdf" 
+			model="stock.reporting" 
+			name="general_stock_in_out_by_category_pdf"
+	        string="Stock In Out By Category"
+	        rml="general_report_warehouse/report/general_stock_in_out_by_category.ods"/>
+	        
+	    
+	    <!-- Create new stock report in out by Warehouse-->
+	    <record id="general_stock_in_out_by_warehouse" model="ir.actions.report.xml">
+	        <field name="name">general_stock_in_out_by_warehouse</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.reporting</field>
+	        <field name="report_name">general_stock_in_out_by_warehouse</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/general_stock_in_out.py</field>
+	        <field name="report_rml">general_report_warehouse/report/general_stock_in_out_by_warehouse.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_stock_in_out_by_warehouse" 
+			model="stock.reporting" 
+			name="general_stock_in_out_by_warehouse"
+	        string="Stock In Out By Warehouse"
+	        rml="general_report_warehouse/report/general_stock_in_out_by_warehouse.ods"/>
+	        
+	        
+	   <!-- Create new stock Report In Out warehouse PDF  -->
+	    <record id="general_stock_in_out_by_warehouse_pdf" model="ir.actions.report.xml">
+	        <field name="name">general_stock_in_out_by_warehouse_pdf</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.reporting</field>
+	        <field name="report_name">general_stock_in_out_by_warehouse_pdf</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/general_stock_in_out.py</field>
+	        <field name="report_rml">general_report_warehouse/report/general_stock_in_out_by_warehouse.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_stock_in_out_by_warehouse_pdf" 
+			model="stock.reporting" 
+			name="general_stock_in_out_by_warehouse_pdf"
+	        string="Stock In Out By Category"
+	        rml="general_report_warehouse/report/general_stock_in_out_by_warehouse.ods"/>
+	        
+	     
+	    
+	    <!--  ========================= REPORT: GENERAL REPORT STOCK DETAIL ================= -->
+	    <!-- Create new stock report in out -->
+	    <record id="general_stock_report_detail" model="ir.actions.report.xml">
+	        <field name="name">general_stock_report_detail</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.reporting</field>
+	        <field name="report_name">general_stock_report_detail</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/general_stock_report_detail.py</field>
+	        <field name="report_rml">general_report_warehouse/report/general_stock_report_detail.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_stock_report_detail" 
+			model="stock.reporting" 
+			name="general_stock_report_detail"
+	        string="Stock Detail"
+	        rml="general_report_warehouse/report/general_stock_report_detail.ods"/>
+	        
+	        
+	   <!-- Create new stock journal PDF  -->
+	    <record id="general_stock_report_detail_pdf" model="ir.actions.report.xml">
+	        <field name="name">general_stock_report_detail_pdf</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.reporting</field>
+	        <field name="report_name">general_stock_report_detail_pdf</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/general_stock_report_detail.py</field>
+	        <field name="report_rml">general_report_warehouse/report/general_stock_report_detail.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_stock_report_detail_pdf" 
+			model="stock.reporting" 
+			name="general_stock_report_detail_pdf"
+	        string="Stock Detail"
+	        rml="general_report_warehouse/report/general_stock_report_detail.ods"/>
+	        
+	    <!-- Create new Export File Sale Price List -->
+	    <record id="export_file_sale_price_list" model="ir.actions.report.xml">
+	        <field name="name">export_file_sale_price_list</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">export.file</field>
+	        <field name="report_name">export_file_sale_price_list</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/export_sale_price_list.py</field>
+	        <field name="report_rml">general_report_warehouse/report/export_sale_price_list.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="export_file_sale_price_list"
+			model="export.file"
+			name="export_file_sale_price_list"
+	        string="Export Sale Price List"
+	        rml="general_report_warehouse/report/export_sale_price_list.ods"/>
+	   
+	   
+	    <record id="export_file_blanket_site" model="ir.actions.report.xml">
+	        <field name="name">export_file_blanket_site</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">export.file</field>
+	        <field name="report_name">export_file_blanket_site</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/export_blanket_site.py</field>
+	        <field name="report_rml">general_report_warehouse/report/export_blanket_site.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="export_file_blanket_site"
+			model="export.file"
+			name="export_file_blanket_site"
+	        string="export_file_blanket_site"
+	        rml="general_report_warehouse/report/export_blanket_site.ods"/>
+	        
+	        
+	    <!--  General stock_onhand_analys_report -->
+	    <record id="stock_onhand_analysis_report" model="ir.actions.report.xml">
+	        <field name="name">stock_onhand_analysis_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.onhand.analys.report</field>
+	        <field name="report_name">stock_onhand_analys_report</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/stock_onhand_report.py</field>
+	        <field name="report_rml">general_report_warehouse/report/stock_onhand_report.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="stock_onhand_analysis_report"
+			model="stock.onhand.analys.report"
+			name="stock_onhand_analysis_report"
+	        string="stock_onhand_analysis_report"
+	        rml="general_report_warehouse/report/stock_onhand_report.ods"/>
+	    
+	    <!--  General balancesheet_by_category -->
+	    <record id="stock_balancesheet_by_category_report" model="ir.actions.report.xml">
+	        <field name="name">stock_balancesheet_by_category_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.balancesheet.report</field>
+	        <field name="report_name">stock_balancesheet_by_category_report</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/balancesheet.py</field>
+	        <field name="report_rml">general_report_warehouse/report/balancesheet_by_category.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="stock_balancesheet_by_category_report"
+			model="stock.balancesheet.report"
+			name="stock_balancesheet_by_category_report"
+	        string="stock_balancesheet_by_category_report"
+	        rml="general_report_warehouse/report/balancesheet_by_category.ods"/>
+	        
+	    
+	    <!--  General balancesheet_by_warehouse -->
+	    <record id="stock_balancesheet_by_warehouse_report" model="ir.actions.report.xml">
+	        <field name="name">stock_balancesheet_by_warehouse_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.balancesheet.report</field>
+	        <field name="report_name">stock_balancesheet_by_warehouse_report</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/balancesheet.py</field>
+	        <field name="report_rml">general_report_warehouse/report/balancesheet_by_warehouse.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="stock_balancesheet_by_warehouse_report"
+			model="stock.balancesheet.report"
+			name="stock_balancesheet_by_warehouse_report"
+	        string="stock_balancesheet_by_warehouse_report"
+	        rml="general_report_warehouse/report/balancesheet_by_warehouse.ods"/>
+	    
+	    
+	    <!--  General balancesheet_by_product -->
+	    <record id="stock_balancesheet_by_product_report" model="ir.actions.report.xml">
+	        <field name="name">stock_balancesheet_by_product_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.balancesheet.report</field>
+	        <field name="report_name">stock_balancesheet_by_product_report</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/balancesheet.py</field>
+	        <field name="report_rml">general_report_warehouse/report/balancesheet_by_product.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="stock_balancesheet_by_product_report"
+			model="stock.balancesheet.report"
+			name="stock_balancesheet_by_product_report"
+	        string="stock_balancesheet_by_product_report"
+	        rml="general_report_warehouse/report/balancesheet_by_product.ods"/>
+	        
+	   <!--  General The kho -->
+	    <record id="stock_cards_reports" model="ir.actions.report.xml">
+	        <field name="name">stock_cards_reports</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.cards.report</field>
+	        <field name="report_name">stock_cards_reports</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_warehouse/report/stock_cards.py</field>
+	        <field name="report_rml">general_report_warehouse/report/stock_cards.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+    	
+		<report 
+			auto="False" 
+			menu="False"
+			id="stock_cards_reports"
+			model="stock.cards.report"
+			name="stock_cards_reports"
+	        string="stock_cards_reports"
+	        rml="general_report_warehouse/report/stock_cards.ods"/>
+	        
+	</data>
+</openerp>

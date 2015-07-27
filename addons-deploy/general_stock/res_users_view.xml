@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+ 		<!-- Add Locations To User Form -->
+        <record id="view_users_form_inherit_add_stock_location" model="ir.ui.view">
+            <field name="name">view.users.form.inherit.add.stock.location</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@string='Allowed Companies']" position="after">
+                     <group string="Allowed Stock Locations">
+                        <field name="location_ids" nolabel="1" widget="many2many_tags"/>
+                    </group>
+                </xpath>
+                
+            </field>
+        </record>
+        
+    </data>
+</openerp>
+
+
+
+

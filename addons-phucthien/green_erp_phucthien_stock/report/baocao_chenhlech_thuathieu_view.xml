@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	    <record id="baocao_chenhlech_thuathieu" model="ir.actions.report.xml">
+	        <field name="name">baocao_chenhlech_thuathieu</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.inventory</field>
+	        <field name="report_name">baocao_chenhlech_thuathieu</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">green_erp_phucthien_stock/report/baocao_chenhlech_thuathieu.py</field>
+	        <field name="report_rml">green_erp_phucthien_stock/report/baocao_chenhlech_thuathieu.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="True"
+			id="baocao_chenhlech_thuathieu" 
+			model="stock.inventory" 
+			name="baocao_chenhlech_thuathieu"
+	        string="Báo cáo chênh lệch thừa thiếu"
+	        rml="green_erp_phucthien_stock/report/baocao_chenhlech_thuathieu.ods"/>	
+	        
+	</data>
+</openerp>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+    	<record id="hop_dong_thau_report" model="ir.actions.report.xml">
+	        <field name="name">hop.dong.thau.report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">hop.dong</field>
+	        <field name="report_name">Hợp Đồng Thầu</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-doc'),('compatible_types','=','oo-odt')]"/>
+	        <field name="parser_loc">green_erp_phucthien_sale/report/hop_dong_thau.py</field>
+	        <field name="report_rml">green_erp_phucthien_sale/report/hop_dong_thau.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>   		   
+    	<report 
+			auto="False" 
+			menu="False"
+			id="hop_dong_thau_report" 
+			model="hop.dong" 
+			name="hop_dong_thau_report"
+	        string="Hợp Đồng Thầu"
+	        rml="green_erp_phucthien_sale/report/hop_dong_thau.odt"/> 	
+	</data>
+</openerp>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate='0'>
+
+	    <record model="ir.rule" id="account_invoice_multi_branch_rule">
+	        <field name="name">Account Invoice Multil-Branch</field>
+	        <field name="model_id" ref="account.model_account_invoice"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">[user.context_shop_id and ('shop_id','=',user.context_shop_id.id) or 
+	        ('shop_id','child_of', [x.id for x in user.shop_ids])]</field>
+	    </record>
+	    
+	    <record model="ir.rule" id="account_move_multi_branch_rule">
+	        <field name="name">Account Move Multil-Branch</field>
+	        <field name="model_id" ref="account.model_account_move"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">[user.context_shop_id and ('shop_id','=',user.context_shop_id.id) or 
+	        ('shop_id','child_of', [x.id for x in user.shop_ids])]</field>
+	    </record>
+	    
+	    <record model="ir.rule" id="account_move_line_multi_branch_rule">
+	        <field name="name">Account Move Line Multil-Branch</field>
+	        <field name="model_id" ref="account.model_account_move_line"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('shop_id','=',False),(user.context_shop_id and ('shop_id','=',user.context_shop_id.id) or 
+	        ('shop_id','child_of', [x.id for x in user.shop_ids]))]</field>
+	    </record>
+	    
+	    <record model="ir.rule" id="account_journal_multi_branch_rule">
+	        <field name="name">Account Journal Multil-Branch</field>
+	        <field name="model_id" ref="account.model_account_journal"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|',('shop_ids','=',False),(user.context_shop_id and ('shop_ids','in',[user.context_shop_id.id]) or 
+	        ('shop_ids','in', [x.id for x in user.shop_ids]))]</field>
+	    </record>
+	    
+    </data>
+</openerp>

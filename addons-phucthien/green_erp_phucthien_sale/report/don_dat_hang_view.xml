@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+    	<record id="don_dat_hang_report" model="ir.actions.report.xml">
+	        <field name="name">don.dat.hang.report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">sale.order</field>
+	        <field name="report_name">Đơn đặt hàng</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-doc'),('compatible_types','=','oo-odt')]"/>
+	        <field name="parser_loc">green_erp_phucthien_sale/report/don_dat_hang.py</field>
+	        <field name="report_rml">green_erp_phucthien_sale/report/don_dat_hang.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record> 
+    	   
+    	<report 
+			auto="False" 
+			menu="True"
+			id="don_dat_hang_report" 
+			model="sale.order" 
+			name="don_dat_hang_report"
+	        string="Đơn đặt hàng"
+	        rml="green_erp_phucthien_sale/report/don_dat_hang.odt"/> 
+	        
+	        
+	    
+	  
+	</data>
+</openerp>

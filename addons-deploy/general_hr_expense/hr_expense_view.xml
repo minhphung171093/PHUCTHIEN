@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	
+	<!-- Modify Expense Search View -->
+      	<record model="ir.ui.view" id="view_hr_expense_filter_general_modify">
+	        <field name="name">view.hr.expense.filter.general.modify</field>
+	        <field name="model">hr.expense.expense</field>
+	        <field name="inherit_id" ref="hr_expense.view_hr_expense_filter"/>
+	        <field name="arch" type="xml">
+	        	<xpath expr="//filter[@string='To Pay']" position="replace">
+					<filter icon="terp-dolar" domain="[('state','=','accepted')]" string="To Head Approve"/>	        		
+	        		<filter icon="terp-dolar" domain="[('state','=','done')]" string="To Pay" help="Expenses to Invoice"/>
+	            </xpath>
+	            
+	            <xpath expr="//filter[@string='My Expenses']" position="replace">
+	        		<filter domain="[('user_id', '=', uid)]" string="My Expenses" name="my_expenses"/>
+	            </xpath>
+	        </field>
+		</record>
+		
+	<!-- New Menu, Register Advance -->
+		<record id="view_advance_registration_form" model="ir.ui.view">
+            <field name="name">view.advance.registration.form</field>
+            <field name="model">hr.expense.expense</field>
+            <field eval="25" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="Advance Expense Sheet" version="7.0">
+                <header>
+                    <button name="confirm" states="draft" string="Submit to Manager" type="workflow" class="oe_highlight"/>
+                    <button name="validate" states="confirm" string="Approve" type="workflow" groups="general_hr.group_employee_coach" class="oe_highlight"/>
+                    <button name="head_validate" states="accepted" string="Head Approve" type="workflow" groups="general_hr.group_employee_manager" class="oe_highlight"/>
+                    <button name="refuse" states="confirm,accepted,done" string="Refuse" type="workflow" groups="general_hr.group_employee_coach,general_hr.group_employee_manager" />
+                    <button name="draft" states="confirm,cancelled" string="Set to Draft" type="workflow" groups="base.group_hr_user" />
+                    <button name="%(action_advance_expense_payment_form)d" states="done" string="Generate Accounting Entries" type="action" groups="account.group_account_invoice" class="oe_highlight"/>
+                    
+                    <!-- Thanh, new button -->
+                    <button name="done" states="head_accepted" string="Allow payment" type="workflow" groups="base.group_hr_user,general_hr.group_employee_manager" class="oe_highlight"/>
+                    <button name="create_expense_expense" type="object" attrs="{'invisible':['|', ('state', '!=', 'paid'), ('related_expense_expense_id', '!=', False)]}" string ="Generate Expenses"/>
+                    <button name="action_view_related_expense" attrs="{'invisible':[('related_expense_expense_id', '=', False)]}" string="Open Related Expense" type="object"/>
+                    
+                    <button name="action_view_receipt" states="paid" string="Open Accounting Entries" type="object" groups="account.group_account_invoice"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,accepted,head_accepted,done,paid" statusbar_colors='{"confirm":"blue","cancelled":"red"}'/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" on_change="onchange_employee_id(employee_id)"/>
+                            <field name="date"/>
+                            <field name="department_id"/>
+                            <field name="job_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="type" invisible='1'/>
+                            <field name="related_expense_expense_id" invisible='1'/>
+                        </group>
+                        <group>
+                            <field name="name"/>
+                            <field name="date_confirm"/>
+                            <field name="user_valid" attrs="{'invisible': [('state','=','draft')]}"/>
+                            <field name="date_valid" attrs="{'invisible': [('state','=','draft')]}"/>
+                            <field name="head_user_valid" attrs="{'invisible': [('state','in',['draft','confirm'])]}"/>
+                            <field name="date_head_valid" attrs="{'invisible': [('state','in',['draft','confirm'])]}"/>
+                            <field name="currency_id" groups="base.group_multi_currency" on_change="onchange_currency_id(currency_id, company_id)"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="line_ids" context="{'currency_id': currency_id, 'default_analytic_account': context.get('analytic_account', '')}">
+                                <form string="Expense Lines" version="7.0">
+                                    <group>
+                                        <group>
+                                            <field name="product_id" on_change="onchange_product_id(product_id, context)" context="{'default_hr_expense_ok':1}"/>
+                                            <field name="name"/>
+                                            <field name="ref"/>
+                                            <field domain="[('type','=','normal')]" name="analytic_account" groups="analytic.group_analytic_accounting"/>
+                                        </group>
+                                        <group>
+                                            <field name="unit_amount"/>
+                                            <label for="unit_quantity"/>
+                                            <div>
+                                                <field name="unit_quantity" class="oe_inline"/> 
+                                                <field name="uom_id" on_change="onchange_uom(product_id, uom_id, context)" class="oe_inline"/>
+                                            </div>
+                                            <field name="date_value" />
+                                        </group>
+                                    </group>
+                                </form>
+                                <tree string="Advance Lines" editable="bottom">
+                                    <field name="sequence" invisible="1"/>
+                                    <field name="product_id" on_change="onchange_product_id(product_id, context)" context="{'default_hr_expense_ok':1}"/>
+                                    <field name="date_value" string="Expense Date" invisible='1'/>
+                                    <field name="name" string="Note"/>
+                                    <field name="ref"/>
+                                    <field domain="[('type','in',['normal','contract'])]" name="analytic_account" groups="analytic.group_analytic_accounting"/>
+                                    <field name="uom_id" on_change="onchange_uom(product_id, uom_id, context)"/>
+                                    <field name="unit_amount"/>
+                                    <field name="unit_quantity"/>
+                                    <field name="total_amount" sum="Total"/>
+                                </tree>
+                            </field>
+                            <group>
+                                <div>
+                                    <separator string="Notes"/>
+                                    <field name="note" placeholder="Free Notes"/>
+                                </div>
+                                <group class="oe_subtotal_footer oe_right">
+                                    <field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_subtotal_footer_separator"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Accounting" groups="account.group_account_user">
+                            <group>
+                                <group string="Accounting Data">
+                                    <field name="journal_id" widget="selection" domain="[('type', '=', 'purchase')]"/>
+                                    <field name="advance_account_id"/>
+                                    <field name="voucher_id" invisible="1" context="{'form_view_ref': 'account_voucher.view_purchase_receipt_form'}"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+		
+		<record id="action_advance_registration" model="ir.actions.act_window">
+            <field name="name">Advance Expenses</field>
+            <field name="res_model">hr.expense.expense</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="hr_expense.view_hr_expense_filter"/>
+            <field name="context">{"default_type":'advance', 'search_default_my_expenses':1}</field>
+            <field name="domain">[('type','=','advance')]</field>
+        </record>
+        	
+        	<record id="action_advance_registration_tree" model="ir.actions.act_window.view">
+	            <field name="sequence" eval="10"/>
+	            <field name="view_mode">tree</field>
+	            <field name="view_id" ref="hr_expense.view_expenses_tree"/>
+	            <field name="act_window_id" ref="action_advance_registration"/>
+	        </record>
+	        
+        	<record id="action_advance_registration_form" model="ir.actions.act_window.view">
+	            <field name="sequence" eval="20"/>
+	            <field name="view_mode">form</field>
+	            <field name="view_id" ref="view_advance_registration_form"/>
+	            <field name="act_window_id" ref="action_advance_registration"/>
+	        </record>
+	        
+        <menuitem id="menu_action_advance_registration" 
+        	parent="hr_expense.next_id_49" action="action_advance_registration" sequence="1"/>
+        
+	<!-- Modify Menu Expense -->
+      	<record model="ir.ui.view" id="view_expenses_form_inherit_modify">
+	        <field name="name">hr.expenses.form.inherit.modify</field>
+	        <field name="model">hr.expense.expense</field>
+	        <field name="inherit_id" ref="hr_expense.view_expenses_form"/>
+	        <field name="arch" type="xml">
+	        	<xpath expr="//header" position="replace">
+	        		<header>
+	        			
+	        			<!--
+	        			<button name="print_report" string="Claim Report" type="object"/>
+	        			<button name="print_request_report" string="Request Report" type="object"/>
+	        			-->
+	        			
+	                    <button name="confirm" states="draft" string="Submit to Manager" type="workflow" class="oe_highlight"/>
+	                    <button name="validate" states="confirm" string="Approve" type="workflow" groups="general_hr.group_employee_coach" class="oe_highlight"/>
+	                    <button name="head_validate" states="accepted" string="Head Approve" type="workflow" groups="general_hr.group_employee_manager" class="oe_highlight"/>
+	                    <button name="refuse" states="confirm,accepted" string="Refuse" type="workflow" groups="base.group_hr_user" />
+	                    <button name="draft" states="confirm,cancelled" string="Set to Draft" type="workflow" groups="base.group_hr_user" />
+	                    
+	                    <!--
+	                    <button name="done" states="accepted" string="Generate Accounting Entries" type="workflow" groups="account.group_account_invoice" class="oe_highlight"/>
+	                    -->
+						<!-- Thanh, new button -->
+                    	<button name="done" states="head_accepted" string="Allow payment" type="workflow" groups="base.group_hr_user,general_hr.group_employee_manager" class="oe_highlight"/>
+                    
+	                    <button name="%(action_expense_generate_journal_entry)d" states="done" string="Generate Accounting Entries" type="action" groups="account.group_account_invoice" class="oe_highlight"/>
+                    
+	                    <button name="action_view_receipt" states="done" string="Open Accounting Entries" type="object" groups="account.group_account_invoice"/>
+	                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,accepted,head_accepted,done,paid" statusbar_colors='{"confirm":"blue","cancelled":"red"}'/>
+	                </header>
+	        	</xpath>
+	        	
+	            <xpath expr="//field[@name='user_valid']" position="before">
+	            	<field name="related_advance_expense_id" context="{'form_view_ref':'general_hr_expense.view_advance_registration_form'}"/>
+	        		<field name="date_confirm"/>
+	            </xpath>
+	            
+	            <xpath expr="//field[@name='user_valid']" position="after">
+	        		<field name="date_valid" attrs="{'invisible': [('state','=','draft')]}"/>
+                    <field name="head_user_valid" attrs="{'invisible': [('state','in',['draft','confirm'])]}"/>
+                    <field name="date_head_valid" attrs="{'invisible': [('state','in',['draft','confirm'])]}"/>
+	            </xpath>
+	            
+	            <xpath expr="//field[@name='department_id']" position="after">
+	        		<field name="job_id"/>
+	            </xpath>
+	            
+	            <xpath expr="//field[@name='company_id']" position="after">
+	        		<field name="type" invisible='1'/>
+	            </xpath>
+	            
+	            <xpath expr="//field[@name='journal_id']" position="before">
+	        		<field name="reference" attrs="{'readonly': [('account_move_id','!=',False)]}"/>
+	        		<field name="reference_number" attrs="{'readonly': [('account_move_id','!=',False)]}"/>
+	            </xpath>
+	            
+	            <xpath expr="//page[@string='Accounting']" position="after">
+	        		<page string="Payments" groups="account.group_account_user">
+	        			<field name="payment_lines" nolabel='1' attrs="{'readonly': [('account_move_id','!=',False)]}">
+		                	<tree string="Payments" editable="bottom">
+		                        <field name="journal_id" domain="[('type','in',['cash','bank'])]"/>
+		                        <field name="amount"/>
+		                    </tree>
+		                </field>
+	        		</page>
+	            </xpath>
+	            
+	        </field>
+		</record>
+    	
+    	<record id="hr_expense.expense_all" model="ir.actions.act_window">
+            <field name="name">Expenses</field>
+            <field name="res_model">hr.expense.expense</field>
+            <field name="view_type">form</field>
+            <field name="search_view_id" ref="hr_expense.view_hr_expense_filter"/>
+            <field name="view_id" ref="hr_expense.view_expenses_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to register new expenses. 
+              </p><p>
+                OpenERP will ensure the whole process is followed; the expense
+                sheet is validated by manager(s), the employee is reimbursed
+                from his expenses, some expenses must be re-invoiced to the
+                customers.
+              </p>
+            </field>
+            <field name="context">{"default_type":'expense', 'search_default_my_expenses':1}</field>
+            <field name="domain">[('type','=','expense')]</field>
+        </record>
+        	
+        	<record id="action_expense_all_tree" model="ir.actions.act_window.view">
+	            <field name="sequence" eval="10"/>
+	            <field name="view_mode">tree</field>
+	            <field name="view_id" ref="hr_expense.view_expenses_tree"/>
+	            <field name="act_window_id" ref="hr_expense.expense_all"/>
+	        </record>
+	        
+        	<record id="action_expense_all_form" model="ir.actions.act_window.view">
+	            <field name="sequence" eval="20"/>
+	            <field name="view_mode">form</field>
+	            <field name="view_id" ref="hr_expense.view_expenses_form"/>
+	            <field name="act_window_id" ref="hr_expense.expense_all"/>
+	        </record>
+	        
+    <!-- New Menu for Accounting -->
+    	
+    	<!-- Advances -->
+	    	<record id="action_account_advance_payment" model="ir.actions.act_window">
+	            <field name="name">Advance Expenses</field>
+	            <field name="res_model">hr.expense.expense</field>
+	            <field name="view_type">form</field>
+	            <field name="search_view_id" ref="hr_expense.view_hr_expense_filter"/>
+	            <field name="view_id" ref="hr_expense.view_expenses_tree"/>
+	            <field name="domain">[('state', 'in', ('done','paid')),('type','=','advance')]</field>
+	        </record>
+	        	
+	        	<record id="action_account_advance_payment_tree" model="ir.actions.act_window.view">
+		            <field name="sequence" eval="10"/>
+		            <field name="view_mode">tree</field>
+		            <field name="view_id" ref="hr_expense.view_expenses_tree"/>
+		            <field name="act_window_id" ref="action_account_advance_payment"/>
+		        </record>
+		        
+	        	<record id="action_account_advance_payment_form" model="ir.actions.act_window.view">
+		            <field name="sequence" eval="20"/>
+		            <field name="view_mode">form</field>
+		            <field name="view_id" ref="view_advance_registration_form"/>
+		            <field name="act_window_id" ref="action_account_advance_payment"/>
+		        </record>
+		        
+	      	<menuitem action="action_account_advance_payment" id="menu_action_account_advance_payment"
+	      		parent="general_hr_account.menu_account_hrm" sequence="1"/>
+	      		
+    	<!-- Expenses -->
+	    	<record id="action_account_expense_payment" model="ir.actions.act_window">
+	            <field name="name">Expenses</field>
+	            <field name="res_model">hr.expense.expense</field>
+	            <field name="view_type">form</field>
+	            <field name="search_view_id" ref="hr_expense.view_hr_expense_filter"/>
+	            <field name="view_id" ref="hr_expense.view_expenses_tree"/>
+	            <field name="domain">[('state', 'in', ('done','paid')),('type','=','expense')]</field>
+	        </record>
+	        	
+	        	<record id="action_account_expense_payment_tree" model="ir.actions.act_window.view">
+		            <field name="sequence" eval="10"/>
+		            <field name="view_mode">tree</field>
+		            <field name="view_id" ref="hr_expense.view_expenses_tree"/>
+		            <field name="act_window_id" ref="action_account_expense_payment"/>
+		        </record>
+	        
+	        	<record id="action_account_expense_payment_form" model="ir.actions.act_window.view">
+		            <field name="sequence" eval="20"/>
+		            <field name="view_mode">form</field>
+		            <field name="view_id" ref="hr_expense.view_expenses_form"/>
+		            <field name="act_window_id" ref="action_account_expense_payment"/>
+		        </record>
+		        
+	      	<menuitem action="action_account_expense_payment" id="menu_action_account_expense_payment"
+	      		parent="general_hr_account.menu_account_hrm" sequence="10"/>
+	      	
+
+    </data>
+</openerp>

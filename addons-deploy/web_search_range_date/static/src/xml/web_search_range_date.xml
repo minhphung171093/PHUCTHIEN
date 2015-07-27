@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+	<t t-name="field-selection">
+	    <t t-if="widget.fields_selection">
+	        <select id="field_name_selection" class="field_date_selection">
+	            <t t-foreach="widget.fields_selection" t-as="record">
+	                <option t-att-value="record.name"><t t-esc="record.string"/></option>
+	            </t>
+	        </select>
+	    </t>
+	</t>
+	
+	<t t-extend="ViewManagerAction">
+	    <t t-jquery=".oe_view_manager .oe_view_manager_header" t-operation="append">
+	        <table class="search_filter">
+	            <tr>
+	                <th class="field_selection_column"/>
+	                <th>
+	                    <input id="from_date" class="search_from_date" type="date" autofocus="autofocus"/>
+	                    <input id="to_date" class="search_to_date" type="date" autofocus="autofocus"/>
+	                    <button type="button" class="clear_filter" autofocus="autofocus"  id="clear_filter" title="Clear">Clear</button>
+	                </th>
+	            </tr>
+	        </table>
+	    </t>
+	</t>
+</templates>

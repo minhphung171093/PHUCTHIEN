@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Purchase Order -->
+        <record id="purchase_order_form_phucthien_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+	            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+	    			<field name="partner_id" domain="[('customer','=',True)]"/>
+	            </xpath>
+	            <xpath expr="//button[@name='wkf_send_rfq']" position="replace">
+	            	<button name="wkf_send_rfq" states="approved" string="Send by Email" type="object" context="{'send_rfq':True}" class="oe_highlight"/>
+	            </xpath>
+	            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+	    			<field name="approve"/>
+	            </xpath>
+	            <xpath expr="//button[@name='purchase_confirm']" position="after">
+	    			<button name="duyet_vuot_cap" context="{'duyet_vuot_cap':1}" type="object" states="draft" string="Duyệt vượt cấp" class="oe_highlight"/>
+	            </xpath>
+	            <xpath expr="//field[@name='partner_ref']" position="after">
+	    			<field name="sampham_lanh" />
+	            </xpath>
+            </field>
+        </record>
+        
+        <record id="view_purchase_order_form_editable_list_inherit" model="ir.ui.view">
+	        <field name="name">purchase.order.form.editable.list.inherit</field>
+	        <field name="model">purchase.order</field>
+	        <field name="inherit_id" ref="purchase_analytic_plans.view_purchase_order_form_editable_list"/>
+	        <field name="arch" type="xml">
+	            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+	                <attribute name='editable'>bottom</attribute>
+	            </xpath>
+	        </field>
+	    </record>
+		
+		<record id="purchase_order_form_inherit_2" model="ir.ui.view">
+            <field name="name">purchase.order.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="general_purchase_asset.purchase_order_form_inherit"/>
+            <field name="arch" type="xml">
+	            <xpath expr="//field[@name='validator']" position="after">
+	    			<field name="duyet_vuotcap_id"/>
+	            </xpath>
+            </field>
+        </record>
+		
+		<record id="action_purchase_order_line_not_approve" model="ir.actions.act_window">
+            <field name="name">Dòng hàng chưa được duyệt</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="purchase.purchase_order_line_tree"/>
+            <field name="domain">[('approve','=',False)]</field>
+        </record>
+		<record id="action_purchase_order_line_not_approve1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="purchase.purchase_order_line_tree"/>
+            <field name="act_window_id" ref="action_purchase_order_line_not_approve"/>
+        </record>
+        <record id="action_purchase_order_line_not_approve2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="purchase.purchase_order_line_form2"/>
+            <field name="act_window_id" ref="action_purchase_order_line_not_approve"/>
+        </record>
+        <menuitem
+            action="action_purchase_order_line_not_approve"
+            id="menu_action_purchase_order_line_not_approve"
+            parent="purchase.menu_procurement_management"
+            sequence="10"/>
+            
+        <record id="manufacturer_product_form" model="ir.ui.view">
+            <field name="model">manufacturer.product</field>
+            <field name="arch" type="xml">
+                <form string="Hãng sản xuất" version="7.0">
+                   <sheet>
+                   		<group col="2">
+                        	<field name="code"/>
+                    		<field name="name" />
+	                    </group>
+                  </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="manufacturer_product_tree" model="ir.ui.view">
+            <field name="model">manufacturer.product</field>
+            <field name="arch" type="xml">
+                <tree string="Hãng sản xuất">
+                    <field name="code"/>
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+        <record id="action_manufacturer_product" model="ir.actions.act_window">
+            <field name="name">Hãng sản xuất</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">manufacturer.product</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="manufacturer_product_tree"/>
+            <field name="search_view_id" eval="False"/>
+        </record>
+        <menuitem action="action_manufacturer_product" id="menu_manufacturer_product" parent="base.menu_product" sequence="10"/>
+		
+		
+		<record id="product_normal_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.normal.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//label[@for='ean13']" position="before">
+	    			<field name="manufacturer_product_id"/>
+	    			<field name="product_country_id"/>
+	            </xpath>
+            </field>
+        </record>
+        
+        <record id="product_search_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.search.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view"/>
+            <field name="arch" type="xml">
+            	<field name="categ_id" position="after">
+            		<field name="default_code"/>
+            	</field>
+            	<xpath expr="//filter[@string='Company']" position="after">
+	    			<filter string='Hãng sản xuất' icon="terp-go-home" domain="[]" context="{'group_by' : 'manufacturer_product_id'}"/>
+	    			<filter string='Nước sản xuất' icon="terp-go-home" domain="[]" context="{'group_by' : 'product_country_id'}"/>
+	            </xpath>
+            </field>
+       </record>
+       
+       <record id="product_category_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.category.form.inherit</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//group[@name='parent']" position="after">
+            		<group colspan="2">
+            			<field name="manufacturer_product_ids" widget="many2many_tags"/>
+            		</group>
+            	</xpath>
+            </field>
+       </record>
+    </data>
+</openerp>

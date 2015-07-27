@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+		<record id="view_account_balance_sheet_report_template_form" model="ir.ui.view">
+            <field name="name">account.balance.sheet.report.template.form</field>
+            <field name="model">account.balance.sheet.report.template</field>
+            <field name="arch" type="xml">
+                <form string="Balance Sheet Report Template" version="7.0">
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name"/></h1>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="note"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="lines" nolabel='1'>
+                        	<tree string="Lines" editable='top'>
+                        		<field name="category"/>
+			                    <field name="name"/>
+			                    <field name="code"/>
+			                    <field name="note"/>
+			                    <field name="type"/>
+			                    <field name="account_ids" widget="many2many_tags"/>
+			                </tree>
+                        </field>
+                    </group>
+                </form>
+           </field>
+        </record>
+        
+        <record id="view_account_balance_sheet_report_template_tree" model="ir.ui.view">
+            <field name="name">account.balance.sheet.report.template.tree</field>
+            <field name="model">account.balance.sheet.report.template</field>
+            <field name="arch" type="xml">
+                <tree string="Balance Sheet Report Template">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="note"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_account_balance_sheet_report_template" model="ir.actions.act_window">
+            <field name="name">Balance Sheet Report Template</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.balance.sheet.report.template</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_account_balance_sheet_report_template_tree"/>
+        </record>
+		
+    </data>
+</openerp>

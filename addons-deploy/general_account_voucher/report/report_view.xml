@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		
+		<!-- Create new template Phieu Chi Tong -->
+    	<record id="general_phieu_chi_tong" model="ir.actions.report.xml">
+	        <field name="name">general_phieu_chi_tong</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.voucher.batch</field>
+	        <field name="report_name">general_phieu_chi_tong</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_account_voucher/report/account_voucher_batch_report.py</field>
+	        <field name="report_rml">general_account_voucher/report/phieu_chi_tong.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="True" 
+			menu="True"
+			id="general_phieu_chi_tong" 
+			model="account.voucher.batch" 
+			name="general_phieu_chi_tong"
+	        string="Payment Voucher Batch"
+	        rml="general_account_voucher/report/phieu_chi_tong.ods"/>   
+	        
+        <!-- Create new template Phieu Chi -->
+    	<record id="general_phieu_chi" model="ir.actions.report.xml">
+	        <field name="name">general_phieu_chi</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.voucher.batch</field>
+	        <field name="report_name">general_phieu_chi</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-doc'),('compatible_types','=','oo-odt')]"/>
+	        <field name="parser_loc">general_account_voucher/report/account_voucher_report.py</field>
+	        <field name="report_rml">general_account_voucher/report/PhieuChi.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_phieu_chi" 
+			model="account.voucher.batch" 
+			name="general_phieu_chi"
+	        string="Phiếu Chi"
+	        rml="general_account_voucher/report/PhieuChi.odt"/>   
+	    
+	    <!-- Create new template Phieu Thu -->
+    	<record id="general_phieu_thu" model="ir.actions.report.xml">
+	        <field name="name">general_phieu_thu</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.voucher</field>
+	        <field name="report_name">general_phieu_thu</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-doc'),('compatible_types','=','oo-odt')]"/>
+	        <field name="parser_loc">general_account_voucher/report/account_voucher_report.py</field>
+	        <field name="report_rml">general_account_voucher/report/PhieuThu.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_phieu_thu" 
+			model="account.voucher" 
+			name="general_phieu_thu"
+	        string="Phiếu Thu"
+	        rml="general_account_voucher/report/PhieuThu.odt"/>   
+	        
+	</data>
+</openerp>

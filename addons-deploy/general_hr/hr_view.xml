@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+		<record id="view_employee_filter_general_modify" model="ir.ui.view">
+            <field name="name">view.employee.filter.general.modify</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='name']" position="after">
+                	<field name="code"/>
+                	<field name="scanner_code"/>
+                	<field name="identification_id"/>
+                </xpath>
+            </field>
+        </record>
+        
+		<record id="view_employee_kanban_general_modify" model="ir.ui.view">
+            <field name="name">view.employee.kanban.general.modify</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='name']" position="before">
+                	<field name="code"/>
+                </xpath>
+            </field>
+        </record>
+        
+		<record id="view_employee_tree_general_modify" model="ir.ui.view">
+            <field name="name">view.employee.tree.general.modify</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='name']" position="before">
+                	<field name="code"/>
+                	<field name="scanner_code"/>
+                </xpath>
+            </field>
+        </record>
+        
+		<record id="view_employee_form_general_modify" model="ir.ui.view">
+            <field name="name">view.employee.form.general.modify</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='address_id']" position="before">
+                	<field name="code"/>
+                	<field name="scanner_code"/>
+                </xpath>
+                <xpath expr="//field[@name='identification_id']" position="after">
+                	<field name="identification_date_issue"/>
+                	<field name="identification_place_issue"/>
+                </xpath>
+                
+                <xpath expr="//page[@string='HR Settings']" position="before">
+                	<page string="Doanh số bán hàng">
+                		<group col="8">
+                			<field name="times"/>
+                			<button name="add_sale_order" string="Doanh số" type="object"/>
+                			<newline/>
+                			<field name="date_start" attrs="{'invisible':[('times', 'in', ['periods','years','quarter'])],'required':[('times', 'not in', ['periods','years','quarter'])]}"/>
+                			<field name="date_end" attrs="{'invisible':[('times', 'in', ['periods','years','quarter'])],'required':[('times', 'not in', ['periods','years','quarter'])]}"/>
+                			<field name="quarter" attrs="{'invisible':[('times', 'in', ['dates','years','periods'])],'required':[('times', 'not in', ['dates','years','periods'])]}"/>
+                			<field name="fiscalyear" attrs="{'invisible':[('times', 'in', ['dates','periods'])],'required':[('times','not in', ['dates','periods'])]}"/>
+                			<field name="period_id" attrs="{'invisible':[('times', 'in', ['dates','years','quarter'])],'required':[('times', 'not in', ['dates','years','quarter'])]}"/>
+                			
+                		</group>
+                		<newline/>
+                		<group string="Doanh số">
+                			<field name="emp_sale_ids" nolabel="1">
+                				<tree>
+                					<field name="name"/>
+                					<field name="partner_id"/>
+                					<field name="date_order"/>
+                					<field name="amount_total" sum="Total"/>
+                    				<field name="state"/>
+                				</tree>
+                			</field>
+                		</group>
+                	</page>
+                </xpath>
+            </field>
+        </record>
+        		
+    </data>
+</openerp>
+
+

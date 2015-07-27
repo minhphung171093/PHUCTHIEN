@@ -1,0 +1,8 @@
+id;name;model_id:id;group_id:id;perm_read;perm_write;perm_create;perm_unlink
+access_phucthien_sale_1;hop.dong;model_hop_dong;group_hopdong_user;True;True;True;True
+access_phucthien_sale_2;hopdong.kinhte.line;model_hopdong_kinhte_line;group_hopdong_user;True;True;True;True
+access_phucthien_sale_3;hop.dong;model_hop_dong;base.group_sale_salesman;True;False;False;False
+access_phucthien_sale_4;hopdong.kinhte.line;model_hopdong_kinhte_line;base.group_sale_salesman;True;False;False;False
+access_phucthien_sale_5;sale.order.rule;model_sale_order_rule;base.group_sale_salesman;True;True;True;True
+access_phucthien_sale_6;sanpham.canhtranh;model_sanpham_canhtranh;base.group_sale_salesman;True;True;True;True
+access_phucthien_sale_7;danhsach.canhtranh;model_danhsach_canhtranh;base.group_sale_salesman;True;True;True;True

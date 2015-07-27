@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	
+	   <!-- Create Depreciation Asset Report -->
+    	<record id="report_depreciation_asset" model="ir.actions.report.xml">
+	        <field name="name">Depreciation Asset Report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">depreciation.asset</field>
+	        <field name="report_name">report_depreciation_asset</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_account_asset/report/depreciation_asset.py</field>
+	        <field name="report_rml">general_account_asset/report/depreciation_asset.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="report_depreciation_asset" 
+			model="depreciation.asset" 
+			name="report_depreciation_asset"
+	        string="Depreciation Asset Report"
+	        rml="general_account_asset/report/depreciation_asset.ods"/> 
+
+	   
+	   <!-- Create List OF ASSET Report -->
+    	<record id="report_list_of_asset" model="ir.actions.report.xml">
+	        <field name="name">List of Assets Report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">list.of.asset</field>
+	        <field name="report_name">report_list_of_asset</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_account_asset/report/list_of_asset.py</field>
+	        <field name="report_rml">general_account_asset/report/list_of_asset.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="report_list_of_asset" 
+			model="list.of.asset" 
+			name="report_list_of_asset"
+	        string="List of Assets Report"
+	        rml="general_account_asset/report/list_of_asset.ods"/>    
+	        
+	   <!-- Create List OF ASSET Report -->
+    	<record id="report_expense_allocation" model="ir.actions.report.xml">
+	        <field name="name">Pre-paid Expense Allocation Report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">expense.allocation</field>
+	        <field name="report_name">report_list_of_asset</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_account_asset/report/expense_allocation.py</field>
+	        <field name="report_rml">general_account_asset/report/expense_allocation.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="report_expense_allocation" 
+			model="expense.allocation" 
+			name="report_expense_allocation"
+	        string="Pre-paid Expense Allocation Report"
+	        rml="general_account_asset/report/expense_allocation.ods"/> 
+	        
+	</data>
+</openerp>

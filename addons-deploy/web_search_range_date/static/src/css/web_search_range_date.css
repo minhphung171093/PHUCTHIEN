@@ -1,0 +1,52 @@
+.search_from_date {
+    height: 15px;
+    width: 150px;
+    font-size: 10px;
+    color: #2A8152;
+    margin-top: 1px;
+   	margin-left:4px;
+    border-bottom:1px solid #A1A7CE!important;
+    border-radius:10px!important;
+
+}
+
+.search_to_date {
+    height: 15px;
+    width: 150px;
+    font-size: 10px;
+    color: #2A8152;
+    margin-top: 1px;
+    border-bottom:1px solid #A1A7CE!important;
+    border-radius:10px!important;
+
+}
+
+.field_date_selection {
+    height: 20px;
+    width: 150px;
+    background: #00D827;
+    font-size: 10px;
+    color: #000000;
+    margin-top: 0px;
+    border-bottom:1px solid #A1A7CE!important;
+    border-radius:10px!important;
+}
+
+.clear_filter {
+    height: 20px;
+    width: 55px;
+    background: #2A8152;
+    font-size: 11px!important;
+    color: #000000;
+    margin-top: 0px;
+    border-bottom:1px solid #A1A7CE!important;
+    border-radius:10px!important;
+}
+
+.clear_filter:hover {
+
+    background-color: #000000;
+    color: #2A8152;;
+
+
+}

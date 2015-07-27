@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	 <record id="view_flag_point_of_sale" model="ir.ui.view">
+            <field name="name">Update flag</field>
+            <field name="model">flag.point.of.sale</field>
+            <field name="arch" type="xml">
+                <form string="Create invoices" version="7.0">
+                    <separator colspan="4" string="Do you really want to check Bill?" />
+                    <footer>
+                        <button name="update_flag" string="Update Flag" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_flag_point_of_sale" model="ir.actions.act_window">
+            <field name="name">Update flag</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">flag.point.of.sale</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_flag_point_of_sale"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+
+        <record model="ir.values" id="flag_point_of_sale">
+            <field name="model_id" ref="point_of_sale.model_pos_order" />
+            <field name="name">Update Flag</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_flag_point_of_sale'))" />
+            <field name="key">action</field>
+            <field name="model">pos.order</field>
+        </record>
+		
+    </data>
+</openerp>

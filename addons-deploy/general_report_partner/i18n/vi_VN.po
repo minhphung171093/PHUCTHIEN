@@ -1,0 +1,244 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* general_report_partner
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20140227-001259\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-07-05 15:32+0000\n"
+"PO-Revision-Date: 2014-07-05 15:32+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: general_report_partner
+#: model:ir.ui.menu,name:general_report_partner.menu_partner_reports
+msgid "Partner Reports"
+msgstr "Báo cáo công nợ"
+
+#. module: general_report_partner
+#: model:ir.model,name:general_report_partner.model_sql_function_general_report_partner
+msgid "sql.function.general.report.partner"
+msgstr "sql.function.general.report.partner"
+
+#. module: general_report_partner
+#: model:ir.model,name:general_report_partner.model_general_aged__partner_blance
+msgid "general.aged_.partner.blance"
+msgstr "general.aged_.partner.blance"
+
+#. module: general_report_partner
+#: view:general.report.partner.ledger.detail:0
+#: model:ir.actions.act_window,name:general_report_partner.action_view_general_report_partner_ledger_detail
+#: model:ir.actions.report.xml,name:general_report_partner.general_report_partner_ledger_detail
+#: model:ir.ui.menu,name:general_report_partner.menu_action_view_general_report_partner_ledger_detail
+msgid "Partner Ledger Detail"
+msgstr "Sổ công nợ phát sinh"
+
+#. module: general_report_partner
+#: field:general.aged.partner.balance,times:0
+#: field:general.report.partner.ledger,times:0
+#: field:general.report.partner.ledger.detail,times:0
+msgid "Time"
+msgstr "Thời gian"
+
+#. module: general_report_partner
+#: selection:general.aged.partner.balance,times:0
+#: selection:general.report.partner.ledger,times:0
+#: selection:general.report.partner.ledger.detail,times:0
+msgid "Dates"
+msgstr "Ngày"
+
+#. module: general_report_partner
+#: model:ir.model,name:general_report_partner.model_general_report_partner_ledger_detail
+msgid "general.report.partner.ledger.detail"
+msgstr "general.report.partner.ledger.detail"
+
+#. module: general_report_partner
+#: field:general.aged.partner.balance,period_id_start:0
+#: field:general.report.partner.ledger,period_id_start:0
+#: field:general.report.partner.ledger.detail,period_id_start:0
+msgid "Start Period"
+msgstr "Kỳ bắt đầu"
+
+#. module: general_report_partner
+#: view:general.aged.partner.balance:0
+#: view:general.report.partner.ledger:0
+#: view:general.report.partner.ledger.detail:0
+msgid "Print"
+msgstr "In báo cáo"
+
+#. module: general_report_partner
+#: field:general.aged.partner.balance,type:0
+msgid "Type"
+msgstr "Loại"
+
+#. module: general_report_partner
+#: model:ir.model,name:general_report_partner.model_sql_partner_ledger_detail
+msgid "sql.partner.ledger.detail"
+msgstr "sql.partner.ledger.detail"
+
+#. module: general_report_partner
+#: model:ir.model,name:general_report_partner.model_sql_partner_ledger
+msgid "sql.partner.ledger"
+msgstr "sql.partner.ledger"
+
+#. module: general_report_partner
+#: field:general.aged.partner.balance,company_id:0
+#: field:general.report.partner.ledger,company_id:0
+#: field:general.report.partner.ledger.detail,company_id:0
+msgid "Company"
+msgstr "Công ty"
+
+#. module: general_report_partner
+#: selection:general.aged.partner.balance,type:0
+msgid "Paid"
+msgstr "Đã trả"
+
+#. module: general_report_partner
+#: field:general.aged.partner.balance,period_id_end:0
+msgid "End Perirod"
+msgstr "Kỳ kết thúc"
+
+#. module: general_report_partner
+#: field:general.aged.partner.balance,check:0
+msgid "Clearing"
+msgstr "Kiểm tra"
+
+#. module: general_report_partner
+#: field:general.aged.partner.balance,fiscalyear_start:0
+#: field:general.report.partner.ledger,fiscalyear_start:0
+#: field:general.report.partner.ledger.detail,fiscalyear_start:0
+msgid "Start Fiscalyear"
+msgstr "Năm bắt đầu"
+
+#. module: general_report_partner
+#: model:ir.model,name:general_report_partner.model_general_aged_partner_balance
+msgid "general.aged.partner.balance"
+msgstr "general.aged.partner.balance"
+
+#. module: general_report_partner
+#: model:ir.model,name:general_report_partner.model_aged_partner_balance
+msgid "aged.partner.balance"
+msgstr "aged.partner.balance"
+
+#. module: general_report_partner
+#: field:general.aged.partner.balance,account_id:0
+#: field:general.report.partner.ledger,account_id:0
+#: field:general.report.partner.ledger.detail,account_id:0
+msgid "Account"
+msgstr "Tài khoản công nợ"
+
+#. module: general_report_partner
+#: field:general.report.partner.ledger,date_end:0
+#: field:general.report.partner.ledger.detail,date_end:0
+msgid "Date end"
+msgstr "Ngày kết thúc"
+
+#. module: general_report_partner
+#: view:general.aged.partner.balance:0
+#: model:ir.actions.act_window,name:general_report_partner.action_general_aged_partner_balance
+#: model:ir.actions.report.xml,name:general_report_partner.general_aged_partner_balance
+#: model:ir.ui.menu,name:general_report_partner.menu_action_aged_partner_balance
+msgid "Aged Partner Balance"
+msgstr "Báo cáo tuổi nợ"
+
+#. module: general_report_partner
+#: model:ir.model,name:general_report_partner.model_general_aged_partner_blance
+msgid "general.aged.partner.blance"
+msgstr "general.aged.partner.blance"
+
+#. module: general_report_partner
+#: field:general.report.partner.ledger,period_id_end:0
+#: field:general.report.partner.ledger.detail,period_id_end:0
+msgid "End Period"
+msgstr "Kỳ kết thúc"
+
+#. module: general_report_partner
+#: field:general.aged.partner.balance,fiscalyear_stop:0
+#: field:general.report.partner.ledger,fiscalyear_stop:0
+#: field:general.report.partner.ledger.detail,fiscalyear_stop:0
+msgid "Stop Fiscalyear"
+msgstr "Năm kết thúc"
+
+#. module: general_report_partner
+#: view:general.report.partner.ledger:0
+#: model:ir.actions.act_window,name:general_report_partner.action_general_report_partner_ledger
+#: model:ir.actions.report.xml,name:general_report_partner.general_report_partner_ledger
+#: model:ir.ui.menu,name:general_report_partner.menu_action_general_report_partner_ledger
+msgid "Partner Ledger"
+msgstr "Sổ cái công nợ"
+
+#. module: general_report_partner
+#: field:general.aged.partner.balance,partner_id:0
+#: field:general.report.partner.ledger,partner_id:0
+msgid "Partner"
+msgstr "Đối tác (KH/NCC)"
+
+#. module: general_report_partner
+#: field:general.aged.partner.balance,date_start:0
+msgid "Start Date"
+msgstr "Ngày bắt đầu"
+
+#. module: general_report_partner
+#: field:general.aged.partner.balance,date_end:0
+msgid "End date"
+msgstr "Ngày kết thúc"
+
+#. module: general_report_partner
+#: model:ir.model,name:general_report_partner.model_general_report_partner_ledger
+msgid "general.report.partner.ledger"
+msgstr "general.report.partner.ledger"
+
+#. module: general_report_partner
+#: selection:general.aged.partner.balance,times:0
+#: selection:general.report.partner.ledger,times:0
+#: selection:general.report.partner.ledger.detail,times:0
+msgid "Years"
+msgstr "Năm"
+
+#. module: general_report_partner
+#: model:ir.model,name:general_report_partner.model_sql_aged_partner_balance
+msgid "sql.aged.partner.balance"
+msgstr "sql.aged.partner.balance"
+
+#. module: general_report_partner
+#: selection:general.aged.partner.balance,times:0
+#: selection:general.report.partner.ledger,times:0
+#: selection:general.report.partner.ledger.detail,times:0
+msgid "Periods"
+msgstr "Kỳ"
+
+#. module: general_report_partner
+#: view:general.aged.partner.balance:0
+#: view:general.report.partner.ledger:0
+#: view:general.report.partner.ledger.detail:0
+msgid "Cancel"
+msgstr "Hủy"
+
+#. module: general_report_partner
+#: view:general.aged.partner.balance:0
+msgid "Print Date"
+msgstr "Ngày in"
+
+#. module: general_report_partner
+#: field:general.report.partner.ledger,date_start:0
+#: field:general.report.partner.ledger.detail,date_start:0
+msgid "Date Start"
+msgstr "Ngày bắt đầu"
+
+#. module: general_report_partner
+#: selection:general.aged.partner.balance,type:0
+msgid "Open"
+msgstr "Mở"
+
+#. module: general_report_partner
+#: view:general.aged.partner.balance:0
+#: view:general.report.partner.ledger:0
+#: view:general.report.partner.ledger.detail:0
+msgid "or"
+msgstr "hoặc"
+

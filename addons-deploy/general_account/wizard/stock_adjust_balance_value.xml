@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="stock_adjust_balance_value" model="ir.ui.view">
+            <field name="name">stock.adjust.balance.value.form</field>
+            <field name="model">stock.adjust.balance.value</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Stock Adjust Balance Value">
+                    
+                    <field name="date" colspan="2"/>
+                    <newline/>
+                    <field name="warehouse_id" colspan="4"/> 
+                    <field name="stock_rule_id" colspan="4" domain="[('stock_journal_id.name','=','Adjust Stock Balance'),('source_type_id.name','=','Inventory')]" /> 
+                    <field name="description"/>
+                    <separator colspan="4"/>
+                    <group colspan="4" col="2">
+                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                        <button icon="gtk-execute" string="Adjust Balance" name="stock_adjust_balance" type="object"/>
+                    </group>
+            </form>
+            </field>
+    	</record>
+    	
+    	<record id="action_stock_adjust_balance_value" model="ir.actions.act_window">
+            <field name="name">Stock Adjust Balance</field>
+            <field name="res_model">stock.adjust.balance.value</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="stock_adjust_balance_value"/>
+        </record>
+        
+        <record id="stock_adjust_balance_mess" model="ir.ui.view">
+            <field name="name">stock.adjust.balance.mess.form</field>
+            <field name="model">stock.adjust.balance.mess</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Stock Adjust Balance Value">
+            	<group>
+                    <field name="description"/>
+                    <separator colspan="4"/>
+                    <group colspan="4" col="2">
+                    	<button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                    </group>
+                </group>
+            </form>
+            </field>
+    	</record>
+    	
+    	<record id="action_stock_adjust_balance_mess" model="ir.actions.act_window">
+            <field name="name">Stock Adjust Balance Message</field>
+            <field name="res_model">stock.adjust.balance.mess</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="stock_adjust_balance_mess"/>
+        </record>
+
+    </data>
+</openerp>

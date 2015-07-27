@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+		<record id="view_employee_filter_general_modify" model="ir.ui.view">
+            <field name="name">view.employee.filter.general.modify</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='name']" position="after">
+                	<field name="code"/>
+                	<field name="scanner_code"/>
+                	<field name="identification_id"/>
+                </xpath>
+            </field>
+        </record>
+        
+		<record id="view_employee_kanban_general_modify" model="ir.ui.view">
+            <field name="name">view.employee.kanban.general.modify</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='name']" position="before">
+                	<field name="code"/>
+                </xpath>
+            </field>
+        </record>
+        
+		<record id="view_employee_tree_general_modify" model="ir.ui.view">
+            <field name="name">view.employee.tree.general.modify</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='name']" position="before">
+                	<field name="code"/>
+                	<field name="scanner_code"/>
+                </xpath>
+            </field>
+        </record>
+        
+		<record id="view_employee_form_general_modify" model="ir.ui.view">
+            <field name="name">view.employee.form.general.modify</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='address_id']" position="before">
+                	<field name="code"/>
+                	<field name="scanner_code"/>
+                </xpath>
+                <xpath expr="//field[@name='identification_id']" position="after">
+                	<field name="identification_date_issue"/>
+                	<field name="identification_place_issue"/>
+                </xpath>
+            </field>
+        </record>
+        		
+    </data>
+</openerp>
+
+

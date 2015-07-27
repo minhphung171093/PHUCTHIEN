@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate='0'>
+
+	    <record model="ir.rule" id="account_voucher_multi_branch_rule">
+	        <field name="name">Account Voucher Multil-Branch</field>
+	        <field name="model_id" ref="account_voucher.model_account_voucher"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">[user.context_shop_id and ('shop_id','=',user.context_shop_id.id) or 
+	        ('shop_id','child_of', [x.id for x in user.shop_ids])]</field>
+	    </record>
+	    
+	    <record model="ir.rule" id="account_voucher_batch_multi_branch_rule">
+	        <field name="name">Account Voucher Batch Multil-Branch</field>
+	        <field name="model_id" ref="general_account_voucher.model_account_voucher_batch"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">[user.context_shop_id and ('shop_id','=',user.context_shop_id.id) or 
+	        ('shop_id','child_of', [x.id for x in user.shop_ids])]</field>
+	    </record>
+	    
+    </data>
+</openerp>

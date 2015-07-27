@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record id="doanhthu_muahang_report" model="ir.actions.report.xml">
+	        <field name="name">doanhthu_muahang_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">doanhthu.muahang</field>
+	        <field name="report_name">Doanh thu mua hàng</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls')]"/>
+	        <field name="parser_loc">green_erp_phucthien_purchase/report/doanhthu_muahang_report.py</field>
+	        <field name="report_rml">green_erp_phucthien_purchase/report/doanhthu_muahang_report.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="True" 
+			menu="False"
+			id="doanhthu_muahang_report" 
+			model="doanhthu.muahang" 
+			name="doanhthu_muahang_report"
+	        string="Doanh thu mua hàng"
+	        rml="green_erp_phucthien_purchase/report/doanhthu_muahang_report.ods"/>	
+	        
+    </data>
+</openerp>

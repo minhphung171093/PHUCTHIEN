@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    <record id="stock_partial_picking_add_date_form" model="ir.ui.view">
+            <field name="name">stock.partial.picking.add.date.form</field>
+            <field name="model">stock.partial.picking</field>
+            <field name="inherit_id" ref="stock.stock_partial_picking_form" />
+            <field name="arch" type="xml">
+	                <xpath expr="//field[@name='move_ids']" position="before">
+	                	<div class="oe_left" >
+	                		<button icon="gtk-execute" string="Tạo lô hàng tự động" name="update_lot" type="object" invisible="context.get('default_type',False) and context.get('default_type')=='out' and 1 or 0"/>
+	                	</div>
+	                	<div class="oe_right" >
+	                		<field name="date"/>
+	                	</div>
+	                </xpath>
+                <field name="move_ids" position="replace">
+	                <field name="move_ids" context="{'hide_tracking': hide_tracking}">
+	                	<tree editable="bottom" string="Product Moves">
+	                        <field name="product_id" on_change="onchange_product_id(product_id)" readonly="1"/>
+	                        <field name="product_uom" groups="product.group_uom" readonly="1"/>
+	                        <field name="quantity" />
+	                        <field name="tracking" invisible="1"/>
+	                        <field name="prodlot_id" domain="[('product_id', '=', product_id)]" invisible="context.get('hide_tracking',False)" attrs="{'required':[('tracking','=',True), ('quantity', '!=', 0)]}" groups="stock.group_production_lot" context="{'default_product_id':product_id}"/>
+	                        <!-- Removed as this feature is not logic: price must be updated upon reception of invoice -->
+	                        <field name="update_cost" invisible="1"/>
+	                        <field name="cost"  invisible="1"/>
+	                        <field name="currency"  invisible="1"/>
+	                        <field name="location_id" invisible="1"/>
+	                        <field name="location_dest_id"/>
+	                    </tree>
+	                </field>
+                </field>
+            </field>
+        </record>
+        
+        
+    </data>
+</openerp>

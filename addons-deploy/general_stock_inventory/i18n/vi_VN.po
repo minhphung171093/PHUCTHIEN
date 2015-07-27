@@ -1,0 +1,128 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* general_stock_inventory
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20140804-231303\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-01 07:55+0000\n"
+"PO-Revision-Date: 2014-09-01 07:55+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: general_stock_inventory
+#: field:stock.inventory,categ_id:0
+msgid "Category"
+msgstr "Danh mục sản phẩm"
+
+#. module: general_stock_inventory
+#: model:ir.model,name:general_stock_inventory.model_stock_inventory
+msgid "Inventory"
+msgstr "Kiểm kê"
+
+#. module: general_stock_inventory
+#: field:stock.inventory,stock_journal_id:0
+msgid "Stock Journal"
+msgstr "Nhật ký kho"
+
+#. module: general_stock_inventory
+#: field:stock.inventory,description:0
+msgid "Description"
+msgstr "Ghi chú"
+
+#. module: general_stock_inventory
+#: field:stock.inventory.line,product_ean:0
+msgid "Barcode"
+msgstr "Mã EAN"
+
+#. module: general_stock_inventory
+#: field:stock.inventory,total_adjustment_value:0
+msgid "Total Adjustment Value"
+msgstr "Giá trị chênh lệch"
+
+#. module: general_stock_inventory
+#: selection:stock.inventory,group_type:0
+msgid "All Product"
+msgstr "Tất cả sản phẩm"
+
+#. module: general_stock_inventory
+#: field:stock.inventory,user_request_id:0
+msgid "User Request"
+msgstr "Người kiểm kê"
+
+#. module: general_stock_inventory
+#: field:stock.inventory.line,sys_uom:0
+msgid "Primary UoM"
+msgstr "Đơn vị kiểm kê"
+
+#. module: general_stock_inventory
+#: field:stock.inventory,search_product_ean:0
+msgid "Search Product/EAN"
+msgstr "Tim kiếm theo Tên/Mã sản phẩm"
+
+#. module: general_stock_inventory
+#: model:ir.model,name:general_stock_inventory.model_stock_inventory_line
+msgid "Inventory Line"
+msgstr "Inventory Line"
+
+#. module: general_stock_inventory
+#: field:stock.inventory.line,line_no:0
+msgid "Line NO"
+msgstr "STT"
+
+#. module: general_stock_inventory
+#: selection:stock.inventory,group_type:0
+msgid "Manual"
+msgstr "Tự nhập liệu"
+
+#. module: general_stock_inventory
+#: field:stock.inventory.line,freeze_cost:0
+msgid "Freeze Cost"
+msgstr "Giá vốn"
+
+#. module: general_stock_inventory
+#: field:stock.inventory,all_location:0
+msgid "All Location"
+msgstr "Tất cả kho"
+
+#. module: general_stock_inventory
+#: field:stock.inventory,group_type:0
+msgid "Group Type"
+msgstr "Kiểm kê theo"
+
+#. module: general_stock_inventory
+#: field:stock.inventory.line,adjust_quantity:0
+#: field:stock.inventory.line,sys_quantity:0
+msgid "Sys Onhand"
+msgstr "Hệ thống đếm"
+
+#. module: general_stock_inventory
+#: field:stock.inventory,freeze_date:0
+msgid "Freeze Date"
+msgstr "Ngày duyệt kiểm kê"
+
+#. module: general_stock_inventory
+#: selection:stock.inventory,group_type:0
+msgid "By Category"
+msgstr "Theo danh mục sản phẩm"
+
+#. module: general_stock_inventory
+#: selection:stock.inventory,group_type:0
+msgid "By Partner"
+msgstr "Theo nhà cung cấp"
+
+#. module: general_stock_inventory
+#: field:stock.inventory.line,adjust_value:0
+msgid "Adjust Value"
+msgstr "Giá trị Chênh lệch"
+
+#. module: general_stock_inventory
+#: field:stock.inventory,location_id:0
+msgid "Location"
+msgstr "Kho"
+

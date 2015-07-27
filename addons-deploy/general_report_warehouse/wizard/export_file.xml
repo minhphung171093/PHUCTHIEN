@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+       
+       <!--  =============== VIEWS: PRINT REPORT Export File ================= -->
+       <!--  General Top N Report -->
+       <record id="report_export_file_sale_price_list" model="ir.ui.view">
+            <field name="name">export.file.sale.price.list.form</field>
+            <field name="model">export.file</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                	<group col="4" colspan="2">
+						<field name="shop_id" required="1"/>
+						<field name="sale_price_list_id" required="1"/>                		
+                    </group>
+                    <newline/>
+	                <group colspan="4">
+	                	<separator colspan="4" string="Report"/>
+	                	<button icon='gtk-cancel' special="cancel" string="_Cancel"/>
+	                	<button string="Print" type="object" name="sale_report" context="{'type_report':'export_file_sale_price_list'}" icon='gtk-execute'/>
+	                </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_report_export_file_sale_price_list" model="ir.actions.act_window">
+            <field name="name">Danh Muc Product</field>
+            <field name="res_model">export.file</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="report_export_file_sale_price_list"/>
+        </record>
+        
+        
+        <!--  =============== VIEWS: PRINT REPORT Export File ================= -->
+       <!--  General Top N Report -->
+       <record id="report_export_file_blanket" model="ir.ui.view">
+            <field name="name">report.export.file.blanket.form</field>
+            <field name="model">export.file</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                	<group col="4" colspan="2">
+						<field name="warehouse_id" required="1"/>
+						<field name="partner_id" required="1"/> 
+						<!--<field name="blanket_id" required="1"/>-->
+						<field name="date"/>                		
+                    </group>
+                    <newline/>
+	                <group colspan="4">
+	                	<separator colspan="4" string="Report"/>
+	                	<button icon='gtk-cancel' special="cancel" string="_Cancel"/>
+	                	<button string="Print" type="object" name="sale_report" context="{'type_report':'export_file_blanket_site'}" icon='gtk-execute'/>
+	                </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_report_export_file_blanket" model="ir.actions.act_window">
+            <field name="name">Bang Gia Mua Theo Blanket Site</field>
+            <field name="res_model">export.file</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="report_export_file_blanket"/>
+        </record>
+        
+   </data>
+</openerp>
+        
+        

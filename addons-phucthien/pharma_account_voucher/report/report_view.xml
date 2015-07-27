@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	        
+	    <!-- Create new template Uy Nhiem Chi -->
+    	<record id="general_report_uy_nhiem_chi" model="ir.actions.report.xml">
+	        <field name="name">general_report_uy_nhiem_chi</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.voucher</field>
+	        <field name="report_name">general_report_uy_nhiem_chi</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">pharma_account_voucher/report/uy_nhiem_chi.py</field>
+	        <field name="report_rml">pharma_account_voucher/report/uynhiemchi_eximbank.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_report_uy_nhiem_chi" 
+			model="account.voucher" 
+			name="general_report_uy_nhiem_chi"
+	        string="Uỷ Nhiệm Chi"
+	        rml="pharma_account_voucher/report/uynhiemchi_eximbank.ods"/> 
+	        
+	    <!-- Create new template Uy Nhiem Chi Bank -->
+    	<record id="general_report_uy_nhiem_chi_bank" model="ir.actions.report.xml">
+	        <field name="name">general_report_uy_nhiem_chi</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.voucher.batch</field>
+	        <field name="report_name">general_report_uy_nhiem_chi_bank</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">pharma_account_voucher/report/uy_nhiem_chi.py</field>
+	        <field name="report_rml">pharma_account_voucher/report/uynhiemchi_eximbank_bank.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_report_uy_nhiem_chi_bank" 
+			model="account.voucher.batch" 
+			name="general_report_uy_nhiem_chi_bank"
+	        string="Uỷ Nhiệm Chi"
+	        rml="pharma_account_voucher/report/uynhiemchi_eximbank_bank.ods"/> 
+	</data>
+</openerp>

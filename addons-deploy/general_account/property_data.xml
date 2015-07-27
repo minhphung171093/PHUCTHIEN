@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+		<record id="commission_type" model="admin.property">
+            <field name="name">commission_type</field>
+            <field name="value">percentage</field>
+        </record>
+        
+        <record id="commission_percentage" model="admin.property">
+            <field name="name">commission_percentage</field>
+            <field name="value">13</field>
+        </record>
+        
+        <record id="commission_account_id" model="admin.property">
+            <field name="name">commission_account_id</field>
+            <field name="value">62611</field>
+        </record>
+        
+    </data>
+</openerp>

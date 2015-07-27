@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate='0'>
+
+	    <record model="ir.rule" id="sale_order_multi_branch_rule">
+	        <field name="name">Sale Order Multil-Branch</field>
+	        <field name="model_id" ref="sale.model_sale_order"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">[user.context_shop_id and ('shop_id','=',user.context_shop_id.id) or ('shop_id','child_of', [x.id for x in user.shop_ids])]</field>
+	    </record>
+	    
+	    <record model="ir.rule" id="sale_shop_multi_branch_rule">
+	        <field name="name">Sale Shop Multil-Branch</field>
+	        <field name="model_id" ref="sale.model_sale_shop"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">[('id','in', [x.id for x in user.shop_ids])]</field>
+	    </record>
+	    
+    </data>
+</openerp>

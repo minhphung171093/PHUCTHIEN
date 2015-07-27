@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+	
+		<record model="ir.module.category" id="module_category_hop_dong">
+	        <field name="name">Hợp đồng</field>
+	        <field name="sequence">0</field>
+	    </record>
+	    
+	    <record id="group_hopdong_user" model="res.groups">
+	        <field name="name">Sale Contract User</field>
+	        <field name="category_id" ref="module_category_hop_dong"/>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	    </record>
+	    
+	    <record id="group_hopdong_manager" model="res.groups">
+	        <field name="name">Sale Contract Manager</field>
+	        <field name="category_id" ref="module_category_hop_dong"/>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	        <field name="implied_ids" eval="[(4, ref('group_hopdong_user'))]"/>
+	    </record>
+	    
+	    <record id="group_duyet_banhang_khong_dieukien" model="res.groups">
+	        <field name="name">Duyệt Bán Hàng Không Điều Kiện</field>
+	        <field name="category_id" ref="base.module_category_sales_management"/>
+	        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+	        <field name="implied_ids" eval="[(4, ref('base.group_sale_manager'))]"/>
+	    </record>
+	    
+	</data>
+</openerp>

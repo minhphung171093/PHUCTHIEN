@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+ 
+<!-- Modify Invoice Payment Form Dialog -->
+		<record model="ir.ui.view" id="view_vendor_receipt_dialog_form_inherit_add_shop">
+        <field name="name">view.vendor.receipt.dialog.form.inherit.add.shop</field>
+        <field name="model">account.voucher</field>
+        <field name="inherit_id" ref="account_voucher.view_vendor_receipt_dialog_form"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//field[@name='date']" position="before">
+        		<field name="shop_id"/>
+        	</xpath>
+        	<xpath expr="//field[@name='reference']" position="after">
+        		<field name="reference_number"/>
+        	</xpath>
+        </field>
+    	</record>
+		  	
+<!-- Modify Customer / Supplier Payment -->
+		<record model="ir.ui.view" id="view_voucher_tree_general_modify">
+        <field name="name">view.vendor.tree.general.modify</field>
+        <field name="model">account.voucher</field>
+        <field name="inherit_id" ref="account_voucher.view_voucher_tree"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//field[@name='date']" position="before">
+        		<field name="shop_id"/>
+        	</xpath>
+        	<xpath expr="//field[@name='date']" position="after">
+        		<field name="date_document"/>
+        	</xpath>
+        	<xpath expr="//field[@name='reference']" position="before">
+        		<!--<field name="number_register"/>-->
+        	</xpath>
+        	<xpath expr="//field[@name='reference']" position="after">
+        		<field name="reference_number"/>
+        	</xpath>
+        	<xpath expr="//field[@name='state']" position="after">
+        		<field name="assign_user"/>
+        	</xpath>
+        	<xpath expr="//field[@name='amount']" position="before">
+            	<field name="tax_id"/>
+            	<field name="tax_amount"/>
+    		</xpath>
+        </field>
+    	</record>
+    	
+    	<record model="ir.ui.view" id="view_vendor_receipt_form_general_modify">
+        <field name="name">view.vendor.receipt.form.general.modify</field>
+        <field name="model">account.voucher</field>
+        <field name="inherit_id" ref="account_voucher.view_vendor_receipt_form"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//field[@name='date']" position="before">
+        		<field name="shop_id"/>
+        		<field name="assign_user"/>
+        	</xpath>
+        	
+        	<xpath expr="//field[@name='reference']" position="after">
+        		<field name="reference_number"/>
+        	</xpath>
+        	
+        	<xpath expr="//field[@name='line_dr_ids']/tree/field[@name='date_due']" position="replace">
+        		<field name="date_due" readonly="0"/>
+        	</xpath>
+        	<xpath expr="//field[@name='line_dr_ids']/tree/field[@name='amount_original']" position="replace">
+        		<field name="amount_original" readonly="1" sum="amount_original"/>
+        	</xpath>
+        	
+        	<xpath expr="//field[@name='line_dr_ids']/tree/field[@name='amount_unreconciled']" position="replace">
+        		<field name="amount_unreconciled" readonly="1" sum="amount_unreconciled"/>
+        	</xpath>
+        	
+        	
+        	<xpath expr="//field[@name='line_cr_ids']/tree/field[@name='date_due']" position="replace">
+        		<field name="date_due" readonly="0"/>
+        	</xpath>
+        	
+        	<xpath expr="//field[@name='line_cr_ids']/tree/field[@name='amount_original']" position="replace">
+        		<field name="amount_original" readonly="1" sum="amount_original"/>
+        	</xpath>
+        	
+        	<xpath expr="//field[@name='line_cr_ids']/tree/field[@name='amount_unreconciled']" position="replace">
+        		<field name="amount_unreconciled" readonly="1" sum="amount_unreconciled"/>
+        	</xpath>
+        	
+	        	
+        </field>
+    	</record>
+	    
+	    <record model="ir.ui.view" id="view_vendor_payment_form_general_modify">
+        <field name="name">view.vendor.payment.form.general.modify</field>
+        <field name="model">account.voucher</field>
+        <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//field[@name='date']" position="before">
+        		<field name="shop_id"/>
+        		<field name="assign_user"/>
+        	</xpath>
+        	
+        	<xpath expr="//field[@name='reference']" position="after">
+        		<field name="reference_number"/>
+        	</xpath>
+        	
+        	<xpath expr="//field[@name='line_dr_ids']/tree/field[@name='date_due']" position="replace">
+        		<field name="date_due" readonly="0"/>
+        	</xpath>
+        	<xpath expr="//field[@name='line_dr_ids']/tree/field[@name='amount_original']" position="replace">
+        		<field name="amount_original" readonly="1" sum="amount_original"/>
+        	</xpath>
+        	
+        	<xpath expr="//field[@name='line_dr_ids']/tree/field[@name='amount_unreconciled']" position="replace">
+        		<field name="amount_unreconciled" readonly="1" sum="amount_unreconciled"/>
+        	</xpath>
+        	
+        	
+        	<xpath expr="//field[@name='line_cr_ids']/tree/field[@name='date_due']" position="replace">
+        		<field name="date_due" readonly="0"/>
+        	</xpath>
+        	
+        	<xpath expr="//field[@name='line_cr_ids']/tree/field[@name='amount_original']" position="replace">
+        		<field name="amount_original" readonly="1" sum="amount_original"/>
+        	</xpath>
+        	
+        	<xpath expr="//field[@name='line_cr_ids']/tree/field[@name='amount_unreconciled']" position="replace">
+        		<field name="amount_unreconciled" readonly="1" sum="amount_unreconciled"/>
+        	</xpath>
+        	
+        	
+        </field>
+    	</record>
+
+<!-- Modify Sales / Purchase Receipt -->
+		<record model="ir.ui.view" id="view_purchase_receipt_form_general_modify">
+        <field name="name">view.purchase.receipt.form.general.modify</field>
+        <field name="model">account.voucher</field>
+        <field name="inherit_id" ref="account_voucher.view_purchase_receipt_form"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//field[@name='date']" position="before">
+        		<field name="shop_id"/>
+        		<field name="assign_user"/>
+        	</xpath>
+        	<xpath expr="//field[@name='name']" position="replace">
+        	</xpath>
+        	<xpath expr="//field[@name='account_id']" position="replace">
+        	</xpath>
+        	<xpath expr="//field[@name='partner_id']" position="after">
+        		<field name="partner_bank_id"/>
+        		<field name="account_id" domain="[('type','!=','view')]"/>
+        	</xpath>
+        	<xpath expr="//field[@name='partner_id']" position="attributes">
+        		<attribute name="domain"></attribute>
+        	</xpath>
+        	<xpath expr="//field[@name='date']" position="after">
+        		<field name="date_document"/>
+        	</xpath>
+        	<xpath expr="//field[@name='reference']" position="before">
+        		<!--<field name="number_register"/>-->
+        	</xpath>
+        	<xpath expr="//field[@name='reference']" position="after">
+        		<field name="reference_number"/>
+        		<field name="name"/>
+        		<field name="unshow_financial_report"/>
+        	</xpath>
+        	<xpath expr="//field[@name='journal_id']" position="replace">
+        		<field name="journal_id"
+                    domain="[('type','in',['cash','bank','purchase','purchase_refund'])]"
+                    widget="selection"
+                    on_change="onchange_journal(journal_id, line_dr_ids, tax_id, partner_id, date, amount, type, company_id, context)"
+                    groups="account.group_account_user"/>
+                <field name="company_bank_id" widget="selection"/>
+        	</xpath>
+        	<xpath expr="//field[@name='line_dr_ids']/tree/field[@name='name']" position="attributes">
+        		<attribute name="required">True</attribute>
+        	</xpath>
+        	<xpath expr="//field[@name='line_dr_ids']/tree/field[@name='account_id']" position="replace">
+        		<field name="account_id" widget="many2one" domain="[('type','!=','view')]"/>
+        	</xpath>
+        	<xpath expr="//field[@name='line_dr_ids']/tree/field[@name='account_analytic_id']" position="attributes">
+        		<attribute name="required">False</attribute>
+        	</xpath>
+        	
+        	<xpath expr="//field[@name='tax_amount']" position="attributes">
+        		<attribute name="on_change">onchange_tax_amount(line_dr_ids, tax_amount)</attribute>
+        	</xpath>
+        </field>
+    	</record>
+    	
+    	<record model="ir.ui.view" id="view_sale_receipt_form_general_modify">
+	        <field name="name">view.sale.receipt.form.general.modify</field>
+	        <field name="model">account.voucher</field>
+	        <field name="inherit_id" ref="account_voucher.view_sale_receipt_form"/>
+	        <field name="arch" type="xml">
+	        	<xpath expr="//h1" position="replace">
+	        		<h1><label for="number" string="Sales Receipt"/> <field name="number" class="oe_inline" readonly="0"/></h1>
+	        	</xpath>
+	        	<xpath expr="//field[@name='date']" position="before">
+	        		<field name="shop_id"/>
+	        		<field name="assign_user"/>
+	        	</xpath>
+	        	<xpath expr="//field[@name='date']" position="after">
+	        		<field name="date_document"/>
+	        	</xpath>
+	        	<xpath expr="//field[@name='pay_now']" position="replace">
+	        	</xpath>
+	        	<xpath expr="//field[@name='date_due']" position="replace">
+	        	</xpath>
+	        	<xpath expr="//field[@name='reference']" position="replace">
+	        	</xpath>
+	        	<xpath expr="//field[@name='partner_id']" position="after">
+	    			<field name="reference"/>
+	        		<field name="reference_number"/>
+	        		
+	        		<field name="pay_now" on_change="onchange_payment(pay_now, journal_id, partner_id)" required="1"/>
+	                <field name="date_due" attrs="{'invisible':[('pay_now','=','pay_now')]}"/>
+	        	</xpath>
+	        	<xpath expr="//field[@name='partner_id']" position="attributes">
+	        		<attribute name="domain"></attribute>
+	        	</xpath>
+	        	<xpath expr="//field[@name='journal_id']" position="replace">
+	        		<field name="journal_id"
+	                    domain="[('type','in',['cash','bank','sale','sale_refund'])]"
+	                    widget="selection"
+	                    on_change="onchange_journal(journal_id, line_cr_ids, tax_id, partner_id, date, amount, type, company_id, context)"
+	                    groups="account.group_account_user"/>
+	        	</xpath>
+	        	<xpath expr="//field[@name='line_cr_ids']/tree/field[@name='account_id']" position="replace">
+	        		<field name="account_id" widget="many2one" domain="[('type','!=','view')]"/>
+	        	</xpath>
+	        	<xpath expr="//field[@name='line_cr_ids']/tree/field[@name='account_analytic_id']" position="attributes">
+	        		<attribute name="required">False</attribute>
+	        	</xpath>
+	        	
+	        	<xpath expr="//field[@name='tax_amount']" position="attributes">
+	        		<attribute name="on_change">onchange_tax_amount(line_cr_ids, tax_amount)</attribute>
+	        	</xpath>
+	        </field>
+    	</record>
+    	
+<!-- Sales Voucher -->
+	    <record id="account_voucher.action_sale_receipt" model="ir.actions.act_window">
+	        <field name="name">Sales Receipts</field>
+	        <field name="res_model">account.voucher</field>
+	        <field name="view_type">form</field>
+	        <!--field name="domain">[('journal_id.type','in',['sale','sale_refund']), ('type','=','sale')]</field-->
+	        <field name="domain">[('journal_id.type','in',['cash','bank']),('type','=','sale')]</field>
+	        <field name="context">{'default_type': 'sale', 'type': 'sale', 'voucher_journal_type':['cash','bank']}</field>
+	        <field name="view_id" eval="False"/>
+	        <field name="search_view_id" ref="account_voucher.view_voucher_filter_sale"/>
+	        <field name="target">current</field>
+	        <field name="help" type="html">
+	          <p class="oe_view_nocontent_create">
+	            Click to create a sale receipt.
+	          </p><p>
+	            When the sale receipt is confirmed, you can record the customer
+	            payment related to this sales receipt.
+	          </p>
+	        </field>
+	    </record>
+	    
+	    <record id="action_sale_receipt_bank" model="ir.actions.act_window">
+	        <field name="name">Sales Bank Receipts</field>
+	        <field name="res_model">account.voucher</field>
+	        <field name="view_type">form</field>
+	        <field name="domain">[('journal_id.type','in',['bank']),('type','=','sale')]</field>
+	        <field name="context">{'default_type': 'sale', 'type': 'sale','voucher_journal_type':['bank']}</field>
+	        <field name="view_id" eval="False"/>
+	        <field name="search_view_id" ref="account_voucher.view_voucher_filter_sale"/>
+	        <field name="target">current</field>
+	    </record>
+        	<record id="action_sale_receipt_bank_tree" model="ir.actions.act_window.view">
+	            <field eval="1" name="sequence"/>
+	            <field name="view_mode">tree</field>
+	            <field name="act_window_id" ref="action_sale_receipt_bank"/>
+	        </record>
+        
+	        <record id="action_sale_receipt_bank_form" model="ir.actions.act_window.view">
+	            <field eval="2" name="sequence"/>
+	            <field name="view_mode">form</field>
+	            <field name="view_id" ref="account_voucher.view_sale_receipt_form"/>
+	            <field name="act_window_id" ref="action_sale_receipt_bank"/>
+	        </record>
+        
+<!-- Purchase Voucher -->
+    	<record id="account_voucher.action_purchase_receipt" model="ir.actions.act_window">
+            <field name="name">Purchase Receipts</field>
+            <field name="res_model">account.voucher</field>
+            <field name="view_type">form</field>
+            <!--field name="domain">[('journal_id.type','in',['purchase','purchase_refund']), ('type','=','purchase')]</field-->
+            <field name="domain">[('type','=','purchase')]</field>
+            <field name="context">{'default_type': 'purchase', 'type': 'purchase'}</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" ref="account_voucher.view_voucher_filter_vendor"/>
+            <field name="target">current</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to register a purchase receipt. 
+              </p><p>
+                When the purchase receipt is confirmed, you can record the
+                supplier payment related to this purchase receipt.
+              </p>
+            </field>
+        </record>
+
+<!-- Voucher Batch -->
+		<record id="view_account_voucher_batch_receipt_filter" model="ir.ui.view">
+            <field name="name">view.account.voucher.batch.filter</field>
+            <field name="model">account.voucher.batch</field>
+            <field name="arch" type="xml">
+                <search string="Search Voucher Batchs">
+        			<field name="shop_id"/>
+                    <field name="date"/>
+                    <field name="assign_user"/>
+                    <filter icon="terp-document-new" string="Draft" domain="[('state','=','draft')]" help="Draft Vouchers"/>
+                    <filter icon="terp-camera_test" string="Posted" domain="[('state','=','posted')]" help="Posted Vouchers"/>
+                    <field name="journal_id" context="{'journal_id': self, 'set_visible':False}" domain="[('type','in',('cash','bank'))]"/>
+                    <group expand="0" string="Group By...">
+                    	<filter string="Shop" icon="terp-folder-orange" domain="[]" context="{'group_by':'shop_id'}"/>
+                        <filter string="Journal" icon="terp-folder-orange" domain="[]" context="{'group_by':'journal_id'}"/>
+                        <filter string="Status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_purchase_receipt_batch_receipt_tree">
+            <field name="name">view.purchase.receipt.batch.tree</field>
+            <field name="model">account.voucher.batch</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase Receipt Batch" colors="blue:state == 'draft';gray:state == 'cancel'">
+                	<field name="name"/>
+                	<field name="shop_id"/>
+                	<field name="journal_id"/>
+                	<field name="date"/>
+                    <field name="account_id"/>
+                    <field name="amount" sum="Total Amount"/>
+                    <field name="assign_user"/>
+                    <field name="state"/>
+                    <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+        
+		<record model="ir.ui.view" id="view_purchase_receipt_batch_receipt_form">
+            <field name="name">view.purchase.receipt.batch.form</field>
+            <field name="model">account.voucher.batch</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Receipt Batch" version="7.0">
+                <header>
+                    <button name="validate" string="Validate" states="draft" type="object" class="oe_highlight"/>
+                    <button name="cancel" string="Cancel Voucher" states="draft,posted" type="object"/>
+                    <button name="action_cancel_draft" type="object" states="cancel" string="Set to Draft"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,posted" statusbar_colors='{"cancel":"red"}'/>
+                </header>
+                <sheet string="Purchase Receipt Batch">
+                	<div class="oe_title">
+                        <h1>
+                            <field name="name" class="oe_inline"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                        	<field name="journal_id"
+                                widget="selection"
+                                groups="account.group_account_user"
+                                on_change="onchange_journal(journal_id)"/>
+                            <field name="company_bank_id" widget="selection"/>
+                            <field name="partner_bank_id"/>
+                            <field name="account_id" domain="[('type','!=','view')]"/>
+                            <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                        	<field name="shop_id"/>
+                            <field name="date"/>
+                            <field name="assign_user"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Detail">
+                            <field name="voucher_lines" context="{
+                            	'form_view_ref':'account_voucher.view_purchase_receipt_form',
+                            	'default_type': 'purchase', 'type': 'purchase',
+                            	'default_journal_id':journal_id,
+                            	'default_account_id':account_id,
+                            	'default_shop_id':shop_id,
+                            	'default_date':date,
+                            	'default_date_document':date,
+                            	'default_company_bank_id': company_bank_id,
+                            	'default_partner_bank_id': partner_bank_id,
+                            	'default_narration':description,
+                            	'default_assign_user':assign_user}">
+                            	<tree colors="blue:state == 'draft';gray:state == 'cancel';red:audit" string="Voucher lines">
+				                    <field name="date"/>
+				                    <field name="date_document"/>
+				                    <field name="number"/>
+				                    <!--<field name="number_register"/>-->
+				                    <field name="reference"/>
+				                    <field name="reference_number"/>
+				                    <field name="partner_id"/>
+				                    <field name="audit" invisible='1'/>
+				                    <field name="tax_id"/>
+				                    <field name="tax_amount" sum="Total Tax Amount"/>
+				                    <field name="amount" sum="Total Amount"/>
+				                    <field name="state"/>
+				                </tree>
+                            </field>
+                            <field name="amount" invisible='1'/>
+                            <group>
+                                <group>
+                                	<field name="create_date"/>
+                                    <field name="create_uid"/>
+                                    <field name="write_date"/>
+                                    <field name="write_uid"/>
+                                </group>
+                                <group>
+                                	<field name="description" placeholder="Internal Notes" nolabel="1"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_purchase_receipt_batch" model="ir.actions.act_window">
+            <field name="name">Purchase Receipt Batch</field>
+            <field name="res_model">account.voucher.batch</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[('journal_id.type','in',['cash','bank']),('type','=','payment')]</field>
+            <field name="context">{'voucher_journal_type':['cash','bank'],'default_type':'payment'}</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" eval="view_account_voucher_batch_receipt_filter"/>
+            <field name="target">current</field>
+        </record>
+        
+        <record id="action_view_purchase_receipt_batch_receipt_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_purchase_receipt_batch_receipt_tree"/>
+            <field name="act_window_id" ref="action_purchase_receipt_batch"/>
+        </record>
+        <!--<record id="action_view_purchase_receipt_batch_receipt_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_purchase_receipt_batch_receipt_form"/>
+            <field name="act_window_id" ref="action_purchase_receipt_batch"/>
+        </record>-->
+
+<!-- Phieu chi tien mat -->		
+        <record id="action_purchase_receipt_batch_cash" model="ir.actions.act_window">
+            <field name="name">Purchase Receipt Batch Cash</field>
+            <field name="res_model">account.voucher.batch</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('journal_id.type','in',['cash']),('type','=','payment')]</field>
+            <field name="context">{'voucher_journal_type':['cash'],'default_type':'payment'}</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" eval="view_account_voucher_batch_receipt_filter"/>
+            <field name="target">current</field>
+        </record>
+        
+        <record id="action_view_purchase_receipt_batch_cash_tree" model="ir.actions.act_window.view">
+            <field eval="5" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_purchase_receipt_batch_receipt_tree"/>
+            <field name="act_window_id" ref="action_purchase_receipt_batch_cash"/>
+        </record>
+        <record id="action_view_purchase_receipt_batch_cash_form" model="ir.actions.act_window.view">
+            <field eval="6" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_purchase_receipt_batch_receipt_form"/>
+            <field name="act_window_id" ref="action_purchase_receipt_batch_cash"/>
+        </record>
+        
+<!-- Phieu chi tien gui ngan hang -->		
+        <record id="action_purchase_receipt_batch_bank" model="ir.actions.act_window">
+            <field name="name">Purchase Receipt Batch Bank</field>
+            <field name="res_model">account.voucher.batch</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('journal_id.type','in',['bank']),('type','=','payment')]</field>
+            <field name="context">{'voucher_journal_type':['bank'],'default_type':'payment'}</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" eval="view_account_voucher_batch_receipt_filter"/>
+            <field name="target">current</field>
+        </record>
+        
+        <record id="action_view_purchase_receipt_batch_bank_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_purchase_receipt_batch_receipt_tree"/>
+            <field name="act_window_id" ref="action_purchase_receipt_batch_bank"/>
+        </record>
+        <record id="action_view_purchase_receipt_batch_bank_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_purchase_receipt_batch_receipt_form"/>
+            <field name="act_window_id" ref="action_purchase_receipt_batch_bank"/>
+        </record>
+        
+	<!-- Bang in Phieu Chi + Phieu Thu -->
+        <record model="ir.ui.view" id="view_purchase_receipt_batch_receipt_add_button_print_phieuchi">
+        	<field name="name">view.purchase.receipt.batch.receipt.add.button.print.phieuchi</field>
+	        <field name="model">account.voucher.batch</field>
+	        <field name="inherit_id" ref="general_account_voucher.view_purchase_receipt_batch_receipt_form"/>
+	        <field name="arch" type="xml">
+	        	<xpath expr="//button[@name='cancel']" position="before">
+	        		<button name="print_phieuchi" string="In Phiếu" type="object" class="oe_highlight"/>
+	        	</xpath>
+	        </field>
+    	</record>
+    	
+    	 <record model="ir.ui.view" id="view_sale_receipt_form_add_button_print_phieuthu">
+        	<field name="name">view.sale.receipt.form.add.button.print.phieuthu</field>
+	        <field name="model">account.voucher</field>
+	        <field name="inherit_id" ref="account_voucher.view_sale_receipt_form"/>
+	        <field name="arch" type="xml">
+	        	<xpath expr="//button[@name='cancel_voucher']" position="before">
+	        		<button name="print_phieuthu" string="In Phiếu" type="object" class="oe_highlight"/>
+	        	</xpath>
+	        </field>
+    	</record>
+
+
+<!-- Phieu Thu Batch -->
+	
+		<record model="ir.ui.view" id="view_sale_receipt_batch_receipt_tree">
+            <field name="name">view.sale.receipt.batch.tree</field>
+            <field name="model">account.voucher.batch</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Receipt Batch" colors="blue:state == 'draft';gray:state == 'cancel'">
+                	<field name="name"/>
+                	<field name="shop_id"/>
+                	<field name="journal_id"/>
+                	<field name="date"/>
+                    <field name="account_id"/>
+                    <field name="amount" sum="Total Amount"/>
+                    <field name="assign_user"/>
+                    <field name="state"/>
+                    <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+        
+		<record model="ir.ui.view" id="view_sale_receipt_batch_receipt_form">
+            <field name="name">view.sale.receipt.batch.form</field>
+            <field name="model">account.voucher.batch</field>
+            <field name="arch" type="xml">
+                <form string="Sale Receipt Batch" version="7.0">
+                <header>
+                    <button name="validate" string="Validate" states="draft" type="object" class="oe_highlight"/>
+                    <button name="cancel" string="Cancel Voucher" states="draft,posted" type="object"/>
+                    <button name="action_cancel_draft" type="object" states="cancel" string="Set to Draft"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,posted" statusbar_colors='{"cancel":"red"}'/>
+                </header>
+                <sheet string="Sale Receipt Batch">
+                	<div class="oe_title">
+                        <h1>
+                            <field name="name" class="oe_inline"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                        	<field name="journal_id"
+                                widget="selection"
+                                groups="account.group_account_user"
+                                on_change="onchange_journal(journal_id)"/>
+                            <field name="company_bank_id" widget="selection"/>
+                            <field name="partner_bank_id"/>
+                            <field name="account_id" domain="[('type','!=','view')]"/>
+                            <field name="company_id" widget="selection" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                        	<field name="shop_id"/>
+                            <field name="date"/>
+                            <field name="assign_user"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Details">
+                            <field name="voucher_lines" context="{
+                            	'form_view_ref':'account_voucher.view_sale_receipt_form',
+                            	'default_type': 'sale', 'type': 'sale',
+                            	'default_journal_id':journal_id,
+                            	'default_shop_id':shop_id,
+                            	'default_account_id':account_id,
+                            	'default_date':date,
+                            	'default_date_document':date,
+                            	'default_company_bank_id': company_bank_id,
+                            	'default_partner_bank_id': partner_bank_id,
+                            	'default_narration':description,
+                            	'default_assign_user':assign_user}">
+                            	<tree colors="blue:state == 'draft';gray:state == 'cancel';red:audit" string="Voucher lines">
+				                    <field name="date"/>
+				                    <field name="date_document"/>
+				                    <field name="number"/>
+				                    <field name="reference"/>
+				                    <field name="reference_number"/>
+				                    <field name="partner_id"/>
+				                    <field name="audit" invisible='1'/>
+				                    <field name="tax_id"/>
+				                    <field name="tax_amount" sum="Total Tax Amount"/>
+				                    <field name="amount" sum="Total Amount"/>
+				                    <field name="state"/>
+				                </tree>
+                            </field>
+                            <field name="amount" invisible='1'/>
+                            <group>
+                                <group>
+                                	<field name="create_date"/>
+                                    <field name="create_uid"/>
+                                    <field name="write_date"/>
+                                    <field name="write_uid"/>
+                                </group>
+                                <group>
+                                	<field name="description" placeholder="Internal Notes" nolabel="1"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+	<!-- Phieu thu tien mat -->		
+        <record id="action_sale_receipt_batch_cash" model="ir.actions.act_window">
+            <field name="name">Sale Receipt Batch Cash</field>
+            <field name="res_model">account.voucher.batch</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('journal_id.type','in',['cash']),('type','=','receive')]</field>
+            <field name="context">{'voucher_journal_type':['cash'],'default_type':'receive'}</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" eval="view_account_voucher_batch_receipt_filter"/>
+            <field name="target">current</field>
+        </record>
+        
+        <record id="action_view_sale_receipt_batch_cash_tree" model="ir.actions.act_window.view">
+            <field eval="5" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_sale_receipt_batch_receipt_tree"/>
+            <field name="act_window_id" ref="action_sale_receipt_batch_cash"/>
+        </record>
+        <record id="action_view_sale_receipt_batch_cash_form" model="ir.actions.act_window.view">
+            <field eval="6" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_sale_receipt_batch_receipt_form"/>
+            <field name="act_window_id" ref="action_sale_receipt_batch_cash"/>
+        </record>
+        
+	<!-- Phieu Thu tien gui ngan hang -->		
+        <record id="action_sale_receipt_batch_bank" model="ir.actions.act_window">
+            <field name="name">Sale Receipt Batch Bank</field>
+            <field name="res_model">account.voucher.batch</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('journal_id.type','in',['bank']),('type','=','receive')]</field>
+            <field name="context">{'voucher_journal_type':['bank'],'default_type':'receive'}</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" eval="view_account_voucher_batch_receipt_filter"/>
+            <field name="target">current</field>
+        </record>
+        
+        <record id="action_view_sale_receipt_batch_bank_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_sale_receipt_batch_receipt_tree"/>
+            <field name="act_window_id" ref="action_sale_receipt_batch_bank"/>
+        </record>
+        <record id="action_view_sale_receipt_batch_bank_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_sale_receipt_batch_receipt_form"/>
+            <field name="act_window_id" ref="action_sale_receipt_batch_bank"/>
+        </record>
+        
+    </data>
+</openerp>

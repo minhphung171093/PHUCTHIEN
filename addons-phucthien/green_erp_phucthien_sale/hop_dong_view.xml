@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+	    <record id="hop_dong_tree_view" model="ir.ui.view">
+			<field name="name">hop.dong.tree</field>
+			<field name="model">hop.dong</field>
+			<field name="arch" type="xml">
+				<tree string="Hợp đồng" colors="gray:hd_gan_hh== False;red:hd_gan_hh== True">
+					<field name="name"/>
+					<field name="company_id"/>
+					<field name="partner_id"/>
+					<field name="tu_ngay"/>
+					<field name="den_ngay"/>
+					<field name="amount_total"/>
+					<field name="type"/>
+					<field name="state"/>
+					<field name="hd_gan_hh" invisible="1"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_hop_dong_filter" model="ir.ui.view">
+            <field name="name">hop.dong.select</field>
+            <field name="model">hop.dong</field>
+            <field name="arch" type="xml">
+                <search string="Search Hợp đồng">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+		
+		<record id="hop_dong_form_view" model="ir.ui.view">
+            <field name="name">hop.dong.form</field>
+            <field name="model">hop.dong</field>
+            <field name="arch" type="xml">
+	            <form string="Hợp đồng" version="7.0"> 
+					<header>
+						<button name="print_hopdong" string="In" type="object" class="oe_highlight"/>
+						<button name="duyet" string="Duyệt" states="moi_tao" type="object" class="oe_highlight"/>
+						<button name="da_gui" string="Đã gửi" states="da_duyet" type="object" class="oe_highlight"/>
+						<button name="da_nhan" string="Đã nhận" states="da_gui" type="object" class="oe_highlight"/>
+						<button name="het_han" string="Hết hạn" states="da_duyet,da_gui,da_nhan" type="object" class="oe_highlight"/>
+						<button name="huy_bo" string="Hủy bỏ" type="object" states="moi_tao,da_duyet,het_han,da_gui,da_nhan" class="oe_highlight"/>
+						<button name="set_to_draft" string="Quay lại mới tạo" states="huy_bo" type="object" class="oe_highlight"/>
+						<field name="state" widget="statusbar" statusbar_visible="moi_tao,da_duyet,het_han,huy_bo,da_gui,da_nhan"/>
+					</header>
+	            	<sheet>
+	                    <h1>
+	                    	<label string="Số"/>
+	                        <field name="name" class="oe_inline" nolabel="1" />
+	                    </h1>
+	                    <group>
+	                    	<field name="type" invisible='1'/>
+	                    </group>
+	                    <group col='4' colspan='2'>
+	                    	<field name="company_id" context="{'show_address': 1}"/>
+	                    	<field name="partner_id"  context="{'show_address': 1}"/>
+						</group>
+						<notebook>
+							<page string="Thông tin chung">
+								<group col='4' colspan='2'>
+									<field name="tu_ngay" />
+									<field name="den_ngay" />
+								</group>
+								<group col='4' colspan='2'>
+									<field name="ngay_gui"/>
+									<field name="ngay_nhan"/>
+									<field name="nguoi_nhan"/>
+									<field name="thanh_ly_hd" attrs="{'invisible':[('type','not in',('thau','kinh_te','nguyen_tac','ky_gui'))]}"/>
+								</group>
+							</page>
+							<page string="Thông tin mặt hàng" >
+								<field name="hopdong_line">
+									<tree editable='top'>
+	                                    <field name="product_id" on_change="onchange_product_id(product_id, context)"/>
+	                                    <field name="name"/>
+	                                    <field name="nongdo_hamluong"/>
+	                                    <field name="product_uom"/>
+	                                    <field name="quycach_donggoi"/>
+	                                    <field name="manufacturer_product_id"/>
+	                                    <field name="product_country_id"/>
+	                                    <field name="sodangky_gpnk"/>
+	                                    <field name="product_qty"/>
+	                                    <field name="price_unit"/>
+	                                    <field name="tax_id" widget="many2many_tags" domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]"/>
+	                                    <field name="price_subtotal"/>
+	                                    <field name="handung_tuoitho"/>
+									</tree>
+								</field>
+								<group class="oe_subtotal_footer oe_right" colspan="2" name="hopdong_total">
+	                                <field name="amount_untaxed" widget='monetary' />
+	                                <field name="amount_tax" widget='monetary' />
+	                                <div class="oe_subtotal_footer_separator oe_inline">
+	                                    <label for="amount_total" />
+	                                    <button name="button_dummy"
+	                                        states="moi_tao" string="(update)" type="object" class="oe_edit_only oe_link"/>
+	                                </div>
+	                                <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' />
+	                            </group>
+	                            <div class="oe_clear"/>
+							</page>
+							<page string="Phụ lục hợp đồng thầu" attrs="{'invisible':[('type','!=','thau')]}">
+								<group>
+									<field name="phuc_luc_hd_thau" attrs="{'invisible':[('type','!=','thau')]}"/>
+								</group>
+							</page>
+						</notebook>
+		         	</sheet>
+		         </form>
+			</field>
+		</record>
+          
+		<record id="action_hop_dong_kinhte" model="ir.actions.act_window">
+            <field name="name">Hợp đồng kinh tế</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hop.dong</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="hop_dong_tree_view"/>
+            <field name="domain">[('type','=','kinh_te')]</field>
+            <field name="context">{'default_type':'kinh_te'}</field>
+        </record>
+        
+        <record id="action_hop_dong_thau" model="ir.actions.act_window">
+            <field name="name">Hợp đồng thầu</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hop.dong</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="hop_dong_tree_view"/>
+            <field name="domain">[('type','=','thau')]</field>
+            <field name="context">{'default_type':'thau'}</field>
+        </record>
+        
+        <record id="action_hop_dong_nguyentac" model="ir.actions.act_window">
+            <field name="name">Hợp đồng nguyên tắc</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hop.dong</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="hop_dong_tree_view"/>
+            <field name="domain">[('type','=','nguyen_tac')]</field>
+            <field name="context">{'default_type':'nguyen_tac'}</field>
+        </record>
+        
+        <record id="action_hop_dong_mua" model="ir.actions.act_window">
+            <field name="name">Hợp đồng mua</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hop.dong</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="hop_dong_tree_view"/>
+            <field name="domain">[('type','=','mua')]</field>
+            <field name="context">{'default_type':'mua'}</field>
+        </record>
+        
+        <record id="action_hop_dong_ky_gui" model="ir.actions.act_window">
+            <field name="name">Hợp đồng ký gửi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hop.dong</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="hop_dong_tree_view"/>
+            <field name="domain">[('type','=','ky_gui')]</field>
+            <field name="context">{'default_type':'ky_gui'}</field>
+        </record>
+        
+        <record id="action_hop_dong_tai_tro" model="ir.actions.act_window">
+            <field name="name">Hợp đồng tài trợ</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hop.dong</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="hop_dong_tree_view"/>
+            <field name="domain">[('type','=','tai_tro')]</field>
+            <field name="context">{'default_type':'tai_tro'}</field>
+        </record>
+        
+        <record id="action_hop_dong_khac" model="ir.actions.act_window">
+            <field name="name">Hợp đồng khác</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hop.dong</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="hop_dong_tree_view"/>
+            <field name="domain">[('type','=','khac')]</field>
+            <field name="context">{'default_type':'khac'}</field>
+        </record>
+    </data>
+    
+</openerp>

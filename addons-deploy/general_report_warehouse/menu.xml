@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<menuitem
+            action="action_stock_cards_report"
+            id="menu_action_stock_cards_report"
+            parent="general_stock.menu_report_control"
+            sequence="100"/>
+            
+        
+        <menuitem
+            action="action_stock_cards_many_report"
+            id="menu_action_stock_cards_many_report"
+            parent="general_stock.menu_report_control"
+            sequence="150"/>
+
+		
+        
+        <menuitem
+            action="action_stock_balancesheet_report"
+            id="menu_action_stock_balancesheet_report"
+            parent="general_stock.menu_report_control"
+            sequence="200"/>
+            
+            
+	    		 
+    </data>
+</openerp>

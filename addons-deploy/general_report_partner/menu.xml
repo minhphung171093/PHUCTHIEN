@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+    	<menuitem menu="False" id="account.menu_finance_generic_reporting" name="Generic Reporting" parent="account.menu_finance_reports" sequence="100"/>
+    	
+		<menuitem 
+	      		id="menu_partner_reports" 
+	      		name="Partner Reports" 
+	      		sequence="15"
+	      		parent="account.menu_finance_reports" 
+	      		/>
+	      	 
+	      	 <menuitem 
+		      		id="menu_action_aged_partner_balance" 
+		      		action="action_general_aged_partner_balance" 
+		      		icon="terp-graph"  
+		      		parent="menu_partner_reports" sequence="1"/>
+      		
+      		<menuitem 
+		      		id="menu_action_general_report_partner_ledger" 
+		      		action="action_general_report_partner_ledger" 
+		      		icon="terp-graph"  
+		      		parent="menu_partner_reports" sequence="10"/>
+		      		
+      		<menuitem 
+		      		id="menu_action_view_general_report_partner_ledger_detail" 
+		      		action="action_view_general_report_partner_ledger_detail" 
+		      		icon="terp-graph"  
+		      		parent="menu_partner_reports" sequence="20"/>
+			  
+    </data>
+</openerp>

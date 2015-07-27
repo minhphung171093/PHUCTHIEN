@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<!--  =============== VIEWS: Print Report Account ================= -->
+        <record id="print_report_account_form" model="ir.ui.view">
+            <field name="name">print.report.account.form</field>
+            <field name="model">print.report.account</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                	<group col="4" colspan="2">
+                		<field name="name"/>
+                    </group>
+                    <newline/>
+	                <group colspan="4">
+	                	<separator colspan="4" string="Line"/>
+	                	<button icon='gtk-cancel' special="cancel" string="_Cancel" />
+	                	<button string="Print" type="object" name="print_report" icon='gtk-execute'  />
+	                </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_print_report_account" model="ir.actions.act_window">
+            <field name="name">Report Account</field>
+            <field name="res_model">print.report.account</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="print_report_account_form"/>
+        </record>
+        
+       <record id="print_report_cus_form" model="ir.ui.view">
+            <field name="name">print.report.cus.form</field>
+            <field name="model">print.report.cus</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                	<group col="4" colspan="2">
+                		<field name="name"/>
+                    </group>
+                    <newline/>
+	                <group colspan="4">
+	                	<separator colspan="4" string="Adjustment Line"/>
+	                	<button icon='gtk-cancel' special="cancel" string="_Cancel" />
+	                	<button string="Print" type="object" name="print_report" icon='gtk-execute' />
+	                </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_print_report_cus_account" model="ir.actions.act_window">
+            <field name="name">report Cus Account</field>
+            <field name="res_model">print.report.cus</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="print_report_cus_form"/>
+        </record>
+       
+       
+   </data>
+</openerp>
+        
+        

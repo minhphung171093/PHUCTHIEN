@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+    	<!-- Hide Finance Reports menu -->
+    		<menuitem id="account.menu_finance_legal_statement" name="Legal Reports" parent="account.menu_finance_reports" groups="general_base.group_nobody"/>
+    		<menuitem id="account.menu_finance_generic_reporting" name="Generic Reporting" parent="account.menu_finance_reports" sequence="100" groups="general_base.group_nobody"/>
+		
+		<!-- New VN Taxes Reports menu -->
+		<menuitem 
+	      		id="menu_report_taxes" 
+	      		name="Vietnamese Taxes Reports" 
+	      		sequence="5"
+	      		parent="account.menu_finance_reports" 
+	      		/>
+	      		
+	      		<menuitem 
+		      		id="menu_action_report_tax_vat_input" 
+		      		action="action_report_tax_vat_input" 
+		      		icon="terp-graph"  
+		      		parent="menu_report_taxes" sequence="1"/>
+			  
+			  <menuitem 
+		      		id="menu_action_report_tax_vat_output" 
+		      		action="action_report_tax_vat_output" 
+		      		icon="terp-graph"  
+		      		parent="menu_report_taxes" sequence="5"/>
+      	
+      	<!-- New VN Taxes Reports menu -->
+		<menuitem 
+	      		id="menu_report_general_account" 
+	      		name="Vietnamese General Journals" 
+	      		sequence="7"
+	      		parent="account.menu_finance_reports" 
+	      		/>
+      			
+      			<menuitem 
+		      		id="menu_action_account_ledger_report" 
+		      		action="action_account_ledger_report" 
+		      		icon="terp-graph"  
+		      		parent="menu_report_general_account" sequence="6"/>
+      		
+      			<menuitem 
+		      		id="menu_action_general_ledger_report" 
+		      		action="action_general_ledger_report" 
+		      		icon="terp-graph"  
+		      		parent="menu_report_general_account" sequence="7"/>
+		      		
+    	<!-- New VN Finance Reports menu -->
+		<menuitem 
+	      		id="menu_report_finance" 
+	      		name="Vietnamese Financial Reports" 
+	      		sequence="10"
+	      		parent="account.menu_finance_reports" 
+	      		/>
+	      	 
+		     <menuitem 
+		      		id="menu_action_report_general_trial_balance" 
+		      		action="action_report_general_trial_balance" 
+		      		icon="terp-graph"  
+		      		parent="menu_report_finance" sequence="10"/>
+		      		
+		      <menuitem 
+		      		id="menu_action_report_general_balance_sheet" 
+		      		action="action_report_general_balance_sheet" 
+		      		icon="terp-graph"  
+		      		parent="menu_report_finance" sequence="15"/>
+		      		
+		      <menuitem 
+		      		id="menu_action_report_general_account_profit_loss" 
+		      		action="action_report_general_account_profit_loss" 
+		      		icon="terp-graph"  
+		      		parent="menu_report_finance" sequence="20"/>
+  		
+  		<!--<menuitem id="menu_action_account_balance_sheet_report_template"
+  				  name="Balance Sheet Report Template"
+                  parent="account.menu_account_reports" 
+                  action="action_account_balance_sheet_report_template"
+                  sequence="1"/>-->
+		      	
+    </data>
+</openerp>

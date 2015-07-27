@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		
+		<!-- Hide Original Sale Order -->
+	
+		<report id="stock.report_picking_list" 
+			auto="False" 
+			menu="False"
+			model="stock.picking" 
+			name="stock.picking.list" string="Packing list" 
+			rml="stock/report/picking.rml"/>
+
+        <!-- Create new template Delivery Order -->
+	        
+	    <record id="order_inphieu" model="ir.actions.report.xml">
+	        <field name="name">order_inphieu</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.picking</field>
+	        <field name="report_name">order_inphieu</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-doc'),('compatible_types','=','oo-odt')]"/>
+	        <field name="parser_loc">general_stock/report/phieu_xuatkho.py</field>
+	        <field name="report_rml">general_stock/report/PhieuXuatKho.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="order_inphieu" 
+			model="stock.picking" 
+			name="order_inphieu"
+	        string="Phiếu Xuất Kho"
+	        rml="general_stock/report/PhieuXuatKho.odt"/>	  
+	        
+	</data>
+</openerp>

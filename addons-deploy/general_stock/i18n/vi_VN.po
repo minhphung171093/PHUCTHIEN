@@ -1,0 +1,5689 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* general_stock
+#	* sale_stock
+#	* stock
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20140804-231303\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-08 08:36+0000\n"
+"PO-Revision-Date: 2014-09-08 08:36+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock
+#: field:stock.inventory.line.split,line_exist_ids:0
+#: field:stock.inventory.line.split,line_ids:0
+#: view:stock.move.split:0
+#: field:stock.move.split,line_exist_ids:0
+#: field:stock.move.split,line_ids:0
+msgid "Serial Numbers"
+msgstr "Số Seri"
+
+#. module: general_stock
+#: view:stock.actual.cost.details:0
+msgid "Stock Default Rules"
+msgstr "Stock Default Rules"
+
+#. module: stock
+#: help:stock.config.settings,group_product_variant:0
+msgid "Allow to manage several variants per product. As an example, if you  sell T-Shirts, for the same \"Linux T-Shirt\", you may have variants on  sizes or colors; S, M, L, XL, XXL."
+msgstr "Allow to manage several variants per product. As an example, if you  sell T-Shirts, for the same \"Linux T-Shirt\", you may have variants on  sizes or colors; S, M, L, XL, XXL."
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_move_split_lines
+msgid "Stock move Split lines"
+msgstr "Stock move Split lines"
+
+#. module: stock
+#: help:product.category,property_stock_account_input_categ:0
+msgid "When doing real-time inventory valuation, counterpart journal items for all incoming stock moves will be posted in this account, unless there is a specific valuation account set on the source location. This is the default value for all products in this category. It can also directly be set on each product"
+msgstr "When doing real-time inventory valuation, counterpart journal items for all incoming stock moves will be posted in this account, unless there is a specific valuation account set on the source location. This is the default value for all products in this category. It can also directly be set on each product"
+
+#. module: stock
+#: view:stock.picking.out:0
+msgid "Confirm & Deliver"
+msgstr "Xác nhận & Chuyển"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_view_change_product_quantity
+#: view:stock.change.product.qty:0
+msgid "Update Product Quantity"
+msgstr "Update Product Quantity"
+
+#. module: stock
+#: field:stock.location,chained_location_id:0
+msgid "Chained Location If Fixed"
+msgstr "Chained Location If Fixed"
+
+#. modules: general_stock, stock
+#: view:stock.move:0
+#: view:stock.inventory:0
+#: view:stock.move:0
+msgid "Put in a new pack"
+msgstr "Put in a new pack"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_traceability.py:54
+#: view:stock.production.lot:0
+#: view:stock.tracking:0
+#, python-format
+msgid "Upstream Traceability"
+msgstr "Upstream Traceability"
+
+#. module: stock
+#: field:stock.picking,date_done:0
+#: field:stock.picking.in,date_done:0
+#: field:stock.picking.out,date_done:0
+msgid "Date of Transfer"
+msgstr "Ngày chuyển hàng"
+
+#. module: general_stock
+#: field:stock.actual.cost.details,prior_cost:0
+msgid "Prior Cost"
+msgstr "Prior Cost"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_stock_line_date
+#: model:ir.ui.menu,name:stock.menu_report_stock_line_date
+msgid "Last Product Inventories"
+msgstr "Hàng tồn kho cuối cùng"
+
+#. modules: general_stock, stock
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+#: view:stock.picking.out:0
+#: view:stock.move:0
+msgid "Today"
+msgstr "Hôm nay"
+
+#. module: stock
+#: field:stock.production.lot.revision,indice:0
+msgid "Revision Number"
+msgstr "Revision Number"
+
+#. modules: general_stock, stock
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+#: view:stock.picking.out:0
+#: view:stock.move:0
+msgid "Orders processed Today or planned for Today"
+msgstr "Orders processed Today or planned for Today"
+
+#. module: stock
+#: view:stock.partial.move.line:0
+#: view:stock.partial.picking:0
+#: field:stock.partial.picking,move_ids:0
+#: view:stock.partial.picking.line:0
+#: view:stock.return.picking.memory:0
+msgid "Product Moves"
+msgstr "Product Moves"
+
+#. module: stock
+#: code:addons/stock/stock.py:2573
+#: code:addons/stock/stock.py:2634
+#, python-format
+msgid "Please provide proper quantity."
+msgstr "Please provide proper quantity."
+
+#. module: stock
+#: model:ir.ui.menu,name:stock.menu_stock_inventory_control
+msgid "Inventory Control"
+msgstr "Kiểm soát hàng tồn kho"
+
+#. module: stock
+#: help:stock.production.lot,ref:0
+msgid "Internal reference number in case it differs from the manufacturer's serial number"
+msgstr "Số tham chiếu nội bộ trong trường hợp khác với số xê-ri của nhà sản xuất"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_fill_inventory.py:63
+#, python-format
+msgid "You cannot perform this operation on more than one Stock Inventories."
+msgstr "You cannot perform this operation on more than one Stock Inventories."
+
+#. module: stock
+#: code:addons/stock/wizard/stock_change_product_qty.py:101
+#, python-format
+msgid "Quantity cannot be negative."
+msgstr "Quantity cannot be negative."
+
+#. module: stock
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+msgid "Picking list"
+msgstr "Danh sách chọn"
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "e.g. Annual inventory"
+msgstr "Kiểm kê định kỳ"
+
+#. modules: general_stock, stock
+#: model:ir.model,name:general_stock.model_stock_move_scrap
+#: view:stock.move:0
+#: model:ir.model,name:stock.model_stock_move_scrap
+#: view:stock.move:0
+#: view:stock.move.scrap:0
+msgid "Scrap Products"
+msgstr "Scrap Products"
+
+#. module: stock
+#: view:report.stock.move:0
+#: field:report.stock.move,day:0
+msgid "Day"
+msgstr "Ngày"
+
+#. module: sale_stock
+#: view:sale.order:0
+msgid "Cancel Order"
+msgstr "Hủy đơn"
+
+#. module: stock
+#: view:stock.partial.picking:0
+msgid "_Transfer"
+msgstr "_Transfer"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_inventory_form
+#: model:ir.ui.menu,name:stock.menu_action_inventory_form
+msgid "Physical Inventories"
+msgstr "Kiểm kê theo kho"
+
+#. module: stock
+#: view:report.stock.move:0
+#: field:stock.change.standard.price,stock_journal:0
+msgid "Stock journal"
+msgstr "Stock journal"
+
+#. module: stock
+#: help:stock.location,icon:0
+msgid "Icon show in  hierarchical tree view"
+msgstr "Icon show in  hierarchical tree view"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_move.py:223
+#, python-format
+msgid "Unable to assign all lots to this move!"
+msgstr "Unable to assign all lots to this move!"
+
+#. module: sale_stock
+#: code:addons/sale_stock/sale_stock.py:209
+#, python-format
+msgid "You must first cancel all delivery order(s) attached to this sales order."
+msgstr "You must first cancel all delivery order(s) attached to this sales order."
+
+#. module: stock
+#: help:stock.move,partner_id:0
+msgid "Optional address where goods are to be delivered, specifically used for allotment"
+msgstr "Optional address where goods are to be delivered, specifically used for allotment"
+
+#. module: stock
+#: field:stock.location.product,type:0
+msgid "Analysis Type"
+msgstr "Analysis Type"
+
+#. module: stock
+#: code:addons/stock/report/report_stock.py:78
+#: code:addons/stock/report/report_stock.py:134
+#, python-format
+msgid "You cannot delete any record!"
+msgstr "You cannot delete any record!"
+
+#. module: stock
+#: view:stock.picking:0
+msgid "Delivery orders to invoice"
+msgstr "Delivery orders to invoice"
+
+#. module: stock
+#: view:stock.picking:0
+msgid "Assigned Delivery Orders"
+msgstr "Assigned Delivery Orders"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_change_standard_price.py:107
+#, python-format
+msgid "Active ID is not set in Context."
+msgstr "Active ID is not set in Context."
+
+#. module: stock
+#: field:product.template,property_stock_inventory:0
+msgid "Inventory Location"
+msgstr "Địa điểm Tồn kho"
+
+#. module: stock
+#: help:stock.picking,message_unread:0
+#: help:stock.picking.in,message_unread:0
+#: help:stock.picking.out,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "Nếu việc kiểm tra tin nhắn mới đòi hỏi sự chú ý của bạn."
+
+#. module: general_stock
+#: field:stock.item.cost.layers,create_transaction_id:0
+msgid "Create Transaction"
+msgstr "Create Transaction"
+
+#. module: stock
+#: help:stock.tracking,serial:0
+msgid "Other reference or serial number"
+msgstr "Số tham chiếu hoặc số xê-ri khác"
+
+#. modules: general_stock, stock
+#: view:stock.move:0
+#: view:stock.move:0
+#: view:stock.picking:0
+msgid "Origin"
+msgstr "Nguồn gốc"
+
+#. module: stock
+#: view:board.board:0
+#: model:ir.actions.act_window,name:stock.action_reception_picking_move
+#: model:ir.actions.act_window,name:stock.action_stock_incoming_product_delay
+msgid "Incoming Products"
+msgstr "Hàng mua chờ nhận"
+
+#. module: stock
+#: view:report.stock.lines.date:0
+msgid "Non Inv"
+msgstr "Non Inv"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_traceability.py:54
+#: view:stock.production.lot:0
+#: view:stock.tracking:0
+#, python-format
+msgid "Downstream Traceability"
+msgstr "Downstream Traceability"
+
+#. module: sale_stock
+#: model:process.node,note:sale_stock.process_node_saleorderprocurement0
+msgid "Drives procurement orders for every sales order line."
+msgstr "Drives procurement orders for every sales order line."
+
+#. modules: general_stock, stock
+#: view:stock.move:0
+#: view:stock.move:0
+#: field:stock.move,picking_id:0
+#: field:stock.picking,name:0
+#: field:stock.picking.in,name:0
+#: field:stock.picking.out,name:0
+#: view:stock.production.lot:0
+msgid "Reference"
+msgstr "Tham chiếu"
+
+#. module: stock
+#: code:addons/stock/stock.py:1560
+#, python-format
+msgid "Products to Process"
+msgstr "Sản phẩm để xử lý"
+
+#. module: stock
+#: view:stock.move:0
+msgid "New Pack"
+msgstr "New Pack"
+
+#. module: stock
+#: help:stock.fill.inventory,set_stock_zero:0
+msgid "If checked, all product quantities will be set to zero to help ensure a real physical inventory is done"
+msgstr "If checked, all product quantities will be set to zero to help ensure a real physical inventory is done"
+
+#. module: stock
+#: view:product.product:0
+msgid "Forecasted:"
+msgstr "Tương lai:"
+
+#. module: stock
+#: view:stock.partial.move:0
+msgid "_Validate"
+msgstr "_Validate"
+
+#. module: sale_stock
+#: view:sale.order:0
+msgid "View Delivery Order"
+msgstr "View Delivery Order"
+
+#. module: sale_stock
+#: code:addons/sale_stock/sale_stock.py:580
+#: code:addons/sale_stock/sale_stock.py:633
+#, python-format
+msgid "Configuration Error!"
+msgstr "Configuration Error!"
+
+#. module: stock
+#: field:stock.invoice.onshipping,group:0
+msgid "Group by partner"
+msgstr "Group by partner"
+
+#. module: sale_stock
+#: model:process.node,name:sale_stock.process_node_saleprocurement0
+msgid "Procurement Order"
+msgstr "Lệnh Mua sắm"
+
+#. module: stock
+#: help:stock.picking,move_type:0
+#: help:stock.picking.in,move_type:0
+#: help:stock.picking.out,move_type:0
+msgid "It specifies goods to be deliver partially or all at once"
+msgstr "Quy định hàng hoá được cung cấp một phần hoặc tất cả cùng một lúc"
+
+#. module: stock
+#: model:ir.model,name:stock.model_res_partner
+#: view:report.stock.inventory:0
+#: field:report.stock.inventory,partner_id:0
+#: view:report.stock.move:0
+#: field:report.stock.move,partner_id:0
+#: view:stock.move:0
+#: field:stock.picking,partner_id:0
+#: field:stock.picking.in,partner_id:0
+#: field:stock.picking.out,partner_id:0
+msgid "Partner"
+msgstr "Đối tác"
+
+#. module: sale_stock
+#: selection:sale.config.settings,default_order_policy:0
+msgid "Invoice based on deliveries"
+msgstr "Invoice based on deliveries"
+
+#. module: stock
+#: field:stock.config.settings,module_claim_from_delivery:0
+msgid "Allow claim on deliveries"
+msgstr "Allow claim on deliveries"
+
+#. module: stock
+#: selection:stock.return.picking,invoice_state:0
+msgid "No invoicing"
+msgstr "Không hóa đơn"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Stock moves that have been processed"
+msgstr "Stock moves that have been processed"
+
+#. module: stock
+#: field:stock.inventory.line.split,use_exist:0
+#: field:stock.move.split,use_exist:0
+msgid "Existing Serial Numbers"
+msgstr "Existing Serial Numbers"
+
+#. module: stock
+#: model:res.groups,name:stock.group_inventory_valuation
+msgid "Manage Inventory valuation"
+msgstr "Manage Inventory valuation"
+
+#. module: stock
+#: help:stock.incoterms,code:0
+msgid "Code for Incoterms"
+msgstr "Code for Incoterms"
+
+#. module: stock
+#: help:stock.config.settings,group_stock_production_lot:0
+msgid "This allows you to manage products by using serial numbers. When you select a serial number on product moves, you can get the upstream or downstream traceability of that product."
+msgstr "This allows you to manage products by using serial numbers. When you select a serial number on product moves, you can get the upstream or downstream traceability of that product."
+
+#. module: stock
+#: model:stock.location,name:stock.location_inventory
+msgid "Inventory loss"
+msgstr "Inventory loss"
+
+#. module: stock
+#: view:stock.picking.in:0
+msgid "Incoming Shipments Available"
+msgstr "Các lô hàng nhập sẵn sàng\n"
+""
+
+#. module: stock
+#: selection:report.stock.inventory,location_type:0
+#: selection:stock.location,usage:0
+msgid "Internal Location"
+msgstr "Địa điểm Nội bộ"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Split in Serial Number"
+msgstr "Split in Serial Number"
+
+#. module: general_stock
+#: model:ir.actions.act_window,name:general_stock.action_move_return_supplier
+#: model:ir.actions.act_window,name:general_stock.action_picking_return_supplier
+#: model:ir.ui.menu,name:general_stock.menu_action_picking_return_supplier
+#: selection:stock.picking,return:0
+#: selection:stock.picking.in,return:0
+#: selection:stock.picking.out,return:0
+#: selection:stock.return.picking,return_type:0
+msgid "Return to Supplier"
+msgstr "Hàng trả NCC"
+
+#. module: stock
+#: view:stock.location:0
+msgid "Accounting Information"
+msgstr "Thông tin tài chính"
+
+#. module: general_stock
+#: view:stock.return.reason:0
+msgid "Push List"
+msgstr "Push List"
+
+#. module: stock
+#: field:report.stock.move,day_diff2:0
+msgid "Lag (Days)"
+msgstr "Lag (Days)"
+
+#. module: stock
+#: selection:stock.picking.out,state:0
+msgid "Ready to Deliver"
+msgstr "Sẵn sàng"
+
+#. module: stock
+#: code:addons/stock/stock.py:2530
+#, python-format
+msgid "Forbidden operation: it is not allowed to scrap products from a virtual location."
+msgstr "Forbidden operation: it is not allowed to scrap products from a virtual location."
+
+#. module: sale_stock
+#: model:process.transition.action,name:sale_stock.process_transition_action_forceassignation0
+msgid "Force Assignation"
+msgstr "Buộc phải uỷ thác"
+
+#. module: stock
+#: code:addons/stock/stock.py:2865
+#, python-format
+msgid "INV:"
+msgstr "INV:"
+
+#. module: stock
+#: selection:report.stock.inventory,state:0
+#: selection:report.stock.move,state:0
+#: selection:stock.move,state:0
+#: report:stock.picking.list:0
+#: view:stock.production.lot:0
+#: field:stock.production.lot,stock_available:0
+msgid "Available"
+msgstr "Sẵn sàng"
+
+#. module: stock
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+msgid "Expected Date"
+msgstr "Ngày dự kiến"
+
+#. module: general_stock
+#: field:stock.actual.cost.details,actual_cost:0
+msgid "Actual Cost"
+msgstr "Actual Cost"
+
+#. module: general_stock
+#: selection:stock.journal,source_type:0
+msgid "Physical Adjustment"
+msgstr "Physical Adjustment"
+
+#. module: stock
+#: model:ir.actions.client,name:stock.action_client_warehouse_menu
+msgid "Open Warehouse Menu"
+msgstr "Open Warehouse Menu"
+
+#. module: general_stock
+#: model:ir.actions.act_window,name:general_stock.action_stock_return_reason
+#: model:ir.model,name:general_stock.model_stock_return_reason
+msgid "Stock Return Reason"
+msgstr "Stock Return Reason"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.split_into
+#: model:ir.model,name:stock.model_stock_split_into
+msgid "Split into"
+msgstr "Split into"
+
+#. module: sale_stock
+#: field:sale.order.line,move_ids:0
+msgid "Inventory Moves"
+msgstr "Di chuyển hàng tồn kho"
+
+#. module: stock
+#: field:stock.move,price_currency_id:0
+msgid "Currency for average price"
+msgstr "Currency for average price"
+
+#. module: general_stock
+#: field:stock.item.cost.layers,item_cost:0
+msgid "Item Cost"
+msgstr "Item Cost"
+
+#. module: stock
+#: view:product.product:0
+msgid "Stock and Expected Variations"
+msgstr "Stock and Expected Variations"
+
+#. module: stock
+#: help:product.category,property_stock_valuation_account_id:0
+msgid "When real-time inventory valuation is enabled on a product, this account will hold the current value of the products."
+msgstr "When real-time inventory valuation is enabled on a product, this account will hold the current value of the products."
+
+#. module: stock
+#: field:stock.config.settings,group_stock_tracking_lot:0
+msgid "Track serial number on logistic units (pallets)"
+msgstr "Track serial number on logistic units (pallets)"
+
+#. module: stock
+#: help:product.template,sale_delay:0
+msgid "The average delay in days between the confirmation of the customer order and the delivery of the finished products. It's the time you promise to your customers."
+msgstr "The average delay in days between the confirmation of the customer order and the delivery of the finished products. It's the time you promise to your customers."
+
+#. module: stock
+#: field:stock.location,stock_real_value:0
+msgid "Real Stock Value"
+msgstr "Giá trị Tồn kho Thực"
+
+#. module: stock
+#: code:addons/stock/product.py:197
+#, python-format
+msgid "Products: "
+msgstr "Các sản phẩm: "
+
+#. module: stock
+#: field:report.stock.inventory,location_type:0
+#: field:stock.location,usage:0
+msgid "Location Type"
+msgstr "Loại Địa điểm"
+
+#. module: stock
+#: view:stock.config.settings:0
+msgid "Location & Warehouse"
+msgstr "Location & Warehouse"
+
+#. module: stock
+#: code:addons/stock/stock.py:1801
+#, python-format
+msgid "Quantities, Units of Measure, Products and Locations cannot be modified on stock moves that have already been processed (except by the Administrator)."
+msgstr "Quantities, Units of Measure, Products and Locations cannot be modified on stock moves that have already been processed (except by the Administrator)."
+
+#. module: stock
+#: help:report.stock.move,type:0
+#: help:stock.picking,type:0
+#: help:stock.picking.in,type:0
+#: help:stock.picking.out,type:0
+msgid "Shipping type specify, goods coming in or going out."
+msgstr "Shipping type specify, goods coming in or going out."
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_picking_tree6
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create an internal move request. \n"
+"              </p><p>\n"
+"                Most operations are prepared automatically by OpenERP according\n"
+"                to your preconfigured logistics rules, but you can also record\n"
+"                manual stock movements.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create an internal move request. \n"
+"              </p><p>\n"
+"                Most operations are prepared automatically by OpenERP according\n"
+"                to your preconfigured logistics rules, but you can also record\n"
+"                manual stock movements.\n"
+"              </p>\n"
+"            "
+
+#. module: sale_stock
+#: model:process.transition,note:sale_stock.process_transition_invoiceafterdelivery0
+msgid "The invoice is created automatically if the shipping policy is 'Invoice from pick' or 'Invoice on order after delivery'."
+msgstr "The invoice is created automatically if the shipping policy is 'Invoice from pick' or 'Invoice on order after delivery'."
+
+#. module: stock
+#: model:ir.actions.report.xml,name:stock.report_move_labels
+msgid "Item Labels"
+msgstr "Item Labels"
+
+#. module: stock
+#: code:addons/stock/stock.py:1368
+#, python-format
+msgid "Back order <em>%s</em> has been <b>created</b>."
+msgstr "Back order <em>%s</em> has been <b>created</b>."
+
+#. module: stock
+#: model:ir.model,name:stock.model_report_stock_move
+msgid "Moves Statistics"
+msgstr "Moves Statistics"
+
+#. module: stock
+#: help:stock.config.settings,group_uom:0
+msgid "Allows you to select and maintain different units of measure for products."
+msgstr "Allows you to select and maintain different units of measure for products."
+
+#. module: general_stock
+#: model:ir.model,name:general_stock.model_ir_ui_menu
+msgid "ir.ui.menu"
+msgstr "ir.ui.menu"
+
+#. module: stock
+#: help:product.product,track_outgoing:0
+msgid "Forces to specify a Serial Number for all moves containing this product and going to a Customer Location"
+msgstr "Forces to specify a Serial Number for all moves containing this product and going to a Customer Location"
+
+#. module: stock
+#: model:ir.ui.menu,name:stock.menu_stock_products_moves
+msgid "Receive/Deliver Products"
+msgstr "Nhập / Xuất theo mặt hàng"
+
+#. module: stock
+#: code:addons/stock/stock.py:543
+#, python-format
+msgid "You cannot remove a lot line."
+msgstr "You cannot remove a lot line."
+
+#. module: stock
+#: field:stock.move,move_history_ids:0
+msgid "Move History (child moves)"
+msgstr "Move History (child moves)"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_picking_tree6
+#: model:ir.ui.menu,name:stock.menu_action_picking_tree6
+#: field:stock.picking,move_lines:0
+#: field:stock.picking.in,move_lines:0
+#: field:stock.picking.out,move_lines:0
+msgid "Internal Moves"
+msgstr "Phiếu chuyển kho nội bộ"
+
+#. module: general_stock
+#: view:stock.move:0
+msgid "Return to Supplier Moves"
+msgstr "Return to Supplier Moves"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_partial_move_line
+msgid "stock.partial.move.line"
+msgstr "stock.partial.move.line"
+
+#. module: sale_stock
+#: view:sale.report:0
+#: field:sale.report,shipped:0
+#: field:sale.report,shipped_qty_1:0
+msgid "Shipped"
+msgstr "Shipped"
+
+#. module: sale_stock
+#: field:sale.order.line,number_packages:0
+msgid "Number Packages"
+msgstr "Số lượng gói hàng"
+
+#. modules: sale_stock, stock
+#: field:sale.order.line,product_packaging:0
+#: model:ir.ui.menu,name:stock.menu_product_packaging_stock_action
+#: field:stock.move,product_packaging:0
+msgid "Packaging"
+msgstr "Đóng gói"
+
+#. module: stock
+#: field:stock.picking,message_unread:0
+#: field:stock.picking.in,message_unread:0
+#: field:stock.picking.out,message_unread:0
+msgid "Unread Messages"
+msgstr "Tin chưa đọc"
+
+#. module: stock
+#: model:ir.actions.report.xml,name:stock.report_picking_list_in
+msgid "Receipt Slip"
+msgstr "Receipt Slip"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_move.py:214
+#, python-format
+msgid "Serial number quantity %d of %s is larger than available quantity (%d)!"
+msgstr "Serial number quantity %d of %s is larger than available quantity (%d)!"
+
+#. module: stock
+#: report:stock.picking.list:0
+msgid "Order(Origin)"
+msgstr "Order(Origin)"
+
+#. module: stock
+#: model:ir.ui.menu,name:stock.menu_stock_uom_categ_form_action
+msgid "Unit of Measure Categories"
+msgstr "Danh mục Đơn vị tính"
+
+#. module: stock
+#: report:lot.stock.overview:0
+#: report:lot.stock.overview_all:0
+msgid "Grand Total:"
+msgstr "Grand Total:"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_stock_move_report
+#: model:ir.ui.menu,name:stock.menu_action_stock_move_report
+#: view:report.stock.move:0
+msgid "Moves Analysis"
+msgstr "Moves Analysis"
+
+#. module: general_stock
+#: field:stock.move,partner_ref:0
+msgid "Partner Ref"
+msgstr "Partner Ref"
+
+#. module: stock
+#: view:stock.location:0
+#: field:stock.location,comment:0
+msgid "Additional Information"
+msgstr "Thông tin thêm"
+
+#. module: stock
+#: report:lot.stock.overview:0
+#: report:lot.stock.overview_all:0
+msgid "Location / Product"
+msgstr "Địa điểm / Sản phẩm"
+
+#. module: stock
+#: field:stock.move,partner_id:0
+msgid "Destination Address "
+msgstr "Địa chỉ đích đến"
+
+#. module: stock
+#: field:product.product,reception_count:0
+msgid "Reception"
+msgstr "Reception"
+
+#. module: general_stock
+#: field:stock.move,product_code:0
+msgid "Product Code"
+msgstr "Mã sản phẩm"
+
+#. module: stock
+#: view:stock.partial.picking:0
+msgid "Transfer Products"
+msgstr "Transfer Products"
+
+#. module: stock
+#: view:stock.partial.picking.line:0
+msgid "Stock Picking Line"
+msgstr "Stock Picking Line"
+
+#. module: stock
+#: field:stock.location,complete_name:0
+#: field:stock.location,name:0
+msgid "Location Name"
+msgstr "Tên Địa điểm"
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "Posted Inventory"
+msgstr "Thông tin điều chỉnh tồn kho"
+
+#. module: stock
+#: field:stock.move.split.lines,wizard_exist_id:0
+msgid "Parent Wizard (for existing lines)"
+msgstr "Parent Wizard (for existing lines)"
+
+#. module: stock
+#: view:report.stock.move:0
+msgid "Year Planned"
+msgstr "Year Planned"
+
+#. module: stock
+#: view:report.stock.move:0
+msgid "Month Planned"
+msgstr "Month Planned"
+
+#. module: stock
+#: view:report.stock.inventory:0
+#: field:report.stock.inventory,state:0
+#: view:report.stock.move:0
+#: field:report.stock.move,state:0
+#: view:stock.inventory:0
+#: field:stock.inventory,state:0
+#: field:stock.inventory.line,state:0
+#: view:stock.move:0
+#: field:stock.move,state:0
+#: view:stock.picking:0
+#: field:stock.picking,state:0
+#: view:stock.picking.in:0
+#: field:stock.picking.in,state:0
+#: report:stock.picking.list:0
+#: field:stock.picking.out,state:0
+msgid "Status"
+msgstr "Trạng thái"
+
+#. module: stock
+#: model:stock.location,name:stock.stock_location_customers
+msgid "Customers"
+msgstr "Danh sách khách hàng"
+
+#. module: stock
+#: selection:report.stock.inventory,month:0
+#: selection:report.stock.move,month:0
+msgid "August"
+msgstr "Tháng Tám"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_view_stock_merge_inventories
+msgid "Merge inventories"
+msgstr "Merge inventories"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_tracking_form
+#: model:ir.model,name:stock.model_stock_tracking
+#: model:ir.ui.menu,name:stock.menu_action_tracking_form
+#: view:stock.tracking:0
+msgid "Packs"
+msgstr "Packs"
+
+#. module: stock
+#: view:product.product:0
+#: view:product.template:0
+msgid "Storage Location"
+msgstr "Storage Location"
+
+#. module: stock
+#: view:stock.move:0
+msgid "To Do"
+msgstr "Cần thực hiện"
+
+#. module: stock
+#: selection:report.stock.inventory,month:0
+#: selection:report.stock.move,month:0
+msgid "June"
+msgstr "Tháng Sáu"
+
+#. module: stock
+#: help:product.product,track_incoming:0
+msgid "Forces to specify a Serial Number for all moves containing this product and coming from a Supplier Location"
+msgstr "Forces to specify a Serial Number for all moves containing this product and coming from a Supplier Location"
+
+#. module: stock
+#: help:stock.config.settings,group_uos:0
+msgid "Allows you to sell units of a product, but invoice based on a different unit of measure.\n"
+"                For instance, you can sell pieces of meat that you invoice based on their weight."
+msgstr "Allows you to sell units of a product, but invoice based on a different unit of measure.\n"
+"                For instance, you can sell pieces of meat that you invoice based on their weight."
+
+#. module: sale_stock
+#: model:ir.model,name:sale_stock.model_sale_report
+msgid "Sales Orders Statistics"
+msgstr "Thống kê đơn bán hàng"
+
+#. modules: general_stock, stock
+#: view:stock.picking:0
+#: view:stock.picking:0
+msgid "e.g. PO0032"
+msgstr "e.g. PO0032"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_location_tree
+#: model:ir.ui.menu,name:stock.menu_action_location_tree
+msgid "Location Structure"
+msgstr "Cấu trúc kho hàng"
+
+#. module: stock
+#: field:stock.location,child_ids:0
+msgid "Contains"
+msgstr "Contains"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_inventory_line
+msgid "Inventory Line"
+msgstr "Inventory Line"
+
+#. module: stock
+#: help:product.category,property_stock_journal:0
+msgid "When doing real-time inventory valuation, this is the Accounting Journal in which entries will be automatically posted when stock moves are processed."
+msgstr "When doing real-time inventory valuation, this is the Accounting Journal in which entries will be automatically posted when stock moves are processed."
+
+#. module: stock
+#: code:addons/stock/stock.py:2299
+#, python-format
+msgid "Please define stock output account for this product or its category: \"%s\" (id: %d)"
+msgstr "Please define stock output account for this product or its category: \"%s\" (id: %d)"
+
+#. module: stock
+#: field:stock.picking,message_summary:0
+#: field:stock.picking.in,message_summary:0
+#: field:stock.picking.out,message_summary:0
+msgid "Summary"
+msgstr "Tóm tắt"
+
+#. module: stock
+#: help:stock.location,chained_picking_type:0
+msgid "Shipping Type of the Picking List that will contain the chained move (leave empty to automatically detect the type based on the source and destination locations)."
+msgstr "Shipping Type of the Picking List that will contain the chained move (leave empty to automatically detect the type based on the source and destination locations)."
+
+#. module: stock
+#: view:product.category:0
+msgid "Account Stock Properties"
+msgstr "Account Stock Properties"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.act_stock_tracking_lot_2_stock_report_tracklots
+#: model:stock.location,name:stock.stock_location_stock
+msgid "Stock"
+msgstr "Kho"
+
+#. module: stock
+#: sql_constraint:stock.picking:0
+#: sql_constraint:stock.picking.in:0
+#: sql_constraint:stock.picking.out:0
+msgid "Reference must be unique per Company!"
+msgstr "Tham chiếu phải là duy nhất cho mỗi Công ty"
+
+#. module: general_stock
+#: field:stock.item.cost.layers,prev_item_cost:0
+msgid "Prev Item Cost"
+msgstr "Prev Item Cost"
+
+#. module: stock
+#: selection:stock.move,priority:0
+msgid "Urgent"
+msgstr "Khẩn"
+
+#. module: stock
+#: model:stock.location,name:stock.stock_location_scrapped
+#: field:stock.move,scrapped:0
+msgid "Scrapped"
+msgstr "Scrapped"
+
+#. modules: general_stock, stock
+#: field:stock.item.cost.layers,layer_quantity:0
+#: report:lot.stock.overview:0
+#: report:lot.stock.overview_all:0
+#: field:report.stock.inventory,product_qty:0
+#: field:report.stock.move,product_qty:0
+#: field:stock.inventory.line,product_qty:0
+#: field:stock.inventory.line.split,qty:0
+#: field:stock.inventory.line.split.lines,quantity:0
+#: report:stock.inventory.move:0
+#: field:stock.move,product_qty:0
+#: field:stock.move.consume,product_qty:0
+#: field:stock.move.scrap,product_qty:0
+#: field:stock.move.split,qty:0
+#: field:stock.move.split.lines,quantity:0
+#: field:stock.partial.move.line,quantity:0
+#: field:stock.partial.picking.line,quantity:0
+#: report:stock.picking.list:0
+#: field:stock.report.prodlots,qty:0
+#: field:stock.report.tracklots,name:0
+#: field:stock.return.picking.memory,quantity:0
+#: field:stock.split.into,quantity:0
+msgid "Quantity"
+msgstr "Số lượng"
+
+#. module: stock
+#: field:stock.location,partner_id:0
+msgid "Location Address"
+msgstr "Địa chỉ của Địa điểm"
+
+#. module: stock
+#: view:product.product:0
+msgid "- update"
+msgstr "- update"
+
+#. module: stock
+#: report:stock.picking.list:0
+msgid "Weight"
+msgstr "Trọng lượng"
+
+#. module: stock
+#: field:stock.warehouse,lot_input_id:0
+msgid "Location Input"
+msgstr "Địa điểm Nhập hàng"
+
+#. module: stock
+#: help:stock.partial.move,hide_tracking:0
+#: help:stock.partial.picking,hide_tracking:0
+msgid "This field is for internal purpose. It is used to decide if the column production lot has to be shown on the moves or not."
+msgstr "This field is for internal purpose. It is used to decide if the column production lot has to be shown on the moves or not."
+
+#. module: stock
+#: selection:product.product,valuation:0
+msgid "Periodical (manual)"
+msgstr "Periodical (manual)"
+
+#. module: stock
+#: model:stock.location,name:stock.location_procurement
+msgid "Procurements"
+msgstr "Mua sắm"
+
+#. module: sale_stock
+#: help:sale.config.settings,default_picking_policy:0
+msgid "Sales order by default will be configured to deliver all products at once instead of delivering each product when it is available. This may have an impact on the shipping price."
+msgstr "Sales order by default will be configured to deliver all products at once instead of delivering each product when it is available. This may have an impact on the shipping price."
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_inventory_form_draft
+msgid "Draft Physical Inventories"
+msgstr "Phiếu nháp Kiểm kê theo kho"
+
+#. module: general_stock
+#: model:ir.actions.act_window,help:general_stock.action_stock_return_reason
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"	            Click to add a Reason Type.\n"
+"	          </p>\n"
+"	        "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"	            Click to add a Reason Type.\n"
+"	          </p>\n"
+"	        "
+
+#. module: stock
+#: code:addons/stock/stock.py:1199
+#, python-format
+msgid "You cannot cancel the picking as some moves have been done. You should cancel the picking lines."
+msgstr "You cannot cancel the picking as some moves have been done. You should cancel the picking lines."
+
+#. module: stock
+#: field:stock.config.settings,decimal_precision:0
+msgid "Decimal precision on weight"
+msgstr "Decimal precision on weight"
+
+#. module: stock
+#: view:stock.production.lot:0
+msgid "Available Product Lots"
+msgstr "Available Product Lots"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_change_product_qty
+msgid "Change Product Quantity"
+msgstr "Change Product Quantity"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_inventory_merge
+msgid "Merge Inventory"
+msgstr "Merge Inventory"
+
+#. module: stock
+#: code:addons/stock/product.py:466
+#, python-format
+msgid "Future P&L"
+msgstr "Future P&L"
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "Base Uom"
+msgstr "Đơn vị lưu kho"
+
+#. modules: general_stock, stock
+#: model:ir.model,name:general_stock.model_stock_picking_in
+#: model:ir.actions.act_window,name:stock.action_picking_tree4
+#: model:ir.model,name:stock.model_stock_picking_in
+#: model:ir.ui.menu,name:stock.menu_action_picking_tree4
+#: view:stock.picking.in:0
+msgid "Incoming Shipments"
+msgstr "Hàng nhập"
+
+#. module: stock
+#: help:stock.picking,date:0
+#: help:stock.picking.in,date:0
+#: help:stock.picking.out,date:0
+msgid "Creation date, usually the time of the order."
+msgstr "Creation date, usually the time of the order."
+
+#. module: stock
+#: view:report.stock.inventory:0
+#: view:stock.move:0
+msgid "Scrap"
+msgstr "Scrap"
+
+#. module: stock
+#: model:ir.model,name:stock.model_action_traceability
+msgid "Action traceability "
+msgstr "Action traceability "
+
+#. module: stock
+#: constraint:stock.move:0
+msgid "You must assign a serial number for this product."
+msgstr "You must assign a serial number for this product."
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_stock_inventory_report
+#: model:ir.ui.menu,name:stock.menu_action_stock_inventory_report
+#: view:report.stock.inventory:0
+msgid "Inventory Analysis"
+msgstr "Phân tích tồn kho"
+
+#. modules: general_stock, stock
+#: view:stock.location:0
+#: view:stock.location:0
+msgid "Stock Locations"
+msgstr "Các Địa điểm Kho hàng"
+
+#. module: stock
+#: view:report.stock.move:0
+msgid "Incoming"
+msgstr "Chờ nhập"
+
+#. module: stock
+#: report:lot.stock.overview:0
+#: report:lot.stock.overview_all:0
+#: field:stock.move,price_unit:0
+msgid "Unit Price"
+msgstr "Đơn giá"
+
+#. module: sale_stock
+#: code:addons/sale_stock/sale_stock.py:531
+#, python-format
+msgid "You must first cancel stock moves attached to this sales order line."
+msgstr "You must first cancel stock moves attached to this sales order line."
+
+#. module: sale_stock
+#: code:addons/sale_stock/sale_stock.py:569
+#, python-format
+msgid "(n/a)"
+msgstr "(n/a)"
+
+#. module: stock
+#: field:stock.move,date_expected:0
+msgid "Scheduled Date"
+msgstr "Ngày dự kiến"
+
+#. module: stock
+#: view:stock.tracking:0
+msgid "Pack Search"
+msgstr "Pack Search"
+
+#. module: stock
+#: view:stock.picking:0
+msgid "Pickings already processed"
+msgstr "Pickings already processed"
+
+#. module: general_stock
+#: selection:stock.journal,source_type:0
+msgid "Return to supplier"
+msgstr "Return to supplier"
+
+#. module: stock
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+#: report:stock.picking.list:0
+msgid "Journal"
+msgstr "Sổ nhật ký"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_picking_tree_out
+msgid "Customers Packings"
+msgstr "Đóng gói cho khách hàng"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_stock_invoice_onshipping
+msgid "Create Draft Invoices"
+msgstr "Create Draft Invoices"
+
+#. module: stock
+#: help:stock.picking,location_id:0
+#: help:stock.picking.in,location_id:0
+#: help:stock.picking.out,location_id:0
+msgid "Keep empty if you produce at the location where the finished products are needed.Set a location if you produce at a fixed location. This can be a partner location if you subcontract the manufacturing operations."
+msgstr "Keep empty if you produce at the location where the finished products are needed.Set a location if you produce at a fixed location. This can be a partner location if you subcontract the manufacturing operations."
+
+#. module: stock
+#: selection:stock.picking.in,state:0
+msgid "Ready to Receive"
+msgstr "Sẵn sàng nhận hàng"
+
+#. module: sale_stock
+#: model:process.transition,name:sale_stock.process_transition_saleprocurement0
+msgid "Create Procurement Order"
+msgstr "Create Procurement Order"
+
+#. module: stock
+#: field:report.stock.move,day_diff:0
+msgid "Execution Lead Time (Days)"
+msgstr "Execution Lead Time (Days)"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_partial_move
+msgid "Partial Move Processing Wizard"
+msgstr "Partial Move Processing Wizard"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.act_stock_product_location_open
+msgid "Stock by Location"
+msgstr "Kho hàng theo Địa điểm"
+
+#. module: sale_stock
+#: model:ir.model,name:sale_stock.model_sale_config_settings
+msgid "sale.config.settings"
+msgstr "sale.config.settings"
+
+#. module: stock
+#: model:ir.ui.menu,name:stock.menu_stock_warehouse_mgmt
+msgid "Receive/Deliver By Orders"
+msgstr "Receive/Deliver By Orders"
+
+#. module: stock
+#: view:stock.production.lot:0
+msgid "Product Lots"
+msgstr "Product Lots"
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_inventory_form
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to start an inventory. \n"
+"              </p><p>\n"
+"                Periodical Inventories are used to count the number of products\n"
+"                available per location. You can use it once a year when you do\n"
+"                the general inventory or whenever you need it, to adapt the\n"
+"                current inventory level of a product.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to start an inventory. \n"
+"              </p><p>\n"
+"                Periodical Inventories are used to count the number of products\n"
+"                available per location. You can use it once a year when you do\n"
+"                the general inventory or whenever you need it, to adapt the\n"
+"                current inventory level of a product.\n"
+"              </p>\n"
+"            "
+
+#. module: stock
+#: field:stock.config.settings,group_uos:0
+msgid "Invoice products in a different unit of measure than the sales order"
+msgstr "Invoice products in a different unit of measure than the sales order"
+
+#. module: stock
+#: help:stock.location,active:0
+msgid "By unchecking the active field, you may hide a location without deleting it."
+msgstr "By unchecking the active field, you may hide a location without deleting it."
+
+#. module: stock
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+msgid "Is a Back Order"
+msgstr "Is a Back Order"
+
+#. module: stock
+#: view:stock.return.picking:0
+msgid "Return"
+msgstr "Return"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_return_picking.py:109
+#, python-format
+msgid "No products to return (only lines in Done state and not fully returned yet can be returned)!"
+msgstr "No products to return (only lines in Done state and not fully returned yet can be returned)!"
+
+#. module: stock
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+msgid "Back Orders"
+msgstr "Phiếu trả lại"
+
+#. module: stock
+#: field:stock.location,stock_virtual:0
+msgid "Virtual Stock"
+msgstr "Virtual Stock"
+
+#. module: stock
+#: selection:report.stock.inventory,location_type:0
+#: selection:stock.location,usage:0
+msgid "View"
+msgstr "Kiểu Cha"
+
+#. module: stock
+#: field:stock.location,parent_left:0
+msgid "Left Parent"
+msgstr "Left Parent"
+
+#. module: stock
+#: field:product.category,property_stock_valuation_account_id:0
+msgid "Stock Valuation Account"
+msgstr "Stock Valuation Account"
+
+#. module: stock
+#: code:addons/stock/stock.py:1800
+#, python-format
+msgid "Operation Forbidden!"
+msgstr "Operation Forbidden!"
+
+#. module: general_stock
+#: view:stock.move:0
+msgid "Create Date"
+msgstr "Create Date"
+
+#. module: sale_stock
+#: help:sale.config.settings,group_multiple_shops:0
+msgid "This allows to configure and use multiple shops."
+msgstr "This allows to configure and use multiple shops."
+
+#. module: sale_stock
+#: selection:sale.order,picking_policy:0
+msgid "Deliver each product when available"
+msgstr "Deliver each product when available"
+
+#. module: stock
+#: view:stock.config.settings:0
+msgid "Apply"
+msgstr "Áp dụng"
+
+#. module: stock
+#: selection:stock.picking,invoice_state:0
+#: selection:stock.picking.in,invoice_state:0
+#: selection:stock.picking.out,invoice_state:0
+msgid "Invoiced"
+msgstr "Đã có hóa đơn"
+
+#. module: stock
+#: field:product.template,property_stock_production:0
+msgid "Production Location"
+msgstr "Địa điểm Sản xuất"
+
+#. module: stock
+#: code:addons/stock/product.py:123
+#, python-format
+msgid "Please define journal on the product category: \"%s\" (id: %d)."
+msgstr "Please define journal on the product category: \"%s\" (id: %d)."
+
+#. module: stock
+#: field:stock.config.settings,module_product_expiry:0
+msgid "Expiry date on serial numbers"
+msgstr "Expiry date on serial numbers"
+
+#. module: stock
+#: field:report.stock.lines.date,date:0
+msgid "Latest Inventory Date"
+msgstr "Latest Inventory Date"
+
+#. module: stock
+#: help:stock.location,usage:0
+msgid "* Supplier Location: Virtual location representing the source location for products coming from your suppliers\n"
+"                       \n"
+"* View: Virtual location used to create a hierarchical structures for your warehouse, aggregating its child locations ; can't directly contain products\n"
+"                       \n"
+"* Internal Location: Physical locations inside your own warehouses,\n"
+"                       \n"
+"* Customer Location: Virtual location representing the destination location for products sent to your customers\n"
+"                       \n"
+"* Inventory: Virtual location serving as counterpart for inventory operations used to correct stock levels (Physical inventories)\n"
+"                       \n"
+"* Procurement: Virtual location serving as temporary counterpart for procurement operations when the source (supplier or production) is not known yet. This location should be empty when the procurement scheduler has finished running.\n"
+"                       \n"
+"* Production: Virtual counterpart location for production operations: this location consumes the raw material and produces finished products\n"
+"                      "
+msgstr "* Supplier Location: Virtual location representing the source location for products coming from your suppliers\n"
+"                       \n"
+"* View: Virtual location used to create a hierarchical structures for your warehouse, aggregating its child locations ; can't directly contain products\n"
+"                       \n"
+"* Internal Location: Physical locations inside your own warehouses,\n"
+"                       \n"
+"* Customer Location: Virtual location representing the destination location for products sent to your customers\n"
+"                       \n"
+"* Inventory: Virtual location serving as counterpart for inventory operations used to correct stock levels (Physical inventories)\n"
+"                       \n"
+"* Procurement: Virtual location serving as temporary counterpart for procurement operations when the source (supplier or production) is not known yet. This location should be empty when the procurement scheduler has finished running.\n"
+"                       \n"
+"* Production: Virtual counterpart location for production operations: this location consumes the raw material and produces finished products\n"
+"                      "
+
+#. module: stock
+#: field:stock.partial.move.line,update_cost:0
+#: field:stock.partial.picking.line,update_cost:0
+msgid "Need cost update"
+msgstr "Need cost update"
+
+#. module: stock
+#: field:stock.production.lot.revision,author_id:0
+msgid "Author"
+msgstr "Tác giả"
+
+#. module: stock
+#: code:addons/stock/stock.py:1849
+#, python-format
+msgid "You are moving %.2f %s but only %.2f %s available for this serial number."
+msgstr "You are moving %.2f %s but only %.2f %s available for this serial number."
+
+#. module: stock
+#: report:stock.picking.list:0
+msgid "Internal Shipment :"
+msgstr "Internal Shipment :"
+
+#. module: stock
+#: code:addons/stock/stock.py:2290
+#, python-format
+msgid "Cannot create Journal Entry, Output Account of this product and Valuation account on category of this product are same."
+msgstr "Cannot create Journal Entry, Output Account of this product and Valuation account on category of this product are same."
+
+#. module: sale_stock
+#: model:process.node,name:sale_stock.process_node_deliveryorder0
+msgid "Delivery Order"
+msgstr "Yêu cầu Giao hàng"
+
+#. module: stock
+#: selection:stock.location,chained_auto_packing:0
+msgid "Manual Operation"
+msgstr "Manual Operation"
+
+#. module: stock
+#: view:report.stock.move:0
+#: field:report.stock.move,picking_id:0
+msgid "Shipment"
+msgstr "Shipment"
+
+#. modules: general_stock, stock
+#: view:stock.move:0
+#: view:stock.picking.in:0
+#: view:stock.location:0
+#: view:stock.move:0
+#: view:stock.picking.in:0
+msgid "Supplier"
+msgstr "Nhà cung cấp"
+
+#. module: stock
+#: code:addons/stock/stock.py:2913
+#, python-format
+msgid "In order to cancel this inventory, you must first unpost related journal entries."
+msgstr "In order to cancel this inventory, you must first unpost related journal entries."
+
+#. module: stock
+#: code:addons/stock/product.py:115
+#, python-format
+msgid "Please specify company in Location."
+msgstr "Please specify company in Location."
+
+#. module: stock
+#: view:stock.move:0
+msgid "Stock moves that are Available (Ready to process)"
+msgstr "Stock moves that are Available (Ready to process)"
+
+#. module: stock
+#: field:stock.location,posz:0
+msgid "Height (Z)"
+msgstr "Height (Z)"
+
+#. module: sale_stock
+#: code:addons/sale_stock/sale_stock.py:578
+#, python-format
+msgid "Picking Information ! : "
+msgstr "Picking Information ! : "
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_view_stock_inventory_line_split
+#: model:ir.model,name:stock.model_stock_inventory_line_split
+#: view:stock.inventory:0
+#: view:stock.inventory.line:0
+msgid "Split inventory lines"
+msgstr "Tách dòng"
+
+#. module: stock
+#: selection:stock.picking,invoice_state:0
+#: selection:stock.picking.in,invoice_state:0
+#: selection:stock.picking.out,invoice_state:0
+msgid "Not Applicable"
+msgstr "Không áp dụng"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_move.py:214
+#, python-format
+msgid "Processing Error!"
+msgstr "Processing Error!"
+
+#. module: general_stock
+#: model:ir.actions.act_window,name:general_stock.action_stock_actual_cost_details
+#: model:ir.ui.menu,name:general_stock.menu_action_stock_actual_cost_details
+msgid "Stock Actual Cost Details"
+msgstr "Giá vốn từng măt hàng"
+
+#. module: stock
+#: help:stock.move,state:0
+msgid "* New: When the stock move is created and not yet confirmed.\n"
+"* Waiting Another Move: This state can be seen when a move is waiting for another one, for example in a chained flow.\n"
+"* Waiting Availability: This state is reached when the procurement resolution is not straight forward. It may need the scheduler to run, a component to me manufactured...\n"
+"* Available: When products are reserved, it is set to 'Available'.\n"
+"* Done: When the shipment is processed, the state is 'Done'."
+msgstr "* New: When the stock move is created and not yet confirmed.\n"
+"* Waiting Another Move: This state can be seen when a move is waiting for another one, for example in a chained flow.\n"
+"* Waiting Availability: This state is reached when the procurement resolution is not straight forward. It may need the scheduler to run, a component to me manufactured...\n"
+"* Available: When products are reserved, it is set to 'Available'.\n"
+"* Done: When the shipment is processed, the state is 'Done'."
+
+#. module: general_stock
+#: field:stock.picking,create_uid:0
+#: field:stock.picking.in,create_uid:0
+#: field:stock.picking.out,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: stock
+#: model:stock.location,name:stock.stock_location_locations_partner
+msgid "Partner Locations"
+msgstr "Các Địa điểm của Đối tác"
+
+#. module: sale_stock
+#: field:sale.config.settings,group_multiple_shops:0
+msgid "Manage multiple shops"
+msgstr "Manage multiple shops"
+
+#. module: general_stock
+#: field:stock.move,price_subtotal:0
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#. module: stock
+#: selection:stock.picking.in,state:0
+msgid "Received"
+msgstr "Đã nhận"
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "Adjust Qty"
+msgstr "Số lượng chênh lệch"
+
+#. modules: general_stock, stock
+#: view:stock.move:0
+#: view:stock.picking.out:0
+#: view:stock.location:0
+#: selection:stock.location,chained_location_type:0
+#: view:stock.picking.out:0
+msgid "Customer"
+msgstr "Khách hàng"
+
+#. module: stock
+#: field:stock.picking,min_date:0
+#: field:stock.picking.in,min_date:0
+#: field:stock.picking.out,min_date:0
+msgid "Scheduled Time"
+msgstr "Ngày giờ dự kiến"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.move_consume
+#: view:stock.move.consume:0
+msgid "Consume Move"
+msgstr "Consume Move"
+
+#. module: stock
+#: report:stock.picking.list:0
+msgid "Delivery Order :"
+msgstr "Delivery Order :"
+
+#. module: stock
+#: help:stock.location,chained_delay:0
+msgid "Delay between original move and chained move in days"
+msgstr "Delay between original move and chained move in days"
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_stock_journal_form
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create a new journal. \n"
+"              </p><p>\n"
+"                The stock journal system allows you to assign each stock\n"
+"                operation to a specific journal according to the type of\n"
+"                operation to perform or the worker/team that should perform the\n"
+"                operation. Examples of stock journals may be: quality control,\n"
+"                pick lists, packing, etc.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create a new journal. \n"
+"              </p><p>\n"
+"                The stock journal system allows you to assign each stock\n"
+"                operation to a specific journal according to the type of\n"
+"                operation to perform or the worker/team that should perform the\n"
+"                operation. Examples of stock journals may be: quality control,\n"
+"                pick lists, packing, etc.\n"
+"              </p>\n"
+"            "
+
+#. module: sale_stock
+#: model:process.transition,note:sale_stock.process_transition_saleorderprocurement0
+msgid "For every sales order line, a procurement order is created to supply the sold product."
+msgstr "For every sales order line, a procurement order is created to supply the sold product."
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "Sys Onhand"
+msgstr "Hệ thống đếm"
+
+#. modules: general_stock, stock
+#: field:stock.return.picking,note:0
+#: field:stock.move,note:0
+#: field:stock.picking,note:0
+#: field:stock.picking.in,note:0
+#: field:stock.picking.out,note:0
+msgid "Notes"
+msgstr "Các ghi chú"
+
+#. module: stock
+#: help:stock.location,chained_auto_packing:0
+msgid "This is used only if you select a chained location type.\n"
+"The 'Automatic Move' value will create a stock move after the current one that will be validated automatically. With 'Manual Operation', the stock move has to be validated by a worker. With 'Automatic No Step Added', the location is replaced in the original move."
+msgstr "This is used only if you select a chained location type.\n"
+"The 'Automatic Move' value will create a stock move after the current one that will be validated automatically. With 'Manual Operation', the stock move has to be validated by a worker. With 'Automatic No Step Added', the location is replaced in the original move."
+
+#. module: stock
+#: view:stock.split.into:0
+msgid "Quantity to Leave in the Current Pack"
+msgstr "Quantity to Leave in the Current Pack"
+
+#. module: stock
+#: view:stock.tracking:0
+msgid "Pack Identification"
+msgstr "Pack Identification"
+
+#. module: stock
+#: field:product.product,track_production:0
+msgid "Track Manufacturing Lots"
+msgstr "Track Manufacturing Lots"
+
+#. module: stock
+#: selection:stock.move,state:0
+msgid "Waiting Another Move"
+msgstr "Waiting Another Move"
+
+#. module: stock
+#: help:stock.move,product_packaging:0
+msgid "It specifies attributes of packaging like type, quantity of packaging,etc."
+msgstr "It specifies attributes of packaging like type, quantity of packaging,etc."
+
+#. module: stock
+#: help:stock.change.product.qty,new_quantity:0
+msgid "This quantity is expressed in the Default Unit of Measure of the product."
+msgstr "This quantity is expressed in the Default Unit of Measure of the product."
+
+#. module: stock
+#: help:stock.move,price_unit:0
+msgid "Technical field used to record the product cost set by the user during a picking confirmation (when average price costing method is used)"
+msgstr "Technical field used to record the product cost set by the user during a picking confirmation (when average price costing method is used)"
+
+#. module: stock
+#: code:addons/stock/stock.py:1917
+#, python-format
+msgid "Warning: No Back Order"
+msgstr "Warning: No Back Order"
+
+#. module: stock
+#: code:addons/stock/stock.py:2296
+#, python-format
+msgid "Please define stock input account for this product or its category: \"%s\" (id: %d)"
+msgstr "Please define stock input account for this product or its category: \"%s\" (id: %d)"
+
+#. module: stock
+#: view:stock.inventory.merge:0
+msgid "Merge Inventories"
+msgstr "Merge Inventories"
+
+#. module: stock
+#: selection:stock.return.picking,invoice_state:0
+msgid "To be refunded/invoiced"
+msgstr "To be refunded/invoiced"
+
+#. module: general_stock
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+#: view:stock.picking.out:0
+msgid "Reopen"
+msgstr "Reopen"
+
+#. module: stock
+#: code:addons/stock/stock.py:2497
+#, python-format
+msgid "You can only delete draft moves."
+msgstr "You can only delete draft moves."
+
+#. module: stock
+#: code:addons/stock/stock.py:1677
+#, python-format
+msgid "You cannot move product %s to a location of type view %s."
+msgstr "Không thể chuyển sản phẩm %s từ một địa điểm thuộc loại Cha --> %s."
+
+#. module: general_stock
+#: model:ir.actions.act_window,name:general_stock.action_stock_item_cost_layers
+#: model:ir.ui.menu,name:general_stock.menu_action_stock_item_cost_layers
+msgid "Stock Item Cost Layers"
+msgstr "Lịch sử tính giá vốn"
+
+#. module: stock
+#: view:stock.move:0
+#: view:stock.picking:0
+msgid "Ready"
+msgstr "Sẵn sàng"
+
+#. module: sale_stock
+#: model:ir.actions.act_window,name:sale_stock.res_partner_rule_children
+msgid "Contact Details"
+msgstr "Contact Details"
+
+#. module: stock
+#: field:product.template,sale_delay:0
+msgid "Customer Lead Time"
+msgstr "Customer Lead Time"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action5
+msgid "Upstream traceability"
+msgstr "Upstream traceability"
+
+#. modules: general_stock, stock
+#: view:stock.picking:0
+#: view:stock.picking:0
+msgid "Additional Info"
+msgstr "Thông tin thêm"
+
+#. module: stock
+#: model:ir.actions.server,name:stock.action_partial_move_server
+msgid "Deliver/Receive Products"
+msgstr "Sản phẩm Giao/Nhận"
+
+#. module: stock
+#: field:stock.partial.move.line,move_id:0
+#: field:stock.partial.picking.line,move_id:0
+#: field:stock.return.picking.memory,move_id:0
+msgid "Move"
+msgstr "Move"
+
+#. module: stock
+#: field:stock.location.product,from_date:0
+msgid "From"
+msgstr "Từ"
+
+#. module: stock
+#: view:stock.picking.in:0
+msgid "Incoming Shipments already processed"
+msgstr "Các lô hàng đến đã được xử lý"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_return_picking.py:102
+#, python-format
+msgid "You may only return pickings that are Confirmed, Available or Done!"
+msgstr "You may only return pickings that are Confirmed, Available or Done!"
+
+#. modules: general_stock, stock
+#: view:stock.picking:0
+#: view:stock.picking:0
+#: field:stock.picking,invoice_state:0
+#: field:stock.picking.in,invoice_state:0
+#: field:stock.picking.out,invoice_state:0
+msgid "Invoice Control"
+msgstr "Quản lý Hóa đơn"
+
+#. module: stock
+#: view:stock.picking:0
+msgid "Internal Picking List"
+msgstr "Internal Picking List"
+
+#. module: general_stock
+#: model:ir.ui.menu,name:general_stock.menu_return_reason_config
+#: view:stock.move:0
+#: field:stock.move,return_reason_id:0
+#: view:stock.picking:0
+#: field:stock.picking,return_reason_id:0
+#: field:stock.picking.in,return_reason_id:0
+#: view:stock.picking.out:0
+#: field:stock.picking.out,return_reason_id:0
+#: field:stock.return.picking,return_reason_id:0
+msgid "Return Reason"
+msgstr "Lý do trả hàng"
+
+#. module: stock
+#: selection:report.stock.inventory,state:0
+#: selection:report.stock.move,state:0
+#: view:stock.picking:0
+msgid "Waiting"
+msgstr "Đợi"
+
+#. module: stock
+#: field:stock.inventory.line,product_uom:0
+#: field:stock.move.consume,product_uom:0
+#: field:stock.move.scrap,product_uom:0
+msgid "Product Unit of Measure"
+msgstr "Đơn vị tính"
+
+#. module: stock
+#: view:stock.move:0
+#: view:stock.move.split:0
+msgid "Split"
+msgstr "Split"
+
+#. module: stock
+#: selection:report.stock.inventory,state:0
+#: selection:report.stock.move,state:0
+#: selection:stock.inventory,state:0
+#: selection:stock.picking,state:0
+#: selection:stock.picking.in,state:0
+#: selection:stock.picking.out,state:0
+msgid "Draft"
+msgstr "Nháp"
+
+#. module: general_stock
+#: field:stock.move,uom_conversion:0
+msgid "Factor"
+msgstr "Factor"
+
+#. modules: general_stock, sale_stock, stock
+#: model:ir.model,name:general_stock.model_stock_warehouse
+#: field:stock.location,warehouse_id:0
+#: field:sale.shop,warehouse_id:0
+#: model:ir.actions.act_window,name:stock.open_board_warehouse
+#: model:ir.model,name:stock.model_stock_warehouse
+#: model:ir.ui.menu,name:stock.menu_board_warehouse
+#: model:ir.ui.menu,name:stock.menu_stock_config_settings
+#: model:ir.ui.menu,name:stock.menu_stock_root
+#: model:ir.ui.menu,name:stock.next_id_61
+#: field:product.product,warehouse_id:0
+#: view:stock.warehouse:0
+msgid "Warehouse"
+msgstr "Nhà kho"
+
+#. modules: general_stock, stock
+#: field:stock.picking,return:0
+#: field:stock.picking.in,return:0
+#: field:stock.picking.out,return:0
+#: field:stock.return.picking,return_type:0
+#: view:report.stock.move:0
+msgid "Type"
+msgstr "Loại"
+
+#. module: stock
+#: help:stock.location,valuation_out_account_id:0
+msgid "Used for real-time inventory valuation. When set on a virtual location (non internal type), this account will be used to hold the value of products being moved out of this location and into an internal location, instead of the generic Stock Output Account set on the product. This has no effect for internal locations."
+msgstr "Used for real-time inventory valuation. When set on a virtual location (non internal type), this account will be used to hold the value of products being moved out of this location and into an internal location, instead of the generic Stock Output Account set on the product. This has no effect for internal locations."
+
+#. modules: general_stock, stock
+#: field:stock.picking,create_date:0
+#: field:stock.picking.in,create_date:0
+#: field:stock.picking.out,create_date:0
+#: field:stock.inventory,date:0
+#: field:stock.move,create_date:0
+#: field:stock.picking,date:0
+#: field:stock.picking.in,date:0
+#: field:stock.picking.out,date:0
+#: field:stock.production.lot,date:0
+#: field:stock.tracking,date:0
+msgid "Creation Date"
+msgstr "Ngày tạo"
+
+#. module: sale_stock
+#: help:sale.config.settings,group_invoice_deli_orders:0
+msgid "To allow your salesman to make invoices for Delivery Orders using the menu 'Deliveries to Invoice'."
+msgstr "To allow your salesman to make invoices for Delivery Orders using the menu 'Deliveries to Invoice'."
+
+#. module: stock
+#: field:report.stock.lines.date,id:0
+msgid "Inventory Line Id"
+msgstr "Inventory Line Id"
+
+#. module: stock
+#: help:stock.location,partner_id:0
+msgid "Address of  customer or supplier."
+msgstr "Address of  customer or supplier."
+
+#. module: stock
+#: selection:report.stock.inventory,location_type:0
+#: field:res.partner,property_stock_customer:0
+#: selection:stock.location,usage:0
+msgid "Customer Location"
+msgstr "Địa điểm Khách hàng"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_inventory_line_split_lines
+msgid "Inventory Split lines"
+msgstr "Inventory Split lines"
+
+#. module: stock
+#: model:ir.actions.report.xml,name:stock.report_location_overview
+#: report:lot.stock.overview:0
+msgid "Location Inventory Overview"
+msgstr "Tổng quan Địa điểm Tồn kho"
+
+#. module: stock
+#: code:addons/stock/stock.py:777
+#: code:addons/stock/stock.py:2522
+#: code:addons/stock/stock.py:2573
+#: code:addons/stock/stock.py:2634
+#: code:addons/stock/wizard/stock_change_product_qty.py:101
+#: code:addons/stock/wizard/stock_fill_inventory.py:129
+#: code:addons/stock/wizard/stock_inventory_merge.py:43
+#: code:addons/stock/wizard/stock_inventory_merge.py:63
+#: code:addons/stock/wizard/stock_invoice_onshipping.py:96
+#: code:addons/stock/wizard/stock_invoice_onshipping.py:98
+#: code:addons/stock/wizard/stock_partial_picking.py:174
+#: code:addons/stock/wizard/stock_partial_picking.py:181
+#: code:addons/stock/wizard/stock_partial_picking.py:192
+#: code:addons/stock/wizard/stock_return_picking.py:102
+#: code:addons/stock/wizard/stock_return_picking.py:109
+#: code:addons/stock/wizard/stock_return_picking.py:212
+#, python-format
+msgid "Warning!"
+msgstr "Cảnh báo!"
+
+#. module: stock
+#: view:report.stock.inventory:0
+msgid "Analysis including future moves (similar to virtual stock)"
+msgstr "Analysis including future moves (similar to virtual stock)"
+
+#. module: general_stock
+#: field:stock.actual.cost.details,transaction_id:0
+msgid "Transaction"
+msgstr "Transaction"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action3
+msgid "Downstream traceability"
+msgstr "Downstream traceability"
+
+#. module: stock
+#: view:stock.picking.in:0
+msgid "Receive"
+msgstr "Nhận hàng"
+
+#. module: general_stock
+#: field:stock.picking,tax_amount:0
+#: field:stock.picking.in,tax_amount:0
+#: field:stock.picking.out,tax_amount:0
+msgid "Tax Amount"
+msgstr "Tax Amount"
+
+#. module: stock
+#: help:stock.incoterms,active:0
+msgid "By unchecking the active field, you may hide an INCOTERM without deleting it."
+msgstr "By unchecking the active field, you may hide an INCOTERM without deleting it."
+
+#. module: stock
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+msgid "Order Date"
+msgstr "Ngày đặt hàng"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_change_product_qty.py:102
+#, python-format
+msgid "INV: %s"
+msgstr "INV: %s"
+
+#. modules: general_stock, stock
+#: view:stock.location:0
+#: view:stock.location:0
+#: field:stock.location,location_id:0
+msgid "Parent Location"
+msgstr "Địa điểm Cha"
+
+#. module: stock
+#: code:addons/stock/product.py:170
+#, python-format
+msgid "Please define stock output account for this product: \"%s\" (id: %d)."
+msgstr "Please define stock output account for this product: \"%s\" (id: %d)."
+
+#. module: stock
+#: help:stock.location,company_id:0
+msgid "Let this field empty if this location is shared between all companies"
+msgstr "Let this field empty if this location is shared between all companies"
+
+#. module: stock
+#: field:stock.location,chained_delay:0
+msgid "Chaining Lead Time"
+msgstr "Chaining Lead Time"
+
+#. module: stock
+#: field:stock.config.settings,group_uom:0
+msgid "Manage different units of measure for products"
+msgstr "Manage different units of measure for products"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_invoice_onshipping
+msgid "Stock Invoice Onshipping"
+msgstr "Stock Invoice Onshipping"
+
+#. module: stock
+#: code:addons/stock/stock.py:2522
+#, python-format
+msgid "Please provide a positive quantity to scrap."
+msgstr "Please provide a positive quantity to scrap."
+
+#. module: sale_stock
+#: code:addons/sale_stock/sale_stock.py:265
+#, python-format
+msgid "invalid mode for test_state"
+msgstr "hình thức không hợp lệ cho trạng thái kiểm tra"
+
+#. module: stock
+#: help:stock.partial.move.line,currency:0
+#: help:stock.partial.picking.line,currency:0
+msgid "Currency in which Unit cost is expressed"
+msgstr "Currency in which Unit cost is expressed"
+
+#. module: stock
+#: selection:stock.picking,move_type:0
+#: selection:stock.picking.in,move_type:0
+#: selection:stock.picking.out,move_type:0
+msgid "Partial"
+msgstr "Chia nhiều phần"
+
+#. module: stock
+#: help:stock.picking,message_summary:0
+#: help:stock.picking.in,message_summary:0
+#: help:stock.picking.out,message_summary:0
+msgid "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+msgstr "Holds the Chatter summary (number of messages, ...). This summary is directly in html format in order to be inserted in kanban views."
+
+#. module: stock
+#: selection:report.stock.inventory,month:0
+#: selection:report.stock.move,month:0
+msgid "September"
+msgstr "Tháng Chín"
+
+#. module: sale_stock
+#: field:sale.config.settings,module_delivery:0
+msgid "Allow adding shipping costs"
+msgstr "Allow adding shipping costs"
+
+#. modules: sale_stock, stock
+#: view:sale.order:0
+#: view:product.product:0
+msgid "days"
+msgstr "ngày"
+
+#. module: stock
+#: model:ir.model,name:stock.model_report_stock_inventory
+msgid "Stock Statistics"
+msgstr "Thống kê hàng hóa"
+
+#. module: stock
+#: field:stock.partial.move.line,currency:0
+#: field:stock.partial.picking.line,currency:0
+msgid "Currency"
+msgstr "Loại tiền"
+
+#. module: stock
+#: help:stock.picking,origin:0
+#: help:stock.picking.in,origin:0
+#: help:stock.picking.out,origin:0
+msgid "Reference of the document"
+msgstr "Tham khảo của tài liệu"
+
+#. modules: general_stock, stock
+#: model:ir.ui.menu,name:general_stock.menu_action_picking_tree4_picking_to_invoice_general_modify
+#: model:ir.actions.act_window,name:stock.action_picking_tree4_picking_to_invoice
+msgid "On Incoming Shipments"
+msgstr "Giao nhận chưa tạo hóa đơn"
+
+#. module: general_stock
+#: model:ir.actions.act_window,help:general_stock.action_internal_location_form
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"	                Click to add a location.\n"
+"	              </p><p>\n"
+"	                Display internal locations only.\n"
+"	              </p>\n"
+"	            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"	                Click to add a location.\n"
+"	              </p><p>\n"
+"	                Display internal locations only.\n"
+"	              </p>\n"
+"	            "
+
+#. module: stock
+#: report:stock.picking.list:0
+msgid "Incoming Shipment :"
+msgstr "Incoming Shipment :"
+
+#. module: stock
+#: field:stock.location,valuation_out_account_id:0
+msgid "Stock Valuation Account (Outgoing)"
+msgstr "Stock Valuation Account (Outgoing)"
+
+#. module: general_stock
+#: field:stock.item.cost.layers,this_item_cost:0
+msgid "This Item Cost"
+msgstr "This Item Cost"
+
+#. module: stock
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+msgid "To Invoice"
+msgstr "Chờ Hóa đơn"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_move_form2
+#: model:ir.ui.menu,name:stock.menu_action_move_form2
+#: view:stock.inventory:0
+#: view:stock.move:0
+#: view:stock.production.lot:0
+msgid "Stock Moves"
+msgstr "Dịch chuyển hàng tồn kho"
+
+#. module: stock
+#: help:stock.inventory.line.split,use_exist:0
+#: help:stock.move.split,use_exist:0
+msgid "Check this option to select existing serial numbers in the list below, otherwise you should enter new ones line by line."
+msgstr "Check this option to select existing serial numbers in the list below, otherwise you should enter new ones line by line."
+
+#. modules: general_stock, stock
+#: selection:stock.journal,source_type:0
+#: selection:report.stock.move,type:0
+#: selection:stock.location,chained_picking_type:0
+#: selection:stock.move,type:0
+#: selection:stock.picking,type:0
+#: selection:stock.picking.in,type:0
+#: selection:stock.picking.out,type:0
+msgid "Sending Goods"
+msgstr "Xuất hàng ra ngoài"
+
+#. module: stock
+#: model:ir.ui.menu,name:stock.menu_product_category_config_stock
+msgid "Product Categories"
+msgstr "Loại sản phẩm POS"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Cancel Availability"
+msgstr "Cancel Availability"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_location_product.py:49
+#, python-format
+msgid "Current Inventory"
+msgstr "Current Inventory"
+
+#. module: stock
+#: help:product.template,property_stock_production:0
+msgid "This stock location will be used, instead of the default one, as the source location for stock moves generated by manufacturing orders."
+msgstr "This stock location will be used, instead of the default one, as the source location for stock moves generated by manufacturing orders."
+
+#. module: stock
+#: help:stock.move,date_expected:0
+msgid "Scheduled date for the processing of this move"
+msgstr "Scheduled date for the processing of this move"
+
+#. module: stock
+#: field:stock.inventory,move_ids:0
+msgid "Created Moves"
+msgstr "Xuất/Nhập điều chỉnh"
+
+#. module: stock
+#: field:stock.location,valuation_in_account_id:0
+msgid "Stock Valuation Account (Incoming)"
+msgstr "Stock Valuation Account (Incoming)"
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "Split in serial numbers"
+msgstr "Nhóm theo Lô"
+
+#. module: sale_stock
+#: field:res.company,security_lead:0
+msgid "Security Days"
+msgstr "Security Days"
+
+#. module: sale_stock
+#: model:process.transition,name:sale_stock.process_transition_saleorderprocurement0
+msgid "Procurement of sold material"
+msgstr "Procurement of sold material"
+
+#. module: stock
+#: help:stock.location,posx:0
+#: help:stock.location,posy:0
+#: help:stock.location,posz:0
+msgid "Optional localization details, for information purpose only"
+msgstr "Optional localization details, for information purpose only"
+
+#. module: stock
+#: view:product.product:0
+#: view:product.template:0
+msgid "Counter-Part Locations Properties"
+msgstr "Counter-Part Locations Properties"
+
+#. module: stock
+#: view:stock.location:0
+msgid "Localization"
+msgstr "Địa phương"
+
+#. module: stock
+#: code:addons/stock/product.py:462
+#, python-format
+msgid "Delivered Qty"
+msgstr "Số lượng đã giao"
+
+#. module: general_stock
+#: field:stock.picking,total_amount:0
+#: field:stock.picking.in,total_amount:0
+#: field:stock.picking.out,total_amount:0
+msgid "Total Amount"
+msgstr "Total Amount"
+
+#. module: stock
+#: help:product.template,property_stock_account_output:0
+msgid "When doing real-time inventory valuation, counterpart journal items for all outgoing stock moves will be posted in this account, unless there is a specific valuation account set on the destination location. When not set on the product, the one from the product category is used."
+msgstr "When doing real-time inventory valuation, counterpart journal items for all outgoing stock moves will be posted in this account, unless there is a specific valuation account set on the destination location. When not set on the product, the one from the product category is used."
+
+#. module: general_stock
+#: selection:stock.journal,source_type:0
+msgid "Return from customer"
+msgstr "Return from customer"
+
+#. module: stock
+#: view:report.stock.move:0
+msgid "Day Planned"
+msgstr "Day Planned"
+
+#. module: stock
+#: help:stock.picking,state:0
+msgid "\n"
+"            * Draft: not confirmed yet and will not be scheduled until confirmed\n"
+"\n"
+"            * Waiting Another Operation: waiting for another move to proceed before it becomes automatically available (e.g. in Make-To-Order flows)\n"
+"\n"
+"            * Waiting Availability: still waiting for the availability of products\n"
+"\n"
+"            * Ready to Transfer: products reserved, simply waiting for confirmation.\n"
+"\n"
+"            * Transferred: has been processed, can't be modified or cancelled anymore\n"
+"\n"
+"            * Cancelled: has been cancelled, can't be confirmed anymore"
+msgstr "\n"
+"            * Draft: not confirmed yet and will not be scheduled until confirmed\n"
+"\n"
+"            * Waiting Another Operation: waiting for another move to proceed before it becomes automatically available (e.g. in Make-To-Order flows)\n"
+"\n"
+"            * Waiting Availability: still waiting for the availability of products\n"
+"\n"
+"            * Ready to Transfer: products reserved, simply waiting for confirmation.\n"
+"\n"
+"            * Transferred: has been processed, can't be modified or cancelled anymore\n"
+"\n"
+"            * Cancelled: has been cancelled, can't be confirmed anymore"
+
+#. module: sale_stock
+#: help:sale.order,shipped:0
+msgid "It indicates that the sales order has been delivered. This field is updated only after the scheduler(s) have been launched."
+msgstr "It indicates that the sales order has been delivered. This field is updated only after the scheduler(s) have been launched."
+
+#. module: stock
+#: view:report.stock.inventory:0
+#: field:report.stock.inventory,date:0
+#: field:report.stock.move,date:0
+#: view:stock.inventory:0
+#: report:stock.inventory.move:0
+#: view:stock.move:0
+#: field:stock.move,date:0
+#: field:stock.partial.move,date:0
+#: field:stock.partial.picking,date:0
+msgid "Date"
+msgstr "Ngày"
+
+#. module: stock
+#: field:stock.picking,message_is_follower:0
+#: field:stock.picking.in,message_is_follower:0
+#: field:stock.picking.out,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Là một người theo dõi"
+
+#. module: stock
+#: view:report.stock.inventory:0
+#: view:report.stock.move:0
+msgid "Extended Filters..."
+msgstr "Bộ lọc mở rộng..."
+
+#. module: sale_stock
+#: help:res.company,security_lead:0
+msgid "Margin of error for dates promised to customers. Products will be scheduled for procurement and delivery that many days earlier than the actual promised date, to cope with unexpected delays in the supply chain."
+msgstr "Margin of error for dates promised to customers. Products will be scheduled for procurement and delivery that many days earlier than the actual promised date, to cope with unexpected delays in the supply chain."
+
+#. module: stock
+#: field:stock.tracking,move_ids:0
+msgid "Moves for this pack"
+msgstr "Moves for this pack"
+
+#. module: sale_stock
+#: model:ir.model,name:sale_stock.model_sale_shop
+msgid "Sales Shop"
+msgstr "Sales Shop"
+
+#. module: stock
+#: field:stock.warehouse,lot_stock_id:0
+msgid "Location Stock"
+msgstr "Vị trí hàng hóa"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_partial_picking.py:97
+#, python-format
+msgid "_Deliver"
+msgstr "_Deliver"
+
+#. module: general_stock
+#: model:ir.model,name:general_stock.model_stock_item_cost_layers
+msgid "stock.item.cost.layers"
+msgstr "stock.item.cost.layers"
+
+#. module: stock
+#: view:stock.location:0
+msgid "Customer Locations"
+msgstr "Địa điểm Khách hàng"
+
+#. module: sale_stock
+#: help:sale.config.settings,task_work:0
+msgid "Lets you transfer the entries under tasks defined for Project Management to\n"
+"                the Timesheet line entries for particular date and particular user  with the effect of creating, editing and deleting either ways\n"
+"                and to automatically creates project tasks from procurement lines.\n"
+"                This installs the modules project_timesheet and project_mrp."
+msgstr "Lets you transfer the entries under tasks defined for Project Management to\n"
+"                the Timesheet line entries for particular date and particular user  with the effect of creating, editing and deleting either ways\n"
+"                and to automatically creates project tasks from procurement lines.\n"
+"                This installs the modules project_timesheet and project_mrp."
+
+#. module: general_stock
+#: field:stock.actual.cost.details,user_entered:0
+msgid "User Entered"
+msgstr "User Entered"
+
+#. module: stock
+#: help:stock.picking.out,state:0
+msgid "* Draft: not confirmed yet and will not be scheduled until confirmed\n"
+"\n"
+"                 * Waiting Another Operation: waiting for another move to proceed before it becomes automatically available (e.g. in Make-To-Order flows)\n"
+"\n"
+"                 * Waiting Availability: still waiting for the availability of products\n"
+"\n"
+"                 * Ready to Deliver: products reserved, simply waiting for confirmation.\n"
+"\n"
+"                 * Delivered: has been processed, can't be modified or cancelled anymore\n"
+"\n"
+"                 * Cancelled: has been cancelled, can't be confirmed anymore"
+msgstr "* Draft: not confirmed yet and will not be scheduled until confirmed\n"
+"\n"
+"                 * Waiting Another Operation: waiting for another move to proceed before it becomes automatically available (e.g. in Make-To-Order flows)\n"
+"\n"
+"                 * Waiting Availability: still waiting for the availability of products\n"
+"\n"
+"                 * Ready to Deliver: products reserved, simply waiting for confirmation.\n"
+"\n"
+"                 * Delivered: has been processed, can't be modified or cancelled anymore\n"
+"\n"
+"                 * Cancelled: has been cancelled, can't be confirmed anymore"
+
+#. modules: general_stock, stock
+#: field:stock.return.reason,code:0
+#: field:stock.warehouse,code:0
+#: field:stock.incoterms,code:0
+msgid "Code"
+msgstr "Mã"
+
+#. module: stock
+#: view:stock.inventory.line.split:0
+msgid "Lots Number"
+msgstr "Mã Lô"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_report_tracklots
+msgid "Stock report by logistic serial number"
+msgstr "Stock report by logistic serial number"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_deliver_move
+#: view:product.product:0
+msgid "Deliveries"
+msgstr "Deliveries"
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_reception_picking_move
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to register a product reception. \n"
+"              </p><p>\n"
+"                Here you can receive individual products, no matter what\n"
+"                purchase order or picking order they come from. You will find\n"
+"                the list of all products you are waiting for. Once you receive\n"
+"                an order, you can filter based on the name of the supplier or\n"
+"                the purchase order reference. Then you can confirm all products\n"
+"                received using the buttons on the right of each line.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to register a product reception. \n"
+"              </p><p>\n"
+"                Here you can receive individual products, no matter what\n"
+"                purchase order or picking order they come from. You will find\n"
+"                the list of all products you are waiting for. Once you receive\n"
+"                an order, you can filter based on the name of the supplier or\n"
+"                the purchase order reference. Then you can confirm all products\n"
+"                received using the buttons on the right of each line.\n"
+"              </p>\n"
+"            "
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_picking_tree4_picking_to_invoice
+msgid "<p>\n"
+"		            Here you can track all the product receptions of purchase\n"
+"		            orders where the invoicing is \"Based on Incoming Shipments\",\n"
+"		            and for which you have not received a supplier invoice yet.\n"
+"		            You can generate a supplier invoice based on those receptions.\n"
+"		          </p>\n"
+"		        "
+msgstr "<p>\n"
+"		            Here you can track all the product receptions of purchase\n"
+"		            orders where the invoicing is \"Based on Incoming Shipments\",\n"
+"		            and for which you have not received a supplier invoice yet.\n"
+"		            You can generate a supplier invoice based on those receptions.\n"
+"		          </p>\n"
+"		        "
+
+#. module: stock
+#: code:addons/stock/wizard/stock_partial_move.py:72
+#: code:addons/stock/wizard/stock_return_picking.py:189
+#, python-format
+msgid "You have manually created product lines, please delete them to proceed"
+msgstr "You have manually created product lines, please delete them to proceed"
+
+#. modules: sale_stock, stock
+#: model:process.transition.action,name:sale_stock.process_transition_action_cancel1
+#: model:process.transition.action,name:sale_stock.process_transition_action_cancel2
+#: view:stock.change.product.qty:0
+#: view:stock.change.standard.price:0
+#: view:stock.config.settings:0
+#: view:stock.fill.inventory:0
+#: view:stock.inventory.line.split:0
+#: view:stock.inventory.merge:0
+#: view:stock.invoice.onshipping:0
+#: view:stock.location.product:0
+#: view:stock.move.consume:0
+#: view:stock.move.scrap:0
+#: view:stock.move.split:0
+#: view:stock.partial.move:0
+#: view:stock.partial.picking:0
+#: view:stock.return.picking:0
+#: view:stock.split.into:0
+msgid "Cancel"
+msgstr "Hủy bỏ"
+
+#. modules: general_stock, stock
+#: model:ir.model,name:general_stock.model_stock_return_picking
+#: model:ir.model,name:stock.model_stock_return_picking
+msgid "Return Picking"
+msgstr "Return Picking"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.act_stock_return_picking
+#: model:ir.actions.act_window,name:stock.act_stock_return_picking_in
+#: model:ir.actions.act_window,name:stock.act_stock_return_picking_out
+msgid "Return Shipment"
+msgstr "Return Shipment"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_inventory
+#: selection:report.stock.inventory,location_type:0
+#: field:stock.inventory.line,inventory_id:0
+#: report:stock.inventory.move:0
+#: selection:stock.location,usage:0
+msgid "Inventory"
+msgstr "Kiểm kê"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_view_stock_fill_inventory
+#: view:stock.fill.inventory:0
+#: view:stock.inventory:0
+msgid "Fill Inventory"
+msgstr "Hiển thị tồn kho hiện tại"
+
+#. module: stock
+#: view:stock.return.picking:0
+msgid "Provide the quantities of the returned products."
+msgstr "Provide the quantities of the returned products."
+
+#. module: stock
+#: view:product.product:0
+#: view:stock.change.standard.price:0
+msgid "Cost Price"
+msgstr "Giá Vốn"
+
+#. module: stock
+#: view:product.product:0
+#: field:product.product,valuation:0
+msgid "Inventory Valuation"
+msgstr "Inventory Valuation"
+
+#. modules: sale_stock, stock
+#: model:process.transition,name:sale_stock.process_transition_invoiceafterdelivery0
+#: view:stock.invoice.onshipping:0
+msgid "Create Invoice"
+msgstr "Tạo hóa đơn"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Process Later"
+msgstr "Xử lý sau"
+
+#. module: sale_stock
+#: field:sale.config.settings,task_work:0
+msgid "Prepare invoices based on task's activities"
+msgstr "Prepare invoices based on task's activities"
+
+#. module: stock
+#: help:res.partner,property_stock_supplier:0
+msgid "This stock location will be used, instead of the default one, as the source location for goods you receive from the current partner"
+msgstr "This stock location will be used, instead of the default one, as the source location for goods you receive from the current partner"
+
+#. module: stock
+#: sql_constraint:stock.production.lot:0
+msgid "The combination of Serial Number and internal reference must be unique !"
+msgstr "The combination of Serial Number and internal reference must be unique !"
+
+#. module: stock
+#: help:product.template,property_stock_account_input:0
+msgid "When doing real-time inventory valuation, counterpart journal items for all incoming stock moves will be posted in this account, unless there is a specific valuation account set on the source location. When not set on the product, the one from the product category is used."
+msgstr "When doing real-time inventory valuation, counterpart journal items for all incoming stock moves will be posted in this account, unless there is a specific valuation account set on the source location. When not set on the product, the one from the product category is used."
+
+#. module: stock
+#: field:stock.warehouse,partner_id:0
+msgid "Owner Address"
+msgstr "Địa chỉ người sở hữu"
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_stock_move_report
+msgid "Moves Analysis allows you to easily check and analyse your company stock moves. Use this report when you want to analyse the different routes taken by your products and inventory management performance."
+msgstr "Moves Analysis allows you to easily check and analyse your company stock moves. Use this report when you want to analyse the different routes taken by your products and inventory management performance."
+
+#. module: general_stock
+#: field:stock.item.cost.layers,update_transaction_id:0
+msgid "Update Transaction"
+msgstr "Update Transaction"
+
+#. module: stock
+#: constraint:stock.move:0
+msgid "You try to assign a lot which is not from the same product."
+msgstr "You try to assign a lot which is not from the same product."
+
+#. module: stock
+#: field:report.stock.move,day_diff1:0
+msgid "Planned Lead Time (Days)"
+msgstr "Planned Lead Time (Days)"
+
+#. module: stock
+#: field:stock.change.standard.price,new_price:0
+msgid "Price"
+msgstr "Giá"
+
+#. module: sale_stock
+#: code:addons/sale_stock/res_config.py:81
+#, python-format
+msgid "Only administrators can change the settings"
+msgstr "Only administrators can change the settings"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_return_picking_memory
+msgid "stock.return.picking.memory"
+msgstr "stock.return.picking.memory"
+
+#. module: stock
+#: field:stock.config.settings,group_stock_inventory_valuation:0
+msgid "Generate accounting entries per stock movement"
+msgstr "Generate accounting entries per stock movement"
+
+#. module: general_stock
+#: field:stock.picking,write_uid:0
+#: field:stock.picking.in,write_uid:0
+#: field:stock.picking.out,write_uid:0
+msgid "Updated by"
+msgstr "Updated by"
+
+#. module: stock
+#: code:addons/stock/product.py:452
+#, python-format
+msgid "Received Qty"
+msgstr "Số lượng nhận vào"
+
+#. module: sale_stock
+#: model:process.node,note:sale_stock.process_node_invoiceafterdelivery0
+msgid "Based on the shipped or on the ordered quantities."
+msgstr "Based on the shipped or on the ordered quantities."
+
+#. module: stock
+#: field:stock.production.lot,ref:0
+msgid "Internal Reference"
+msgstr "Mã số đối chiếu"
+
+#. module: stock
+#: view:stock.picking:0
+msgid "Delivery orders already processed"
+msgstr "Delivery orders already processed"
+
+#. module: stock
+#: help:stock.production.lot,prefix:0
+msgid "Optional prefix to prepend when displaying this serial number: PREFIX/SERIAL [INT_REF]"
+msgstr "Optional prefix to prepend when displaying this serial number: PREFIX/SERIAL [INT_REF]"
+
+#. module: stock
+#: help:product.product,track_production:0
+msgid "Forces to specify a Serial Number for all moves containing this product and generated by a Manufacturing Order"
+msgstr "Forces to specify a Serial Number for all moves containing this product and generated by a Manufacturing Order"
+
+#. module: sale_stock
+#: selection:sale.order,picking_policy:0
+msgid "Deliver all products at once"
+msgstr "Deliver all products at once"
+
+#. module: sale_stock
+#: field:sale.order,picking_ids:0
+msgid "Related Picking"
+msgstr "Related Picking"
+
+#. modules: general_stock, stock
+#: field:stock.return.reason,name:0
+#: field:stock.incoterms,name:0
+#: field:stock.warehouse,name:0
+msgid "Name"
+msgstr "Tên"
+
+#. module: stock
+#: report:stock.picking.list:0
+msgid "Supplier Address :"
+msgstr "Supplier Address :"
+
+#. module: sale_stock
+#: model:ir.model,name:sale_stock.model_res_company
+msgid "Companies"
+msgstr "Các công ty"
+
+#. module: stock
+#: field:stock.config.settings,group_product_variant:0
+msgid "Support multiple variants per products  "
+msgstr "Support multiple variants per products  "
+
+#. module: stock
+#: view:stock.inventory.line:0
+msgid "Stock Inventory Lines"
+msgstr "Chi tiết kiểm kê"
+
+#. module: stock
+#: view:report.stock.lines.date:0
+msgid "Stockable"
+msgstr "Stockable"
+
+#. module: general_stock
+#: model:ir.ui.menu,name:general_stock.menu_cost_history
+msgid "Cost Histories"
+msgstr "Lịch sử tính giá vốn"
+
+#. module: stock
+#: help:stock.move,tracking_id:0
+msgid "Logistical shipping unit: pallet, box, pack ..."
+msgstr "Logistical shipping unit: pallet, box, pack ..."
+
+#. module: stock
+#: code:addons/stock/wizard/stock_inventory_merge.py:64
+#, python-format
+msgid "Merging is only allowed on draft inventories."
+msgstr "Merging is only allowed on draft inventories."
+
+#. module: stock
+#: code:addons/stock/stock.py:2497
+#: code:addons/stock/stock.py:2912
+#, python-format
+msgid "User Error!"
+msgstr "User Error!"
+
+#. module: stock
+#: view:stock.partial.picking:0
+msgid "Stock partial Picking"
+msgstr "Stock partial Picking"
+
+#. modules: general_stock, stock
+#: view:stock.picking:0
+#: view:stock.picking:0
+msgid "Create Invoice/Refund"
+msgstr "Tạo hóa đơn/ Hoàn trả"
+
+#. module: stock
+#: help:stock.picking,message_ids:0
+#: help:stock.picking.in,message_ids:0
+#: help:stock.picking.out,message_ids:0
+msgid "Messages and communication history"
+msgstr "Tin nhắn và lịch sử liên lạc"
+
+#. module: stock
+#: view:report.stock.inventory:0
+#: view:report.stock.move:0
+msgid "Total value"
+msgstr "Tổng giá trị"
+
+#. module: sale_stock
+#: model:process.transition,name:sale_stock.process_transition_deliver0
+msgid "Create Delivery Order"
+msgstr "Create Delivery Order"
+
+#. module: stock
+#: help:stock.location,chained_journal_id:0
+msgid "Inventory Journal in which the chained move will be written, if the Chaining Type is not Transparent (no journal is used if left empty)"
+msgstr "Inventory Journal in which the chained move will be written, if the Chaining Type is not Transparent (no journal is used if left empty)"
+
+#. module: stock
+#: selection:report.stock.inventory,location_type:0
+#: field:res.partner,property_stock_supplier:0
+#: selection:stock.location,usage:0
+msgid "Supplier Location"
+msgstr "Vị trí nhà cung cấp"
+
+#. module: stock
+#: view:stock.location.product:0
+msgid "View Products Inventory"
+msgstr "View Products Inventory"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Creation"
+msgstr "Creation"
+
+#. module: stock
+#: view:report.stock.inventory:0
+msgid "Analysis of current inventory (only moves that have already been processed)"
+msgstr "Analysis of current inventory (only moves that have already been processed)"
+
+#. module: stock
+#: field:stock.partial.move.line,cost:0
+#: field:stock.partial.picking.line,cost:0
+msgid "Cost"
+msgstr "Cost"
+
+#. module: stock
+#: field:product.category,property_stock_account_input_categ:0
+#: field:product.template,property_stock_account_input:0
+#: field:stock.change.standard.price,stock_account_input:0
+msgid "Stock Input Account"
+msgstr "Stock Input Account"
+
+#. module: stock
+#: view:report.stock.move:0
+msgid "Shipping type specify, goods coming in or going out"
+msgstr "Shipping type specify, goods coming in or going out"
+
+#. module: stock
+#: view:stock.config.settings:0
+msgid "Accounting"
+msgstr "Kế toán"
+
+#. module: stock
+#: model:ir.ui.menu,name:stock.menu_warehouse_config
+msgid "Warehouse Management"
+msgstr "Quản lý Kho hàng"
+
+#. module: sale_stock
+#: model:process.transition,name:sale_stock.process_transition_packing0
+msgid "Create Pick List"
+msgstr "Create Pick List"
+
+#. module: stock
+#: code:addons/stock/stock.py:1129
+#, python-format
+msgid "Error, no partner!"
+msgstr "Error, no partner!"
+
+#. module: stock
+#: selection:stock.location,chained_auto_packing:0
+msgid "Automatic No Step Added"
+msgstr "Automatic No Step Added"
+
+#. module: stock
+#: help:stock.move,date:0
+msgid "Move date: scheduled date until move is done, then date of actual move processing"
+msgstr "Move date: scheduled date until move is done, then date of actual move processing"
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "Count Qty"
+msgstr "Thực tế đếm"
+
+#. modules: general_stock, stock
+#: view:stock.actual.cost.details:0
+#: view:stock.item.cost.layers:0
+#: view:report.stock.inventory:0
+#: view:report.stock.move:0
+#: view:stock.inventory:0
+#: view:stock.move:0
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+#: view:stock.production.lot:0
+msgid "Group By..."
+msgstr "Nhóm theo..."
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_move_form2
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create a stock movement.\n"
+"              </p><p>\n"
+"                This menu gives you the full traceability of inventory\n"
+"                operations on a specific product. You can filter on the product\n"
+"                to see all the past or future movements for the product.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create a stock movement.\n"
+"              </p><p>\n"
+"                This menu gives you the full traceability of inventory\n"
+"                operations on a specific product. You can filter on the product\n"
+"                to see all the past or future movements for the product.\n"
+"              </p>\n"
+"            "
+
+#. module: stock
+#: view:stock.location:0
+msgid "Chained Locations"
+msgstr "Chained Locations"
+
+#. module: sale_stock
+#: model:ir.actions.act_window,name:sale_stock.outgoing_picking_list_to_invoice
+#: model:ir.ui.menu,name:sale_stock.menu_action_picking_list_to_invoice
+msgid "Deliveries to Invoice"
+msgstr "Deliveries to Invoice"
+
+#. module: stock
+#: field:report.stock.move,product_qty_in:0
+msgid "In Qty"
+msgstr "Số lượng vào"
+
+#. modules: general_stock, stock
+#: view:stock.move:0
+#: view:stock.inventory:0
+#: field:stock.inventory.line.split,product_uom:0
+#: view:stock.move:0
+#: field:stock.move,product_uom:0
+#: field:stock.move.split,product_uom:0
+#: field:stock.partial.move.line,product_uom:0
+#: field:stock.partial.picking.line,product_uom:0
+#: view:stock.production.lot:0
+msgid "Unit of Measure"
+msgstr "Đơn vị tính"
+
+#. module: stock
+#: field:stock.config.settings,group_stock_multiple_locations:0
+msgid "Manage multiple locations and warehouses"
+msgstr "Manage multiple locations and warehouses"
+
+#. module: stock
+#: field:stock.config.settings,group_stock_production_lot:0
+msgid "Track serial number on products"
+msgstr "Track serial number on products"
+
+#. module: sale_stock
+#: model:process.node,name:sale_stock.process_node_packinglist0
+msgid "Pick List"
+msgstr "Pick List"
+
+#. module: stock
+#: help:stock.production.lot,stock_available:0
+msgid "Current quantity of products with this Serial Number available in company warehouses"
+msgstr "Current quantity of products with this Serial Number available in company warehouses"
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "Set to Draft"
+msgstr "Đặt thành dự thảo"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_stock_journal_form
+#: model:ir.ui.menu,name:stock.menu_action_stock_journal_form
+msgid "Stock Journals"
+msgstr "Stock Journals"
+
+#. module: general_stock
+#: model:ir.ui.menu,name:general_stock.menu_action_move_return_supplier
+msgid "Return To Supplier"
+msgstr "Hàng trả NCC"
+
+#. module: stock
+#: field:stock.warehouse,lot_output_id:0
+msgid "Location Output"
+msgstr "Địa điểm Xuất hàng"
+
+#. module: sale_stock
+#: model:process.node,note:sale_stock.process_node_packinglist0
+msgid "Document of the move to the output or to the customer."
+msgstr "Document of the move to the output or to the customer."
+
+#. module: stock
+#: selection:report.stock.move,type:0
+msgid "Others"
+msgstr "Khác"
+
+#. module: sale_stock
+#: model:process.transition.action,name:sale_stock.process_transition_action_validate0
+msgid "Validate"
+msgstr "Xác nhận"
+
+#. module: stock
+#: help:stock.move,price_currency_id:0
+msgid "Technical field used to record the currency chosen by the user during a picking confirmation (when average price costing method is used)"
+msgstr "Technical field used to record the currency chosen by the user during a picking confirmation (when average price costing method is used)"
+
+#. module: stock
+#: field:product.product,track_incoming:0
+msgid "Track Incoming Lots"
+msgstr "Track Incoming Lots"
+
+#. modules: general_stock, stock
+#: model:ir.actions.act_window,name:general_stock.action_internal_location_form
+#: model:ir.ui.menu,name:general_stock.menu_action_internal_location_form
+#: view:stock.location:0
+msgid "Internal Locations"
+msgstr "Danh mục kho hàng"
+
+#. module: stock
+#: view:board.board:0
+msgid "Warehouse board"
+msgstr "Warehouse board"
+
+#. module: stock
+#: code:addons/stock/product.py:472
+#, python-format
+msgid "Future Qty"
+msgstr "Future Qty"
+
+#. module: stock
+#: model:res.groups,name:stock.group_production_lot
+msgid "Manage Serial Numbers"
+msgstr "Manage Serial Numbers"
+
+#. module: general_stock
+#: view:stock.move:0
+msgid "Return From Customer Moves"
+msgstr "Return From Customer Moves"
+
+#. module: sale_stock
+#: field:stock.picking.out,sale_id:0
+msgid "Sale Order"
+msgstr "Đơn chào hàng"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_partial_picking.py:181
+#, python-format
+msgid "The unit of measure rounding does not allow you to ship \"%s %s\", only rounding of \"%s %s\" is accepted by the Unit of Measure."
+msgstr "The unit of measure rounding does not allow you to ship \"%s %s\", only rounding of \"%s %s\" is accepted by the Unit of Measure."
+
+#. module: stock
+#: report:lot.stock.overview:0
+#: report:lot.stock.overview_all:0
+msgid "Value"
+msgstr "Giá trị"
+
+#. module: stock
+#: field:report.stock.move,type:0
+#: field:stock.location,chained_picking_type:0
+#: field:stock.move,type:0
+#: field:stock.picking,type:0
+#: field:stock.picking.in,type:0
+#: field:stock.picking.out,type:0
+msgid "Shipping Type"
+msgstr "Loại giao nhận"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Process Partially"
+msgstr "Chuyển một phần"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Stock moves that are Confirmed, Available or Waiting"
+msgstr "Stock moves that are Confirmed, Available or Waiting"
+
+#. modules: general_stock, stock
+#: view:stock.picking:0
+#: model:ir.actions.act_window,name:stock.act_product_location_open
+#: model:ir.ui.menu,name:stock.menu_product_in_config_stock
+#: model:ir.ui.menu,name:stock.menu_stock_product
+#: model:ir.ui.menu,name:stock.menu_stock_products_menu
+#: view:stock.config.settings:0
+#: view:stock.inventory:0
+#: view:stock.partial.move:0
+#: view:stock.picking:0
+msgid "Products"
+msgstr "Sản phẩm"
+
+#. module: stock
+#: view:stock.inventory.line:0
+msgid "Split Inventory Line"
+msgstr "Split Inventory Line"
+
+#. module: sale_stock
+#: field:sale.order,picking_policy:0
+msgid "Shipping Policy"
+msgstr "Chính sách vận chuyển"
+
+#. module: stock
+#: selection:stock.location,chained_location_type:0
+msgid "None"
+msgstr "Không"
+
+#. module: stock
+#: view:stock.change.standard.price:0
+msgid "Change Price"
+msgstr "Change Price"
+
+#. module: stock
+#: field:stock.picking,move_type:0
+#: field:stock.picking.in,move_type:0
+#: field:stock.picking.out,move_type:0
+msgid "Delivery Method"
+msgstr "Phương thức Giao hàng"
+
+#. module: stock
+#: help:report.stock.move,location_dest_id:0
+#: help:stock.move,location_dest_id:0
+#: help:stock.picking,location_dest_id:0
+#: help:stock.picking.in,location_dest_id:0
+#: help:stock.picking.out,location_dest_id:0
+msgid "Location where the system will stock the finished products."
+msgstr "Vị trí mà hệ thống sẽ cất thành phẩm vào kho."
+
+#. module: stock
+#: view:board.board:0
+#: model:ir.actions.act_window,name:stock.action_stock_outgoing_product_delay
+msgid "Outgoing Products"
+msgstr "Outgoing Products"
+
+#. modules: general_stock, sale_stock, stock
+#: model:ir.model,name:general_stock.model_stock_move
+#: model:ir.model,name:sale_stock.model_stock_move
+#: model:ir.model,name:stock.model_stock_move
+#: view:stock.partial.move:0
+msgid "Stock Move"
+msgstr "Stock Move"
+
+#. module: stock
+#: view:report.stock.move:0
+msgid "Delay(Days)"
+msgstr "Delay(Days)"
+
+#. module: stock
+#: code:addons/stock/stock.py:2702
+#, python-format
+msgid "Missing partial picking data for move #%s."
+msgstr "Missing partial picking data for move #%s."
+
+#. module: sale_stock
+#: code:addons/sale_stock/sale_stock.py:163
+#, python-format
+msgid "Invalid Action!"
+msgstr "Invalid Action!"
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_picking_tree
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"	                Click to create a delivery order. \n"
+"	              </p><p>\n"
+"	                This is the list of all delivery orders that have to be\n"
+"	                prepared, according to your different sales orders and your\n"
+"	                logistics rules.\n"
+"	              </p>\n"
+"	            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"	                Click to create a delivery order. \n"
+"	              </p><p>\n"
+"	                This is the list of all delivery orders that have to be\n"
+"	                prepared, according to your different sales orders and your\n"
+"	                logistics rules.\n"
+"	              </p>\n"
+"	            "
+
+#. module: general_stock
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+#: view:stock.picking.out:0
+msgid "Are you sure you want to reopen this stock picking?"
+msgstr "Are you sure you want to reopen this stock picking?"
+
+#. module: sale_stock
+#: field:sale.config.settings,module_project_timesheet:0
+msgid "Project Timesheet"
+msgstr "Project Timesheet"
+
+#. module: sale_stock
+#: field:sale.config.settings,group_sale_delivery_address:0
+msgid "Allow a different address for delivery and invoicing "
+msgstr "Allow a different address for delivery and invoicing "
+
+#. module: stock
+#: code:addons/stock/product.py:468
+#, python-format
+msgid "P&L Qty"
+msgstr "P&L Qty"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_config_settings
+msgid "stock.config.settings"
+msgstr "stock.config.settings"
+
+#. module: stock
+#: view:stock.production.lot:0
+#: field:stock.production.lot,revisions:0
+msgid "Revisions"
+msgstr "Revisions"
+
+#. module: general_stock
+#: view:stock.move:0
+msgid "SKU"
+msgstr "SKU"
+
+#. module: stock
+#: help:product.product,valuation:0
+msgid "If real-time valuation is enabled for a product, the system will automatically write journal entries corresponding to stock moves.The inventory variation account set on the product category will represent the current inventory value, and the stock input and stock output account will hold the counterpart moves for incoming and outgoing products."
+msgstr "If real-time valuation is enabled for a product, the system will automatically write journal entries corresponding to stock moves.The inventory variation account set on the product category will represent the current inventory value, and the stock input and stock output account will hold the counterpart moves for incoming and outgoing products."
+
+#. module: stock
+#: view:stock.return.picking.memory:0
+msgid "Return Picking Memory"
+msgstr "Return Picking Memory"
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_stock_inventory_report
+msgid "Inventory Analysis allows you to easily check and analyse your company stock levels. Sort and group by selection criteria in order to better analyse and manage your company  activities."
+msgstr "Inventory Analysis allows you to easily check and analyse your company stock levels. Sort and group by selection criteria in order to better analyse and manage your company  activities."
+
+#. module: stock
+#: help:report.stock.move,location_id:0
+#: help:stock.move,location_id:0
+msgid "Sets a location if you produce at a fixed location. This can be a partner location if you subcontract the manufacturing operations."
+msgstr "Sets a location if you produce at a fixed location. This can be a partner location if you subcontract the manufacturing operations."
+
+#. module: stock
+#: view:stock.invoice.onshipping:0
+msgid "Create"
+msgstr "Tạo mới"
+
+#. module: stock
+#: field:stock.change.product.qty,new_quantity:0
+msgid "New Quantity on Hand"
+msgstr "New Quantity on Hand"
+
+#. module: stock
+#: selection:stock.location.product,type:0
+msgid "Analyze current inventory"
+msgstr "Analyze current inventory"
+
+#. module: stock
+#: field:stock.move,priority:0
+msgid "Priority"
+msgstr "Ưu tiên"
+
+#. module: stock
+#: view:stock.move:0
+#: field:stock.move,origin:0
+msgid "Source"
+msgstr "Nguồn"
+
+#. modules: general_stock, stock
+#: model:ir.model,name:general_stock.model_stock_location
+#: field:stock.return.picking,location_id:0
+#: model:ir.model,name:stock.model_stock_location
+#: field:product.product,location_id:0
+#: view:report.stock.inventory:0
+#: field:report.stock.inventory,location_id:0
+#: field:stock.change.product.qty,location_id:0
+#: field:stock.fill.inventory,location_id:0
+#: field:stock.inventory.line,location_id:0
+#: report:stock.inventory.move:0
+#: view:stock.move:0
+#: field:stock.move.consume,location_id:0
+#: field:stock.move.scrap,location_id:0
+#: field:stock.partial.move.line,location_id:0
+#: field:stock.partial.picking.line,location_id:0
+#: field:stock.picking,location_id:0
+#: field:stock.picking.in,location_id:0
+#: report:stock.picking.list:0
+#: field:stock.picking.out,location_id:0
+#: field:stock.report.prodlots,location_id:0
+#: field:stock.report.tracklots,location_id:0
+msgid "Location"
+msgstr "Vị trí"
+
+#. modules: general_stock, sale_stock, stock
+#: model:ir.model,name:general_stock.model_stock_picking
+#: model:ir.model,name:sale_stock.model_stock_picking
+#: model:ir.model,name:stock.model_stock_picking
+#: view:stock.picking:0
+msgid "Picking List"
+msgstr "Danh sách chọn"
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "Cancel Inventory"
+msgstr "Hủy kiểm kê"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Cancel Move"
+msgstr "Hủy chuyển"
+
+#. module: general_stock
+#: field:stock.picking,write_date:0
+#: field:stock.picking.in,write_date:0
+#: field:stock.picking.out,write_date:0
+msgid "Last Modification"
+msgstr "Last Modification"
+
+#. module: general_stock
+#: field:stock.actual.cost.details,new_cost:0
+msgid "New Cost"
+msgstr "New Cost"
+
+#. module: stock
+#: model:ir.ui.menu,name:stock.menu_stock_unit_measure_stock
+#: model:ir.ui.menu,name:stock.menu_stock_uom_form_action
+msgid "Units of Measure"
+msgstr "Đơn vị đo"
+
+#. module: stock
+#: selection:stock.location,chained_location_type:0
+msgid "Fixed Location"
+msgstr "Vị trí Cố định"
+
+#. module: stock
+#: field:report.stock.inventory,scrap_location:0
+msgid "scrap"
+msgstr "Kho hàng hư hỏng"
+
+#. module: stock
+#: code:addons/stock/stock.py:1918
+#, python-format
+msgid "By changing the quantity here, you accept the new quantity as complete: OpenERP will not automatically generate a Back Order."
+msgstr "By changing the quantity here, you accept the new quantity as complete: OpenERP will not automatically generate a Back Order."
+
+#. module: stock
+#: report:stock.inventory.move:0
+msgid "Manual Quantity"
+msgstr "Manual Quantity"
+
+#. module: stock
+#: view:product.product:0
+msgid "On hand:"
+msgstr "Thực tế:"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_report_prodlots
+msgid "Stock report by serial number"
+msgstr "Stock report by serial number"
+
+#. module: stock
+#: view:stock.picking:0
+msgid "Cancel Transfer"
+msgstr "Hủy xuất"
+
+#. module: stock
+#: selection:report.stock.inventory,month:0
+#: selection:report.stock.move,month:0
+msgid "July"
+msgstr "Tháng Bảy"
+
+#. module: stock
+#: view:report.stock.lines.date:0
+msgid "Consumable"
+msgstr "Sản phẩm không phụ thuộc kho"
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_stock_line_date
+msgid "Display the last inventories done on your products and easily sort them with specific filtering criteria. If you do frequent and partial inventories, you need this report in order to ensure that the stock of each product is controlled at least once a year."
+msgstr "Display the last inventories done on your products and easily sort them with specific filtering criteria. If you do frequent and partial inventories, you need this report in order to ensure that the stock of each product is controlled at least once a year."
+
+#. module: stock
+#: code:addons/stock/wizard/stock_invoice_onshipping.py:112
+#, python-format
+msgid "Please create Invoices."
+msgstr "Please create Invoices."
+
+#. module: stock
+#: help:stock.config.settings,module_product_expiry:0
+msgid "Track different dates on products and serial numbers.\n"
+"The following dates can be tracked:\n"
+"    - end of life\n"
+"    - best before date\n"
+"    - removal date\n"
+"    - alert date.\n"
+"This installs the module product_expiry."
+msgstr "Track different dates on products and serial numbers.\n"
+"The following dates can be tracked:\n"
+"    - end of life\n"
+"    - best before date\n"
+"    - removal date\n"
+"    - alert date.\n"
+"This installs the module product_expiry."
+
+#. module: stock
+#: code:addons/stock/wizard/stock_partial_picking.py:174
+#, python-format
+msgid "Please provide proper Quantity."
+msgstr "Please provide proper Quantity."
+
+#. module: stock
+#: model:ir.actions.report.xml,name:stock.report_product_history
+msgid "Stock Level Forecast"
+msgstr "Stock Level Forecast"
+
+#. module: stock
+#: model:ir.model,name:stock.model_report_stock_lines_date
+#: view:report.stock.lines.date:0
+msgid "Dates of Inventories"
+msgstr "Dates of Inventories"
+
+#. modules: sale_stock, stock
+#: field:sale.order.line,procurement_id:0
+#: selection:report.stock.inventory,location_type:0
+#: selection:stock.location,usage:0
+msgid "Procurement"
+msgstr "Thu mua hàng"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_change_product_qty.py:92
+#, python-format
+msgid "Active ID is not set in Context"
+msgstr "Active ID is not set in Context"
+
+#. module: stock
+#: selection:report.stock.inventory,month:0
+#: selection:report.stock.move,month:0
+msgid "March"
+msgstr "Tháng Ba"
+
+#. modules: general_stock, stock
+#: view:stock.picking:0
+#: view:stock.move:0
+#: view:stock.picking:0
+msgid "Force Availability"
+msgstr "Cho phép đủ hàng"
+
+#. module: stock
+#: field:product.template,loc_rack:0
+msgid "Rack"
+msgstr "Rack"
+
+#. module: sale_stock
+#: help:sale.config.settings,group_mrp_properties:0
+msgid "Allows you to tag sales order lines with properties."
+msgstr "Allows you to tag sales order lines with properties."
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.move_scrap
+#: view:stock.move.scrap:0
+msgid "Scrap Move"
+msgstr "Scrap Move"
+
+#. module: stock
+#: help:stock.move,prodlot_id:0
+msgid "Serial number is used to put a serial number on the production"
+msgstr "Serial number is used to put a serial number on the production"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_partial_picking.py:100
+#, python-format
+msgid "Receive Products"
+msgstr "Sản phẩm nhận được"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_partial_picking.py:102
+#: model:ir.actions.act_window,name:stock.action_out_picking_move
+#: model:ir.ui.menu,name:stock.menu_action_pdct_out
+#, python-format
+msgid "Deliver Products"
+msgstr "Hàng bán chờ xuất"
+
+#. module: stock
+#: view:stock.location.product:0
+msgid "View Stock of Products"
+msgstr "Xem tồn kho của các sản phẩm"
+
+#. module: general_stock
+#: view:stock.picking.out:0
+msgid "Deliver Available"
+msgstr "Deliver Available"
+
+#. module: stock
+#: help:stock.picking,date_done:0
+#: help:stock.picking.in,date_done:0
+#: help:stock.picking.out,date_done:0
+msgid "Date of Completion"
+msgstr "Ngày hoàn tất"
+
+#. module: stock
+#: code:addons/stock/stock.py:1675
+#, python-format
+msgid "You cannot move product %s from a location of type view %s."
+msgstr "Không thể chuyển sản phẩm %s từ một địa điểm thuộc loại Cha --> %s."
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "Physical Inventory"
+msgstr "Kiểm kê theo kho"
+
+#. module: stock
+#: help:stock.tracking,active:0
+msgid "By unchecking the active field, you may hide a pack without deleting it."
+msgstr "By unchecking the active field, you may hide a pack without deleting it."
+
+#. module: stock
+#: view:stock.production.lot:0
+msgid "Product Lots Filter"
+msgstr "Product Lots Filter"
+
+#. module: stock
+#: view:stock.inventory.merge:0
+msgid "Yes"
+msgstr "Có"
+
+#. module: sale_stock
+#: help:sale.config.settings,module_delivery:0
+msgid "Allows you to add delivery methods in sales orders and delivery orders.\n"
+"                You can define your own carrier and delivery grids for prices.\n"
+"                This installs the module delivery."
+msgstr "Allows you to add delivery methods in sales orders and delivery orders.\n"
+"                You can define your own carrier and delivery grids for prices.\n"
+"                This installs the module delivery."
+
+#. module: stock
+#: view:report.stock.move:0
+msgid "Todo"
+msgstr "Việc cần làm"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Unit Of Measure"
+msgstr "Unit Of Measure"
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_location_tree
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a location.\n"
+"              </p><p>\n"
+"                This is the structure of your company's warehouses and\n"
+"                locations. You can click on a location to get the list of the\n"
+"                products and their stock level in this particular location and\n"
+"                all its children.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a location.\n"
+"              </p><p>\n"
+"                This is the structure of your company's warehouses and\n"
+"                locations. You can click on a location to get the list of the\n"
+"                products and their stock level in this particular location and\n"
+"                all its children.\n"
+"              </p>\n"
+"            "
+
+#. module: sale_stock
+#: field:sale.config.settings,default_picking_policy:0
+msgid "Deliver all at once when all products are available."
+msgstr "Deliver all at once when all products are available."
+
+#. module: stock
+#: field:stock.location,stock_real:0
+msgid "Real Stock"
+msgstr "Tồn kho thực tế"
+
+#. module: sale_stock
+#: model:res.groups,name:sale_stock.group_invoice_deli_orders
+msgid "Enable Invoicing Delivery orders"
+msgstr "Enable Invoicing Delivery orders"
+
+#. module: stock
+#: code:addons/stock/stock.py:1879
+#: view:product.template:0
+#, python-format
+msgid "Information"
+msgstr "Thông tin"
+
+#. module: stock
+#: field:stock.production.lot.revision,date:0
+msgid "Revision Date"
+msgstr "Revision Date"
+
+#. module: stock
+#: view:report.stock.inventory:0
+#: field:report.stock.inventory,prodlot_id:0
+#: report:stock.picking.list:0
+msgid "Lot"
+msgstr "Lô sản phẩm"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_splitinto.py:53
+#, python-format
+msgid "Total quantity after split exceeds the quantity to split for this product: \"%s\" (id: %d)."
+msgstr "Total quantity after split exceeds the quantity to split for this product: \"%s\" (id: %d)."
+
+#. module: stock
+#: view:stock.partial.move.line:0
+msgid "Stock Partial Move Line"
+msgstr "Stock Partial Move Line"
+
+#. module: stock
+#: field:stock.move,product_uos_qty:0
+msgid "Quantity (UOS)"
+msgstr "Quantity (UOS)"
+
+#. module: stock
+#: help:stock.location,chained_company_id:0
+msgid "The company the Picking List containing the chained move will belong to (leave empty to use the default company determination rules"
+msgstr "The company the Picking List containing the chained move will belong to (leave empty to use the default company determination rules"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Set Available"
+msgstr "Set Available"
+
+#. module: stock
+#: report:stock.picking.list:0
+msgid "Contact Address :"
+msgstr "Địa chỉ liên hệ :"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_return_picking.py:226
+#, python-format
+msgid "Returned Picking"
+msgstr "Returned Picking"
+
+#. module: stock
+#: help:stock.config.settings,group_stock_tracking_lot:0
+msgid "When you select a serial number on product moves, you can get the upstream or downstream traceability of that product."
+msgstr "When you select a serial number on product moves, you can get the upstream or downstream traceability of that product."
+
+#. module: sale_stock
+#: code:addons/sale_stock/sale_stock.py:208
+#, python-format
+msgid "Cannot cancel sales order!"
+msgstr "Cannot cancel sales order!"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_partial_picking.py:95
+#, python-format
+msgid "_Receive"
+msgstr "_Receive"
+
+#. module: stock
+#: field:stock.incoterms,active:0
+#: field:stock.location,active:0
+#: field:stock.tracking,active:0
+msgid "Active"
+msgstr "Đang hoạt động"
+
+#. modules: sale_stock, stock
+#: field:sale.order.line,property_ids:0
+#: view:product.template:0
+msgid "Properties"
+msgstr "Đặc tính"
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "General Information"
+msgstr "Thông tin chung"
+
+#. module: stock
+#: field:stock.inventory.line.split.lines,wizard_exist_id:0
+#: field:stock.inventory.line.split.lines,wizard_id:0
+#: field:stock.move.split.lines,wizard_id:0
+msgid "Parent Wizard"
+msgstr "Parent Wizard"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_incoterms_tree
+#: model:ir.model,name:stock.model_stock_incoterms
+#: model:ir.ui.menu,name:stock.menu_action_incoterm_open
+#: view:stock.incoterms:0
+msgid "Incoterms"
+msgstr "Incoterms"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_partial_picking_line
+msgid "stock.partial.picking.line"
+msgstr "stock.partial.picking.line"
+
+#. module: sale_stock
+#: help:sale.config.settings,default_order_policy:0
+msgid "You can generate invoices based on sales orders or based on shippings."
+msgstr "You can generate invoices based on sales orders or based on shippings."
+
+#. module: general_stock
+#: view:stock.move:0
+msgid "Scrap Moves"
+msgstr "Scrap Moves"
+
+#. module: stock
+#: help:stock.incoterms,name:0
+msgid "Incoterms are series of sales terms.They are used to divide transaction costs and responsibilities between buyer and seller and reflect state-of-the-art transportation practices."
+msgstr "Incoterms are series of sales terms.They are used to divide transaction costs and responsibilities between buyer and seller and reflect state-of-the-art transportation practices."
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_receive_move
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to register a reception for this product. \n"
+"              </p><p>\n"
+"                Here you will find the history of all receptions related to\n"
+"                this product, as well as all future receptions you are waiting\n"
+"                from your suppliers.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to register a reception for this product. \n"
+"              </p><p>\n"
+"                Here you will find the history of all receptions related to\n"
+"                this product, as well as all future receptions you are waiting\n"
+"                from your suppliers.\n"
+"              </p>\n"
+"            "
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "Extra Information"
+msgstr "Thông tin mở rộng"
+
+#. module: stock
+#: help:stock.fill.inventory,recursive:0
+msgid "If checked, products contained in child locations of selected location will be included as well."
+msgstr "If checked, products contained in child locations of selected location will be included as well."
+
+#. module: sale_stock
+#: help:sale.config.settings,group_sale_delivery_address:0
+msgid "Allows you to specify different delivery and invoice addresses on a sales order."
+msgstr "Allows you to specify different delivery and invoice addresses on a sales order."
+
+#. module: stock
+#: help:stock.config.settings,module_stock_location:0
+msgid "Provide push and pull inventory flows.  Typical uses of this feature are:\n"
+"                manage product manufacturing chains, manage default locations per product,\n"
+"                define routes within your warehouse according to business needs, etc.\n"
+"                This installs the module stock_location."
+msgstr "Provide push and pull inventory flows.  Typical uses of this feature are:\n"
+"                manage product manufacturing chains, manage default locations per product,\n"
+"                define routes within your warehouse according to business needs, etc.\n"
+"                This installs the module stock_location."
+
+#. module: stock
+#: view:stock.inventory:0
+#: field:stock.inventory,name:0
+msgid "Inventory Reference"
+msgstr "Nội dung"
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_out_picking_move
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to register a product delivery.\n"
+"              </p>\n"
+"              <p>\n"
+"                You will find in this list all products you have to deliver to\n"
+"                your customers. You can process the deliveries directly from\n"
+"                this list using the buttons on the right of each line. You can\n"
+"                filter the products to deliver by customer, products or sale\n"
+"                order (using the Origin field).\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to register a product delivery.\n"
+"              </p>\n"
+"              <p>\n"
+"                You will find in this list all products you have to deliver to\n"
+"                your customers. You can process the deliveries directly from\n"
+"                this list using the buttons on the right of each line. You can\n"
+"                filter the products to deliver by customer, products or sale\n"
+"                order (using the Origin field).\n"
+"              </p>\n"
+"            "
+
+#. module: stock
+#: view:stock.move:0
+msgid "Process"
+msgstr "Xử lý"
+
+#. module: stock
+#: field:stock.production.lot.revision,name:0
+msgid "Revision Name"
+msgstr "Revision Name"
+
+#. module: stock
+#: model:res.groups,name:stock.group_tracking_lot
+msgid "Manage Logistic Serial Numbers"
+msgstr "Manage Logistic Serial Numbers"
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "Confirm Inventory"
+msgstr "Xác nhận thông tin"
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_tracking_form
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a tracking number.\n"
+"              </p><p>\n"
+"                This is the list of all your packs. When you select a Pack, you\n"
+"                can get the upstream or downstream traceability of the products\n"
+"                contained in the pack.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a tracking number.\n"
+"              </p><p>\n"
+"                This is the list of all your packs. When you select a Pack, you\n"
+"                can get the upstream or downstream traceability of the products\n"
+"                contained in the pack.\n"
+"              </p>\n"
+"            "
+
+#. module: stock
+#: code:addons/stock/stock.py:2550
+#, python-format
+msgid "%s %s %s has been <b>moved to</b> scrap."
+msgstr "%s %s %s has been <b>moved to</b> scrap."
+
+#. module: sale_stock
+#: selection:sale.config.settings,default_order_policy:0
+msgid "Invoice based on sales orders"
+msgstr "Invoice based on sales orders"
+
+#. modules: general_stock, stock
+#: view:stock.move:0
+#: selection:report.stock.inventory,state:0
+#: view:report.stock.move:0
+#: selection:report.stock.move,state:0
+#: selection:stock.inventory,state:0
+#: view:stock.move:0
+#: selection:stock.move,state:0
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+#: report:stock.picking.list:0
+msgid "Done"
+msgstr "Hoàn tất"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_view_change_standard_price
+#: model:ir.model,name:stock.model_stock_change_standard_price
+#: view:stock.change.standard.price:0
+msgid "Change Standard Price"
+msgstr "Thay đổi giá chuẩn"
+
+#. module: sale_stock
+#: model:process.node,name:sale_stock.process_node_invoiceafterdelivery0
+msgid "Invoice"
+msgstr "Hóa đơn"
+
+#. module: stock
+#: field:stock.move,location_dest_id:0
+msgid "Destination Location"
+msgstr "Vị trí kho đích"
+
+#. module: stock
+#: model:stock.location,name:stock.stock_location_locations_virtual
+msgid "Virtual Locations"
+msgstr "Các địa điểm ảo"
+
+#. module: stock
+#: selection:stock.picking,invoice_state:0
+#: selection:stock.picking.in,invoice_state:0
+#: selection:stock.picking.out,invoice_state:0
+msgid "To Be Invoiced"
+msgstr "Chờ hóa đơn"
+
+#. module: stock
+#: field:stock.inventory,date_done:0
+msgid "Date done"
+msgstr "Ngày hoàn tất"
+
+#. module: stock
+#: code:addons/stock/stock.py:1130
+#, python-format
+msgid "Please put a partner on the picking list if you want to generate invoice."
+msgstr "Please put a partner on the picking list if you want to generate invoice."
+
+#. module: stock
+#: view:stock.picking.in:0
+msgid "Confirm & Receive"
+msgstr "Xác nhận & Nhận"
+
+#. module: stock
+#: field:stock.picking,origin:0
+#: field:stock.picking.in,origin:0
+#: field:stock.picking.out,origin:0
+msgid "Source Document"
+msgstr "Chứng từ gốc"
+
+#. module: stock
+#: selection:stock.move,priority:0
+msgid "Not urgent"
+msgstr "Không khẩn"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Scheduled"
+msgstr "Scheduled"
+
+#. modules: general_stock, stock
+#: view:stock.picking:0
+#: view:stock.picking:0
+msgid "Add an internal note..."
+msgstr "Nội dung ..."
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_warehouse_form
+#: model:ir.ui.menu,name:stock.menu_action_warehouse_form
+msgid "Warehouses"
+msgstr "Các kho hàng"
+
+#. module: stock
+#: field:stock.journal,user_id:0
+msgid "Responsible"
+msgstr "Chịu trách nhiệm"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Process Entirely"
+msgstr "Chuyển toàn bộ"
+
+#. module: stock
+#: model:res.groups,name:stock.group_stock_manager
+msgid "Manager"
+msgstr "Quản lý"
+
+#. module: sale_stock
+#: model:process.node,note:sale_stock.process_node_deliveryorder0
+msgid "Document of the move to the customer."
+msgstr "Document of the move to the customer."
+
+#. module: stock
+#: help:product.template,property_stock_procurement:0
+msgid "This stock location will be used, instead of the default one, as the source location for stock moves generated by procurements."
+msgstr "This stock location will be used, instead of the default one, as the source location for stock moves generated by procurements."
+
+#. module: sale_stock
+#: model:ir.model,name:sale_stock.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "Sales Advance Payment Invoice"
+
+#. module: stock
+#: view:report.stock.inventory:0
+#: field:report.stock.inventory,month:0
+#: view:report.stock.move:0
+#: field:report.stock.move,month:0
+msgid "Month"
+msgstr "Tháng"
+
+#. module: stock
+#: field:stock.production.lot,prefix:0
+msgid "Prefix"
+msgstr "Tiền tố"
+
+#. module: stock
+#: field:stock.invoice.onshipping,journal_id:0
+msgid "Destination Journal"
+msgstr "Destination Journal"
+
+#. module: stock
+#: field:product.template,loc_row:0
+msgid "Row"
+msgstr "Row"
+
+#. module: sale_stock
+#: field:sale.order,incoterm:0
+msgid "Incoterm"
+msgstr "Incoterm"
+
+#. modules: general_stock, stock
+#: view:stock.actual.cost.details:0
+#: field:stock.actual.cost.details,product_id:0
+#: view:stock.item.cost.layers:0
+#: field:stock.item.cost.layers,product_id:0
+#: model:ir.model,name:stock.model_product_product
+#: view:report.stock.inventory:0
+#: field:report.stock.inventory,product_id:0
+#: field:report.stock.lines.date,product_id:0
+#: view:report.stock.move:0
+#: field:report.stock.move,product_id:0
+#: field:stock.change.product.qty,product_id:0
+#: field:stock.inventory.line,product_id:0
+#: field:stock.inventory.line.split,product_id:0
+#: report:stock.inventory.move:0
+#: view:stock.move:0
+#: field:stock.move,product_id:0
+#: field:stock.move.consume,product_id:0
+#: field:stock.move.scrap,product_id:0
+#: field:stock.move.split,product_id:0
+#: field:stock.partial.move.line,product_id:0
+#: field:stock.partial.picking.line,product_id:0
+#: field:stock.picking,product_id:0
+#: field:stock.picking.in,product_id:0
+#: field:stock.picking.out,product_id:0
+#: view:stock.production.lot:0
+#: field:stock.production.lot,product_id:0
+#: field:stock.report.prodlots,product_id:0
+#: field:stock.report.tracklots,product_id:0
+#: field:stock.return.picking.memory,product_id:0
+msgid "Product"
+msgstr "Sản phẩm"
+
+#. modules: general_stock, stock
+#: view:stock.picking:0
+#: view:stock.picking:0
+msgid "Reverse Transfer"
+msgstr "Reverse Transfer"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_inventory_merge.py:44
+#, python-format
+msgid "Please select multiple physical inventories to merge in the list view."
+msgstr "Please select multiple physical inventories to merge in the list view."
+
+#. module: stock
+#: field:stock.return.picking,invoice_state:0
+msgid "Invoicing"
+msgstr "Hóa đơn"
+
+#. module: stock
+#: view:stock.picking:0
+msgid "Assigned Internal Moves"
+msgstr "Assigned Internal Moves"
+
+#. module: stock
+#: code:addons/stock/stock.py:799
+#, python-format
+msgid "You cannot process picking without stock moves."
+msgstr "You cannot process picking without stock moves."
+
+#. module: general_stock
+#: view:stock.return.reason:0
+msgid "Retrun Reason"
+msgstr "Retrun Reason"
+
+#. module: stock
+#: field:stock.production.lot,move_ids:0
+msgid "Moves for this serial number"
+msgstr "Moves for this serial number"
+
+#. module: stock
+#: field:stock.move,product_uos:0
+msgid "Product UOS"
+msgstr "Product UOS"
+
+#. module: stock
+#: help:stock.config.settings,group_stock_packaging:0
+msgid "Allows you to create and manage your packaging dimensions and types you want to be maintained in your system."
+msgstr "Allows you to create and manage your packaging dimensions and types you want to be maintained in your system."
+
+#. module: stock
+#: code:addons/stock/wizard/stock_return_picking.py:176
+#, python-format
+msgid "%s-%s-return"
+msgstr "%s-%s-return"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_move_consume
+#: view:stock.move.consume:0
+msgid "Consume Products"
+msgstr "Sản phẩm tiêu hao"
+
+#. module: stock
+#: field:stock.location,parent_right:0
+msgid "Right Parent"
+msgstr "Right Parent"
+
+#. module: sale_stock
+#: model:process.transition.action,name:sale_stock.process_transition_action_cancelassignation0
+msgid "Cancel Assignation"
+msgstr "Hủy phân phối"
+
+#. module: stock
+#: report:lot.stock.overview:0
+#: report:lot.stock.overview_all:0
+msgid "Variants"
+msgstr "Biến số"
+
+#. module: stock
+#: field:stock.location,posx:0
+msgid "Corridor (X)"
+msgstr "Corridor (X)"
+
+#. module: stock
+#: field:stock.config.settings,group_stock_packaging:0
+msgid "Allow to define several packaging methods on products"
+msgstr "Allow to define several packaging methods on products"
+
+#. module: stock
+#: model:stock.location,name:stock.stock_location_suppliers
+msgid "Suppliers"
+msgstr "Nhà cung cấp"
+
+#. module: stock
+#: field:report.stock.inventory,value:0
+#: field:report.stock.move,value:0
+msgid "Total Value"
+msgstr "Tổng Giá trị"
+
+#. module: stock
+#: selection:stock.picking,state:0
+msgid "Ready to Transfer"
+msgstr "Sẵn sàng chuyển"
+
+#. module: stock
+#: model:ir.ui.menu,name:stock.menu_product_by_category_stock_form
+msgid "Products by Category"
+msgstr "Sản phẩm theo chủng loại"
+
+#. module: stock
+#: code:addons/stock/stock.py:2302
+#, python-format
+msgid "Please define journal on the product category: \"%s\" (id: %d)"
+msgstr "Please define journal on the product category: \"%s\" (id: %d)"
+
+#. module: stock
+#: help:product.category,property_stock_account_output_categ:0
+msgid "When doing real-time inventory valuation, counterpart journal items for all outgoing stock moves will be posted in this account, unless there is a specific valuation account set on the destination location. This is the default value for all products in this category. It can also directly be set on each product"
+msgstr "When doing real-time inventory valuation, counterpart journal items for all outgoing stock moves will be posted in this account, unless there is a specific valuation account set on the destination location. This is the default value for all products in this category. It can also directly be set on each product"
+
+#. module: stock
+#: selection:stock.picking,state:0
+#: selection:stock.picking.in,state:0
+#: selection:stock.picking.out,state:0
+msgid "Waiting Another Operation"
+msgstr "Đang chờ hoạt động khác"
+
+#. module: stock
+#: view:stock.location:0
+msgid "Supplier Locations"
+msgstr "Địa điểm Nhà cung cấp"
+
+#. module: stock
+#: field:stock.partial.move.line,wizard_id:0
+#: field:stock.partial.picking.line,wizard_id:0
+#: field:stock.return.picking.memory,wizard_id:0
+msgid "Wizard"
+msgstr "Wizard"
+
+#. module: stock
+#: view:report.stock.move:0
+msgid "Completed Stock-Moves"
+msgstr "Completed Stock-Moves"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_view_stock_location_product
+#: model:ir.model,name:stock.model_stock_location_product
+msgid "Products by Location"
+msgstr "Sản phẩm theo Vị trí"
+
+#. module: general_stock
+#: model:ir.actions.act_window,name:general_stock.action_move_return_customer
+#: model:ir.actions.act_window,name:general_stock.action_picking_return_customer
+#: model:ir.ui.menu,name:general_stock.menu_action_move_return_customer
+#: model:ir.ui.menu,name:general_stock.menu_action_picking_return_customer
+#: selection:stock.picking,return:0
+#: selection:stock.picking.in,return:0
+#: selection:stock.picking.out,return:0
+#: selection:stock.return.picking,return_type:0
+msgid "Return from Customer"
+msgstr "Hàng trả của KH"
+
+#. module: stock
+#: field:product.category,property_stock_account_output_categ:0
+#: field:product.template,property_stock_account_output:0
+#: field:stock.change.standard.price,stock_account_output:0
+msgid "Stock Output Account"
+msgstr "Tài khoản hàng xuất ra"
+
+#. module: stock
+#: view:stock.config.settings:0
+msgid "Logistic"
+msgstr "Logistic"
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_location_form
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a location.\n"
+"              </p><p>\n"
+"                Define your locations to reflect your warehouse structure and\n"
+"                organization. OpenERP is able to manage physical locations\n"
+"                (warehouses, shelves, bin, etc), partner locations (customers,\n"
+"                suppliers) and virtual locations which are the counterpart of\n"
+"                the stock operations like the manufacturing orders\n"
+"                consumptions, inventories, etc.\n"
+"              </p><p>  \n"
+"                Every stock operation in OpenERP moves the products from one\n"
+"                location to another one.  For instance, if you receive products\n"
+"                from a supplier, OpenERP will move products from the Supplier\n"
+"                location to the Stock location. Each report can be performed on\n"
+"                physical, partner or virtual locations.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a location.\n"
+"              </p><p>\n"
+"                Define your locations to reflect your warehouse structure and\n"
+"                organization. OpenERP is able to manage physical locations\n"
+"                (warehouses, shelves, bin, etc), partner locations (customers,\n"
+"                suppliers) and virtual locations which are the counterpart of\n"
+"                the stock operations like the manufacturing orders\n"
+"                consumptions, inventories, etc.\n"
+"              </p><p>  \n"
+"                Every stock operation in OpenERP moves the products from one\n"
+"                location to another one.  For instance, if you receive products\n"
+"                from a supplier, OpenERP will move products from the Supplier\n"
+"                location to the Stock location. Each report can be performed on\n"
+"                physical, partner or virtual locations.\n"
+"              </p>\n"
+"            "
+
+#. module: stock
+#: field:stock.fill.inventory,recursive:0
+msgid "Include children"
+msgstr "Include children"
+
+#. module: stock
+#: view:stock.inventory:0
+#: field:stock.move,name:0
+#: report:stock.picking.list:0
+#: view:stock.production.lot.revision:0
+#: field:stock.production.lot.revision,description:0
+msgid "Description"
+msgstr "Ghi chú"
+
+#. module: stock
+#: field:stock.inventory,inventory_line_id:0
+msgid "Inventories"
+msgstr "Tồn kho"
+
+#. module: sale_stock
+#: view:sale.order:0
+msgid "Ignore Exception"
+msgstr "Ignore Exception"
+
+#. module: stock
+#: field:stock.tracking,name:0
+msgid "Pack Reference"
+msgstr "Pack Reference"
+
+#. module: stock
+#: view:report.stock.move:0
+#: field:report.stock.move,location_id:0
+#: field:stock.inventory.line.split,location_id:0
+#: field:stock.move,location_id:0
+#: field:stock.move.split,location_id:0
+msgid "Source Location"
+msgstr "Vị trí kho nguồn"
+
+#. module: sale_stock
+#: code:addons/sale_stock/sale_stock.py:624
+#, python-format
+msgid "You plan to sell %.2f %s but you only have %.2f %s available !\n"
+"The real stock is %.2f %s. (without reservations)"
+msgstr "You plan to sell %.2f %s but you only have %.2f %s available !\n"
+"The real stock is %.2f %s. (without reservations)"
+
+#. module: sale_stock
+#: view:sale.order:0
+msgid "Recreate Delivery Order"
+msgstr "Recreate Delivery Order"
+
+#. module: stock
+#: view:product.template:0
+msgid "Accounting Entries"
+msgstr "Accounting Entries"
+
+#. module: stock
+#: field:stock.config.settings,module_stock_invoice_directly:0
+msgid "Create and open the invoice when the user finish a delivery order"
+msgstr "Create and open the invoice when the user finish a delivery order"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_partial_picking.py:192
+#, python-format
+msgid "The rounding of the initial uom does not allow you to ship \"%s %s\", as it would let a quantity of \"%s %s\" to ship and only rounding of \"%s %s\" is accepted by the uom."
+msgstr "The rounding of the initial uom does not allow you to ship \"%s %s\", as it would let a quantity of \"%s %s\" to ship and only rounding of \"%s %s\" is accepted by the uom."
+
+#. module: sale_stock
+#: model:process.transition,note:sale_stock.process_transition_deliver0
+msgid "Depending on the configuration of the location Output, the move between the output area and the customer is done through the Delivery Order manually or automatically."
+msgstr "Depending on the configuration of the location Output, the move between the output area and the customer is done through the Delivery Order manually or automatically."
+
+#. module: stock
+#: field:stock.change.standard.price,enable_stock_in_out_acc:0
+msgid "Enable Related Account"
+msgstr "Enable Related Account"
+
+#. module: stock
+#: view:product.product:0
+#: view:stock.inventory.line.split:0
+msgid "Lots"
+msgstr "Lots"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Destination"
+msgstr "Điểm đến"
+
+#. module: stock
+#: selection:stock.picking,move_type:0
+#: selection:stock.picking.in,move_type:0
+#: selection:stock.picking.out,move_type:0
+msgid "All at once"
+msgstr "Tất cả cùng một lúc"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.act_product_stock_move_open
+msgid "Inventory Move"
+msgstr "Inventory Move"
+
+#. module: stock
+#: code:addons/stock/product.py:478
+#, python-format
+msgid "Future Productions"
+msgstr "Future Productions"
+
+#. module: stock
+#: help:stock.picking.in,state:0
+msgid "* Draft: not confirmed yet and will not be scheduled until confirmed\n"
+"\n"
+"                 * Waiting Another Operation: waiting for another move to proceed before it becomes automatically available (e.g. in Make-To-Order flows)\n"
+"\n"
+"                 * Waiting Availability: still waiting for the availability of products\n"
+"\n"
+"                 * Ready to Receive: products reserved, simply waiting for confirmation.\n"
+"\n"
+"                 * Received: has been processed, can't be modified or cancelled anymore\n"
+"\n"
+"                 * Cancelled: has been cancelled, can't be confirmed anymore"
+msgstr "* Draft: not confirmed yet and will not be scheduled until confirmed\n"
+"\n"
+"                 * Waiting Another Operation: waiting for another move to proceed before it becomes automatically available (e.g. in Make-To-Order flows)\n"
+"\n"
+"                 * Waiting Availability: still waiting for the availability of products\n"
+"\n"
+"                 * Ready to Receive: products reserved, simply waiting for confirmation.\n"
+"\n"
+"                 * Received: has been processed, can't be modified or cancelled anymore\n"
+"\n"
+"                 * Cancelled: has been cancelled, can't be confirmed anymore"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_stock_config_settings
+#: view:stock.config.settings:0
+msgid "Configure Warehouse"
+msgstr "Configure Warehouse"
+
+#. module: general_stock
+#: view:stock.move:0
+#: view:stock.picking:0
+#: view:stock.picking.out:0
+msgid "Normal Return"
+msgstr "Normal Return"
+
+#. module: stock
+#: view:stock.return.picking:0
+msgid "Return lines"
+msgstr "Return lines"
+
+#. module: stock
+#: field:product.product,delivery_count:0
+msgid "Delivery"
+msgstr "Phân phối"
+
+#. modules: general_stock, stock
+#: model:ir.model,name:general_stock.model_stock_journal
+#: view:stock.move:0
+#: field:stock.move,stock_journal_id:0
+#: model:ir.model,name:stock.model_stock_journal
+#: field:product.category,property_stock_journal:0
+#: field:report.stock.move,stock_journal:0
+#: view:stock.journal:0
+#: field:stock.journal,name:0
+#: field:stock.picking,stock_journal_id:0
+#: field:stock.picking.in,stock_journal_id:0
+#: field:stock.picking.out,stock_journal_id:0
+msgid "Stock Journal"
+msgstr "Nhật ký Kho"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_receive_move
+#: view:product.product:0
+msgid "Receptions"
+msgstr "Receptions"
+
+#. module: stock
+#: view:report.stock.move:0
+msgid "Total incoming quantity"
+msgstr "Total incoming quantity"
+
+#. module: stock
+#: field:report.stock.move,product_qty_out:0
+msgid "Out Qty"
+msgstr "Out Qty"
+
+#. modules: general_stock, stock
+#: field:stock.actual.cost.details,company_id:0
+#: field:stock.item.cost.layers,company_id:0
+#: view:report.stock.inventory:0
+#: field:report.stock.inventory,company_id:0
+#: view:report.stock.move:0
+#: field:report.stock.move,company_id:0
+#: field:stock.inventory,company_id:0
+#: field:stock.inventory.line,company_id:0
+#: field:stock.location,company_id:0
+#: field:stock.move,company_id:0
+#: field:stock.picking,company_id:0
+#: field:stock.picking.in,company_id:0
+#: field:stock.picking.out,company_id:0
+#: field:stock.production.lot,company_id:0
+#: field:stock.production.lot.revision,company_id:0
+#: field:stock.warehouse,company_id:0
+msgid "Company"
+msgstr "Công ty"
+
+#. module: stock
+#: field:stock.report.tracklots,tracking_id:0
+msgid "Logistic Serial Number"
+msgstr "Logistic Serial Number"
+
+#. module: general_stock
+#: field:stock.move.scrap,note:0
+msgid "Return reason"
+msgstr "Lý do trả hàng"
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "Lot Inventory"
+msgstr "Lot Inventory"
+
+#. module: stock
+#: field:stock.tracking,serial:0
+msgid "Additional Reference"
+msgstr "Additional Reference"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_production_lot_form
+#: model:ir.model,name:stock.model_stock_production_lot
+#: model:ir.ui.menu,name:stock.menu_action_production_lot_form
+#: model:res.request.link,name:stock.req_link_tracking
+#: field:stock.change.product.qty,prodlot_id:0
+#: field:stock.inventory.line,prod_lot_id:0
+#: field:stock.inventory.line.split.lines,name:0
+#: field:stock.inventory.line.split.lines,prodlot_id:0
+#: field:stock.move,prodlot_id:0
+#: view:stock.move.split:0
+#: field:stock.move.split.lines,name:0
+#: field:stock.move.split.lines,prodlot_id:0
+#: field:stock.partial.move.line,prodlot_id:0
+#: field:stock.partial.picking.line,prodlot_id:0
+#: report:stock.picking.list:0
+#: view:stock.production.lot:0
+#: field:stock.production.lot,name:0
+#: field:stock.production.lot.revision,lot_id:0
+#: field:stock.report.prodlots,prodlot_id:0
+#: field:stock.return.picking.memory,prodlot_id:0
+msgid "Serial Number"
+msgstr "Số Seri"
+
+#. module: sale_stock
+#: code:addons/sale_stock/sale_stock.py:573
+#, python-format
+msgid "You selected a quantity of %d Units.\n"
+"But it's not compatible with the selected packaging.\n"
+"Here is a proposition of quantities according to the packaging:\n"
+"EAN: %s Quantity: %s Type of ul: %s"
+msgstr "You selected a quantity of %d Units.\n"
+"But it's not compatible with the selected packaging.\n"
+"Here is a proposition of quantities according to the packaging:\n"
+"EAN: %s Quantity: %s Type of ul: %s"
+
+#. modules: general_stock, stock
+#: model:ir.model,name:general_stock.model_stock_partial_picking
+#: model:ir.model,name:stock.model_stock_partial_picking
+msgid "Partial Picking Processing Wizard"
+msgstr "Partial Picking Processing Wizard"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_invoice_onshipping.py:96
+#, python-format
+msgid "This picking list does not require invoicing."
+msgstr "This picking list does not require invoicing."
+
+#. module: stock
+#: field:stock.location,icon:0
+msgid "Icon"
+msgstr "Biểu tượng"
+
+#. module: stock
+#: selection:report.stock.inventory,location_type:0
+#: selection:stock.location,usage:0
+msgid "Transit Location for Inter-Companies Transfers"
+msgstr "Transit Location for Inter-Companies Transfers"
+
+#. module: stock
+#: field:stock.partial.move,hide_tracking:0
+#: field:stock.partial.move.line,tracking:0
+#: field:stock.partial.picking,hide_tracking:0
+#: field:stock.partial.picking.line,tracking:0
+msgid "Tracking"
+msgstr "Tracking"
+
+#. module: stock
+#: view:stock.inventory.line.split:0
+#: view:stock.move.consume:0
+#: view:stock.move.scrap:0
+#: view:stock.split.into:0
+msgid "Ok"
+msgstr "Đồng ý"
+
+#. module: sale_stock
+#: field:sale.config.settings,group_mrp_properties:0
+msgid "Product properties on order lines"
+msgstr "Product properties on order lines"
+
+#. module: stock
+#: field:stock.picking,message_ids:0
+#: field:stock.picking.in,message_ids:0
+#: field:stock.picking.out,message_ids:0
+msgid "Messages"
+msgstr "Các thông điệp"
+
+#. module: stock
+#: code:addons/stock/product.py:100
+#: code:addons/stock/product.py:112
+#: code:addons/stock/product.py:115
+#: code:addons/stock/product.py:122
+#: code:addons/stock/product.py:143
+#: code:addons/stock/product.py:169
+#: code:addons/stock/report/report_stock.py:78
+#: code:addons/stock/report/report_stock.py:134
+#: code:addons/stock/stock.py:543
+#: code:addons/stock/stock.py:799
+#: code:addons/stock/stock.py:1199
+#: code:addons/stock/stock.py:1208
+#: code:addons/stock/stock.py:2290
+#: code:addons/stock/stock.py:2293
+#: code:addons/stock/stock.py:2296
+#: code:addons/stock/stock.py:2299
+#: code:addons/stock/stock.py:2302
+#: code:addons/stock/stock.py:2305
+#: code:addons/stock/stock.py:2530
+#: code:addons/stock/stock.py:2639
+#: code:addons/stock/wizard/stock_fill_inventory.py:63
+#: code:addons/stock/wizard/stock_invoice_onshipping.py:112
+#: code:addons/stock/wizard/stock_splitinto.py:53
+#, python-format
+msgid "Error!"
+msgstr "Lỗi!"
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_warehouse_form
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to define a new warehouse.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to define a new warehouse.\n"
+"              </p>\n"
+"            "
+
+#. module: stock
+#: selection:report.stock.inventory,state:0
+#: selection:report.stock.move,state:0
+#: selection:stock.inventory,state:0
+#: selection:stock.move,state:0
+#: selection:stock.picking,state:0
+#: selection:stock.picking.in,state:0
+#: selection:stock.picking.out,state:0
+msgid "Cancelled"
+msgstr "Đã hủy bỏ"
+
+#. module: stock
+#: view:stock.picking:0
+msgid "Confirmed Delivery Orders"
+msgstr "Phiếu Giao hàng đã xác nhận"
+
+#. modules: general_stock, stock
+#: view:stock.move:0
+#: view:stock.move:0
+msgid "Put in current pack"
+msgstr "Put in current pack"
+
+#. module: general_stock
+#: help:stock.picking,return:0
+#: help:stock.picking.in,return:0
+#: help:stock.picking.out,return:0
+#: help:stock.return.picking,return_type:0
+msgid "Type specifies whether the Picking has been returned or not."
+msgstr "Type specifies whether the Picking has been returned or not."
+
+#. module: sale_stock
+#: model:ir.ui.menu,name:sale_stock.menu_action_shop_form
+msgid "Shop"
+msgstr "Cửa hàng"
+
+#. module: stock
+#: selection:stock.picking,state:0
+msgid "Transferred"
+msgstr "Đã chuyển"
+
+#. modules: general_stock, stock
+#: selection:stock.journal,source_type:0
+#: selection:report.stock.move,type:0
+#: selection:stock.location,chained_picking_type:0
+#: selection:stock.move,type:0
+#: selection:stock.picking,type:0
+#: selection:stock.picking.in,type:0
+#: selection:stock.picking.out,type:0
+msgid "Getting Goods"
+msgstr "Nhận hàng từ Nhà cung cấp"
+
+#. module: stock
+#: help:stock.location,chained_location_type:0
+msgid "Determines whether this location is chained to another location, i.e. any incoming product in this location \n"
+"should next go to the chained location. The chained location is determined according to the type :\n"
+"* None: No chaining at all\n"
+"* Customer: The chained location will be taken from the Customer Location field on the Partner form of the Partner that is specified in the Picking list of the incoming products.\n"
+"* Fixed Location: The chained location is taken from the next field: Chained Location if Fixed."
+msgstr "Determines whether this location is chained to another location, i.e. any incoming product in this location \n"
+"should next go to the chained location. The chained location is determined according to the type :\n"
+"* None: No chaining at all\n"
+"* Customer: The chained location will be taken from the Customer Location field on the Partner form of the Partner that is specified in the Picking list of the incoming products.\n"
+"* Fixed Location: The chained location is taken from the next field: Chained Location if Fixed."
+
+#. module: stock
+#: code:addons/stock/stock.py:1880
+#, python-format
+msgid "By changing this quantity here, you accept the new quantity as complete: OpenERP will not automatically generate a back order."
+msgstr "By changing this quantity here, you accept the new quantity as complete: OpenERP will not automatically generate a back order."
+
+#. module: general_stock
+#: field:stock.journal,from_location_id:0
+#: field:stock.journal,to_location_id:0
+msgid "From Location"
+msgstr "From Location"
+
+#. module: stock
+#: view:stock.production.lot.revision:0
+msgid "Serial Number Revisions"
+msgstr "Serial Number Revisions"
+
+#. module: stock
+#: report:lot.stock.overview:0
+#: report:lot.stock.overview_all:0
+#: report:stock.inventory.move:0
+msgid "Total:"
+msgstr "Tổng cộng:"
+
+#. module: sale_stock
+#: model:ir.model,name:sale_stock.model_sale_order
+#: field:stock.picking,sale_id:0
+msgid "Sales Order"
+msgstr "Đơn hàng"
+
+#. modules: general_stock, sale_stock, stock
+#: model:ir.model,name:general_stock.model_stock_picking_out
+#: model:ir.model,name:sale_stock.model_stock_picking_out
+#: model:ir.actions.act_window,name:stock.action_picking_tree
+#: model:ir.model,name:stock.model_stock_picking_out
+#: model:ir.ui.menu,name:stock.menu_action_picking_tree
+#: view:stock.picking.out:0
+msgid "Delivery Orders"
+msgstr "Phiếu xuất hàng bán"
+
+#. module: stock
+#: field:stock.move,move_dest_id:0
+msgid "Destination Move"
+msgstr "Destination Move"
+
+#. module: sale_stock
+#: help:sale.order,incoterm:0
+msgid "International Commercial Terms are a series of predefined commercial terms used in international transactions."
+msgstr "International Commercial Terms are a series of predefined commercial terms used in international transactions."
+
+#. module: sale_stock
+#: model:process.transition,note:sale_stock.process_transition_packing0
+msgid "The Pick List form is created as soon as the sales order is confirmed, in the same time as the procurement order. It represents the assignment of parts to the sales order. There is 1 pick list by sales order line which evolves with the availability of parts."
+msgstr "The Pick List form is created as soon as the sales order is confirmed, in the same time as the procurement order. It represents the assignment of parts to the sales order. There is 1 pick list by sales order line which evolves with the availability of parts."
+
+#. module: general_stock
+#: view:stock.item.cost.layers:0
+msgid "Stock Shipping Rules"
+msgstr "Stock Shipping Rules"
+
+#. module: stock
+#: selection:report.stock.inventory,state:0
+#: selection:report.stock.move,state:0
+#: selection:stock.inventory,state:0
+msgid "Confirmed"
+msgstr "Đã xác nhận"
+
+#. modules: general_stock, stock
+#: view:stock.picking:0
+#: view:stock.move:0
+#: view:stock.picking:0
+msgid "Confirm"
+msgstr "Xác nhận"
+
+#. module: general_stock
+#: view:stock.actual.cost.details:0
+#: field:stock.actual.cost.details,transaction_costed_date:0
+msgid "Costed Date"
+msgstr "Costed Date"
+
+#. module: stock
+#: selection:report.stock.inventory,month:0
+#: selection:report.stock.move,month:0
+msgid "February"
+msgstr "Tháng Hai"
+
+#. module: stock
+#: view:stock.location:0
+msgid "Stock Location"
+msgstr "Vị trí Kho hàng"
+
+#. module: stock
+#: help:stock.location,scrap_location:0
+msgid "Check this box to allow using this location to put scrapped/damaged goods."
+msgstr "Check this box to allow using this location to put scrapped/damaged goods."
+
+#. module: general_stock
+#: model:ir.model,name:general_stock.model_stock_actual_cost_details
+msgid "stock.actual.cost.details"
+msgstr "stock.actual.cost.details"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_fill_inventory
+#: view:stock.fill.inventory:0
+msgid "Import Inventory"
+msgstr "Nhập tồn kho"
+
+#. module: stock
+#: field:stock.picking,message_follower_ids:0
+#: field:stock.picking.in,message_follower_ids:0
+#: field:stock.picking.out,message_follower_ids:0
+msgid "Followers"
+msgstr "Người theo dõi"
+
+#. module: stock
+#: code:addons/stock/stock.py:2639
+#, python-format
+msgid "Cannot consume a move with negative or zero quantity."
+msgstr "Cannot consume a move with negative or zero quantity."
+
+#. module: stock
+#: help:stock.config.settings,decimal_precision:0
+msgid "As an example, a decimal precision of 2 will allow weights like: 9.99 kg, whereas a decimal precision of 4 will allow weights like:  0.0231 kg."
+msgstr "As an example, a decimal precision of 2 will allow weights like: 9.99 kg, whereas a decimal precision of 4 will allow weights like:  0.0231 kg."
+
+#. module: stock
+#: view:report.stock.move:0
+msgid "Total outgoing quantity"
+msgstr "Total outgoing quantity"
+
+#. module: stock
+#: field:stock.move,backorder_id:0
+#: field:stock.picking,backorder_id:0
+#: field:stock.picking.in,backorder_id:0
+#: field:stock.picking.out,backorder_id:0
+msgid "Back Order of"
+msgstr "Phiếu giao nhận liên kết"
+
+#. module: sale_stock
+#: field:sale.config.settings,default_order_policy:0
+msgid "The default invoicing method is"
+msgstr "The default invoicing method is"
+
+#. module: stock
+#: help:stock.partial.move.line,cost:0
+#: help:stock.partial.picking.line,cost:0
+msgid "Unit Cost for this product line"
+msgstr "Unit Cost for this product line"
+
+#. modules: general_stock, stock
+#: field:stock.move,product_categ_id:0
+#: model:ir.model,name:stock.model_product_category
+#: view:report.stock.inventory:0
+#: field:report.stock.inventory,product_categ_id:0
+#: view:report.stock.move:0
+#: field:report.stock.move,categ_id:0
+msgid "Product Category"
+msgstr "Loại sản phẩm"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Serial  Number"
+msgstr "Serial  Number"
+
+#. module: sale_stock
+#: field:sale.order.line,delay:0
+msgid "Delivery Lead Time"
+msgstr "Thời gian giao hàng"
+
+#. module: stock
+#: view:stock.invoice.onshipping:0
+msgid "Create invoice"
+msgstr "Tạo hóa đơn"
+
+#. module: stock
+#: help:stock.config.settings,group_stock_multiple_locations:0
+msgid "This allows to configure and use multiple stock locations and warehouses,\n"
+"                instead of having a single default one."
+msgstr "This allows to configure and use multiple stock locations and warehouses,\n"
+"                instead of having a single default one."
+
+#. module: stock
+#: view:stock.picking:0
+msgid "Confirmed Internal Moves"
+msgstr "Confirmed Internal Moves"
+
+#. module: stock
+#: model:ir.ui.menu,name:stock.menu_stock_configuration
+msgid "Configuration"
+msgstr "Cấu hình"
+
+#. module: general_stock
+#: view:stock.move:0
+msgid "Scrap Reason"
+msgstr "Scrap Reason"
+
+#. module: sale_stock
+#: view:sale.config.settings:0
+msgid "Default Options"
+msgstr "Default Options"
+
+#. module: stock
+#: model:res.groups,name:stock.group_locations
+msgid "Manage Multiple Locations and Warehouses"
+msgstr "Manage Multiple Locations and Warehouses"
+
+#. module: stock
+#: help:stock.change.standard.price,new_price:0
+msgid "If cost price is increased, stock variation account will be debited and stock output account will be credited with the value = (difference of amount * quantity available).\n"
+"If cost price is decreased, stock variation account will be creadited and stock input account will be debited."
+msgstr "If cost price is increased, stock variation account will be debited and stock output account will be credited with the value = (difference of amount * quantity available).\n"
+"If cost price is decreased, stock variation account will be creadited and stock input account will be debited."
+
+#. module: general_stock
+#: view:stock.picking:0
+msgid "_Cancel"
+msgstr "_Cancel"
+
+#. module: stock
+#: help:stock.config.settings,module_stock_invoice_directly:0
+msgid "This allows to automatically launch the invoicing wizard if the delivery is\n"
+"                to be invoiced when you send or deliver goods.\n"
+"                This installs the module stock_invoice_directly."
+msgstr "This allows to automatically launch the invoicing wizard if the delivery is\n"
+"                to be invoiced when you send or deliver goods.\n"
+"                This installs the module stock_invoice_directly."
+
+#. module: sale_stock
+#: field:sale.config.settings,module_project_mrp:0
+msgid "Project MRP"
+msgstr "Project MRP"
+
+#. module: stock
+#: field:stock.location,chained_journal_id:0
+msgid "Chaining Journal"
+msgstr "Chaining Journal"
+
+#. module: stock
+#: code:addons/stock/stock.py:777
+#, python-format
+msgid "Not enough stock, unable to reserve the products."
+msgstr "Không đủ hàng, không thể đặt trước sản phẩm"
+
+#. module: stock
+#: view:report.stock.move:0
+msgid "Outgoing"
+msgstr "Chờ xuất"
+
+#. module: stock
+#: selection:stock.move,state:0
+#: selection:stock.picking,state:0
+#: selection:stock.picking.in,state:0
+#: report:stock.picking.list:0
+#: selection:stock.picking.out,state:0
+msgid "Waiting Availability"
+msgstr "Đang đợi hàng"
+
+#. module: stock
+#: help:stock.move,product_qty:0
+msgid "This is the quantity of products from an inventory point of view. For moves in the state 'done', this is the quantity of products that were actually moved. For other moves, this is the quantity of product that is planned to be moved. Lowering this quantity does not generate a backorder. Changing this quantity on assigned moves affects the product reservation, and should be done with care."
+msgstr "This is the quantity of products from an inventory point of view. For moves in the state 'done', this is the quantity of products that were actually moved. For other moves, this is the quantity of product that is planned to be moved. Lowering this quantity does not generate a backorder. Changing this quantity on assigned moves affects the product reservation, and should be done with care."
+
+#. module: stock
+#: help:stock.location,valuation_in_account_id:0
+msgid "Used for real-time inventory valuation. When set on a virtual location (non internal type), this account will be used to hold the value of products being moved from an internal location into this location, instead of the generic Stock Output Account set on the product. This has no effect for internal locations."
+msgstr "Used for real-time inventory valuation. When set on a virtual location (non internal type), this account will be used to hold the value of products being moved from an internal location into this location, instead of the generic Stock Output Account set on the product. This has no effect for internal locations."
+
+#. module: stock
+#: code:addons/stock/product.py:460
+#, python-format
+msgid "Future Deliveries"
+msgstr "Giao hàng tương lai"
+
+#. module: general_stock
+#: field:stock.move,picking_return:0
+msgid "Picking Return"
+msgstr "Picking Return"
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "Validate Inventory"
+msgstr "Trưởng kho duyệt"
+
+#. module: stock
+#: view:stock.move:0
+#: field:stock.move,tracking_id:0
+#: view:stock.tracking:0
+msgid "Pack"
+msgstr "Gói"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Date Expected"
+msgstr "Ngày trông đợi"
+
+#. module: stock
+#: field:stock.move,auto_validate:0
+msgid "Auto Validate"
+msgstr "Auto Validate"
+
+#. module: sale_stock
+#: field:sale.config.settings,group_invoice_deli_orders:0
+msgid "Generate invoices after and based on delivery orders"
+msgstr "Generate invoices after and based on delivery orders"
+
+#. module: stock
+#: code:addons/stock/stock.py:1848
+#, python-format
+msgid "Insufficient Stock for Serial Number !"
+msgstr "Insufficient Stock for Serial Number !"
+
+#. module: stock
+#: model:ir.model,name:stock.model_product_template
+msgid "Product Template"
+msgstr "Template sản phẩm"
+
+#. module: stock
+#: selection:report.stock.inventory,month:0
+#: selection:report.stock.move,month:0
+msgid "December"
+msgstr "Tháng Mười hai"
+
+#. module: stock
+#: selection:stock.location,chained_auto_packing:0
+msgid "Automatic Move"
+msgstr "Automatic Move"
+
+#. module: stock
+#: field:stock.location,stock_virtual_value:0
+msgid "Virtual Stock Value"
+msgstr "Giá trị Tồn kho Ảo"
+
+#. module: stock
+#: view:stock.picking.in:0
+#: view:stock.picking.out:0
+msgid "Return Products"
+msgstr "Hàng quay lại"
+
+#. module: sale_stock
+#: model:process.transition,note:sale_stock.process_transition_saleprocurement0
+msgid "A procurement order is automatically created as soon as a sales order is confirmed or as the invoice is paid. It drives the purchasing and the production of products regarding to the rules and to the sales order's parameters. "
+msgstr "A procurement order is automatically created as soon as a sales order is confirmed or as the invoice is paid. It drives the purchasing and the production of products regarding to the rules and to the sales order's parameters. "
+
+#. module: general_stock
+#: field:stock.warehouse,lot_return_id:0
+msgid "Location For Return"
+msgstr "Location For Return"
+
+#. module: stock
+#: view:report.stock.inventory:0
+#: view:report.stock.move:0
+msgid "Total quantity"
+msgstr "Total quantity"
+
+#. module: stock
+#: help:stock.production.lot,name:0
+msgid "Unique Serial Number, will be displayed as: PREFIX/SERIAL [INT_REF]"
+msgstr "Unique Serial Number, will be displayed as: PREFIX/SERIAL [INT_REF]"
+
+#. module: sale_stock
+#: model:ir.model,name:sale_stock.model_sale_order_line
+#: field:stock.move,sale_line_id:0
+msgid "Sales Order Line"
+msgstr "Sales Order Line"
+
+#. module: stock
+#: code:addons/stock/product.py:144
+#, python-format
+msgid "Please define stock input account for this product: \"%s\" (id: %d)."
+msgstr "Please define stock input account for this product: \"%s\" (id: %d)."
+
+#. module: stock
+#: model:ir.ui.menu,name:stock.menu_action_pdct_in
+msgid "Incoming  Products"
+msgstr "Hàng mua chờ nhận"
+
+#. module: stock
+#: view:product.product:0
+msgid "update"
+msgstr "update"
+
+#. module: stock
+#: view:stock.change.product.qty:0
+#: view:stock.change.standard.price:0
+#: view:stock.config.settings:0
+#: view:stock.fill.inventory:0
+#: view:stock.inventory.line.split:0
+#: view:stock.inventory.merge:0
+#: view:stock.invoice.onshipping:0
+#: view:stock.location.product:0
+#: view:stock.move.consume:0
+#: view:stock.move.scrap:0
+#: view:stock.move.split:0
+#: view:stock.partial.move:0
+#: view:stock.partial.picking:0
+#: view:stock.return.picking:0
+#: view:stock.split.into:0
+msgid "or"
+msgstr "hoặc"
+
+#. module: general_stock
+#: field:stock.picking,untax_amount:0
+#: field:stock.picking.in,untax_amount:0
+#: field:stock.picking.out,untax_amount:0
+msgid "Untaxed Amount"
+msgstr "Untaxed Amount"
+
+#. module: stock
+#: code:addons/stock/stock.py:1208
+#, python-format
+msgid "You cannot remove the picking which is in %s state!"
+msgstr "You cannot remove the picking which is in %s state!"
+
+#. module: stock
+#: help:res.partner,property_stock_customer:0
+msgid "This stock location will be used, instead of the default one, as the destination location for goods you send to this partner"
+msgstr "This stock location will be used, instead of the default one, as the destination location for goods you send to this partner"
+
+#. module: stock
+#: view:stock.change.product.qty:0
+#: view:stock.change.standard.price:0
+msgid "_Apply"
+msgstr "_Apply"
+
+#. module: general_stock
+#: field:stock.move,primary_qty:0
+msgid "Primary Qty"
+msgstr "Primary Qty"
+
+#. module: stock
+#: field:stock.picking,max_date:0
+#: field:stock.picking.in,max_date:0
+#: field:stock.picking.out,max_date:0
+msgid "Max. Expected Date"
+msgstr "Max. Expected Date"
+
+#. module: stock
+#: field:stock.picking,auto_picking:0
+#: field:stock.picking.in,auto_picking:0
+#: field:stock.picking.out,auto_picking:0
+msgid "Auto-Picking"
+msgstr "Tự động giao nhận"
+
+#. module: stock
+#: report:stock.picking.list:0
+msgid "Customer Address :"
+msgstr "Customer Address :"
+
+#. module: stock
+#: field:stock.location,chained_auto_packing:0
+msgid "Chaining Type"
+msgstr "Chaining Type"
+
+#. modules: general_stock, stock
+#: selection:stock.journal,source_type:0
+#: view:report.stock.inventory:0
+#: view:report.stock.move:0
+#: selection:report.stock.move,type:0
+#: view:stock.location:0
+#: selection:stock.location,chained_picking_type:0
+#: selection:stock.move,type:0
+#: selection:stock.picking,type:0
+#: selection:stock.picking.in,type:0
+#: selection:stock.picking.out,type:0
+msgid "Internal"
+msgstr "Nội bộ"
+
+#. module: stock
+#: view:stock.picking:0
+#: view:stock.picking.in:0
+#: view:stock.picking.out:0
+msgid "Calendar View"
+msgstr "Xem dưới dạng lịch"
+
+#. module: stock
+#: model:ir.actions.report.xml,name:stock.report_stock_inventory_move
+#: report:stock.inventory.move:0
+msgid "Stock Inventory"
+msgstr "Chi tiết điều chỉnh"
+
+#. module: stock
+#: help:report.stock.inventory,state:0
+msgid "When the stock move is created it is in the 'Draft' state.\n"
+" After that it is set to 'Confirmed' state.\n"
+" If stock is available state is set to 'Avaiable'.\n"
+" When the picking it done the state is 'Done'.              \n"
+"The state is 'Waiting' if the move is waiting for another one."
+msgstr "When the stock move is created it is in the 'Draft' state.\n"
+" After that it is set to 'Confirmed' state.\n"
+" If stock is available state is set to 'Avaiable'.\n"
+" When the picking it done the state is 'Done'.              \n"
+"The state is 'Waiting' if the move is waiting for another one."
+
+#. module: stock
+#: view:stock.inventory.merge:0
+msgid "Do you want to merge theses inventories?"
+msgstr "Do you want to merge theses inventories?"
+
+#. module: stock
+#: view:stock.picking.out:0
+msgid "Date of Delivery"
+msgstr "Ngày giao"
+
+#. module: stock
+#: field:stock.location,posy:0
+msgid "Shelves (Y)"
+msgstr "Shelves (Y)"
+
+#. module: stock
+#: code:addons/stock/stock.py:2305
+#, python-format
+msgid "Please define inventory valuation account on the product category: \"%s\" (id: %d)"
+msgstr "Please define inventory valuation account on the product category: \"%s\" (id: %d)"
+
+#. module: stock
+#: model:ir.model,name:stock.model_stock_production_lot_revision
+msgid "Serial Number Revision"
+msgstr "Serial Number Revision"
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_picking_tree4
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"	                Click to create an incoming shipment. \n"
+"	              </p><p>\n"
+"	                The Incoming Shipments is the list of all orders you will\n"
+"	                receive from your suppliers. An incoming shipment contains a\n"
+"	                list of products to be received according to the original\n"
+"	                purchase order.\n"
+"	              </p>\n"
+"	            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"	                Click to create an incoming shipment. \n"
+"	              </p><p>\n"
+"	                The Incoming Shipments is the list of all orders you will\n"
+"	                receive from your suppliers. An incoming shipment contains a\n"
+"	                list of products to be received according to the original\n"
+"	                purchase order.\n"
+"	              </p>\n"
+"	            "
+
+#. module: general_stock
+#: selection:stock.picking,return:0
+#: selection:stock.picking.in,return:0
+#: selection:stock.picking.out,return:0
+#: selection:stock.return.picking,return_type:0
+msgid "Normal"
+msgstr "Normal"
+
+#. module: sale_stock
+#: help:sale.order,picking_policy:0
+msgid "Pick 'Deliver each product when available' if you allow partial delivery."
+msgstr "Pick 'Deliver each product when available' if you allow partial delivery."
+
+#. module: stock
+#: code:addons/stock/product.py:100
+#, python-format
+msgid "Specify valuation Account for Product Category: %s."
+msgstr "Specify valuation Account for Product Category: %s."
+
+#. module: stock
+#: help:stock.config.settings,module_claim_from_delivery:0
+msgid "Adds a Claim link to the delivery order.\n"
+"                This installs the module claim_from_delivery."
+msgstr "Adds a Claim link to the delivery order.\n"
+"                This installs the module claim_from_delivery."
+
+#. module: stock
+#: code:addons/stock/wizard/stock_return_picking.py:212
+#, python-format
+msgid "Please specify at least one non-zero quantity."
+msgstr "Please specify at least one non-zero quantity."
+
+#. module: stock
+#: field:stock.fill.inventory,set_stock_zero:0
+msgid "Set to zero"
+msgstr "Set to zero"
+
+#. module: stock
+#: model:res.groups,name:stock.group_stock_user
+msgid "User"
+msgstr "User"
+
+#. module: stock
+#: field:stock.config.settings,module_stock_location:0
+msgid "Create push/pull logistic rules"
+msgstr "Create push/pull logistic rules"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_invoice_onshipping.py:98
+#, python-format
+msgid "None of these picking lists require invoicing."
+msgstr "None of these picking lists require invoicing."
+
+#. module: stock
+#: selection:report.stock.inventory,month:0
+#: selection:report.stock.move,month:0
+msgid "November"
+msgstr "Tháng Mười một"
+
+#. module: stock
+#: code:addons/stock/product.py:474
+#, python-format
+msgid "Unplanned Qty"
+msgstr "Unplanned Qty"
+
+#. module: stock
+#: field:stock.location,chained_company_id:0
+msgid "Chained Company"
+msgstr "Chained Company"
+
+#. module: stock
+#: view:stock.picking.out:0
+msgid "Check Availability"
+msgstr "Check Availability"
+
+#. module: stock
+#: view:stock.move:0
+#: field:stock.partial.move,picking_id:0
+#: field:stock.partial.picking,picking_id:0
+msgid "Picking"
+msgstr "Picking"
+
+#. module: stock
+#: view:stock.move:0
+msgid "Details"
+msgstr "Các chi tiết"
+
+#. module: stock
+#: selection:report.stock.inventory,month:0
+#: selection:report.stock.move,month:0
+msgid "January"
+msgstr "Tháng Một"
+
+#. module: stock
+#: constraint:stock.move:0
+msgid "You cannot move products from or to a location of the type view."
+msgstr "Không thể chuyển một sản phẩm từ hoặc đến một địa điểm thuộc loại Cha."
+
+#. module: stock
+#: field:product.template,property_stock_procurement:0
+msgid "Procurement Location"
+msgstr "Địa điểm Mua sắm"
+
+#. module: stock
+#: code:addons/stock/wizard/stock_fill_inventory.py:129
+#, python-format
+msgid "No product in this location. Please select a location in the product form."
+msgstr "No product in this location. Please select a location in the product form."
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.act_product_stock_move_futur_open
+msgid "Future Stock Moves"
+msgstr "Future Stock Moves"
+
+#. module: stock
+#: field:stock.move,move_history_ids2:0
+msgid "Move History (parent moves)"
+msgstr "Move History (parent moves)"
+
+#. module: stock
+#: code:addons/stock/product.py:456
+#, python-format
+msgid "Future Stock"
+msgstr "Future Stock"
+
+#. module: general_stock
+#: field:stock.location,location_return:0
+msgid "For Return ?"
+msgstr "For Return ?"
+
+#. module: stock
+#: code:addons/stock/stock.py:1675
+#: code:addons/stock/stock.py:1677
+#, python-format
+msgid "Error"
+msgstr "Lỗi"
+
+#. module: general_stock
+#: view:stock.move:0
+msgid "Delivery Moves"
+msgstr "Delivery Moves"
+
+#. module: sale_stock
+#: model:process.node,note:sale_stock.process_node_saleprocurement0
+msgid "One Procurement order for each sales order line and for each of the components."
+msgstr "One Procurement order for each sales order line and for each of the components."
+
+#. module: sale_stock
+#: model:process.transition.action,name:sale_stock.process_transition_action_assign0
+msgid "Assign"
+msgstr "Chỉ định"
+
+#. module: stock
+#: report:stock.inventory.move:0
+msgid "Production Lot"
+msgstr "Production Lot"
+
+#. module: stock
+#: model:ir.ui.menu,name:stock.menu_traceability
+#: view:stock.config.settings:0
+#: view:stock.move:0
+#: view:stock.tracking:0
+msgid "Traceability"
+msgstr "Theo dõi hàng hóa"
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_deliver_move
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a delivery order for this product.\n"
+"              </p><p>\n"
+"                Here you will find the history of all past deliveries related to\n"
+"                this product, as well as all the products you must deliver to\n"
+"                customers.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a delivery order for this product.\n"
+"              </p><p>\n"
+"                Here you will find the history of all past deliveries related to\n"
+"                this product, as well as all the products you must deliver to\n"
+"                customers.\n"
+"              </p>\n"
+"            "
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_location_form
+#: model:ir.ui.menu,name:stock.menu_action_location_form
+#: view:stock.location:0
+#: view:stock.move:0
+msgid "Locations"
+msgstr "Các địa điểm"
+
+#. module: stock
+#: help:stock.picking,backorder_id:0
+#: help:stock.picking.in,backorder_id:0
+#: help:stock.picking.out,backorder_id:0
+msgid "If this shipment was split, then this field links to the shipment which contains the already processed part."
+msgstr "Nếu lô hàng này đã được chia nhỏ, thì ô này liên kết đến lô hàng, trong đó có một phần đã được xử lý."
+
+#. module: stock
+#: code:addons/stock/stock.py:2293
+#, python-format
+msgid "Cannot create Journal Entry, Input Account of this product and Valuation account on category of this product are same."
+msgstr "Cannot create Journal Entry, Input Account of this product and Valuation account on category of this product are same."
+
+#. module: general_stock
+#: model:ir.actions.act_window,name:general_stock.action_picking_quick
+#: model:ir.ui.menu,name:general_stock.menu_action_picking_quick
+#: view:stock.picking:0
+msgid "Quick Internal move Entry"
+msgstr "Tạo nhanh phiếu chuyển kho"
+
+#. modules: general_stock, stock
+#: view:stock.move:0
+#: model:ir.actions.act_window,name:stock.track_line
+#: model:ir.model,name:stock.model_stock_move_split
+#: view:stock.inventory.line.split:0
+#: view:stock.move:0
+#: view:stock.move.split:0
+msgid "Split in Serial Numbers"
+msgstr "Split in Serial Numbers"
+
+#. module: sale_stock
+#: code:addons/sale_stock/sale_stock.py:163
+#, python-format
+msgid "In order to delete a confirmed sales order, you must cancel it.\n"
+"To do so, you must first cancel related picking for delivery orders."
+msgstr "In order to delete a confirmed sales order, you must cancel it.\n"
+"To do so, you must first cancel related picking for delivery orders."
+
+#. module: stock
+#: view:stock.move:0
+#: field:stock.partial.move,move_ids:0
+#: field:stock.return.picking,product_return_moves:0
+msgid "Moves"
+msgstr "Moves"
+
+#. module: stock
+#: view:report.stock.move:0
+#: field:report.stock.move,location_dest_id:0
+#: field:stock.partial.move.line,location_dest_id:0
+#: field:stock.partial.picking.line,location_dest_id:0
+#: field:stock.picking,location_dest_id:0
+#: field:stock.picking.in,location_dest_id:0
+#: field:stock.picking.out,location_dest_id:0
+msgid "Dest. Location"
+msgstr "Vị trí Đích"
+
+#. module: stock
+#: model:ir.actions.report.xml,name:stock.report_picking_list
+msgid "Picking Slip"
+msgstr "Picking Slip"
+
+#. modules: sale_stock, stock
+#: field:sale.order,shipped:0
+#: selection:stock.picking.out,state:0
+msgid "Delivered"
+msgstr "Đã giao hàng"
+
+#. module: stock
+#: view:product.product:0
+msgid "Delays"
+msgstr "Chậm trễ"
+
+#. module: stock
+#: model:ir.actions.report.xml,name:stock.report_picking_list_out
+msgid "Delivery Slip"
+msgstr "Delivery Slip"
+
+#. module: stock
+#: report:stock.picking.list:0
+msgid "Schedule Date"
+msgstr "Ngày dự kiến"
+
+#. module: stock
+#: field:stock.location.product,to_date:0
+msgid "To"
+msgstr "Đến"
+
+#. module: stock
+#: selection:report.stock.inventory,month:0
+#: selection:report.stock.move,month:0
+msgid "October"
+msgstr "Tháng Mười"
+
+#. module: stock
+#: view:stock.split.into:0
+msgid "Split Move"
+msgstr "Split Move"
+
+#. module: general_stock
+#: field:stock.journal,source_type:0
+msgid "Source Type"
+msgstr "Source Type"
+
+#. module: stock
+#: selection:stock.move,state:0
+msgid "New"
+msgstr "Mới"
+
+#. module: stock
+#: view:report.stock.move:0
+msgid "Future Stock-Moves"
+msgstr "Future Stock-Moves"
+
+#. module: stock
+#: selection:product.product,valuation:0
+msgid "Real Time (automated)"
+msgstr "Real Time (automated)"
+
+#. module: stock
+#: view:report.stock.inventory:0
+msgid "Real"
+msgstr "Real"
+
+#. module: stock
+#: field:product.product,track_outgoing:0
+msgid "Track Outgoing Lots"
+msgstr "Track Outgoing Lots"
+
+#. module: sale_stock
+#: code:addons/sale_stock/sale_stock.py:530
+#, python-format
+msgid "Cannot cancel sales order line!"
+msgstr "Cannot cancel sales order line!"
+
+#. module: stock
+#: selection:report.stock.inventory,month:0
+#: selection:report.stock.move,month:0
+msgid "May"
+msgstr "Tháng Năm"
+
+#. module: stock
+#: code:addons/stock/product.py:112
+#, python-format
+msgid "No difference between standard price and new price!"
+msgstr "No difference between standard price and new price!"
+
+#. modules: general_stock, stock
+#: view:stock.picking.out:0
+#: view:stock.picking.out:0
+msgid "Deliver"
+msgstr "Giao hàng"
+
+#. module: general_stock
+#: model:ir.actions.act_window,name:general_stock.action_move_return
+#: model:ir.ui.menu,name:general_stock.menu_action_move_return
+msgid "Return Moves"
+msgstr "Hàng đã trả"
+
+#. module: stock
+#: view:stock.fill.inventory:0
+msgid "Import the current inventory"
+msgstr "Import the current inventory"
+
+#. module: general_stock
+#: help:stock.location,location_return:0
+msgid "This location is for return goods?"
+msgstr "This location is for return goods?"
+
+#. module: stock
+#: code:addons/stock/product.py:450
+#, python-format
+msgid "Future Receptions"
+msgstr "Future Receptions"
+
+#. module: stock
+#: model:ir.actions.report.xml,name:stock.report_location_overview_all
+#: report:lot.stock.overview_all:0
+msgid "Location Content"
+msgstr "Location Content"
+
+#. module: stock
+#: code:addons/stock/product.py:480
+#, python-format
+msgid "Produced Qty"
+msgstr "Số lượng sản xuất"
+
+#. module: sale_stock
+#: help:sale.order.line,delay:0
+msgid "Number of days between the order confirmation and the shipping of the products to the customer"
+msgstr "Number of days between the order confirmation and the shipping of the products to the customer"
+
+#. module: stock
+#: field:stock.location,chained_location_type:0
+msgid "Chained Location Type"
+msgstr "Chained Location Type"
+
+#. module: stock
+#: help:stock.picking,min_date:0
+#: help:stock.picking.in,min_date:0
+#: help:stock.picking.out,min_date:0
+msgid "Scheduled time for the shipment to be processed"
+msgstr "Scheduled time for the shipment to be processed"
+
+#. module: stock
+#: selection:report.stock.inventory,location_type:0
+#: model:stock.location,name:stock.location_production
+#: selection:stock.location,usage:0
+msgid "Production"
+msgstr "Sản xuất"
+
+#. module: stock
+#: field:product.template,loc_case:0
+msgid "Case"
+msgstr "Case"
+
+#. module: general_stock
+#: model:ir.actions.act_window,name:general_stock.action_scrap_moves
+#: model:ir.ui.menu,name:general_stock.menu_action_scrap_moves
+msgid "Scrap Stock Moves"
+msgstr "Hàng bị hư hỏng"
+
+#. module: stock
+#: model:ir.actions.act_window,help:stock.action_production_lot_form
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a serial number.\n"
+"              </p><p>\n"
+"                This is the list of all the production lots you recorded. When\n"
+"                you select a lot, you can get the upstream or downstream\n"
+"                traceability of the products contained in lot. By default, the\n"
+"                list is filtred on the serial numbers that are available in\n"
+"                your warehouse but you can uncheck the 'Available' button to\n"
+"                get all the lots you produced, received or delivered to\n"
+"                customers.\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to add a serial number.\n"
+"              </p><p>\n"
+"                This is the list of all the production lots you recorded. When\n"
+"                you select a lot, you can get the upstream or downstream\n"
+"                traceability of the products contained in lot. By default, the\n"
+"                list is filtred on the serial numbers that are available in\n"
+"                your warehouse but you can uncheck the 'Available' button to\n"
+"                get all the lots you produced, received or delivered to\n"
+"                customers.\n"
+"              </p>\n"
+"            "
+
+#. module: stock
+#: view:stock.picking.in:0
+msgid "Date of Reception"
+msgstr "Ngày tiếp nhận"
+
+#. module: stock
+#: selection:stock.location.product,type:0
+msgid "Analyze period"
+msgstr "Analyze period"
+
+#. module: stock
+#: view:report.stock.inventory:0
+#: field:report.stock.inventory,year:0
+#: view:report.stock.move:0
+#: field:report.stock.move,year:0
+msgid "Year"
+msgstr "Năm"
+
+#. modules: general_stock, stock
+#: view:stock.picking:0
+#: view:stock.picking:0
+msgid "Confirm & Transfer"
+msgstr "Xác nhận và Chuyển"
+
+#. module: stock
+#: field:stock.location,scrap_location:0
+#: view:stock.move.scrap:0
+msgid "Scrap Location"
+msgstr "Địa điểm Phế liệu"
+
+#. module: stock
+#: model:ir.actions.act_window,name:stock.action_partial_picking
+msgid "Process Picking"
+msgstr "Process Picking"
+
+#. module: stock
+#: selection:report.stock.inventory,month:0
+#: selection:report.stock.move,month:0
+msgid "April"
+msgstr "Tháng Tư"
+
+#. module: stock
+#: view:report.stock.inventory:0
+msgid "Future"
+msgstr "Tương lai"
+
+#. module: stock
+#: field:stock.invoice.onshipping,invoice_date:0
+msgid "Invoiced date"
+msgstr "Ngày ra hóa đơn"
+
+#. module: sale_stock
+#: help:sale.order,picking_ids:0
+msgid "This is a list of delivery orders that has been generated for this sales order."
+msgstr "This is a list of delivery orders that has been generated for this sales order."
+
+#. module: stock
+#: code:addons/stock/wizard/stock_partial_move.py:72
+#: code:addons/stock/wizard/stock_return_picking.py:189
+#, python-format
+msgid "Warning !"
+msgstr "Cảnh báo !"
+
+#. module: general_stock
+#: field:stock.return.reason,active:0
+msgid "Active ?"
+msgstr "Kích hoạt ?"
+
+#. module: stock
+#: model:stock.location,name:stock.stock_location_output
+msgid "Output"
+msgstr "XSBP - Kho xuất bán"
+
+#. module: stock
+#: help:stock.tracking,name:0
+msgid "By default, the pack reference is generated following the sscc standard. (Serial number + 1 check digit)"
+msgstr "By default, the pack reference is generated following the sscc standard. (Serial number + 1 check digit)"
+
+#. module: sale_stock
+#: model:process.node,name:sale_stock.process_node_saleorderprocurement0
+msgid "Sales Order Requisition"
+msgstr "Sales Order Requisition"
+
+#. module: sale_stock
+#: code:addons/sale_stock/sale_stock.py:628
+#, python-format
+msgid "Not enough stock ! : "
+msgstr "Not enough stock ! : "
+
+#. module: general_stock
+#: field:stock.journal,sequence_id:0
+msgid "Sequence"
+msgstr "Sequence"
+
+#. module: stock
+#: help:product.template,property_stock_inventory:0
+msgid "This stock location will be used, instead of the default one, as the source location for stock moves generated when you do an inventory."
+msgstr "This stock location will be used, instead of the default one, as the source location for stock moves generated when you do an inventory."
+
+#. module: stock
+#: help:stock.config.settings,group_stock_inventory_valuation:0
+msgid "Allows to configure inventory valuations on products and product categories."
+msgstr "Allows to configure inventory valuations on products and product categories."
+
+#. module: stock
+#: help:stock.move,move_dest_id:0
+msgid "Optional: next stock move when chaining them"
+msgstr "Optional: next stock move when chaining them"
+
+#. module: stock
+#: view:stock.picking.out:0
+msgid "Print Delivery Slip"
+msgstr "In phiếu giao hàng"
+
+#. module: sale_stock
+#: field:sale.order,picked_rate:0
+msgid "Picked"
+msgstr "Chọn"
+
+#. module: general_stock
+#: help:stock.return.picking,location_id:0
+msgid "If a location is chosen the destination location for customer return (or origin for supplier return) is forced for all moves."
+msgstr "If a location is chosen the destination location for customer return (or origin for supplier return) is forced for all moves."
+
+#. module: stock
+#: model:stock.location,name:stock.stock_location_locations
+msgid "Physical Locations"
+msgstr "Địa điểm vật lý"
+
+#. module: stock
+#: view:stock.picking.in:0
+msgid "Ready to Process"
+msgstr "Sẵn sàng thực thi"
+
+#. module: stock
+#: report:stock.picking.list:0
+msgid "Warehouse Address :"
+msgstr "Warehouse Address :"
+
+#. module: stock
+#: view:stock.inventory:0
+msgid "Search Inventory"
+msgstr "Tìm kiếm tồn kho"
+

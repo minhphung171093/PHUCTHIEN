@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    <!-- Point Of Sale -->
+    
+    <record model="ir.ui.view" id="pos_order_form_inherit_modify">
+	        <field name="name">pos.order.form.inherit.form</field>
+	        <field name="model">pos.order</field>
+	        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+	        <field name="arch" type="xml">
+	        
+	        	
+	        	<xpath expr="//button[@name='refund']" position="after">
+            		<button string="Nhập kho" name="button_create_picking" type="object"/>
+                </xpath>
+                
+				<xpath expr="//field[@name='partner_id']" position="after">
+            		<field name="type_pos" invisible="1"/>
+                </xpath>
+                
+                <!-- Add location into Sale Order View -->
+                <xpath expr="//field[@name='lines']" position="attributes">
+                	<attribute name="context">{'default_date':time.strftime('%%Y-%%m-%%d')}</attribute>
+                </xpath>
+                
+                <xpath expr="//field[@name='lines']/tree/field[@name='product_id']" position="before">
+                	<field name="from_location_id"/>
+                	<field name="date"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='lines']/tree/field[@name='price_subtotal']" position="replace">
+                	<field name="price_subtotal" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='lines']/tree/field[@name='product_id']" position="before">
+                	<field name="section_id"/>
+                </xpath>
+	            <xpath expr="//field[@name='lines']/tree/field[@name='product_id']" position="after">
+                	<field name="note"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='statement_ids']/tree/field[@name='journal_id']" position="before">
+                	<field name="date"/>
+                	<field name="payment_datetime"/>
+                </xpath>
+                
+	        </field>
+	</record>
+		
+ 	<record model="ir.actions.act_window" id="point_of_sale.action_pos_pos_form">
+	        <field name="name">Orders</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">pos.order</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="view_id" eval="False"/>
+	        <field name="context">{'default_type_pos':'delivery','search_default_today':1}</field>
+          <!--  <field name="domain">[('type_pos','=','delivery')]</field> -->
+	        <field name="help" type="html">
+	          <p class="oe_view_nocontent_create">
+	            Click to create a new order.
+	          </p><p>
+	            Use this menu to browse your preceeding orders. To record new
+	            orders, you should better use the menu <i>Your Session</i> for
+	            the touchscreen interface.
+	          </p>
+	        </field>
+    </record>
+    
+    
+    <record model="ir.actions.act_window" id="action_pos_pos_form_general">
+	        <field name="name">Return Point Of Sale</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">pos.order</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	        <field name="view_id" eval="False"/>
+	      	<field name="context">{'default_type_pos':'receipt','search_default_myorder':1}</field>
+            <field name="domain">[('type_pos','=','receipt')]</field>
+	        <field name="help" type="html">
+	          <p class="oe_view_nocontent_create">
+	            Click to create a new order.
+	          </p><p>
+	            Use this menu to browse your preceeding orders. To record new
+	            orders, you should better use the menu <i>Your Session</i> for
+	            the touchscreen interface.
+	          </p>
+	        </field>
+    </record>
+    <!--
+    <menuitem parent="point_of_sale.menu_point_of_sale" id="menu_point_of_sale" action="action_pos_pos_form_general" sequence="2" groups="point_of_sale.group_pos_manager,point_of_sale.group_pos_user"/>
+    -->
+	    <record model="ir.ui.view" id="view_partner_form_inherit_modify">
+	    <field name="name">view.partner.inherit.form</field>
+	    <field name="model">res.partner</field>
+	    <field name="inherit_id" ref="point_of_sale.view_partner_property_form"/>
+	    <field name="arch" type="xml">
+			<xpath expr="//field[@name='ean13']" position="after">
+	    		<field name="customer_type"/>
+	        </xpath>
+	    </field>
+		</record>
+		
+	
+	<record model="ir.ui.view" id="pos_order_line_form_inherit_modify">
+	        <field name="name">pos.order.line.form.inherit.modify</field>
+	        <field name="model">pos.order.line</field>
+	        <field name="inherit_id" ref="point_of_sale.view_pos_order_line"/>
+	        <field name="arch" type="xml">
+	        	<xpath expr="//field[@name='product_id']" position="before">
+	        		<field name="user_id"/>
+            		<field name="section_id" string="Bộ Phận Thu Tiền"/>
+            		<field name="partner_id"/>
+            		<field name="partner_reference"/>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="after">
+            		<field name="note" invisible="0"/>
+                </xpath>
+                <xpath expr="//field[@name='create_date']" position="replace">
+            		<field name="day_user_tz" invisible="1"/>
+            		<field name="date_order" invisible="0"/>
+            		<field name="state"/>
+            		<field name="check_flag"/>
+            		<field name="relate_name" invisible="1"/>
+                </xpath>
+                  <xpath expr="//field[@name='price_subtotal']" position="replace">
+            		<field name="price_subtotal" invisible="1"/>
+                </xpath>
+            </field>
+	</record>	
+	
+	<record model="ir.ui.view" id="view_pos_order_line_search">
+            <field name="name">view.pos.order.line.search</field>
+            <field name="model">pos.order.line</field>
+            <field name="arch" type="xml">
+                <search string="Point of Sale Config">
+                	<filter icon="terp-go-today" string="Today" name="today" domain="[('date_user_tz','=',current_date)]" />
+                	<filter icon="terp-go-today" string="Đã Xem" name="check_flag" domain="[('check_flag','=',True)]" />
+                	<filter icon="terp-go-today" string="Chưa Xem" name="check_flag" domain="[('check_flag','=',False)]" />
+                    <field name="product_id" />
+                    <field name="user_id"/>
+            		<field name="section_id" string="Bộ Phận Thu Tiền"/>
+            		<field name="partner_id"/>
+            		<field name="partner_reference"/>
+                    <field name="day_user_tz"/>
+                    <field name="date_user_tz"/>
+                    <field name="relate_name"/>
+                    <group expand="0" string="Group By...">
+                    	<filter string="Product" domain="[]" context="{'group_by':'product_id'}"/>
+                    	<filter string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                    	<filter string="Bộ Phận Thu Tiền" domain="[]" context="{'group_by':'section_id'}"/>
+                    	<filter string="Nhân viên bán hàng" domain="[]" context="{'group_by':'user_id'}"/>
+                    	<filter string="Date" domain="[]" context="{'group_by':'day_user_tz'}"/>
+                    	<filter string="Month" domain="[]" context="{'group_by':'date_user_tz'}"/>
+                    	<filter string="Trạng Thái" domain="[]" context="{'group_by':'state'}"/>
+                    	<filter string="Đã Xem" domain="[]" context="{'group_by':'check_flag'}"/>
+                    	<filter string="Pos Name" domain="[]" context="{'group_by':'relate_name'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+	
+	
+	<record model="ir.actions.act_window" id="point_of_sale.action_pos_order_line">
+        <field name="name">Sale line</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pos.order.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="point_of_sale.view_pos_order_line"/>
+        <field name="context" eval="{'search_default_today': 1}"/>
+    </record>
+        
+	<menuitem parent="point_of_sale.menu_point_of_sale" id="menu_action_pos_order_line" action="point_of_sale.action_pos_order_line" sequence="10" groups="point_of_sale.group_pos_manager,account.group_account_invoice"/>
+		
+		
+		
+		
+    </data>
+</openerp>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	
+<!--  ========================= General Ledger Report ================= -->
+    	<record id="general_ledger_report" model="ir.actions.report.xml">
+	        <field name="name">general_ledger_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">general.ledger.report</field>
+	        <field name="report_name">general_ledger_report</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_account/report/general_ledger_report.py</field>
+	        <field name="report_rml">general_report_account/report/general_ledger_report.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="general_ledger_report" 
+			model="general.ledger.report" 
+			name="general_ledger_report"
+	        string="General Ledger"
+	        rml="general_report_account/report/general_ledger_report.ods"/>
+	        
+<!--  ========================= Account Ledger Report ================= -->
+		<record id="account_ledger_report" model="ir.actions.report.xml">
+	        <field name="name">account_ledger_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.ledger.report</field>
+	        <field name="report_name">account_ledger_report</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_account/report/account_ledger_report.py</field>
+	        <field name="report_rml">general_report_account/report/account_ledger_report.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="account_ledger_report" 
+			model="account.ledger.report" 
+			name="account_ledger_report"
+	        string="Account Ledger"
+	        rml="general_report_account/report/account_ledger_report.ods"/>
+	        
+	        
+<!--  ========================= Account Ledger Report ================= -->
+		<record id="account_detail_ledger_report" model="ir.actions.report.xml">
+	        <field name="name">account_detail_ledger_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.ledger.report</field>
+	        <field name="report_name">account_detail_ledger_report</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_account/report/account_detail_ledger_report.py</field>
+	        <field name="report_rml">general_report_account/report/account_detail_ledger_report.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="account_detail_ledger_report" 
+			model="account.ledger.report" 
+			name="account_detail_ledger_report"
+	        string="Account Ledger Detail"
+	        rml="general_report_account/report/account_detail_ledger_report.ods"/>
+	        
+<!--  ========================= Create General Account VAT IN Report ================= -->
+    	<record id="tax_vat_input" model="ir.actions.report.xml">
+	        <field name="name">tax_vat_input</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">report.account.in.out.tax</field>
+	        <field name="report_name">tax_vat_input</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_account/report/BKMV.py</field>
+	        <field name="report_rml">general_report_account/report/BKMV.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="tax_vat_input" 
+			model="report.account.in.out.tax" 
+			name="tax_vat_input"
+	        string="Bang Ke Mua"
+	        rml="general_report_account/report/BKMV.ods"/>
+	        
+	        
+	        
+<!--  ========================= Create General Account VAT OUT Report ================= -->
+    	<record id="tax_vat_output" model="ir.actions.report.xml">
+	        <field name="name">tax_vat_output</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">report.account.in.out.tax</field>
+	        <field name="report_name">tax_vat_output</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_account/report/BKBR.py</field>
+	        <field name="report_rml">general_report_account/report/BKBR.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="tax_vat_output" 
+			model="report.account.in.out.tax" 
+			name="tax_vat_output"
+	        string="Bang Ke Ban"
+	        rml="general_report_account/report/BKBR.ods"/>
+	        
+		       
+<!--  ========================= REPORT FINANCIAL General Trial Balance ================= -->
+
+		<!-- Create New General trial balance Report -->
+    	<record id="fin_general_trial_balance_report" model="ir.actions.report.xml">
+	        <field name="name">general_trial_balance_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">general.trial.balance</field>
+	        <field name="report_name">fin_general_trial_balance_report</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_account/report/general_trial_balance_report.py</field>
+	        <field name="report_rml">general_report_account/report/general_trial_balance_report.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="fin_general_trial_balance_report" 
+			model="general.trial.balance" 
+			name="fin_general_trial_balance_report"
+	        string="General Trial Balance"
+	        rml="general_report_account/report/general_trial_balance_report.ods"/>
+	        
+<!--  ========================= REPORT FINANCIAL General Balance Sheet ================= -->	   	   
+	   <!-- Create New General Balance Sheet Report -->
+    	<record id="fin_general_balance_sheet_report" model="ir.actions.report.xml">
+	        <field name="name">general_balance_sheet_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">general.balance.sheet</field>
+	        <field name="report_name">fin_general_balance_sheet_report</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_account/report/general_balance_sheet_report.py</field>
+	        <field name="report_rml">general_report_account/report/general_balance_sheet_report.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="fin_general_balance_sheet_report" 
+			model="general.balance.sheet" 
+			name="fin_general_balance_sheet_report"
+	        string="General Balance Sheet"
+	        rml="general_report_account/report/general_balance_sheet_report.ods"/>
+	        
+	   <!--  =========== REPORT GENERAL ACCOUNTt PROFIT LOSS REPORT ============ -->	   	   
+	   <!-- Create New General Account Profit loss Report -->
+    	<record id="fin_general_account_profit_loss_report" model="ir.actions.report.xml">
+	        <field name="name">general_account_profit_loss_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">general.account.profit.loss</field>
+	        <field name="report_name">fin_general_account_profit_loss_report</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_report_account/report/general_account_profit_loss_report.py</field>
+	        <field name="report_rml">general_report_account/report/general_account_profit_loss_report.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="fin_general_account_profit_loss_report" 
+			model="general.account.profit.loss" 
+			name="fin_general_account_profit_loss_report"
+	        string="General Account Profit Loss"
+	        rml="general_report_account/report/general_account_profit_loss_report.ods"/>
+	        
+		
+	</data>
+</openerp>

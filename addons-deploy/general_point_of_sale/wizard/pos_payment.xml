@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="point_of_sale.view_pos_payment" model="ir.ui.view">
+            <field name="name">Pay Order</field>
+            <field name="model">pos.make.payment</field>
+            <field name="arch" type="xml">
+            <form string="Pay Order" version="7.0">
+                <group>
+                	<field name="payment_date"/>
+                    <field name="journal_id" widget='selection'/>
+                    <field name="amount"/>
+                    <field name="payment_name"/>
+                </group>
+                <footer>
+                    <button name="check" string="Make Payment" type="object" class="oe_highlight"/>
+                    or 
+                    <button icon="gtk-stop" special="cancel" string="Cancel" class="oe_link"/>
+                </footer>
+            </form>
+            </field>
+        </record>
+        
+    </data>
+</openerp>
+

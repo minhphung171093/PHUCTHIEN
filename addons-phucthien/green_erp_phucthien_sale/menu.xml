@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <menuitem id="hop_dong" name="Hợp đồng" sequence="0"/>
+        <menuitem id="menu_hop_dong" parent="hop_dong" name="Hợp đồng" sequence="0"/>
+        <menuitem id="hop_dong_ban" name="Hợp đồng bán" parent="menu_hop_dong" sequence="1"/>
+    	<menuitem id="menu_action_hop_dong_kinhte"
+    		action="action_hop_dong_kinhte"
+    		name="Hợp đồng kinh tế"
+    		parent="hop_dong_ban"
+    		sequence="0"/>
+		<menuitem id="menu_action_hop_dong_thau"
+    		action="action_hop_dong_thau"
+    		name="Hợp đồng thầu"
+    		parent="hop_dong_ban"
+    		sequence="1"/>
+		<menuitem id="menu_action_hop_dong_nguyentac"
+    		action="action_hop_dong_nguyentac"
+    		name="Hợp đồng nguyên tắc"
+    		parent="hop_dong_ban"
+    		sequence="2"/>
+    	<menuitem id="hop_dong_ky_gui" name="Hợp đồng ký gửi"
+    		action="action_hop_dong_ky_gui" parent="hop_dong_ban" 
+    		sequence="3"/>
+    	<menuitem id="hop_dong_mua" name="Hợp đồng mua" action="action_hop_dong_mua" parent="menu_hop_dong" sequence="2"/>
+    	<menuitem id="hop_dong_tai_tro" name="Hợp đồng tài trợ" action="action_hop_dong_tai_tro" parent="menu_hop_dong" sequence="3"/>
+    	<menuitem id="hop_dong_khac" name="Hợp đồng khác" action="action_hop_dong_khac" parent="menu_hop_dong" sequence="4"/>
+    	
+    	<menuitem id="phucthien_sale_report" name="Báo cáo" parent="base.menu_base_partner" sequence="20"/>
+    	<menuitem id="menu_action_doanhthu_banhang"
+    		action="action_doanhthu_banhang"
+    		name="Tổng hợp báo cáo bán hàng"
+    		parent="phucthien_sale_report"
+    		sequence="2"/>
+    	<menuitem id="menu_action_danhsach_canhtranh"
+    		action="action_danhsach_canhtranh"
+    		name="Báo cáo đối thủ cạnh tranh"
+    		parent="phucthien_sale_report"
+    		sequence="3"/>
+    </data>
+    
+</openerp>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	 <record id="group_bill" model="ir.ui.view">
+            <field name="name">group.bill.form</field>
+            <field name="model">group.bill</field>
+            <field name="arch" type="xml">
+            <form string="Group Bill" version="7.0">
+            	<header>
+            		<button name="get_bill" string="Get bill" type="object" class="oe_highlight"/>
+                </header>
+    			<group col='4'>
+					<field name="shop_id"/>
+            		<field name="date_invoice"/>
+            		<field name="partner_id"/>
+            		<field name="account_journal_id"/>
+            		<field name="group_general"/>
+            		<newline/>
+            		<field name="from_date" attrs="{'invisible':[('group_general','=',False)],'required':[('group_general','!=',False)]}"/>
+            		<field name="to_date" attrs="{'invisible':[('group_general','=',False)],'required':[('group_general','!=',False)]}"/>
+            		
+            	</group>
+            	<newline/>
+            	<group attrs="{'invisible':[('group_general','!=',False)]}">
+        			<field name="group_bill_point" nolabel="1"/>
+            	</group>
+            			
+                <footer>
+                  <button name="group_bill_invoice" string="Group Bill" type="object" class="oe_highlight"/>
+                  or
+                  <button string="Cancel" class="oe_link" special="cancel" />
+              	</footer>
+       		 </form>
+    	</field>
+     </record>
+     
+        <record id="action_group_bill" model="ir.actions.act_window">
+            <field name="name">Group Bill</field>
+            <field name="res_model">group.bill</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+  		
+		<menuitem parent="point_of_sale.menu_point_of_sale" id="menu_group_bill" action="action_group_bill" sequence="10" groups="point_of_sale.group_pos_manager,account.group_account_invoice"/>
+		
+    </data>
+</openerp>

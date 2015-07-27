@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+    	<record id="hopdong_kinhte_report" model="ir.actions.report.xml">
+	        <field name="name">hopdong.kinhte.report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">hop.dong</field>
+	        <field name="report_name">Hợp Đồng Kinh Tế</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-doc'),('compatible_types','=','oo-odt')]"/>
+	        <field name="parser_loc">green_erp_phucthien_sale/report/hopdong_kinhte.py</field>
+	        <field name="report_rml">green_erp_phucthien_sale/report/hopdong_kinhte.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record> 
+    	   
+    	<report 
+			auto="False" 
+			menu="False"
+			id="hopdong_kinhte_report" 
+			model="hop.dong" 
+			name="hopdong_kinhte_report"
+	        string="Hợp Đồng Kinh Tế"
+	        rml="green_erp_phucthien_sale/report/hopdong_kinhte.odt"/> 	
+	</data>
+</openerp>

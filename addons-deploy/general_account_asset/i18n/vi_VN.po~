@@ -1,0 +1,386 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* general_account_asset
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20130327-002325\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-07-27 05:06+0000\n"
+"PO-Revision-Date: 2014-07-27 05:06+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Purchase Date"
+msgstr "Ngày mua tài sản"
+
+#. module: general_account_asset
+#: model:ir.model,name:general_account_asset.model_sql_expense_allocation
+msgid "sql.expense.allocation"
+msgstr "sql.expense.allocation"
+
+#. module: general_account_asset
+#: model:ir.model,name:general_account_asset.model_sql_depreciation_asset
+msgid "sql.depreciation.asset"
+msgstr "sql.depreciation.asset"
+
+#. module: general_account_asset
+#: field:account.asset.asset,account_expense_depreciation_id:0
+msgid "Depr. Expense Account"
+msgstr "Tài khoản chi phí khấu hao"
+
+#. module: general_account_asset
+#: field:account.asset.asset,voucher_date:0
+msgid "Voucher Date"
+msgstr "Ngày bán tài sản"
+
+#. module: general_account_asset
+#: field:depreciation.asset,period_id_start:0
+#: field:expense.allocation,period_id_start:0
+msgid "Period"
+msgstr "Kỳ"
+
+#. module: general_account_asset
+#: field:account.asset.asset,account_analytic_id:0
+#: field:asset.modify,account_analytic_id:0
+msgid "Analytic account"
+msgstr "Tài khoản phân bổ"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Group By..."
+msgstr "Nhóm theo..."
+
+#. module: general_account_asset
+#: view:depreciation.asset:0
+#: model:ir.actions.act_window,name:general_account_asset.action_report_depreciation_asset
+#: model:ir.actions.report.xml,name:general_account_asset.report_depreciation_asset
+#: model:ir.ui.menu,name:general_account_asset.menu_action_report_depreciation_asset
+msgid "Depreciation Asset Report"
+msgstr "Tình hình khấu hao tài sản"
+
+#. module: general_account_asset
+#: model:ir.ui.menu,name:general_account_asset.menu_report_asset_reports
+msgid "Asset Reports"
+msgstr "Báo cáo TSCĐ"
+
+#. module: general_account_asset
+#: selection:account.asset.asset,asset_type:0
+#: view:asset.asset.report:0
+#: model:ir.model,name:general_account_asset.model_account_asset_asset
+#: selection:list.of.asset,asset_type:0
+msgid "Asset"
+msgstr "Tài sản"
+
+#. module: general_account_asset
+#: selection:expense.allocation,type:0
+msgid "Short term"
+msgstr "Ngắn hạn"
+
+#. module: general_account_asset
+#: view:depreciation.asset:0
+#: view:expense.allocation:0
+#: view:list.of.asset:0
+msgid "Print"
+msgstr "In"
+
+#. module: general_account_asset
+#: selection:depreciation.asset,times:0
+#: selection:expense.allocation,times:0
+msgid "Years"
+msgstr "Năm"
+
+#. module: general_account_asset
+#: field:expense.allocation,type:0
+msgid "Type"
+msgstr "Loại tài sản"
+
+#. module: general_account_asset
+#: model:ir.model,name:general_account_asset.model_expense_allocation
+msgid "expense.allocation"
+msgstr "expense.allocation"
+
+#. module: general_account_asset
+#: field:depreciation.asset,fiscalyear_start:0
+#: field:expense.allocation,fiscalyear_start:0
+msgid "Fiscalyear"
+msgstr "Năm tài chính"
+
+#. module: general_account_asset
+#: model:ir.model,name:general_account_asset.model_asset_depreciation_confirmation_wizard
+msgid "asset.depreciation.confirmation.wizard"
+msgstr "asset.depreciation.confirmation.wizard"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Amount of Depreciation Lines"
+msgstr "Dự kiến khấu hao"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Posted depreciation lines"
+msgstr "Đã khấu hao"
+
+#. module: general_account_asset
+#: field:account.asset.asset,analytics_id:0
+#: field:account.asset.category,analytics_id:0
+#: field:asset.modify,analytics_id:0
+msgid "Analytic Distribution"
+msgstr "Kế hoạch phân bổ"
+
+#. module: general_account_asset
+#: field:account.asset.depreciation.line,company_id:0
+#: view:asset.asset.report:0
+msgid "Company"
+msgstr "Công ty"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Running"
+msgstr "Đang hoạt động"
+
+#. module: general_account_asset
+#: selection:account.asset.asset,asset_type:0
+#: selection:list.of.asset,asset_type:0
+msgid "Prepaid Expense"
+msgstr "Chi phí trả trước"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+#: model:ir.actions.act_window,name:general_account_asset.action_asset_asset_report
+#: model:ir.model,name:general_account_asset.model_asset_asset_report
+#: model:ir.ui.menu,name:general_account_asset.menu_action_asset_asset_report
+msgid "Assets Analysis"
+msgstr "Phân tích tình hình TSCĐ"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Date of depreciation"
+msgstr "Ngày khấu hao"
+
+#. module: general_account_asset
+#: model:ir.model,name:general_account_asset.model_asset_modify
+msgid "Modify Asset"
+msgstr "Modify Asset"
+
+#. module: general_account_asset
+#: field:asset.depreciation.confirmation.wizard,date:0
+#: selection:depreciation.asset,times:0
+#: selection:expense.allocation,times:0
+msgid "Date"
+msgstr "Ngày"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Assets purchased in current month"
+msgstr "TSCĐ mua trong tháng"
+
+#. module: general_account_asset
+#: field:account.asset.asset,voucher_number:0
+msgid "Voucher Number"
+msgstr "Số phiếu thanh toán"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Depreciation Date"
+msgstr "Ngày khấu hao"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Posted"
+msgstr "Đã hạch toán"
+
+#. module: general_account_asset
+#: field:account.asset.asset,asset_type:0
+#: field:list.of.asset,asset_type:0
+msgid "Asset Type"
+msgstr "Loại TSCĐ"
+
+#. module: general_account_asset
+#: field:depreciation.asset,date_end:0
+#: field:expense.allocation,date_end:0
+#: field:list.of.asset,date_end:0
+msgid "Date end"
+msgstr "Ngày kết thúc"
+
+#. module: general_account_asset
+#: view:expense.allocation:0
+#: model:ir.actions.act_window,name:general_account_asset.action_report_expense_allocation_form
+#: model:ir.actions.report.xml,name:general_account_asset.report_expense_allocation
+#: model:ir.ui.menu,name:general_account_asset.menu_action_report_expense_allocation_form
+msgid "Pre-paid Expense Allocation Report"
+msgstr "Phân bổ chi phí trả trước"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Assets"
+msgstr "Tài sản"
+
+#. module: general_account_asset
+#: model:ir.model,name:general_account_asset.model_list_of_asset
+msgid "list.of.asset"
+msgstr "list.of.asset"
+
+#. module: general_account_asset
+#: field:depreciation.asset,times:0
+#: field:expense.allocation,times:0
+msgid "Periods Type"
+msgstr "Lọc theo"
+
+#. module: general_account_asset
+#: field:depreciation.asset,fiscalyear_stop:0
+#: field:expense.allocation,fiscalyear_stop:0
+msgid "Stop Fiscalyear"
+msgstr "Năm kết thúc"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Month-1"
+msgstr "Tháng trước"
+
+#. module: general_account_asset
+#: field:depreciation.asset,period_id_end:0
+#: field:expense.allocation,period_id_end:0
+msgid "End Period"
+msgstr "Kỳ kết thúc"
+
+#. module: general_account_asset
+#: model:ir.actions.act_window,name:general_account_asset.action_report_list_of_asset_form
+#: model:ir.actions.report.xml,name:general_account_asset.report_list_of_asset
+#: model:ir.ui.menu,name:general_account_asset.menu_action_report_list_of_asset_form
+#: view:list.of.asset:0
+msgid "List of Assets Report"
+msgstr "Danh sách TSCĐ"
+
+#. module: general_account_asset
+#: field:depreciation.asset,quarter:0
+#: selection:depreciation.asset,times:0
+#: field:expense.allocation,quarter:0
+#: selection:expense.allocation,times:0
+msgid "Quarter"
+msgstr "Quý"
+
+#. module: general_account_asset
+#: model:ir.model,name:general_account_asset.model_depreciation_asset
+msgid "depreciation.asset"
+msgstr "depreciation.asset"
+
+#. module: general_account_asset
+#: model:ir.model,name:general_account_asset.model_account_asset_depreciation_line
+msgid "Asset depreciation line"
+msgstr "Kế hoạch khấu hao"
+
+#. module: general_account_asset
+#: model:ir.model,name:general_account_asset.model_account_asset_category
+msgid "Asset category"
+msgstr "Danh mục TSCĐ"
+
+#. module: general_account_asset
+#: selection:expense.allocation,type:0
+msgid "Long term"
+msgstr "Dài hạn"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Assets purchased in last month"
+msgstr "TSCĐ mua cuối tháng"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Date of asset purchase"
+msgstr "Ngày mua TSCĐ"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "# of Depreciation Lines"
+msgstr "Số lần khấu hao"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Assets purchased in current year"
+msgstr "TSCĐ mua trong năm"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Assets in draft state"
+msgstr "TSCĐ chưa hoạt động"
+
+#. module: general_account_asset
+#: model:ir.actions.act_window,help:general_account_asset.action_asset_asset_report
+msgid "From this report, you can have an overview on all depreciation. The tool search can also be used to personalise your Assets reports and so, match this analysis to your needs;"
+msgstr "From this report, you can have an overview on all depreciation. The tool search can also be used to personalise your Assets reports and so, match this analysis to your needs;"
+
+#. module: general_account_asset
+#: field:account.asset.asset,warehouse_id:0
+#: field:account.asset.depreciation.line,warehouse_id:0
+msgid "Warehouse"
+msgstr "Warehouse"
+
+#. module: general_account_asset
+#: model:ir.model,name:general_account_asset.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Dòng hóa đơn"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Month"
+msgstr "Tháng"
+
+#. module: general_account_asset
+#: model:ir.model,name:general_account_asset.model_sql_list_of_asset
+msgid "sql.list.of.asset"
+msgstr "sql.list.of.asset"
+
+#. module: general_account_asset
+#: selection:depreciation.asset,times:0
+#: selection:expense.allocation,times:0
+msgid "Periods"
+msgstr "Kỳ"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Asset Category"
+msgstr "Danh mục TSCĐ"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Year"
+msgstr "Năm"
+
+#. module: general_account_asset
+#: view:depreciation.asset:0
+#: view:expense.allocation:0
+#: view:list.of.asset:0
+msgid "Cancel"
+msgstr "Hủy"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Draft"
+msgstr "Dự thảo"
+
+#. module: general_account_asset
+#: field:depreciation.asset,date_start:0
+#: field:expense.allocation,date_start:0
+#: field:list.of.asset,date_start:0
+msgid "Date Start"
+msgstr "Ngày bắt đầu"
+
+#. module: general_account_asset
+#: view:depreciation.asset:0
+#: view:expense.allocation:0
+#: view:list.of.asset:0
+msgid "or"
+msgstr "hoặc"
+
+#. module: general_account_asset
+#: view:asset.asset.report:0
+msgid "Assets in running state"
+msgstr "TSCĐ đang hoạt động"
+

@@ -1,0 +1,4 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_hr_job_employee","hr.job.employee","hr.model_hr_job","base.group_user",1,0,0,0
+"access_resource_calendar_attendance_usr","resource.calendar.attendance.user","resource.model_resource_calendar_attendance","base.group_hr_user",1,0,0,0
+"access_resource_calendar_attendance_mgr","resource.calendar.attendance.manager","resource.model_resource_calendar_attendance","base.group_hr_manager",1,1,1,1

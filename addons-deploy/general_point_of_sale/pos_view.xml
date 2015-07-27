@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+        <record id="view_pos_config_tree_general_modify" model="ir.ui.view">
+            <field name="name">view.pos.config.tree.general.modify</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_config_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                	<field name="code"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_pos_config_form_general_modify" model="ir.ui.view">
+            <field name="name">view.pos.config.form.general.modify</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_config_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                	<field name="code"/>
+                </xpath>
+            </field>
+        </record>
+        
+    <!-- Modify POS ORDER -->
+    	<!-- This inherit will be removed -->
+        <record id="view_pos_order_tree_general_modify" model="ir.ui.view">
+            <field name="name">view.pos.order.tree.general.modify</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_order_tree" />
+            <field name="arch" type="xml">
+               <xpath expr="//field[@name='amount_total']" position="after">
+                </xpath>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="point_of_sale.view_pos_order_tree">
+            <field name="name">Orders</field>
+            <field name="model">pos.order</field>
+            <field name="arch" type="xml">
+                <tree string="POS Orders" colors="blue:state == 'draft';gray:state in ('done','cancel');black:state not in('done','cancel')">
+                    <field name="name"/>
+                    <field name="pos_reference" invisible="1"/>
+                    <field name="partner_id"/>
+                    <field name="partner_reference"/>
+                    <!--<field name="date_order"/>-->
+                    <field name="date_user_tz"/>
+                    <field name="user_id"/>
+                    <field name="invoice_id"/>
+                    <field name="amount_total" sum="Amount total"/>
+                    <field name="amount_paid" sum="Amount paid"/>
+                    <field name="amount_unpaid" sum="Amount Unpaid"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="state"/>
+                    <field name="session_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_pos_pos_form_general_modify" model="ir.ui.view">
+            <field name="name">view.pos.pos.form.general.modify</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                	<field name="partner_reference"/>
+                	<field name="date_user_tz" invisible="1"/>
+                	<field name="day_user_tz" invisible="1"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='user_id']" position="after">
+                	<field name="section_id"/>
+                </xpath>
+                
+                <xpath expr="//button[@name='action_invoice']" position="after">
+                	<button name="action_cancel" type="object" attrs="{'invisible':[('state','in',['draft','cancel'])]}" string="Cancel"/>
+                </xpath>
+               
+            </field>
+        </record>
+        
+        
+         <!-- Modify POS ORDER  SEARCH-->
+         <record id="view_pos_pos_search_general_modify" model="ir.ui.view">
+            <field name="name">view.pos.pos.search.general.modify</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_order_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_order']" position="replace">
+                	<field name="date_user_tz"/>
+                	<field name="partner_reference"/>
+                	<filter icon="terp-go-today" string="Today" name="today" domain="[('date_user_tz','=',current_date)]" />
+                </xpath>
+                
+                <xpath expr="//filter[@string='Order Date']" position="replace">
+                	<filter string="Date" domain="[]" context="{'group_by':'day_user_tz'}"/>
+                	<filter string="Month" domain="[]" context="{'group_by':'date_user_tz'}"/>
+                 </xpath>
+                 <xpath expr="//filter[@string='New']" position="before">
+	                <filter icon="terp-stock_align_left_24" name="myorder" string="My Order" domain="[('user_id.id', '=', uid)]" />
+	            </xpath>
+            </field>
+        </record>
+        
+    <!-- New menu for Sales Team in POS Menu -->
+		<record id="action_pos_teams" model="ir.actions.act_window">
+            <field name="name">POS Teams</field>
+            <field name="res_model">crm.case.section</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="crm.crm_case_section_view_tree"/>
+        </record>
+
+        <menuitem action="action_pos_teams"
+            id="menu_action_pos_teams" sequence="100"
+            parent="point_of_sale.menu_point_config_product"/>
+     
+     
+     <!-- Kiet add Pos Grrop bill   --> 
+      <record model="ir.ui.view" id="view_invoice_form_add_pos_order">
+	        <field name="name">view.invoice.form.add.pos.order</field>
+	        <field name="model">account.invoice</field>
+	        <field name="inherit_id" ref="account.invoice_form"/>
+	        <field name="arch" type="xml">
+	        	<xpath expr="//page[@string='Payments']" position="after">
+	            	<page string="Bank Statement">
+	            		<group string="Bill bán hàng">
+		        			<field name="pos_order_ids" nolabel="1">
+		            			<tree>
+			            			<field name="name"/>
+			            			<field name="date_order"/>
+			            			<field name="amount_total" sum="Amount total"/>
+			            		</tree>	
+		            		</field>
+	        			</group>
+	            		<group string ="Tiền mặt">
+		            		<field name="statement_line_tm_ids" nolabel="1">
+		            			<tree>
+			            			<field name="date"/>
+			            			<field name="journal_id"/>
+			            			<field name="statement_id"/>
+			            			<field name="name"/>
+			            			<field name="amount" sum="Amount"/>
+			            		</tree>	
+		            		</field>
+		            	</group>
+		            	<group string="Chuyển khoản">
+		            		<field name="statement_line_ck_ids" nolabel="1">
+		            			<tree>
+			            			<field name="date"/>
+			            			<field name="journal_id"/>
+			            			<field name="statement_id"/>
+			            			<field name="name"/>
+			            			<field name="amount" sum="Amount"/>
+			            		</tree>	
+		            		</field>
+		            	</group>
+	            	</page>
+	            </xpath>
+			  	</field>
+    	</record>  
+     
+    </data>
+</openerp>

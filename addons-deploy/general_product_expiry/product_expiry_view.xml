@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_product_add_flag_expirate_form_expiry">
+            <field name="name">product.normal.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product_expiry.view_product_form_expiry" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='alert_time']" position="after">
+					<field name="flag_expirate_date"/>
+	            </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
+

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	
+	<!-- Modify Invoice Payment Form Dialog -->
+		<record model="ir.ui.view" id="view_vendor_receipt_dialog_form_inherit_add_other_deduction">
+        <field name="name">view.vendor.receipt.dialog.form.inherit.add.other.deduction</field>
+        <field name="model">account.voucher</field>
+        <field name="inherit_id" ref="account_voucher.view_vendor_receipt_dialog_form"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//field[@name='journal_id']" position="after">
+            	<field name="bank_fee_deducted" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="discount_allowed" widget="monetary" options="{'currency_field': 'currency_id'}" 
+                	 invisible="context.get('default_type',False) and context['default_type'] != 'receipt' or False"/>
+                <field name="discount_received" widget="monetary" options="{'currency_field': 'currency_id'}"
+                	 invisible="context.get('default_type',False) and context['default_type'] != 'payment' or False"/>
+            </xpath>
+        </field>
+    	</record>
+    	
+	<!-- res.config form view -->
+        <record model="ir.ui.view" id="view_account_settings_deduction_account_form">
+            <field name="name">account.config.settings.inherit.deduction.account</field>
+            <field name="inherit_id" ref="account.view_account_config_settings"/>
+            <field name="model">account.config.settings</field>
+            <field name="priority">21</field>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='group_multi_currency']" position="after">
+                    <group col="2">
+                        <group>
+                            <field name="deduct_bank_fee_account_id"/>
+                            <field name="deduct_payment_discount_account_id"/>
+                            <field name="discount_received_account_id"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        
+    <!-- Modify Customer Payment Form -->
+    	<record model="ir.ui.view" id="view_vendor_receipt_extend_form">
+            <field name="name">view.vendor.receipt.extend.form</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_receipt_form"/>
+            <field name="model">account.voucher</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='journal_id']" position="after">
+                	<field name="bank_fee_deducted" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="discount_allowed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='paid_amount_in_company_currency']" position="replace">
+                </xpath>
+                
+                <xpath expr="//field[@name='amount']" position="after">
+                	<field name="company_currency_id" invisible='1'/>
+                	<field name="paid_amount_in_company_currency" string='Payment Amount Converted'
+                		widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                </xpath>
+                
+            </field>
+        </record>
+        
+    </data>
+</openerp>
+
+

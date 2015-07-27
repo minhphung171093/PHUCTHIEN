@@ -1,0 +1,2 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_aaccount_voucher_batch_user","account.voucher.batch usr","model_account_voucher_batch","account.group_account_user",1,1,1,1

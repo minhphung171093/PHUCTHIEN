@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <!--   Fin Bao Cao Cong No Theo Tuoi Tho Report -->
+        <record id="view_general_aged_partner_balance_form" model="ir.ui.view">
+            <field name="name">general.aged.partner.balance.form</field>
+            <field name="model">general.aged.partner.balance</field>
+            <field name="arch" type="xml">
+                <form string="Aged Partner Balance" version="7.0">
+                	<group>
+                		<group>
+	                		<field name="date_start" required="1" string="Print Date"/>
+	                		<field name="account_id" required="1"/>
+	                		<field name="direction_selection" required="1"/>
+	                		<field name="period_length" required="1"/>
+                		</group>
+                		<group>
+                			<field name="check"/>
+	                		<field name="partner_id"/>
+	                		<field name="company_id"/>
+                		</group>
+                    </group>
+	                <footer>
+                        <button string="Print" type="object" name="print_report" context="{'type_report':'general_aged_partner_balance'}" icon='gtk-execute'/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_general_aged_partner_balance" model="ir.actions.act_window">
+            <field name="name">Aged Partner Balance</field>
+            <field name="res_model">general.aged.partner.balance</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_general_aged_partner_balance_form"/>
+        </record>
+        
+        <!--   So cai cong no -->
+        <record id="view_general_report_partner_ledger_form" model="ir.ui.view">
+            <field name="name">general.report.partner.ledger.form</field>
+            <field name="model">general.report.partner.ledger</field>
+            <field name="arch" type="xml">
+                <form string="Partner Ledger" version="7.0">
+                	<group col="4" colspan="2">
+                		<field name="times"/>
+                		<field name="company_id"/>
+                		<newline/>
+                		<field name="period_id_start" context="{'report_type':'1'}" attrs="{'invisible':[('times', 'in', ['dates','years'])],'required':[('times', 'not in', ['dates','years'])]}"/>
+                		<field name="period_id_end" context="{'report_type':'1'}"  attrs="{'invisible':[('times', 'in', ['dates','years'])],'required':[('times', 'not in', ['dates','years'])]}"/>
+                		<field name="fiscalyear_start" attrs="{'invisible':[('times', 'in', ['dates','periods'])],'required':[('times','not in', ['dates','periods'])]}"/>
+                		<field name="fiscalyear_stop" attrs="{'invisible':[('times', 'in', ['dates','periods'])], 'required':[('times','not in', ['dates','periods'])]}"/>
+                		<field name="date_start" attrs="{'invisible':[('times', 'in', ['periods','years'])],'required':[('times','not in', ['periods','years'])]}"/>
+                		<field name="date_end" attrs="{'invisible':[('times', 'in', ['periods','years'])],'required':[('times','not in', ['periods','years'])] }"/>
+                    	<newline/>
+                    	<field name="partner_id"/>
+                        <field name="account_id"/>
+                    </group>
+	                <footer>
+                        <button string="Print" type="object" name="print_report" context="{'type_report':'general_report_partner_ledger'}" icon='gtk-execute'/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_general_report_partner_ledger" model="ir.actions.act_window">
+            <field name="name">Partner Ledger</field>
+            <field name="res_model">general.report.partner.ledger</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_general_report_partner_ledger_form"/>
+        </record>
+        
+        <!--   So cong no phat sinh -->
+        <record id="view_general_report_partner_ledger_detail_form" model="ir.ui.view">
+            <field name="name">general.report.partner.ledger.detail.form</field>
+            <field name="model">general.report.partner.ledger.detail</field>
+            <field name="arch" type="xml">
+                <form string="Partner Ledger Detail" version="7.0">
+                	<group col="4" colspan="2">
+                		<field name="times"/>
+                		<field name="account_id"/>
+                		<newline/>
+                		<field name="period_id_start" context="{'report_type':'1'}" attrs="{'invisible':[('times', 'in', ['dates','years'])],'required':[('times', 'not in', ['dates','years'])]}"/>
+                		<field name="period_id_end" context="{'report_type':'1'}" attrs="{'invisible':[('times', 'in', ['dates','years'])],'required':[('times', 'not in', ['dates','years'])]}"/>
+                		<field name="fiscalyear_start" attrs="{'invisible':[('times', 'in', ['dates','periods'])],'required':[('times','not in', ['dates','periods'])]}"/>
+                		<field name="fiscalyear_stop" attrs="{'invisible':[('times', 'in', ['dates','periods'])], 'required':[('times','not in', ['dates','periods'])]}"/>
+                		<field name="date_start" attrs="{'invisible':[('times', 'in', ['periods','years'])],'required':[('times','not in', ['periods','years'])]}"/>
+                		<field name="date_end" attrs="{'invisible':[('times', 'in', ['periods','years'])],'required':[('times','not in', ['periods','years'])] }"/>
+                    	
+                    	<newline/>
+                    	<field name="company_id"/>
+                    </group>
+	                <footer>
+                        <button string="Print" type="object" name="print_report" context="{'type_report':'general_report_partner_ledger_detail'}" icon='gtk-execute'/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_view_general_report_partner_ledger_detail" model="ir.actions.act_window">
+            <field name="name">Partner Ledger Detail</field>
+            <field name="res_model">general.report.partner.ledger.detail</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_general_report_partner_ledger_detail_form"/>
+        </record>
+   </data>
+</openerp>
+        
+        

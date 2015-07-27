@@ -1,0 +1,74 @@
+<?xml version='1.0'?>
+<openerp>
+	<data>
+		
+		<record id='view_account_regularization_search' model='ir.ui.view'>
+			<field name='name'>account.regularization.search</field>
+			<field name='model'>account.regularization</field>
+			<field name='type'>search</field>
+			<field name='arch' type='xml'>
+				<search string='Regularization'>
+					<filter icon="terp-check" name="active" string="Active" domain="[('active','=',True)]"/>
+					<field name="name"/>
+					<field name='account_ids'/>
+				</search>
+			</field>
+		</record>
+		
+		<record id='view_account_regularization_tree' model='ir.ui.view'>
+			<field name='name'>account.regularization.tree</field>
+			<field name='model'>account.regularization</field>
+			<field name='type'>tree</field>
+			<field name='arch' type='xml'>
+				<tree string='Regularization'>
+					<field name='sequence'/>
+					<field name="name"/>
+					<field name='debit_account_id'/>
+					<field name='credit_account_id'/>
+					<field name="active"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id='view_account_regularization_form' model='ir.ui.view'>
+			<field name='name'>account.regularization.form</field>
+			<field name='model'>account.regularization</field>
+			<field name='type'>form</field>
+			<field name='arch' type='xml'>
+				<form string='Regularization'>
+					<notebook>
+						<page string="Main">
+							<group col="4" colspan="4">
+								<field name='name'/>
+								<field name="active"/>
+								<field name="sequence"/>
+								<field name="journal_id"/>
+								
+								<field name="balance_calc"/>
+								<field name="company_id"/>
+								
+								<field name='debit_account_id'/>
+								<field name='credit_account_id'/>
+							</group>
+							<newline/>
+							<separator colspan="6" string="Accounts to balance"/>
+							<field colspan="6" name='account_ids' nolabel='1'/>
+						</page>
+						<page string="Moves">
+							<field name="move_ids" />
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+		<record id='action_account_regularization_form' model='ir.actions.act_window'>
+			<field name='name'>Regularizations</field>
+			<field name='res_model'>account.regularization</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form</field>
+			<field name="search_view_id" ref="view_account_regularization_search"/>
+			<field name="context">{"search_default_active":1}</field>
+		</record>
+
+	</data>
+</openerp>

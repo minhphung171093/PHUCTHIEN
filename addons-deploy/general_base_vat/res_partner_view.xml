@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+    	<record id="view_partner_form_inherit_general_modify" model="ir.ui.view">
+            <field name="name">res.partner.vat.inherit.general.modify</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base_vat.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='vat']" position="before">
+	        		<field name="number_register"/>
+	        	</xpath>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

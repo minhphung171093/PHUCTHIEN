@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<record id="invoice_form_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+          		<xpath expr="//field[@name='partner_id']" position="after">
+          			<field name='hop_dong_nt_id' domain="[('type','=','nguyen_tac')]"/>
+          			<field name='hop_dong_t_id' domain="[('type','=','thau')]"/>
+          			<field name='hoadon_huy_id' domain="[('partner_id','=',partner_id)]" context="{'search_hoadon_huy':1,'search_hoadon_huy_partner':partner_id}"/>
+            	</xpath>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_invoice_form_remove_editable_2">
+	        <field name="name">view.invoice.form.remove.editable.2</field>
+	        <field name="model">account.invoice</field>
+	        <field name="inherit_id" ref="general_account.view_invoice_form_remove_editable"/>
+	        <field name="arch" type="xml">
+	        	<xpath expr="//page[@string='Reconciliations']" position="replace">
+	        		<page string="Reconciliations" invisible="1">
+                            <field name="reconciliation_move_ids" invisible="1">
+                    		</field>
+                    </page>
+	        	</xpath>
+        	</field>
+        </record>
+        <record id="invoice_tree" model="ir.ui.view">
+            <field name="name">account.invoice.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+            	<tree colors="blue:state == 'draft';black:state in ('proforma','proforma2','open');gray:state == 'cancel'" string="Invoice" position="replace">
+            		<tree colors="blue:state == 'draft';gray:state in ('cancel','paid');red:payment_state== False" string="Invoice">
+	                    <field name="shop_id"/>
+	                    <field name="partner_code" groups="base.group_user"/>
+	                    <field name="partner_id" groups="base.group_user"/>
+	                    <field name="date_invoice"/>
+	                    <field name="number" invisible="1"/>
+	                    <field name="reference" invisible="1"/>
+	                    <field name="name" invisible="1"/>
+	                    <field name="journal_id" invisible="1"/>
+	                    <field name="period_id" invisible="1" groups="account.group_account_user"/>
+	                    <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+	                    <field name="user_id"/>
+	                    <field name="date_due"/>
+	                    <field name="origin"/>
+	                    <field name="currency_id" groups="base.group_multi_currency"/>
+	                    <field name="residual" sum="Residual Amount"/>
+	                    <field name="amount_untaxed" sum="Untaxed Amount"/>
+	                    <field name="amount_total" sum="Total Amount"/>
+	                    <field name="payment_state" invisible="1"/>
+	                    <field name="state"/>
+                	</tree>
+            	</tree>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

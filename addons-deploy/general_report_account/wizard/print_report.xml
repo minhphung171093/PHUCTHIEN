@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+ 
+ <!--  ========================= General Ledger Report ================= -->
+ 		<record id="view_general_ledger_report_form" model="ir.ui.view">
+            <field name="name">general.ledger.report.form</field>
+            <field name="model">general.ledger.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                 <form string="General Ledger" version="7.0">
+                	<group>
+                		<group>
+                			<field name="shop_ids" widget="many2many_tags"/>
+	                		<field name="times"/>
+	                		<field name="company_id" groups="base.group_multi_company"/>
+                		</group>
+                		<group>
+		            		<field name="quarter" attrs="{'invisible':[('times', 'in', ['dates','years','periods'])],'required':[('times', 'not in', ['dates','years','periods'])]}"/>
+		            		<field name="period_id_start" context="{'report_type':'1'}" attrs="{'invisible':[('times', 'in', ['dates','years','quarter'])],'required':[('times', 'not in', ['dates','years','quarter'])]}"/>
+		            		<field name="fiscalyear_start"  attrs="{'invisible':[('times', 'in', ['dates','periods','quarter'])],'required':[('times','not in', ['dates','periods'])]}"/>
+		            		<field name="date_start"  attrs="{'invisible':[('times', 'in', ['years','periods','quarter'])],'required':[('times','not in', ['years','periods'])]}"/>
+		            		<field name="date_end"  attrs="{'invisible':[('times', 'in', ['years','periods','quarter'])],'required':[('times','not in', ['years','periods'])]}"/>
+                    	</group>
+                    </group>
+	                <footer>
+                        <button string="Print" type="object" name="finance_report" context="{'type_report':'general_ledger_report'}" icon='gtk-execute'/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_general_ledger_report" model="ir.actions.act_window">
+            <field name="name">General Ledger</field>
+            <field name="res_model">general.ledger.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_general_ledger_report_form"/>
+        </record>
+        
+ <!--  ========================= Account Ledger Report ================= -->
+		<record id="view_account_ledger_report_form" model="ir.ui.view">
+		    <field name="name">account.ledger.report.form</field>
+		    <field name="model">account.ledger.report</field>
+		    <field name="arch" type="xml">
+		         <form string="Account Ledger" version="7.0">
+		        	<group>
+		        		<group>
+		        			<field name="shop_ids" widget="many2many_tags"/>
+			        		<field name="times"/>
+			        		<field name="company_id" groups="base.group_multi_company"/>
+			        		<field name="showdetails"/>
+		        		</group>
+		        		<group>
+			        		<field name="quarter" attrs="{'invisible':[('times', 'in', ['dates','years','periods'])],'required':[('times', 'not in', ['dates','years','periods'])]}"/>
+			        		<field name="period_id_start" context="{'report_type':'1'}" attrs="{'invisible':[('times', 'in', ['dates','years','quarter'])],'required':[('times', 'not in', ['dates','years','quarter'])]}"/>
+			        		<field name="fiscalyear_start"  attrs="{'invisible':[('times', 'in', ['dates','periods','quarter'])],'required':[('times','not in', ['dates','periods'])]}"/>
+			        		<field name="date_start"  attrs="{'invisible':[('times', 'in', ['years','periods','quarter'])],'required':[('times','not in', ['years','periods'])]}"/>
+			        		<field name="date_end"  attrs="{'invisible':[('times', 'in', ['years','periods','quarter'])],'required':[('times','not in', ['years','periods'])]}"/>
+		           		</group>
+		           		<group>
+		           			<field name="account_id"/>
+		           		</group>
+		            </group>
+		            <footer>
+                        <button string="Print" type="object" name="finance_report" context="{'type_report':'account_ledger_report'}" icon='gtk-execute'/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+		        </form>
+		    </field>
+		</record>
+		
+		<record id="action_account_ledger_report" model="ir.actions.act_window">
+		    <field name="name">Account Ledger</field>
+		    <field name="res_model">account.ledger.report</field>
+		    <field name="view_type">form</field>
+		    <field name="view_mode">form</field>
+		    <field name="target">new</field>
+		    <field name="view_id" ref="view_account_ledger_report_form"/>
+		</record>
+               
+ <!--  ========================= Create General Account VAT IN Report ================= -->     
+         <record id="report_tax_vat_input" model="ir.ui.view">
+            <field name="name">report.tax.vat.input</field>
+            <field name="model">report.account.in.out.tax</field>
+            <field name="arch" type="xml">
+                <form string="Tax VAT INPUT" version="7.0">
+                	<group col="4" colspan="2">
+                		<field name="times"/>
+                		<field name="company_id" groups="base.group_multi_company"/>
+                		<field name="filter_type"/>
+                		<newline/>
+                		<field name="period_id_start" domain="[('company_id','=',company_id)]" attrs="{'invisible':[('times', 'in', ['dates','years'])],'required':[('times', 'not in', ['dates','years'])]}"/>
+                		<field name="period_id_end" domain="[('company_id','=',company_id)]" attrs="{'invisible':[('times', 'in', ['dates','years'])],'required':[('times', 'not in', ['dates','years'])]}"/>
+                		<field name="fiscalyear_start" domain="[('company_id','=',company_id)]" attrs="{'invisible':[('times', 'in', ['dates','periods'])],'required':[('times','not in', ['dates','periods'])]}"/>
+                		<field name="fiscalyear_stop" domain="[('company_id','=',company_id)]" attrs="{'invisible':[('times', 'in', ['dates','periods'])], 'required':[('times','not in', ['dates','periods'])]}"/>
+                		<field name="date_start" attrs="{'invisible':[('times', 'in', ['periods','years'])],'required':[('times','not in', ['periods','years'])]}"/>
+                		<field name="date_end" attrs="{'invisible':[('times', 'in', ['periods','years'])],'required':[('times','not in', ['periods','years'])] }"/>
+                		
+                    </group>
+                    <group col="4" colspan="2">
+                    	<field name="shop_ids" widget="many2many_tags"/>
+                    </group>
+	                <footer>
+                        <button string="Print" type="object" name="finance_report" context="{'type_report':'tax_vat_input'}" icon='gtk-execute'/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_report_tax_vat_input" model="ir.actions.act_window">
+            <field name="name">Taxes VAT INPUT</field>
+            <field name="res_model">report.account.in.out.tax</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="report_tax_vat_input"/>
+        </record>
+   
+<!--  ========================= Create General Account VAT OUT Report ================= -->
+        <record id="report_tax_vat_output" model="ir.ui.view">
+            <field name="name">report.tax.vat.output</field>
+            <field name="model">report.account.in.out.tax</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Tax VAT OUTPUT" version="7.0">
+                	<group col="4" colspan="2">
+                		<field name="times"/>
+                		<field name="company_id" groups="base.group_multi_company"/>
+                		<field name="filter_type"/>
+                		<newline/>
+                		<field name="period_id_start" domain="[('company_id','=',company_id)]" attrs="{'invisible':[('times', 'in', ['dates','years'])],'required':[('times', 'not in', ['dates','years'])]}"/>
+                		<field name="period_id_end" domain="[('company_id','=',company_id)]" attrs="{'invisible':[('times', 'in', ['dates','years'])],'required':[('times', 'not in', ['dates','years'])]}"/>
+                		<field name="fiscalyear_start" domain="[('company_id','=',company_id)]" attrs="{'invisible':[('times', 'in', ['dates','periods'])],'required':[('times','not in', ['dates','periods'])]}"/>
+                		<field name="fiscalyear_stop" domain="[('company_id','=',company_id)]" attrs="{'invisible':[('times', 'in', ['dates','periods'])], 'required':[('times','not in', ['dates','periods'])]}"/>
+                		<field name="date_start" attrs="{'invisible':[('times', 'in', ['periods','years'])],'required':[('times','not in', ['periods','years'])]}"/>
+                		<field name="date_end" attrs="{'invisible':[('times', 'in', ['periods','years'])],'required':[('times','not in', ['periods','years'])] }"/>
+                    </group>
+                      <group col="4" colspan="2">
+                    	<field name="shop_ids" widget="many2many_tags"/>
+                    </group>
+	                <footer>
+                        <button string="Print" type="object" name="finance_report" context="{'type_report':'tax_vat_output'}" icon='gtk-execute'/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_report_tax_vat_output" model="ir.actions.act_window">
+            <field name="name">Taxes VAT OUTPUT</field>
+            <field name="res_model">report.account.in.out.tax</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="report_tax_vat_output"/>
+        </record>
+        
+<!--  ========================= Create Trial Balance Report ================= -->
+        <record id="general_trial_balance" model="ir.ui.view">
+            <field name="name">general.trial.balance.form</field>
+            <field name="model">general.trial.balance</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Trial Balance" version="7.0">
+                	<group col="4" colspan="2">
+                		<field name="times"/>
+                		<field name="company_id" groups="base.group_multi_company"/>
+                		<newline/>
+                		<field name="period_id_start" domain="[('company_id','=',company_id)]" context="{'report_type':'1'}" attrs="{'invisible':[('times', 'in', ['dates','years'])],'required':[('times', 'not in', ['dates','years'])]}"/>
+                		<field name="period_id_end" domain="[('company_id','=',company_id)]" context="{'report_type':'1'}"  attrs="{'invisible':[('times', 'in', ['dates','years'])],'required':[('times', 'not in', ['dates','years'])]}"/>
+                		<field name="fiscalyear_start" domain="[('company_id','=',company_id)]" attrs="{'invisible':[('times', 'in', ['dates','periods'])],'required':[('times','not in', ['dates','periods'])]}"/>
+                		<field name="fiscalyear_stop" domain="[('company_id','=',company_id)]" attrs="{'invisible':[('times', 'in', ['dates','periods'])], 'required':[('times','not in', ['dates','periods'])]}"/>
+                		<field name="date_start" attrs="{'invisible':[('times', 'in', ['periods','years'])],'required':[('times','not in', ['periods','years'])]}"/>
+                		<field name="date_end" attrs="{'invisible':[('times', 'in', ['periods','years'])],'required':[('times','not in', ['periods','years'])] }"/>
+                    </group>
+	                <footer>
+                        <button string="Print" type="object" name="finance_report" context="{'type_report':'fin_general_trial_balance_report'}" icon='gtk-execute'/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_report_general_trial_balance" model="ir.actions.act_window">
+            <field name="name">Trial Balance</field>
+            <field name="res_model">general.trial.balance</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="general_trial_balance"/>
+        </record>
+        
+ 
+ <!--  ========================= Create Balance Sheet  Report ================= -->
+ 		
+ 		<!--   Fin Balance Sheet Report -->
+        <record id="report_general_balance_sheet" model="ir.ui.view">
+            <field name="name">report.general.balance.sheet.form</field>
+            <field name="model">general.balance.sheet</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Balance Sheet" version="7.0">
+                	<group col="6" colspan="3">
+                		<field name="times"/>
+                		<field name="company_id" groups="base.group_multi_company"/>
+                		<newline/>
+                		<field name="quarter" attrs="{'invisible':[('times', 'in', ['dates','years','periods'])],'required':[('times', 'not in', ['dates','years','periods'])]}"/>
+                		<field name="period_id_start" domain="[('company_id','=',company_id)]" context="{'report_type':'1'}" attrs="{'invisible':[('times', 'in', ['dates','years','quarter'])],'required':[('times', 'not in', ['dates','years','quarter'])]}"/>
+                		<field name="fiscalyear_start" domain="[('company_id','=',company_id)]" attrs="{'invisible':[('times', 'in', ['dates','periods'])],'required':[('times','not in', ['dates','periods'])]}"/>
+                    </group>
+	                <footer>
+                        <button string="Print" type="object" name="finance_report" context="{'type_report':'fin_general_balance_sheet_report'}" icon='gtk-execute'/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_report_general_balance_sheet" model="ir.actions.act_window">
+            <field name="name">Balance Sheet</field>
+            <field name="res_model">general.balance.sheet</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="report_general_balance_sheet"/>
+        </record>
+        
+ <!--  ===================== Create Account Profit Loss  Report ================= -->       
+        <!--   Fin Account Profit Loss Report -->
+        <record id="report_general_account_profit_loss" model="ir.ui.view">
+            <field name="name">report.general.account.profit.loss.form</field>
+            <field name="model">general.account.profit.loss</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Profit And Loss" version="7.0">
+                	<group col="6" colspan="3">
+                		<field name="times"/>
+                		<field name="company_id" groups="base.group_multi_company"/>
+                		<newline/>
+                		<field name="quarter" attrs="{'invisible':[('times', 'in', ['dates','years','periods'])],'required':[('times', 'not in', ['dates','years','periods'])]}"/>
+                		<field name="period_id_start" domain="[('company_id','=',company_id)]" context="{'report_type':'1'}" attrs="{'invisible':[('times', 'in', ['dates','years','quarter'])],'required':[('times', 'not in', ['dates','years','quarter'])]}"/>
+                		<field name="fiscalyear_start" domain="[('company_id','=',company_id)]" attrs="{'invisible':[('times', 'in', ['dates','periods'])],'required':[('times','not in', ['dates','periods'])]}"/>
+                    </group>
+	                <footer>
+                        <button string="Print" type="object" name="finance_report" context="{'type_report':'fin_general_account_profit_loss_report'}" icon='gtk-execute'/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_report_general_account_profit_loss" model="ir.actions.act_window">
+            <field name="name">Profit And Loss</field>
+            <field name="res_model">general.account.profit.loss</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="report_general_account_profit_loss"/>
+        </record>
+ 
+        
+   </data>
+</openerp>
+        
+        

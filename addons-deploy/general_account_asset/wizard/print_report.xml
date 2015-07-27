@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+        <!--   Depreciation_asset Report -->
+        <record id="report_depreciation_asset_form" model="ir.ui.view">
+            <field name="name">depreciation.asset.form</field>
+            <field name="model">depreciation.asset</field>
+            <field name="arch" type="xml">
+                <form string="Depreciation Asset Report" version="7.0">
+                	<group col="4" colspan="2">
+                		<field name="times"/>
+                		<newline/>
+                		<field name="quarter" attrs="{'invisible':[('times', 'in', ['dates','years','periods'])],'required':[('times', 'not in', ['dates','years','periods'])]}"/>
+                		<field name="period_id_start" context="{'report_type':'1'}" attrs="{'invisible':[('times', 'in', ['dates','years','quarter'])],'required':[('times', 'not in', ['dates','years','quarter'])]}"/>
+                		<field name="fiscalyear_start"  attrs="{'invisible':[('times', 'in', ['dates','periods','quarter'])],'required':[('times','not in', ['dates','periods'])]}"/>
+                		<field name="date_start"  attrs="{'invisible':[('times', 'in', ['years','periods','quarter'])],'required':[('times','not in', ['years','periods'])]}"/>
+                		<field name="date_end"  attrs="{'invisible':[('times', 'in', ['years','periods','quarter'])],'required':[('times','not in', ['years','periods'])]}"/>
+                    </group>
+	                <footer>
+                        <button string="Print" type="object" name="print_report" context="{'type_report':'report_depreciation_asset'}" icon='gtk-execute'/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_report_depreciation_asset" model="ir.actions.act_window">
+            <field name="name">Depreciation Asset Report</field>
+            <field name="res_model">depreciation.asset</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="report_depreciation_asset_form"/>
+        </record>
+        
+        <!--   List OF ASSES Report -->
+        <record id="report_list_of_asset_form" model="ir.ui.view">
+            <field name="name">list.of.asset.form</field>
+            <field name="model">list.of.asset</field>
+            <field name="arch" type="xml">
+                <form string="List of Assets Report" version="7.0">
+                	<group col="4" colspan="2">
+                		<field name="date_start"/>
+                		<field name="date_end"/>
+                		<field name="asset_type"/>
+                    </group>
+	                <footer>
+                        <button string="Print" type="object" name="print_report" context="{'type_report':'report_list_of_asset'}" icon='gtk-execute'/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_report_list_of_asset_form" model="ir.actions.act_window">
+            <field name="name">List of Assets Report</field>
+            <field name="res_model">list.of.asset</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="report_list_of_asset_form"/>
+        </record>
+        
+        <!--   Expense Allocation -->
+        <record id="report_expense_allocation_form" model="ir.ui.view">
+            <field name="name">expense.allocation.form</field>
+            <field name="model">expense.allocation</field>
+            <field name="arch" type="xml">
+                <form string="Pre-paid Expense Allocation Report" version="7.0">
+                	<group col="4" colspan="2">
+                		<field name="times"/>
+                		<field name="type"/>
+                		<newline/>
+                		<field name="quarter" attrs="{'invisible':[('times', 'in', ['dates','years','periods'])],'required':[('times', 'not in', ['dates','years','periods'])]}"/>
+                		<field name="period_id_start" context="{'report_type':'1'}" attrs="{'invisible':[('times', 'in', ['dates','years','quarter'])],'required':[('times', 'not in', ['dates','years','quarter'])]}"/>
+                		<field name="fiscalyear_start"  attrs="{'invisible':[('times', 'in', ['dates','periods','quarter'])],'required':[('times','not in', ['dates','periods'])]}"/>
+                		<field name="date_start"  attrs="{'invisible':[('times', 'in', ['years','periods','quarter'])],'required':[('times','not in', ['years','periods'])]}"/>
+                		<field name="date_end"  attrs="{'invisible':[('times', 'in', ['years','periods','quarter'])],'required':[('times','not in', ['years','periods'])]}"/>
+                    </group>
+	                <footer>
+                        <button string="Print" type="object" name="print_report" context="{'type_report':'report_expense_allocation'}" icon='gtk-execute'/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_report_expense_allocation_form" model="ir.actions.act_window">
+            <field name="name">Pre-paid Expense Allocation Report</field>
+            <field name="res_model">expense.allocation</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="report_expense_allocation_form"/>
+        </record>
+        
+   </data>
+</openerp>
+        
+        

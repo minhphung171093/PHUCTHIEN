@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record id="view_quotation_tree_inherit" model="ir.ui.view">
+            <field name="name">sale.order.tree.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="priority">4</field>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='state']" position="after">
+          			<field name='sale_reason_peding_id'/>
+            	</xpath>
+            </field>
+        </record>
+        
+        <record id="view_sales_order_filter_inherit" model="ir.ui.view">
+            <field name="name">sale.order.list.select.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//filter[@string='Order Date']" position="after">
+          			<filter string="Reason Pending" icon="terp-go-month" domain="[]" context="{'group_by':'sale_reason_peding_id'}"/>
+            	</xpath>
+            </field>
+       </record>
+        
+		<record id="view_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+          		<xpath expr="//field[@name='partner_id']" position="after">
+          			<field name='product_category_id'/>
+          			<field name='hop_dong_nt_id' domain="[('type','=','nguyen_tac'),('partner_id','=',partner_id),('state','=','da_nhan')]"/>
+          			<field name='hop_dong_t_id' domain="[('type','=','thau'),('partner_id','=',partner_id),('state','=','da_nhan')]"/>
+            	</xpath>
+            	<xpath expr="//button[@name='action_button_confirm']" position="after">
+            		 <button name="chiu_trach_nhiem" attrs="{'invisible':['|',('state','not in',['draft','sent']),('chiu_trach_nhiem_id','!=',False)]}" string="Chịu trách nhiệm" class="oe_highlight" type="object"/>
+          			 <button name="duyet_khong_dieukien" states="draft,sent" string="Duyệt vượt cấp" class="oe_highlight" type="object" groups="green_erp_phucthien_sale.group_duyet_banhang_khong_dieukien"/>
+            	</xpath>
+            	<xpath expr="//button[@name='print_quotation']" position="replace">
+	    			<button name="print_sale_order" string="Để nghị xuất hàng" type="object" class="oe_highlight"/>
+	            </xpath>
+		            
+		    	<xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="replace">
+		        	<field name="price_subtotal" string="Thành tiền" invisible="0"/>
+		        </xpath>
+		        
+				<xpath expr="//field[@name='note']" position="after">
+		        	<group>
+		        		<field name='chiu_trach_nhiem_id'/>
+		        		<field name='nv_duyet_id'/>
+		        		<field name='tp_duyet_id'/>
+		        		<field name='sale_reason_peding_id'/>
+		        	</group>
+		        </xpath>
+		        <xpath expr="//field[@name='payment_term']" position="after">
+                	<field name="payment_mode_id" widget="selection"/>
+                </xpath>
+                <xpath expr="//field[@name='pricelist_id']" position="after">
+                	<field name="remark"/>
+                </xpath>
+                
+                <xpath expr="//button[@name='action_cancel']" position="replace">
+                	<button name="action_cancel" states="manual,progress,done" string="Cancel Order" type="object" groups="base.group_user"/>
+            	</xpath>
+		        
+            </field>
+        </record>
+        
+        <record id="view_partner_tree_inherit" model="ir.ui.view">
+            <field name="name">res.partner.tree.inherit</field>
+            <field name="model">res.partner</field>
+            <field eval="9" name="priority"/>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree[@string='Contacts']" position="attributes">
+                	<attribute name="colors">gray:gp_gan_hh== False;red:gp_gan_hh== True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='parent_id']" position="after">
+                	<field name="gp_gan_hh" invisible="1"/>
+                    <field name="state_id" domain="[]" invisible="1"/>
+          			<field name="mobile" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='email']" position="replace">
+          			<field name="email" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+          			<field name="street"/>
+          			<field name="street2"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_res_partner_filter_inherit" model="ir.ui.view">
+            <field name="name">res.partner.select.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='user_id']" position="after">
+          			<field name="internal_code"/>
+          			<field name="phone"/>
+          			<field name="mobile"/>
+          			<field name="vat"/>
+          			<field name="state_id" domain="[]"/>
+            	</xpath>
+            	<xpath expr="//filter[@string='Country']" position="after">
+          			<filter string="State" icon="terp-go-month" domain="[]" context="{'group_by':'state_id'}"/>
+            	</xpath>
+            </field>
+        </record>
+        
+        <record id="view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='stock_journal_id']" position="before">
+          			<field name='product_category_id' attrs="{'invisible':[('type','!=','out')]}"/>
+            	</xpath>
+            </field>
+        </record>
+        
+        <record id="view_partner_property_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//page[@string='Accounting']" position="after">
+          			<page string="Giấy phép">
+          				<group col='6' colspan='2'>
+          					<group colspan='2'>
+          						<field name='gpkd'/>
+          						<field name='date_gpkd' attrs="{'invisible': [('gpkd','=',False)]}"/>
+          					</group>
+          					<group colspan='2'>
+          						<field name='cchn'/>
+          						<field name='date_cchn' attrs="{'invisible': [('cchn','=',False)]}"/>
+          					</group>
+          					<group colspan='2'>
+          						<field name='gptn'/>
+          						<field name='date_gptn' attrs="{'invisible': [('gptn','=',False)]}"/>
+          					</group>
+          					<group colspan='2'>
+          						<field name='gdp' />
+          						<field name='date_gdp' attrs="{'invisible': [('gdp','=',False)]}"/>
+          					</group>
+          					<group colspan='2'>
+          						<field name='gpp' />
+          						<field name='date_gpp' attrs="{'invisible': [('gpp','=',False)]}"/>
+          					</group>
+          					<group colspan='2'>
+          						<field name='gsp' />
+          						<field name='date_gsp' attrs="{'invisible': [('gsp','=',False)]}"/>
+          					</group>
+          				</group>
+	                </page>
+	                <page string="Hợp Đồng" attrs="{'invisible': [('customer','=',False)]}">
+          				<field name = "hop_dong_ids" >
+          					<tree editable='top'>
+								<field name="name" />
+                                <field name="type"/>
+                                <field name="tu_ngay" />
+                                <field name="den_ngay" />
+                                <field name="amount_total" />
+                                <field name="state" />
+                            </tree>
+          				</field>
+	                </page>
+	                <page string="Số ngày nợ theo sản phẩm" attrs="{'invisible': [('customer','=',False)]}">
+          				<field name = "so_ngay_no_ids" >
+          					<tree editable='top'>
+								<field name="product_category_id" />
+								<field name="manufacturer_product_id"/>
+                                <field name="so_ngay"/>
+                            </tree>
+          				</field>
+	                </page>
+	                <page string="Danh sách sản phẩm cạnh tranh" attrs="{'invisible': [('customer','=',False)]}">
+          				<field name = "danhsach_canhtranh_ids" >
+          					<tree editable='top'>
+          						<field name="name" />
+								<field name="product_id" />
+								<field name="qty"/>
+                                <field name="sanpham_canhtranh1_id"/>
+                                <field name="soluong_canhtranh1"/>
+                                <field name="sanpham_canhtranh2_id"/>
+                                <field name="soluong_canhtranh2"/>
+                                <field name="sanpham_canhtranh3_id"/>
+                                <field name="soluong_canhtranh3"/>
+                            </tree>
+          				</field>
+	                </page>
+            	</xpath>
+            	<!--<xpath expr="//field[@name='credit_limit']" position="after">
+            		<field name='so_ngay_no'/>
+            	</xpath>-->
+            	<xpath expr="//field[@name='email']" position="after">
+            		<field name='so_cmnd' attrs="{'invisible': [('is_company','=',True)]}"/>
+            		<field name='is_hop_dong'/>
+            	</xpath>
+            </field>
+        </record>
+		
+		<!-- Sale Order Rule -->
+		<record id="sale_order_rule_tree_view" model="ir.ui.view">
+			<field name="name">sale.order.rule.tree</field>
+			<field name="model">sale.order.rule</field>
+			<field name="arch" type="xml">
+				<tree string="Sale Order Rule" editable='top'>
+					<field name="partner_id" domain="[('customer','=',True)]"/>
+					<field name="from_date"/>
+					<field name="to_date"/>
+					<field name="product_id" on_change="onchange_product_id(product_id)"/>
+					<field name="condition"/>
+					<field name="uom_id" attrs="{'invisible':[('condition','=','value')],'required':[('condition','=','quantity')]}"/>
+					<field name="operator"/>
+					<field name="value"/>
+					<field name="active"/>
+					<field name="message"/>
+				</tree>
+			</field>
+		</record>
+        
+        <record id="action_sale_order_rule" model="ir.actions.act_window">
+            <field name="name">Điều kiện bán hàng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order.rule</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="sale_order_rule_tree_view"/>
+        </record>
+		
+		<menuitem id="menu_action_sale_order_rule"
+    		action="action_sale_order_rule"
+    		name="Điều kiện bán hàng"
+    		parent="base.menu_base_config"
+    		sequence="20"
+    		groups="base.group_sale_manager"/>
+    		
+    	<record id="action_order_report_user" model="ir.actions.act_window">
+	        <field name="name">Sales Analysis User</field>
+	        <field name="res_model">sale.report</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,graph</field>
+	        <field name="search_view_id" ref="sale.view_order_product_search"/>
+	        <field name="view_id" ref="sale.view_order_product_tree"/>
+	        <field name="context">{'search_default_user_id':uid,'search_default_year':1,'search_default_User':1,'search_default_month':1,'group_by_no_leaf':1,'group_by':[]}</field>
+	        <field name="help">This report performs analysis on your quotations and sales orders. Analysis check your sales revenues and sort it by different group criteria (salesman, partner, product, etc.) Use this report to perform analysis on sales not having invoiced yet. If you want to analyse your turnover, you should use the Invoice Analysis report in the Accounting application.</field>
+    	</record>
+    	
+    	<menuitem action="action_order_report_user" id="menu_report_product_user" parent="base.menu_sales" sequence="10"/>
+    	
+    	<record id="sale_view_move_search" model="ir.ui.view">
+            <field name="name">stock.move.search</field>
+            <field name="model">stock.move</field>
+            <field eval="3" name="priority"/>
+            <field name="inherit_id" ref="stock.view_move_search"/>
+            <field name="arch" type="xml">
+            	<search string="Stock Moves" position="replace">
+	                <search string="Stock Moves">
+	                    <field name="origin" filter_domain="['|',('origin','ilike',self),('picking_id','ilike',self)]" string="Reference"/>
+	                    <field name="date" groups="base.group_no_one"/>
+	                    <filter icon="terp-camera_test" string="Ready" name="ready" domain="[('state','=','assigned')]" help="Stock moves that are Available (Ready to process)"/>
+	                    <filter icon="terp-stock" string="To Do" name="future" domain="[('state','in',('assigned','confirmed','waiting'))]" help="Stock moves that are Confirmed, Available or Waiting"/>
+	                    <filter icon="terp-dialog-close" string="Done" name="done" domain="[('state','=','done')]" help="Stock moves that have been processed"/>
+	                    <separator/>
+	                    <filter icon="terp-go-today" string="Today" domain="[('date','&lt;=',time.strftime('%%Y-%%m-%%d 23:59:59')),('date','&gt;=',time.strftime('%%Y-%%m-%%d 00:00:00'))]" help="Orders processed Today or planned for Today"/>
+	                    <field name="product_id"/>
+	                    <field name="name" string="Location" filter_domain="['|',('location_id','ilike',self),('location_dest_id','ilike',self)]"/>
+	                    <field name="partner_id" string="Partner"  filter_domain="[('picking_id.partner_id','child_of',self)]"/>
+	                    <field name="prodlot_id"/>
+	                    <group expand="0" string="Group By...">
+	                    	<filter name="state" icon="terp-stock_effects-object-colorize" string="Status" domain="[]" context="{'group_by':'state'}"/>
+	                        <filter string="Product" name="by_product" icon="terp-accessories-archiver" domain="[]"  context="{'group_by':'product_id'}"/>
+	                        <filter string="Picking" name="groupby_picking_id" icon="terp-accessories-archiver" domain="[]"  context="{'group_by':'picking_id'}"/>
+	                        <filter string="Serial  Number" name="groupby_prodlot_id" icon="terp-accessories-archiver" domain="[]"  context="{'group_by':'prodlot_id'}"/>
+	                        <filter string="Pack" name="groupby_tracking_id" icon="terp-accessories-archiver" domain="[]"  context="{'group_by':'tracking_id'}"/>
+	                        <filter string="Source" name="groupby_location_id" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'location_id'}" groups="stock.group_locations"/>
+	                        <filter string="Destination" name="groupby_dest_location_id" icon="terp-gtk-jump-to-ltr" domain="[]" context="{'group_by':'location_dest_id'}" groups="stock.group_locations"/>
+	                        <filter string="Creation" name="groupby_create_date" icon="terp-go-month" domain="[]" context="{'group_by':'create_date'}" groups="base.group_no_one"/>
+	                        <filter string="Scheduled" name="groupby_date" icon="terp-go-month" domain="[]" context="{'group_by':'date_expected'}"/>
+	                    </group>
+	                </search>
+                </search>
+            </field>
+        </record>
+        
+    	<record id="action_stock_move_user" model="ir.actions.act_window">
+            <field name="name">Stock Moves User</field>
+            <field name="res_model">stock.move</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="stock.view_move_tree"/>
+            <field name="search_view_id" ref="sale_view_move_search"/>
+            <field name="context">{'search_default_by_product':1,'search_default_state':1,'group_by':[]}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a stock movement.
+              </p><p>
+                This menu gives you the full traceability of inventory
+                operations on a specific product. You can filter on the product
+                to see all the past or future movements for the product.
+              </p>
+            </field>
+        </record>
+		
+		<menuitem action="action_stock_move_user" id="menu_action_stock_move_user" parent="base.menu_sales" sequence="11"/>
+		
+		<record id="view_company_form_inherit" model="ir.ui.view">
+            <field name="name">res.company.form.inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//form/sheet/notebook/page[@string='Header/Footer']" position="replace">
+            		<page string="Giấy phép">
+                        <page string="Giấy phép">
+          				<group col='8' colspan='2'>
+          					<group colspan='2'>
+          						<field name='cchn_duoc'/>
+          						<field name='date_cchn_duoc' attrs="{'invisible': [('cchn_duoc','=',False)]}"/>
+          						<field name='gpddk_kd_thuoc'/>
+          						<field name='date_gpddk_kd_thuoc' attrs="{'invisible': [('gpddk_kd_thuoc','=',False)]}"/>
+          						<field name='lhtp_rabipur' />
+          						<field name='date_lhtp_rabipur' attrs="{'invisible': [('lhtp_rabipur','=',False)]}"/>
+          					</group>
+          					<group colspan='2'>
+          						<field name='gdp'/>
+          						<field name='date_gdp' attrs="{'invisible': [('gdp','=',False)]}"/>
+          						<field name='gpp' />
+          						<field name='date_gpp' attrs="{'invisible': [('gpp','=',False)]}"/>
+          						<field name='gsp' />
+          						<field name='date_gsp' attrs="{'invisible': [('gsp','=',False)]}"/>
+          					</group>
+          					<group colspan='2'>
+          						<field name='lhtp_daugoi_norinse' />
+          						<field name='date_lhtp_daugoi_norinse' attrs="{'invisible': [('lhtp_daugoi_norinse','=',False)]}"/>
+          						<field name='lhtp_suatam_norinse' />
+          						<field name='date_lhtp_suatam_norinse' attrs="{'invisible': [('lhtp_suatam_norinse','=',False)]}"/>
+          						<field name='lhtp_hepavax_gene_10mcg' />
+          						<field name='date_lhtp_hepavax_gene_10mcg' attrs="{'invisible': [('lhtp_hepavax_gene_10mcg','=',False)]}"/>
+          						<field name='lhtp_hepavax_gene_20mcg' />
+          						<field name='date_lhtp_hepavax_gene_20mcg' attrs="{'invisible': [('lhtp_hepavax_gene_20mcg','=',False)]}"/>
+          					</group>
+          				</group>
+	                </page>
+                    </page>
+            	</xpath>
+            </field>
+        </record>
+        
+        <record id="view_company_tree_inherit" model="ir.ui.view">
+            <field name="name">res.company.tree.inherit</field>
+            <field name="model">res.company</field>
+            <field name="field_parent">child_ids</field>
+            <field name="inherit_id" ref="base.view_company_tree"/>
+            <field name="arch" type="xml">
+            	<tree string="Companies" position="replace">
+	                <tree string="Companies" colors="gray:gp_gan_hh== False;red:gp_gan_hh== True">
+	                    <field name="name"/>
+	                    <field name="partner_id"/>
+	                    <field name="gp_gan_hh" invisible="1"/>
+	                </tree>
+	            </tree>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_sale_reason_pending_tree'>
+            <field name="name">sale.reason.pending.tree</field>
+            <field name="model">sale.reason.pending</field>
+            <field name="arch" type="xml">
+                <tree string="Reason">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_sale_reason_pending_form'>
+            <field name="name">sale.reason.pending.form</field>
+            <field name="model">sale.reason.pending</field>
+            <field name="arch" type="xml">
+                <form string="Reason">
+                	<group>
+	                    <field name="name"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+      
+       	<record id="action_sale_reason_pending" model="ir.actions.act_window">
+            <field name="name">Reason</field>
+            <field name="res_model">sale.reason.pending</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a new reason.
+              </p>
+            </field>
+        </record>
+       <menuitem name="Reason" action="action_sale_reason_pending" parent="base.menu_base_config" id = "sale_reason_pending_menu" sequence="21"/>
+       
+       <record model='ir.ui.view' id='view_remind_work_situation_tree'>
+            <field name="name">remind.work.situation.tree</field>
+            <field name="model">remind.work.situation</field>
+            <field name="arch" type="xml">
+                <tree string="Tình trạng công việc">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_remind_work_situation_form'>
+            <field name="name">remind.work.situation.form</field>
+            <field name="model">remind.work.situation</field>
+            <field name="arch" type="xml">
+                <form string="Tình trạng công việc">
+                	<group>
+	                    <field name="name"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+      
+       	<record id="action_remind_work_situation" model="ir.actions.act_window">
+            <field name="name">Tình trạng công việc</field>
+            <field name="res_model">remind.work.situation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a new situation.
+              </p>
+            </field>
+        </record>
+       <menuitem name="Tình trạng công việc" action="action_remind_work_situation" parent="base.menu_base_config" id = "remind_work_situation_menu" sequence="22"/>
+       
+       <record model='ir.ui.view' id='view_remind_work_tree'>
+            <field name="name">remind.work.tree</field>
+            <field name="model">remind.work</field>
+            <field name="arch" type="xml">
+                <tree string="Nhắc nhỡ công việc">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="situation_id"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="remind_work_calendar_view">
+        <field name="name">Nhắc nhỡ công việc</field>
+        <field name="model">remind.work</field>
+        <field name="priority" eval="2"/>
+        <field name="arch" type="xml">
+            <calendar string="Nhắc nhỡ công việc" date_start="date_start" color="user_id">
+                <field name="name"/>
+                <field name="user_id"/>
+            </calendar>
+        </field>
+    </record>
+        
+        <record model='ir.ui.view' id='view_remind_work_form'>
+            <field name="name">remind.work.form</field>
+            <field name="model">remind.work</field>
+            <field name="arch" type="xml">
+                <form string="Nhắc nhỡ công việc" version="7.0">
+	                <header>
+	                    <button name="case_open" string="Open" type="object" class="oe_highlight" states="draft"/>
+	                    <button name="case_done" string="Done" type="object" states="open"/>
+	                    <button name="case_cancel" string="Cancel" type="object" states="draft,open"/>
+	                    <field name="state" widget="statusbar" nolabel="1" statusbar_visible="open,done"/>
+	                </header>
+	                <sheet>
+	                	<group>
+		                	<group>
+			                    <field name="name"/>
+			                    <field name="user_id"/>
+			                    <field name="situation_id"/>
+			                    <field name="note"/>
+		                    </group>
+		                    <group>
+			                    <field name="date_start"/>
+			                    <field name="date_end"/>
+		                    </group>
+	                   </group>
+	                </sheet>
+	                <div class="oe_chatter">
+	                    <field name="message_follower_ids" widget="mail_followers"/>
+	                    <field name="message_ids" widget="mail_thread"/>
+                	</div>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_remind_work_filter" model="ir.ui.view">
+        <field name="name">Nhắc nhỡ công việc</field>
+        <field name="model">remind.work</field>
+        <field name="arch" type="xml">
+            <search string="Nhắc nhỡ công việc">
+               <field name="name"/>
+               <field name="date_start"/>
+               <field name="date_end"/>
+               <field name="user_id"/>
+               <separator/>
+               <filter icon="terp-gtk-go-back-rtl" string="Open" name="current" domain="[('state','=','open')]"/>
+               <filter icon="terp-gtk-go-back-rtl" string="Done" name="current" domain="[('state','=','done')]"/>
+               <filter icon="terp-gtk-go-back-rtl" string="Cancel" name="current" domain="[('state','=','cancel')]"/>
+               <separator/>
+               <group expand="0" string="Group By...">
+                   <filter string="User" icon="terp-partner" domain="[]" context="{'group_by':'user_id'}"/>
+                   <filter string="State" icon="terp-go-month" domain="[]" context="{'group_by':'state'}"/>
+               </group>
+           </search>
+        </field>
+    </record>
+      
+       	<record model="ir.actions.act_window" id="action_remind_work">
+        <field name="name">Nhắc nhỡ công việc</field>
+        <field name="res_model">remind.work</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,calendar</field>
+        <field name="view_id" ref="view_remind_work_tree"/>
+        <field name="context">{"search_default_user_id":uid}</field>
+        <field name="search_view_id" ref="view_remind_work_filter"/>
+    </record>
+       <menuitem name="Nhắc nhỡ công việc" action="action_remind_work" parent="base.menu_sales" id = "remind_work_menu" sequence="13"/>
+    
+    <record model='ir.ui.view' id='view_sanpham_canhtranh_tree'>
+            <field name="name">sanpham.canhtranh.tree</field>
+            <field name="model">sanpham.canhtranh</field>
+            <field name="arch" type="xml">
+                <tree string="Sản phẩm cạnh tranh">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_sanpham_canhtranh_form'>
+            <field name="name">sanpham.canhtranh.form</field>
+            <field name="model">sanpham.canhtranh</field>
+            <field name="arch" type="xml">
+                <form string="Sản phẩm cạnh tranh">
+                	<group>
+	                    <field name="name"/>
+	                    <field name="description"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+      
+       	<record id="action_sanpham_canhtranh" model="ir.actions.act_window">
+            <field name="name">Sản phẩm cạnh tranh</field>
+            <field name="res_model">sanpham.canhtranh</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create
+              </p>
+            </field>
+        </record>
+       <menuitem name="Sản phẩm cạnh tranh" action="action_sanpham_canhtranh" parent="base.menu_base_config" id = "sanpham_canhtranh_menu" sequence="23"/>
+          
+    </data>
+</openerp>

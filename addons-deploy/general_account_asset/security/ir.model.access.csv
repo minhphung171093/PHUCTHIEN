@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+account_asset.access_account_asset_category,account.asset.category,account_asset.model_account_asset_category,account.group_account_user,1,1,1,1
+account_asset.access_account_asset_asset,account.asset.asset,account_asset.model_account_asset_asset,account.group_account_user,1,1,1,1
+account_asset.access_account_asset_history,account.asset.history,account_asset.model_account_asset_history,account.group_account_user,1,1,1,1
+account_asset.access_account_asset_depreciation_line,account.asset.depreciation.line,account_asset.model_account_asset_depreciation_line,account.group_account_user,1,1,1,1
+account_asset.access_asset_asset_report,asset.asset.report,account_asset.model_asset_asset_report,account.group_account_user,1,1,1,1

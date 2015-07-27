@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+    	
+    	<!-- Top menu item -->
+        <menuitem name="Purchase Asset" id="menu_purchase_asset_root" sequence="100"/>
+            
+    	<menuitem id="menu_general_purchase_asset" name="Purchase Asset"
+            	parent="menu_purchase_asset_root" sequence="1" />
+        
+		
+		<!-- Purchase Asset -->  
+		<menuitem action="purchase_asset_form_action" 
+			id="menu_purchase_asset_form_action" 
+			parent="menu_general_purchase_asset" 
+			sequence="1"/>
+			
+		
+		<!-- Stock Asset -->  
+		<menuitem action="action_picking_purchase_asset" 
+			id="menu_action_picking_purchase_asset" 
+			parent="menu_general_purchase_asset" 
+			sequence="2"/>
+		
+		<!--Điều kiện thu mua-->
+		<menuitem id="menu_action_purchase_order_rule"
+    		action="action_purchase_order_rule"
+    		name="Điều kiện thu mua"
+    		parent="purchase.menu_purchase_config_purchase"
+    		sequence="20"
+    		groups="purchase.group_purchase_manager"/>
+		
+    </data>
+</openerp>

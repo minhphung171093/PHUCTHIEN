@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		
+	    <!-- Create new template Kiem ke  -->
+    	<record id="inventory_count" model="ir.actions.report.xml">
+	        <field name="name">Inventory Count</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.inventory</field>
+	        <field name="report_name">inventory_count</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_stock_inventory/report/bangkiemke.py</field>
+	        <field name="report_rml">general_stock_inventory/report/bangkiemke.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="True" 
+			menu="True"
+			id="inventory_count" 
+			model="stock.inventory" 
+			name="inventory_count"
+	        string="Inventory Count"
+	        rml="general_stock_inventory/report/bangkiemke.ods"/>
+	    
+	    <!-- Create new template Kiem ke  -->
+    	<record id="inventory_accuracy_analysis" model="ir.actions.report.xml">
+	        <field name="name">Inventory Accuracy Analysis</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.inventory</field>
+	        <field name="report_name">inventory_accuracy_analysis</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_stock_inventory/report/inventory_accuracy_analysis.py</field>
+	        <field name="report_rml">general_stock_inventory/report/inventory_accuracy_analysis.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="True" 
+			menu="True"
+			id="inventory_accuracy_analysis" 
+			model="stock.inventory" 
+			name="inventory_accuracy_analysis"
+	        string="Inventory Accuracy Analysis"
+	        rml="general_stock_inventory/report/inventory_accuracy_analysis.ods"/>
+	        
+	        
+	</data>
+</openerp>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	    <record id="bienban_kiemkekho" model="ir.actions.report.xml">
+	        <field name="name">bienban_kiemkekho</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.inventory</field>
+	        <field name="report_name">bienban_kiemkekho</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">green_erp_phucthien_stock/report/bienban_kiemkekho.py</field>
+	        <field name="report_rml">green_erp_phucthien_stock/report/bienban_kiemkekho.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="True"
+			id="bienban_kiemkekho" 
+			model="stock.inventory" 
+			name="bienban_kiemkekho"
+	        string="Biên bản kiểm kê kho"
+	        rml="green_erp_phucthien_stock/report/bienban_kiemkekho.ods"/>	
+	        
+	</data>
+</openerp>

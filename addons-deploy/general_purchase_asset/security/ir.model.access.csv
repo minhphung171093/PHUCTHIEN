@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_general_purchase_asset_1,purchase.order.rule,model_purchase_order_rule,purchase.group_purchase_user,True,True,True,True

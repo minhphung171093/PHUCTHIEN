@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+    	
+    	<record id="seq_type_account_voucher_batch" model="ir.sequence.type">
+            <field name="name">Account Voucher Batch</field>
+            <field name="code">account.voucher.batch</field>
+        </record>
+        
+		<record id="sequence_voucher_batch_number" model="ir.sequence">
+            <field name="name">Account Voucher Batch Number</field>
+            <field name="code">account.voucher.batch</field>
+            <field eval="4" name="padding"/>
+            <field name="prefix">PC-%(year)s-</field>
+        </record>
+        
+    </data>
+</openerp>

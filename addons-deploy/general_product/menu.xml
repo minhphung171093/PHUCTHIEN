@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+		<!-- Master Products -->
+		<menuitem name="Master Product" 
+            id="menu_master_product" 
+            parent="general_base.menu_master_data"
+            sequence="0"
+            groups="general_product.group_product_creation"/>
+            
+            <!-- Hang Ban -->
+				<record id="action_selling_product" model="ir.actions.act_window">
+		            <field name="name">Products</field>
+		            <field name="res_model">product.product</field>
+		            <field name="view_type">form</field>
+		            <field name="view_mode">kanban,tree,form</field>
+		            <field name="context">{'search_default_filter_supply_method_produce' : 1, 'search_product': 1}</field>
+		            <field name="search_view_id" ref="product.product_search_form_view"/>
+		        </record>
+	        	
+	        	<menuitem name="Products" 
+		            id="menu_action_selling_product" 
+		            action="action_selling_product"
+		            parent="menu_master_product"
+		            sequence="0"/>
+		            
+            <!-- Thanh Pham -->
+				<record id="action_product_finished_goods" model="ir.actions.act_window">
+		            <field name="name">Finished goods</field>
+		            <field name="res_model">product.product</field>
+		            <field name="view_type">form</field>
+		            <field name="view_mode">kanban,tree,form</field>
+		            <field name="context">{'search_default_filter_supply_method_produce' : 1, 'search_finished_goods': 1}</field>
+		            <field name="search_view_id" ref="product.product_search_form_view"/>
+		        </record>
+	        	
+	        	<menuitem name="Finished goods" 
+		            id="menu_action_product_finished_goods" 
+		            action="action_product_finished_goods"
+		            parent="menu_master_product"
+		            sequence="1"/>
+	            
+	        <!-- NVL -->
+		        <record id="action_product_materials" model="ir.actions.act_window">
+		            <field name="name">Materials</field>
+		            <field name="res_model">product.product</field>
+		            <field name="view_type">form</field>
+		            <field name="view_mode">kanban,tree,form</field>
+		            <field name="context">{'search_materials': 1}</field>
+		            <field name="search_view_id" ref="product.product_search_form_view"/>
+		        </record>
+		        
+		        <menuitem
+		            id="menu_action_product_materials" 
+		            action="action_product_materials"
+		            parent="menu_master_product"
+		            sequence="5"/>
+	         
+	         <!-- BTP -->
+		        <record id="action_semi_finished_goods" model="ir.actions.act_window">
+		            <field name="name">Semi Finished Goods</field>
+		            <field name="res_model">product.product</field>
+		            <field name="view_type">form</field>
+		            <field name="view_mode">kanban,tree,form</field>
+		            <field name="context">{'search_semi_finished_goods': 1}</field>
+		            <field name="search_view_id" ref="product.product_search_form_view"/>
+		        </record>
+		        
+		        <menuitem
+		            id="menu_action_semi_finished_goods" 
+		            action="action_semi_finished_goods"
+		            parent="menu_master_product"
+		            sequence="10"/>
+            
+            <!-- NLTH -->
+		        <record id="action_consumable_items" model="ir.actions.act_window">
+		            <field name="name">Consumable Items</field>
+		            <field name="res_model">product.product</field>
+		            <field name="view_type">form</field>
+		            <field name="view_mode">kanban,tree,form</field>
+		            <field name="context">{'search_nguyenlieutieuhao': 1}</field>
+		            <field name="search_view_id" ref="product.product_search_form_view"/>
+		        </record>
+		        
+		        <menuitem
+		            id="menu_action_consumable_items" 
+		            action="action_consumable_items"
+		            parent="menu_master_product"
+		            sequence="15"/>
+        	
+        	<!-- CCDC -->
+		        <record id="action_tools" model="ir.actions.act_window">
+		            <field name="name">Tools</field>
+		            <field name="res_model">product.product</field>
+		            <field name="view_type">form</field>
+		            <field name="view_mode">kanban,tree,form</field>
+		            <field name="context">{'search_congcudungcu': 1}</field>
+		            <field name="search_view_id" ref="product.product_search_form_view"/>
+		        </record>
+		        
+		        <menuitem
+		            id="menu_action_tools" 
+		            action="action_tools"
+		            parent="menu_master_product"
+		            sequence="20"/>
+		            
+        <!-- Master Product Categories -->
+		<menuitem name="Master Product Category" 
+            id="menu_master_product_category" 
+            parent="general_base.menu_master_data"
+            sequence="5"
+            groups="general_product.group_product_creation"/>
+        
+        <!-- HB -->
+			<record id="action_product_category_hb" model="ir.actions.act_window">
+	            <field name="name">Product Categories</field>
+	            <field name="type">ir.actions.act_window</field>
+	            <field name="res_model">product.category</field>
+	            <field name="view_type">form</field>
+	            <field name="domain">[]</field>
+	            <field name="search_view_id" ref="product.product_category_search_view"/>
+	            <field name="context">{'search_product': 1}</field>
+	            <field name="view_id" ref="product.product_category_list_view"/>
+	        </record>
+	        
+	        <menuitem action="action_product_category_hb"
+	            id="menu_action_product_category_hb"
+	            parent="menu_master_product_category" sequence="1"/>
+	            
+        <!-- TP -->
+			<record id="action_product_category_tp" model="ir.actions.act_window">
+	            <field name="name">Finish Goods Categories</field>
+	            <field name="type">ir.actions.act_window</field>
+	            <field name="res_model">product.category</field>
+	            <field name="view_type">form</field>
+	            <field name="domain">[]</field>
+	            <field name="search_view_id" ref="product.product_category_search_view"/>
+	            <field name="context">{'search_finished_goods': 1}</field>
+	            <field name="view_id" ref="product.product_category_list_view"/>
+	        </record>
+	        
+	        <menuitem action="action_product_category_tp"
+	            id="menu_action_product_category_tp"
+	            parent="menu_master_product_category" sequence="5"/>
+	            
+        <!-- NVL -->
+            <record id="action_product_category_nvl" model="ir.actions.act_window">
+	            <field name="name">Materials Categories</field>
+	            <field name="type">ir.actions.act_window</field>
+	            <field name="res_model">product.category</field>
+	            <field name="view_type">form</field>
+	            <field name="domain">[]</field>
+	            <field name="context">{'search_materials': 1}</field>
+	            <field name="search_view_id" ref="product.product_category_search_view"/>
+	            <field name="view_id" ref="product.product_category_list_view"/>
+	        </record>
+	        
+	        <menuitem action="action_product_category_nvl"
+	            id="menu_action_product_category_nvl"
+	            parent="menu_master_product_category" sequence="10"/>
+        
+        <!-- BTP -->
+	        <record id="action_product_category_btp" model="ir.actions.act_window">
+	            <field name="name">Semi-Goods Categories</field>
+	            <field name="type">ir.actions.act_window</field>
+	            <field name="res_model">product.category</field>
+	            <field name="view_type">form</field>
+	            <field name="domain">[]</field>
+	            <field name="context">{'search_semi_finished_goods': 1}</field>
+	            <field name="search_view_id" ref="product.product_category_search_view"/>
+	            <field name="view_id" ref="product.product_category_list_view"/>
+	        </record>
+	        
+	        <menuitem action="action_product_category_btp"
+	            id="menu_action_product_category_btp"
+	            parent="menu_master_product_category" sequence="15"/>
+        
+        <!-- NLTH -->
+	        <record id="action_product_category_nlth" model="ir.actions.act_window">
+	            <field name="name">Consumable Categories</field>
+	            <field name="type">ir.actions.act_window</field>
+	            <field name="res_model">product.category</field>
+	            <field name="view_type">form</field>
+	            <field name="domain">[]</field>
+	            <field name="context">{'search_nguyenlieutieuhao': 1}</field>
+	            <field name="search_view_id" ref="product.product_category_search_view"/>
+	            <field name="view_id" ref="product.product_category_list_view"/>
+	        </record>
+	        
+	        <menuitem action="action_product_category_nlth"
+	            id="menu_action_product_category_nlth"
+	            parent="menu_master_product_category" sequence="20"/>
+        
+        <!-- NLTH -->
+	        <record id="action_product_category_ccdc" model="ir.actions.act_window">
+	            <field name="name">Tool Categories</field>
+	            <field name="type">ir.actions.act_window</field>
+	            <field name="res_model">product.category</field>
+	            <field name="view_type">form</field>
+	            <field name="domain">[]</field>
+	            <field name="context">{'search_congcudungcu': 1}</field>
+	            <field name="search_view_id" ref="product.product_category_search_view"/>
+	            <field name="view_id" ref="product.product_category_list_view"/>
+	        </record>
+	        
+	        <menuitem action="action_product_category_ccdc"
+	            id="menu_action_product_category_ccdc"
+	            parent="menu_master_product_category" sequence="30"/>
+
+	<!-- Master UoM -->    
+    <menuitem name="Master UoM" 
+        id="menu_master_uom" 
+        parent="general_base.menu_master_data"
+        sequence="10"
+        groups="general_product.group_product_creation"/>
+    	
+    	<menuitem action="product.product_uom_categ_form_action" id="product.menu_product_uom_categ_form_action" parent="menu_master_uom" 
+    		sequence="5" groups="base.group_no_one"/>
+    		
+    	<menuitem action="product.product_uom_form_action" id="product.menu_product_uom_form_action" parent="menu_master_uom" 
+    		sequence="10" groups="product.group_uom"/>
+    	
+    </data>
+</openerp>

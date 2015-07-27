@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+		<record id="seq_dulieu_donghang_name" model="ir.sequence.type">
+            <field name="name">Dữ liệu đóng hàng</field>
+            <field name="code">dulieu.donghang</field>
+        </record>
+        
+        <record id="seq_dulieu_donghang_name_item" model="ir.sequence">
+            <field name="name">Dữ liệu đóng hàng</field>
+            <field name="code">dulieu.donghang</field>
+            <field name="prefix">%(year)s/%(month)s/</field>
+            <field name="padding">4</field>
+            <field name="number_next_actual">0001</field>
+            <field name="implementation">standard</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">month</field>
+            <field name="reset_init_number">0001</field>
+        </record>
+        
+	</data>
+</openerp>

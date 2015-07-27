@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+    	<!-- Create new menu for Other Receipt and Payment -->
+       		<menuitem id="menu_sale_purchase_receipt" name="Sale and Purchase Receipt" parent="account.menu_finance" 
+       			groups="general_account.group_receipt_accountant,general_account.group_payment_accountant"
+       			sequence="60"/>
+       		
+	    	<!-- Add group into menu based on Permission -->
+	    		<record id="action_internal_partner" model="ir.actions.act_window">
+		            <field name="name">Internal Partners</field>
+		            <field name="type">ir.actions.act_window</field>
+		            <field name="res_model">res.partner</field>
+		            <field name="view_type">form</field>
+		            <field name="view_mode">tree,form</field>
+		            <field name="domain">[]</field>
+		            <field name="context">{'auto_default_my_company':1, 'auto_search_my_company':1}</field>
+		            <field name="filter" eval="True"/>
+		            <field name="help" type="html">
+		              <p class="oe_view_nocontent_create">
+		                Click to add a Internal Partner
+		              </p>
+		            </field>
+		        </record>
+        		
+	            <menuitem id="menu_action_purchase_receipt_batch_cash" icon="STOCK_JUSTIFY_FILL"
+		            action="action_purchase_receipt_batch_cash" 
+		            groups="general_account.group_payment_accountant"
+		            parent="menu_sale_purchase_receipt" sequence="5"/>
+		            
+	            <menuitem id="menu_action_purchase_receipt_batch_bank" icon="STOCK_JUSTIFY_FILL"
+		            action="action_purchase_receipt_batch_bank" 
+		            groups="general_account.group_payment_accountant"
+		            parent="menu_sale_purchase_receipt" sequence="10"/>
+		            
+		            <menuitem id="account_voucher.menu_action_purchase_receipt" icon="STOCK_JUSTIFY_FILL"
+		           		action="account_voucher.action_purchase_receipt" 
+		           		parent="menu_sale_purchase_receipt" 
+		           		groups="general_account.group_payment_accountant"
+		           		sequence="20"/>
+           		
+   		<!-- Phieu Thu -->
+	   			<menuitem id="menu_action_sale_receipt_batch_cash" icon="STOCK_JUSTIFY_FILL"
+		            action="action_sale_receipt_batch_cash" 
+		            groups="general_account.group_payment_accountant"
+		            parent="menu_sale_purchase_receipt" sequence="30"/>
+			            
+	            <menuitem id="menu_action_sale_receipt_batch_bank" icon="STOCK_JUSTIFY_FILL"
+		            action="action_sale_receipt_batch_bank" 
+		            groups="general_account.group_payment_accountant"
+		            parent="menu_sale_purchase_receipt" sequence="40"/>
+		            
+	           		<menuitem id="account_voucher.menu_action_sale_receipt" icon="STOCK_JUSTIFY_FILL"
+			            action="account_voucher.action_sale_receipt"
+			            parent="menu_sale_purchase_receipt"
+			            groups="general_account.group_receipt_accountant"
+			            sequence="50"/>
+	            
+    </data>
+</openerp>

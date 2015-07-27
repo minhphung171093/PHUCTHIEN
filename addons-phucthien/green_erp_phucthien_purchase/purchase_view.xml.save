@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Purchase Order -->
+        <record id="purchase_order_form_phucthien_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+file:///home/phung11764/OpenERP/7.0/Project/GreenERP/addons-phucthien 
+	            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+	    			<field name="partner_id" domain="[('customer','=',True)]"/>
+	            </xpath>
+	            <xpath expr="//button[@name='wkf_send_rfq']" position="replace">
+	            	<button name="wkf_send_rfq" states="approved" string="Send by Email" type="object" context="{'send_rfq':True}" class="oe_highlight"/>
+	            </xpath>
+	            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+	    			<field name="approve"/>
+	            </xpath>
+	            <xpath expr="//button[@name='purchase_confirm']" position="after">
+	    			<button name="duyet_vuot_cap" context="{'duyet_vuot_cap':1}" type="object" states="draft" string="Duyệt vượt cấp" class="oe_highlight"/>
+	            </xpath>
+            </field>
+        </record>
+		
+		<record id="purchase_order_form_inherit_2" model="ir.ui.view">
+            <field name="name">purchase.order.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="general_purchase_asset.purchase_order_form_inherit"/>
+            <field name="arch" type="xml">
+	            <xpath expr="//field[@name='validator']" position="after">
+	    			<field name="duyet_vuotcap_id"/>
+	            </xpath>
+            </field>
+        </record>
+		
+		<record id="action_purchase_order_line_not_approve" model="ir.actions.act_window">
+            <field name="name">Dòng hàng chưa được duyệt</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="purchase.purchase_order_line_tree"/>
+            <field name="domain">[('approve','=',False)]</field>
+        </record>
+		<record id="action_purchase_order_line_not_approve1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="purchase.purchase_order_line_tree"/>
+            <field name="act_window_id" ref="action_purchase_order_line_not_approve"/>
+        </record>
+        <record id="action_purchase_order_line_not_approve2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="purchase.purchase_order_line_form2"/>
+            <field name="act_window_id" ref="action_purchase_order_line_not_approve"/>
+        </record>
+        <menuitem
+            action="action_purchase_order_line_not_approve"
+            id="menu_action_purchase_order_line_not_approve"
+            parent="purchase.menu_procurement_management"
+            sequence="10"/>
+		
+    </data>
+</openerp>

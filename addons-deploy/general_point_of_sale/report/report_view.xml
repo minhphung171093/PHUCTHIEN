@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		
+	
+
+        <!--  ========================= Bang ke ================= -->
+    	<record id="bangke_point_of_sale_report" model="ir.actions.report.xml">
+	        <field name="name">bangke_point_of_sale_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">bangke.point.of.sale</field>
+	        <field name="report_name">bangke_point_of_sale_report</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_point_of_sale/report/bangke.py</field>
+	        <field name="report_rml">general_point_of_sale/report/bangke.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="bangke_point_of_sale_report" 
+			model="bangke.point.of.sale" 
+			name="bangke_point_of_sale_report"
+	        string="Bang ke"
+	        rml="general_point_of_sale/report/bangke.ods"/>  
+	        
+	    
+        <!--  ========================= Doanh thu  ================= -->
+    	<record id="doanhthu_point_of_sale_report" model="ir.actions.report.xml">
+	        <field name="name">doanhthu_point_of_sale_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">doanhthu.point.of.sale</field>
+	        <field name="report_name">doanhthu_point_of_sale_report</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_point_of_sale/report/doanhthu.py</field>
+	        <field name="report_rml">general_point_of_sale/report/doanhthu.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="doanhthu_point_of_sale_report" 
+			model="doanhthu.point.of.sale" 
+			name="doanhthu_point_of_sale_report"
+	        string="doanhthu"
+	        rml="general_point_of_sale/report/doanhthu.ods"/>  
+	        
+	</data>
+</openerp>

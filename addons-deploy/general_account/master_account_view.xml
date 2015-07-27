@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<record id="view_invoice_book_tree" model="ir.ui.view">
+            <field name="name">view.invoice.book.tree</field>
+            <field name="model">invoice.book</field>
+            <field name="arch" type="xml">
+                <tree string="Sổ hóa đơn">
+                	<field name="company_id"/>
+                	<field name="name"/>
+                	<field name="kyhieuhoadon"/>
+                    <field name="mauhoadon"/>
+                    <field name="sohoadon" />
+                    <field name="ngaymuaso"/>
+                    <field name="dodai"/>
+                </tree>
+            </field>
+        </record>
+        
+         <record id="view_invoice_book_form" model="ir.ui.view">
+            <field name="name">view.invoice.book.form</field>
+            <field name="model">invoice.book</field>
+            <field name="type">form</field>
+            <field eval="1" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="Sổ hóa đơn" version="7.0">
+                <group col="4">
+	                <field name="company_id"/>
+	                <field name="name"/>
+	                <newline/>
+                	<field name="kyhieuhoadon"/>
+                    <field name="mauhoadon"/>
+                    <field name="sohoadon" readonly="0"/>
+                    <field name="ngaymuaso"/>
+                    <field name="tu_so"/>
+                    <field name="den_so"/>
+                    <field name="dodai"/>
+	            </group>
+	            </form>
+            </field>
+        </record>
+    	
+    	<record id="action_view_invoice_book" model="ir.actions.act_window">
+            <field name="name">Sổ hóa đơn</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">invoice.book</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem action="action_view_invoice_book" id="menu_action_view_invoice_book" 
+        	parent="general_account.menu_master_account" sequence="4"/>
+    </data>
+</openerp>

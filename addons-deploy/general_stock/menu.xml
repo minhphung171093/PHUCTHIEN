@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    	
+    	
+        <!-- Invisible Menu Stock Moves on Tracebility Menu 
+	        <menuitem 
+	        	action="stock.action_move_form2" 
+	        	id="stock.menu_action_move_form2" 
+	        	parent="stock.menu_traceability" 
+	        	sequence="3" groups="stock.group_locations"/>-->
+	        
+	        <delete model="ir.model.data" search="[('name','=','menu_action_move_form2')]" />
+    
+    <!-- Thanh: Tao menu Incoming and Outgoing Picking for Accounting Recei and Payable -->
+    
+    	<menuitem action="stock.action_picking_tree4_picking_to_invoice"
+	            id="menu_incoming_shipment_to_invoice_accountant"
+	            name="Incoming Shipments to Invoice"
+	            parent="account.menu_finance_receivables"
+	            sequence="90"/>
+        
+        <record id="deliveries_picking_to_invoice" model="ir.actions.act_window">
+            <field name="name">Deliveries to Invoice</field>
+            <field name="res_model">stock.picking.out</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar</field>
+            <field name="domain">[('type','=','out')]</field>
+            <field name="domain">[
+		        '|',
+		        '&amp;',('type','=','out'),('return','=','none'),
+		        '&amp;',('type','=','in'),('return','=','customer')
+		        ]
+	        </field>
+            <field name="context">{'default_type': 'out', 'contact_display': 'partner_address', 'search_default_to_invoice': 1, 'search_default_done': 1, 'default_invoice_state': '2binvoiced', 'no_create':True}</field>
+            <field name="search_view_id" ref="stock.view_picking_out_search"/>
+        </record>
+        
+	        <menuitem action="deliveries_picking_to_invoice"
+		        	id="menu_deliveries_picking_to_invoice_accountant"
+		        	name="Deliveries to Invoice"
+		        	parent="account.menu_finance_payables"
+		        	sequence="90"/>
+        	
+    </data>
+</openerp>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <!-- Payment Mode -->
+
+        <record model="res.payment.mode" id="payment_mode_1">
+            <field name="name">Cash</field>
+        </record>
+		
+		<record model="res.payment.mode" id="payment_mode_2">
+            <field name="name">Bank Transfer</field>
+        </record>
+        
+        <record model="res.payment.mode" id="payment_mode_3">
+            <field name="name">Check</field>
+        </record>
+
+        <record model="res.payment.mode" id="payment_mode_4">
+            <field name="name">Credit Card</field>
+        </record>
+
+        
+        
+    </data>
+</openerp>
+
+

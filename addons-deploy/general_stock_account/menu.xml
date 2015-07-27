@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    	
+    	<!-- New General Stock Account menu -->
+		<menuitem 
+	      		id="menu_stock_account" 
+	      		name="Stock Account" 
+	      		sequence="70"
+	      		parent="account.menu_finance" 
+	      		groups="general_stock_account.group_stock_accountant"
+	      		/>
+    	
+	     <menuitem
+	            action="action_cost_history"
+	            id="menu_action_cost_history"
+	            parent="menu_stock_account"
+	            groups="account.group_account_user"
+	            sequence="1"/>
+	     
+	     <!--
+	      <menuitem
+	            action="action_production_cost_history"
+	            id="menu_action_production_cost_history"
+	            parent="menu_stock_account"
+	            groups="account.group_account_user"
+	            sequence="2"/>
+        -->
+	       
+	      <menuitem
+	            action="general_report_warehouse.action_stock_balancesheet_report"
+	            id="menu_action_stock_balancesheet_report"
+	            parent="menu_stock_account"
+	            sequence="3"/>
+	     
+	            
+    </data>
+</openerp>

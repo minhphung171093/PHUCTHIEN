@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+		<record id="stock.view_inventory_form" model="ir.ui.view">
+            <field name="name">stock.inventory.form</field>
+            <field name="model">stock.inventory</field>
+            <field name="arch" type="xml">
+                <form string="Physical Inventory" version="7.0">
+                <header>
+                    <button name="action_confirm" states="draft" string="Confirm Inventory" type="object" class="oe_highlight" groups="stock.group_stock_user"/>
+                    <button name="action_done" states="confirm" string="Validate Inventory" type="object" class="oe_highlight" groups="stock.group_stock_manager"/>
+                    <button name="action_cancel_draft" states="cancel" string="Set to Draft" type="object"/>
+                    <button name="action_cancel_inventory" states="draft,confirm,done" string="Cancel Inventory" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                    <button name="report_inventory_accuracy_analysis" string ="Inventory Accuracy" type="object" states="done"/>
+                </header>
+                <sheet>
+                    <div class="oe_right oe_button_box">
+                        <button name="%(stock.action_view_stock_fill_inventory)d" string="Fill Inventory" states="draft,confirm" type="action" />
+                   		<field name="file"/>
+                   		<field name="file_name"/>
+                   		<button name="read_file" type="object" states="draft" string="Read File" class="oe_highlight"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" placeholder="e.g. Annual inventory"/>
+                            <field name="stock_journal_id"/>
+                            <field name="ini_flag"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                            <field name="freeze_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                    <page string="General Information">
+                    <group colspan="4" col="4">
+	                    		<field name="search_product_ean" on_change ="onchange_product(search_product_ean)"/>	
+            		</group>
+                        <field name="inventory_line_id">
+                            <tree string="Products" editable="bottom">
+                                <field name="location_id" domain="[('usage','=','internal')]" readonly="0" />
+                                <field name="product_ean" readonly="1" invisible="1"/>
+                                <field readonly="0" context="{'location':location_id, 'uom':product_uom, 'to_date':parent.date}" name="product_id" on_change="on_change_product_id(location_id,product_id,product_uom,parent.date)"  domain="[('type','&lt;&gt;','service')]"/>
+                                <field name="product_uom" string="Base Uom" readonly="0"/>
+                                <field name="move_id" invisible="1"/>
+                                <field name="prod_lot_id"/>
+                                <field name="freeze_cost"/>
+                                <field name="product_qty" string="Sys Onhand" readonly="1"/>
+                                <field name="count_quantity" string="Count Qty" />
+                                <field name="adjust_quantity" string="Adjust Qty"/>
+                                <field name="adjust_value"/>
+                                <field name="description"/>
+                                <field name="state" invisible="1"/>
+                            </tree>
+                            <form string="Products" version="7.0">
+                                <group>
+                                    <group>
+                                        <field domain="[('usage','=','internal')]" name="location_id"/>
+                                        <field context="{'location':location_id, 'uom':product_uom, 'to_date':parent.date}" name="product_id" on_change="on_change_product_id(location_id,product_id,product_uom,parent.date)"  domain="[('type','&lt;&gt;','service')]"/>
+                                    </group>
+                                    <group>
+                                        <label for="product_qty"/>
+                                        <div>
+                                            <field name="product_qty" class="oe_inline"/>
+                                            <field name="product_uom" class="oe_inline" groups="product.group_uom"/>
+                                        </div>
+                                        <field name="prod_lot_id" groups="stock.group_production_lot"/>
+                                        <button name="%(stock.action_view_stock_inventory_line_split)d"
+                                        string="Split inventory lines" groups="stock.group_inventory_valuation"
+                                        type="action" icon="gtk-justify-fill"/>
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                    
+                    <page string="Extra Information">
+                     	<group col="4" colspan="4">
+                    		<field name="total_adjustment_value"/>
+                    		<field name="user_request_id" attrs="{'readonly':[('freeze_date','!=',False)]}"/>
+	                    </group>
+	                    <group col="4" colspan="4" string='Description'>
+	                    	<field name="description" widget="text" colspan="4" nolabel='1'/>
+	                    </group>
+                    </page>
+                    
+                    <page string="Posted Inventory">
+                         <field name="move_ids" context="{'inventory_id':active_id}" options='{"reload_on_button": true}' >
+                            <tree string="Stock Moves">
+                                <field name="product_id"/>
+                                <field name="product_qty" on_change="onchange_quantity(product_id, product_qty, product_uom, product_uos)"/>
+                                <field name="product_uom" string="Unit of Measure" groups="product.group_uom"/>
+                                <field name="prodlot_id" groups="stock.group_production_lot"/>
+                                <button name="%(stock.track_line)d" string="Split in serial numbers" type="action"
+                                    icon="gtk-justify-fill"
+                                    attrs="{'invisible': [('prodlot_id','&lt;&gt;',False)]}"
+                                    states="draft,done,cancel"
+                                    context="{'inventory_id':parent.id}"
+                                    groups="stock.group_production_lot"/>
+                                <field groups="stock.group_tracking_lot" name="tracking_id"/>
+                                <button name="%(stock.split_into)d" string="Put in a new pack" type="action"
+                                    groups="stock.group_tracking_lot"
+                                    icon="terp-accessories-archiver+"
+                                    context="{'inventory_id':parent.id}"
+                                    states="draft,done,cancel"/>
+                                <field name="location_id" groups="stock.group_locations"/>
+                                <field name="location_dest_id" groups="stock.group_locations"/>
+                                <field name="date" string="Date"/>
+                                <field name="state"  invisible="True"/>
+                            </tree>
+                         </field>
+                    </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

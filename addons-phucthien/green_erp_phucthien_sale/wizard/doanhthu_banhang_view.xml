@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_doanhthu_banhang_form" model="ir.ui.view">
+            <field name="name">doanhthu.banhang.form</field>
+            <field name="model">doanhthu.banhang</field>
+            <field name="arch" type="xml">
+                <form string="Doanh thu bán hàng" version="7.0">
+                	<sheet>
+	                    <group col='4' colspan='2'>
+	                    	<field name="date_from"/>
+	                        <field name="date_to"/>
+	                        <field name="partner_ids" widget="many2many_tags" domain="[('customer','=',True)]"/>
+	                        <field name="users_ids" widget="many2many_tags"/>
+	                        <field name="categ_ids" widget="many2many_tags"/>
+	                        <field name="product_ids" widget="many2many_tags"/>
+	                        <field name="loc_ids" widget="many2many_tags"/>
+	                        <field name="nsx_ids" widget="many2many_tags"/>
+	                    </group>
+	                </sheet>
+                    <footer>
+                        <button name="print_report" string="In" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Hủy bỏ" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="action_doanhthu_banhang">
+	        <field name="name">Doanh thu bán hàng</field>
+	        <field name="res_model">doanhthu.banhang</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">form</field>
+	        <field name="view_id" ref="view_doanhthu_banhang_form" />
+	        <field name="target">new</field>
+	    </record>
+
+    </data>
+</openerp>
+

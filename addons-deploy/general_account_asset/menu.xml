@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+    	<menuitem id="account_asset.menu_finance_assets" name="Assets" 
+    		parent="account.menu_finance" 
+    		sequence="90"/>
+    	
+	      <menuitem 
+	      		id="menu_report_asset_reports" 
+	      		name="Asset Reports" 
+	      		sequence="50"
+	      		parent="account.menu_finance_reports" 
+	      		/>
+	      	
+	      	<menuitem 
+		      		id="menu_action_asset_asset_report" 
+		      		action="action_asset_asset_report" 
+		      		parent="menu_report_asset_reports" sequence="0"/>
+		      		
+		     <menuitem 
+		      		id="menu_action_report_depreciation_asset" 
+		      		action="action_report_depreciation_asset" 
+		      		parent="menu_report_asset_reports" sequence="16"/>
+		      
+		      <menuitem 
+		      		id="menu_action_report_list_of_asset_form" 
+		      		action="action_report_list_of_asset_form" 
+		      		parent="menu_report_asset_reports" sequence="15"/>
+		      
+		      <menuitem 
+		      		id="menu_action_report_expense_allocation_form" 
+		      		action="action_report_expense_allocation_form" 
+		      		parent="menu_report_asset_reports" sequence="17"/>
+		            
+    </data>
+</openerp>

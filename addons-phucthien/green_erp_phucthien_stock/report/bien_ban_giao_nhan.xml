@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+    	 <record id="bien_ban_giao_nhan_report" model="ir.actions.report.xml">
+	        <field name="name">bien.ban.giao.nhan.report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.picking</field>
+	        <field name="report_name">Biên bản giao nhận</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-doc'),('compatible_types','=','oo-odt')]"/>
+	        <field name="parser_loc">green_erp_phucthien_stock/report/bien_ban_giao_nhan.py</field>
+	        <field name="report_rml">green_erp_phucthien_stock/report/bien_ban_giao_nhan.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record> 
+    	   
+    	<report 
+			auto="False" 
+			menu="True"
+			id="bien_ban_giao_nhan_report" 
+			model="stock.picking" 
+			name="bien_ban_giao_nhan_report"
+	        string="Biên bản giao nhận"
+	        rml="green_erp_phucthien_stock/report/bien_ban_giao_nhan.odt"/> 
+	        
+	</data>
+</openerp>

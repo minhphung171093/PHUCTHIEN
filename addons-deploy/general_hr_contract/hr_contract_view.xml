@@ -1,0 +1,38 @@
+<openerp>
+	<data>
+		
+		<record id="view_hr_contract_history_relation_tree" model="ir.ui.view">
+            <field name="name">view.hr.contract.history.relation.tree</field>
+            <field name="model">hr.contract.history</field>
+            <field name="arch" type="xml">
+                <tree string="Contract Histories">
+					<field name="create_date"/>
+                    <field name="create_uid"/>
+                    <field name="name"/>
+                    <field name="wage" attrs="{'invisible':[('wage','=',0)]}"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="trial_date_start"/>
+                    <field name="trial_date_end"/>
+                </tree>
+            </field>
+        </record>
+		
+		<record id="hr_contract_view_form_add_page_history" model="ir.ui.view">
+            <field name="name">view.contract.form.page.history</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//page[@string='Work Permit']" position="after">
+                        <page string="Histories">
+                        	<field name="contract_history" nolabel='1'/>
+                        </page>
+                    </xpath>
+                    
+                </data>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

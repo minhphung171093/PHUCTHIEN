@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		       
+        <!-- Create new template VT Input -->
+    	<record id="vt_input" model="ir.actions.report.xml">
+	        <field name="name">vt_input</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.invoice</field>
+	        <field name="report_name">vt_input</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_account/report/vt_input.py</field>
+	        <field name="report_rml">general_account/report/vt_input.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="vt_input" 
+			model="account.invoice" 
+			name="vt_input"
+	        string="Bang Ke Mua Vao"
+	        rml="general_account/report/vt_input.ods"/>	    
+	        
+	         <!-- Create new template VT Output -->
+    	<record id="vt_output" model="ir.actions.report.xml">
+	        <field name="name">vt_output</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.invoice</field>
+	        <field name="report_name">vt_output</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_account/report/vt_output.py</field>
+	        <field name="report_rml">general_account/report/vt_output.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="vt_output" 
+			model="account.invoice" 
+			name="vt_output"
+	        string="Bang Ke Ban Ra"
+	        rml="general_account/report/vt_output.ods"/>	
+	        
+	        
+	    <!-- Create new template VT Output -->
+    	<record id="vt_account_invoice" model="ir.actions.report.xml">
+	        <field name="name">vt_account_invoice</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.invoice</field>
+	        <field name="report_name">vt_account_invoice</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_account/report/vt_account_invoice.py</field>
+	        <field name="report_rml">general_account/report/vt_custom_invoice.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="vt_account_invoice" 
+			model="account.invoice" 
+			name="vt_account_invoice"
+	        string="Account Invoice"
+	        rml="general_account/report/vt_custom_invoice.odt"/>	
+	        
+	    
+	    <!-- Create new template VT Output -->
+    	<record id="vt_purchase_invoice" model="ir.actions.report.xml">
+	        <field name="name">vt_purchase_invoice</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.invoice</field>
+	        <field name="report_name">vt_purchase_invoice</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_account/report/vt_account_invoice.py</field>
+	        <field name="report_rml">general_account/report/vt_purchase_invoice.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="vt_purchase_invoice" 
+			model="account.invoice" 
+			name="vt_purchase_invoice"
+	        string="Invoice Manual VAT"
+	        rml="general_account/report/vt_purchase_invoice.odt"/>
+	   
+	    <!-- Create new template VT Output -->
+    	<record id="vt_with_seet" model="ir.actions.report.xml">
+	        <field name="name">vt_with_seet</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.invoice</field>
+	        <field name="report_name">vt_with_seet</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_account/report/vt_account_invoice.py</field>
+	        <field name="report_rml">general_account/report/vt_with_seet.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="vt_with_seet" 
+			model="account.invoice" 
+			name="vt_with_seet"
+	        string="With Seet"
+	        rml="general_account/report/vt_with_seet.odt"/>
+	   
+	   
+	   <!-- Create new template VT Output -->
+    	<record id="vt_with_seet_refund" model="ir.actions.report.xml">
+	        <field name="name">vt_with_seet_refund</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.invoice</field>
+	        <field name="report_name">vt_with_seet_refund</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-pdf'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_account/report/vt_account_invoice.py</field>
+	        <field name="report_rml">general_account/report/vt_with_seet_refund.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="vt_with_seet_refund" 
+			model="account.invoice" 
+			name="vt_with_seet_refund"
+	        string="With Seet Refund"
+	        rml="general_account/report/vt_with_seet_refund.odt"/>
+	        
+	   <!-- Create new Phieu ke toan -->
+    	<record id="acc_phieukt" model="ir.actions.report.xml">
+	        <field name="name">acc_phieukt</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">account.move</field>
+	        <field name="report_name">acc_phieukt</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">general_account/report/acc_phieukt.py</field>
+	        <field name="report_rml">general_account/report/acc_phieukt.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="acc_phieukt" 
+			model="account.move" 
+			name="acc_phieukt"
+	        string="Phieu Ke Toan "
+	        rml="general_account/report/acc_phieukt.ods"/>
+	        
+
+
+	</data>
+</openerp>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_phucthien_stock_5,stock_picking_packaging,model_stock_picking_packaging,stock.group_stock_user,True,True,True,True

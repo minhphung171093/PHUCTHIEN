@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+invoice_book_account_invoice,invoice.book.account.invoice,general_account.model_invoice_book,account.group_account_invoice,1,1,1,1

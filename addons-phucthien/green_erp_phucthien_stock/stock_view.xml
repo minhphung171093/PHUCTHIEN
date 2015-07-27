@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<record id="view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Additional Info']" position="after">
+					<page string="Đóng gói" attrs="{'invisible':[('type','!=','out')]}">
+						<field name="picking_packaging_line" nolabel='1'>
+							<tree editable='top'>
+								<field name="loai_thung_id"/>
+								<field name="sl_thung"/>
+								<field name="sl_da"/>
+								<field name="chi_phi_da"/>
+								<field name="employee_id"/>
+							</tree>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="after">
+                	<field name="description" attrs="{'invisible':[('type','!=','out')]}"/>
+                	<field name="ngay_gui" attrs="{'invisible':[('type','!=','out')]}"/>
+                	<field name="ngay_nhan" attrs="{'invisible':[('type','!=','out')]}"/>
+                	<field name="daidien_khachhang" attrs="{'invisible':[('type','!=','out')]}"/>
+                	<field name="nguoi_giao_hang" attrs="{'invisible':[('type','!=','out')]}"/>
+                	<field name="nhiet_do" attrs="{'invisible':[('type','!=','in')]}"/>
+                	<field name="so_luong_thung" attrs="{'invisible':[('type','!=','in')]}"/>
+                	<field name="time_nhan" attrs="{'invisible':[('type','!=','in')]}"/>
+                	<field name="time_ketthuc" attrs="{'invisible':[('type','!=','in')]}"/>
+                </xpath>
+            </field>
+        </record>
+		
+		<record id="view_picking_out_tree_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.tree</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_out_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                	<field name="sampham_lanh" invisible="1"/>
+                	<field name="ngay_gui"/>
+                	<field name="ngay_nhan"/>
+                	<field name="state_receive" invisible="1"/>
+					<button name="status_send" attrs="{'invisible':[('state_receive','!=','draft')]}" string="Send" icon="gtk-go-up" type="object" class="oe_highlight"/>
+					<button name="status_receive" attrs="{'invisible':[('state_receive','!=','da_gui')]}" string="Receive" icon="gtk-goto-bottom" type="object" class="oe_highlight"/>
+					<button name="status_refresh" attrs="{'invisible':[('state_receive','=','draft')]}" string="Refresh" icon="gtk-refresh" type="object" class="oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+		
+		<record id="view_picking_in_search_inherit" model="ir.ui.view">
+	            <field name="name">stock.picking.in.search.inherit</field>
+	            <field name="model">stock.picking</field>
+	            <field name="inherit_id" ref="general_stock.view_picking_in_search_today"/>
+	            <field name="arch" type="xml">
+	                <xpath expr="/search/group/filter[@string='Return Reason']" position="after">
+	                    <filter string="Sản phẩm lạnh" icon="terp-go-partner" domain="[]" context="{'group_by':'sampham_lanh'}"/>
+	                </xpath>
+	            </field>
+	    </record>
+	        
+		<record id="loai_thung_tree_view" model="ir.ui.view">
+			<field name="name">loai.thung.tree</field>
+			<field name="model">loai.thung</field>
+			<field name="arch" type="xml">
+				<tree string="Loại thùng">
+					<field name="name"/>
+					<field name="the_tich"/>
+					<field name="sl_da"/>
+					<field name="chi_phi_da"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="loai_thung_form_view" model="ir.ui.view">
+            <field name="name">loai.thung.form</field>
+            <field name="model">loai.thung</field>
+            <field name="arch" type="xml">
+	            <form string="Loại thùng" version="7.0"> 
+	            	<sheet>
+	            		<group>
+		                    <field name="name"/>
+		                </group>
+		                <div>
+			                <group>
+								<field name="the_tich"/>
+								<field name="kich_thuoc"/>
+							</group>
+							<group>
+								<field name="sl_da"/>
+								<field name="chi_phi_da"/>
+							</group>
+						</div>
+		         	</sheet>
+		         </form>
+			</field>
+		</record>
+		
+		<record id="action_loai_thung" model="ir.actions.act_window">
+            <field name="name">Loại thùng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">loai.thung</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="loai_thung_tree_view"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+		<menuitem id="menu_loai_thung" name="Loại thùng" action="action_loai_thung" parent="stock.menu_stock_warehouse_mgmt" sequence="600"/>
+		
+		<record id="dulieu_donghang_tree_view" model="ir.ui.view">
+			<field name="name">dulieu.donghang.tree</field>
+			<field name="model">dulieu.donghang</field>
+			<field name="arch" type="xml">
+				<tree string="Dữ liệu đóng hàng" colors="gray:so_phap_ly== False;red:so_phap_ly== True">
+					<field name="name"/>
+					<field name="partner_id"/>
+					<field name="saleperson_id"/>
+					<field name="sl_nhietke"/>
+					<field name="chi_phi_nhiet_ke"/>
+					<field name="chi_phi_gui_hang"/>
+					<field name="ngay_gui"/>
+					<field name="ngay_nhan"/>
+					<field name="daidien_khachhang"/>
+					<field name="state" invisible="1"/>
+					<field name="so_phap_ly" invisible="1"/>
+					<button name="status_send" attrs="{'invisible':[('state','!=','draft')]}" string="Send" icon="gtk-go-up" type="object" class="oe_highlight"/>
+					<button name="status_receive" attrs="{'invisible':[('state','!=','da_gui')]}" string="Receive" icon="gtk-goto-bottom" type="object" class="oe_highlight"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_dulieu_donghang_filter" model="ir.ui.view">
+            <field name="name">dulieu.donghang.select</field>
+            <field name="model">dulieu.donghang</field>
+            <field name="arch" type="xml">
+                <search string="Search Dữ liệu đóng hàng">
+                    <field name="name" string="Phiếu xuất" filter_domain="['|',('name','ilike',self),('client_order_ref','ilike',self)]"/>
+                    <field name="partner_id"/>
+                    <field name="saleperson_id"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Nhân viên kinh doanh" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'saleperson_id'}"/>
+                        <filter string="Khách hàng" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Sổ pháp lý" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'so_phap_ly'}"/>
+                        <filter string="Status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+		
+		<record id="dulieu_donghang_form_view" model="ir.ui.view">
+            <field name="name">dulieu.donghang.form</field>
+            <field name="model">dulieu.donghang</field>
+            <field name="arch" type="xml">
+	            <form string="Dữ liệu đóng hàng" version="7.0"> 
+					<header>
+						<button name="status_send" attrs="{'invisible':[('state','!=','draft')]}" string="Đã gửi"  type="object" class="oe_highlight"/>
+						<button name="status_receive" attrs="{'invisible':[('state','!=','da_gui')]}" string="Đã nhận" type="object" class="oe_highlight"/>
+						<field name="state" widget="statusbar" statusbar_visible="draft,da_gui,da_nhan"/>
+					</header>
+	            	<sheet>
+	                    <group col='4' colspan='2'>
+	                    	<field name="name"/>
+	                        <field name="picking_id" class="oe_inline" on_change="onchange_picking_id(picking_id, context)"/>
+		            		<field name="partner_id"/>
+		            		<field name="saleperson_id"/>
+	                    </group>
+	                    <group col='4' colspan='2'>
+	                    	
+	                    	<field name="ngay_gui"/>
+	                    	<field name="ngay_nhan"/>
+	                    	<field name="daidien_khachhang"/>
+	                    	<field name="shipper_id"/>
+						</group>
+						<group col='4' colspan='2'>
+	                    	<field name="sl_nhietke"/>
+	                    	<field name="chi_phi_nhiet_ke"/>
+	                    	<field name="chi_phi_gui_hang"/>
+	                    	<field name="so_phap_ly"/>
+						</group>
+						<group string="Quy cách đóng gói">
+	          				<field name = "dulieu_donghang_line" nolabel="1">
+	          					<tree editable='top'>
+									<field name="loai_thung_id" />
+	                                <field name="sl_thung"/>
+	                                <field name="sl_da" sum="Tổng số lượng đá"/>
+	                                <field name="chi_phi_da" sum="Tổng chi phí đá" />
+	                            </tree>
+	          				</field>
+	                	</group>
+		         	</sheet>
+		         </form>
+			</field>
+		</record>
+		
+		<record id="action_dulieu_donghang" model="ir.actions.act_window">
+            <field name="name">Dữ liệu đóng hàng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dulieu.donghang</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="dulieu_donghang_tree_view"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+		<menuitem id="menu_dulieu_donghang" name="Dữ liệu đóng hàng" action="action_dulieu_donghang" parent="stock.menu_stock_warehouse_mgmt" sequence="601"/>
+		
+		<record id="phucthien_view_picking_subinventory_form" model="ir.ui.view">
+			<field name="name">stock.picking.phucthien.form</field>
+			<field name="model">stock.picking</field>
+			<field name="inherit_id" ref="general_stock.view_picking_subinventory_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='location_id']" position="attributes">
+				 <attribute name="context">{'phucthien_search_khochoxuly_formanager':1,'stock_journal_id':stock_journal_id,'location_id':'location'}</attribute>
+				</xpath>
+			</field>
+		</record>
+    </data>
+</openerp>

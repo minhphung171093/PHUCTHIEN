@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	
+    	<record model="ir.ui.view" id="view_partner_tree_general_modify">
+        <field name="name">view.partner.tree.general.modify</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//field[@name='name']" position="before">
+        		<field name="internal_code"/>
+        		<field name="vat"/>
+        	</xpath>
+        </field>
+    	</record>
+    	
+    	<record model="ir.ui.view" id="view_partner_form_general_modify">
+        <field name="name">view.partner.form.general.modify</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//label[@for='type']" position="before">
+        		<field name="internal_code"/>
+        	</xpath>
+    		<xpath expr="//field[@name='parent_id']" position="attributes">
+        		<attribute name="invisible">False</attribute>
+        	</xpath>
+        </field>
+    	</record>
+    	
+    	<!-- Accounting: Customer and Supplier menu should show Tree First -->
+	    	<record id="base.action_partner_customer_form" model="ir.actions.act_window">
+	            <field name="name">Customers</field>
+	            <field name="type">ir.actions.act_window</field>
+	            <field name="res_model">res.partner</field>
+	            <field name="view_type">form</field>
+	            <field name="view_mode">tree,form,kanban</field>
+	            <field name="domain">[('customer','=',1)]</field>
+	            <field name="context">{'search_default_customer':1, 'default_customer':1, 'default_supplier': 0}</field>
+	            <field name="filter" eval="True"/>
+	            <field name="help" type="html">
+	              <p class="oe_view_nocontent_create">
+	                Click to add a contact in your address book.
+	              </p><p>
+	                OpenERP helps you easily track all activities related to
+	                a customer: discussions, history of business opportunities,
+	                documents, etc.
+	              </p>
+	            </field>
+	        </record>
+	
+    </data>
+</openerp>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+		<record model="ir.ui.view" id="account_asset.asset_modify_form">
+            <field name="name">wizard.asset.modify.form</field>
+            <field name="model">asset.modify</field>
+            <field name="arch" type="xml">
+                <form string="Modify Asset" version="7.0">
+                    <group string="Asset Durations to Modify" col="4">
+                        <group colspan="2" col="2">
+                    	    <field name="name"/>
+                            <field name="method_number"/>
+                        </group>
+                        <group colspan="2" col="2">
+	                        <field name="method_end"/>
+	                        <label for="method_period"/>
+                            <div>
+                                <field name="method_period" class="oe_inline"/> months
+                            </div>
+                        </group>
+                        <group colspan="2" col="2">
+                    	    <field name="account_analytic_id"/>
+                        </group>
+                    </group>
+                    <separator string="Notes"/>
+                    <field name="note"/>
+                    <footer>
+                        <button name="modify" string="Modify" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

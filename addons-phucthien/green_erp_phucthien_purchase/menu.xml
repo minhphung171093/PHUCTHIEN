@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<menuitem id="phucthien_purchase_report" name="Báo cáo" parent="base.menu_purchase_root" sequence="20"/>
+    	<menuitem id="menu_action_doanhthu_muahang"
+    		action="action_doanhthu_muahang"
+    		name="Tổng hợp báo cáo mua hàng"
+    		parent="phucthien_purchase_report"
+    		sequence="2"/>
+    </data>
+    
+</openerp>

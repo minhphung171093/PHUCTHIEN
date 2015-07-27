@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+    	<record id="bienban_kiemkho_thanhpham_lanh" model="ir.actions.report.xml">
+	        <field name="name">bienban_kiemkho_thanhpham_lanh</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.picking</field>
+	        <field name="report_name">bienban_kiemkho_thanhpham_lanh</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">green_erp_phucthien_stock/report/receipt_transactions.py</field>
+	        <field name="report_rml">green_erp_phucthien_stock/report/bienban_kiemkho_thanhpham_lanh.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="True"
+			id="bienban_kiemkho_thanhpham_lanh" 
+			model="stock.picking" 
+			name="bienban_kiemkho_thanhpham_lanh"
+	        string="Biên bản kiểm nhập kho thành phẩm lạnh"
+	        rml="green_erp_phucthien_stock/report/bienban_kiemkho_thanhpham_lanh.ods"/>	
+	        
+	    <record id="bienban_kiemkho_thanhpham" model="ir.actions.report.xml">
+	        <field name="name">bienban_kiemkho_thanhpham</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">stock.picking</field>
+	        <field name="report_name">bienban_kiemkho_thanhpham</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">green_erp_phucthien_stock/report/receipt_transactions.py</field>
+	        <field name="report_rml">green_erp_phucthien_stock/report/bienban_kiemkho_thanhpham.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="True"
+			id="bienban_kiemkho_thanhpham" 
+			model="stock.picking" 
+			name="bienban_kiemkho_thanhpham"
+	        string="Biên bản kiểm nhập kho thành phẩm"
+	        rml="green_erp_phucthien_stock/report/bienban_kiemkho_thanhpham.ods"/>     
+	        
+	        
+	</data>
+</openerp>

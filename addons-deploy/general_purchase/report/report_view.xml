@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		
+		<!-- Hide Original Purchase Order -->
+		
+        <report auto="False" menu="False" id="purchase.report_purchase_order" model="purchase.order"
+                name="purchase.order" rml="purchase/report/order.rml"
+                usage="default" string="Purchase Order"/>
+        
+        <!-- Create new template Purchase Order -->
+    	<record id="purchase_order" model="ir.actions.report.xml">
+	        <field name="name">Purchase Order</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">purchase.order</field>
+	        <field name="report_name">purchase_order</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-doc'),('compatible_types','=','oo-odt')]"/>
+	        <field name="parser_loc">general_purchase/report/purchase_order.py</field>
+	        <field name="report_rml">general_purchase/report/vt_report_mua_hang.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="True" 
+			menu="True"
+			id="purchase_order" 
+			model="purchase.order" 
+			name="purchase_order"
+	        string="Purchase Order"
+	        rml="general_purchase/report/vt_report_mua_hang.odt"/>	    
+        
+	</data>
+</openerp>
