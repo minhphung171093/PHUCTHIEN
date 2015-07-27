@@ -15,6 +15,8 @@
 								<field name="sl_da"/>
 								<field name="chi_phi_da"/>
 								<field name="employee_id"/>
+								<field name="nhietdo_packaging_di"/>
+								<field name="nhietdo_packaging_den"/>
 							</tree>
                         </field>
                     </page>
@@ -29,6 +31,16 @@
                 	<field name="so_luong_thung" attrs="{'invisible':[('type','!=','in')]}"/>
                 	<field name="time_nhan" attrs="{'invisible':[('type','!=','in')]}"/>
                 	<field name="time_ketthuc" attrs="{'invisible':[('type','!=','in')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                	<field name="nhietdo_di" attrs="{'invisible':[('type','!=','out')]}"/>
+                	<field name="nhietdo_den" attrs="{'invisible':[('type','!=','out')]}"/>
+                </xpath>
+                <xpath expr="///sheet" position="after">
+                	<div class="oe_chatter">
+	                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+	                    <field name="message_ids" widget="mail_thread"/>
+                	</div>
                 </xpath>
             </field>
         </record>
@@ -215,6 +227,12 @@
 				<xpath expr="//field[@name='location_id']" position="attributes">
 				 <attribute name="context">{'phucthien_search_khochoxuly_formanager':1,'stock_journal_id':stock_journal_id,'location_id':'location'}</attribute>
 				</xpath>
+				<xpath expr="///sheet" position="after">
+                	<div class="oe_chatter">
+	                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+	                    <field name="message_ids" widget="mail_thread"/>
+                	</div>
+                </xpath>
 			</field>
 		</record>
     </data>

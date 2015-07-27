@@ -24,9 +24,42 @@ class Parser(report_sxw.rml_parse):
         pool = pooler.get_pool(self.cr.dbname)
         self.localcontext.update({
             'get_partner_address':self.get_partner_address,
+            'get_date_hd': self.get_date_hd,
+            'get_tax': self.get_tax,
+            'total_get_tax': self.total_get_tax,
+            'total_get_thanhtien': self.total_get_thanhtien,
         })
         
+    def get_date_hd(self,date):
+        if not date:
+            date = time.strftime('%Y-%m-%d')
+        else:
+            date = date[:10]
+        date = datetime.strptime(date, DATE_FORMAT)
+        return date.strftime('%m/%Y') 
     
+    def get_tax(self, line):
+        val = 0.0
+        for c in self.pool.get('account.tax').compute_all(self.cr, self.uid, line.sale_line_id.tax_id, line.sale_line_id.price_unit * (1-(line.sale_line_id.discount or 0.0)/100.0), line.product_qty, line.product_id.id, line.picking_id.partner_id.id)['taxes']:
+            val += c.get('amount', 0.0)
+        return val
+    
+    def total_get_tax(self, move_lines):
+        total = 0.0
+        for line in move_lines:
+            val = 0.0
+            for c in self.pool.get('account.tax').compute_all(self.cr, self.uid, line.sale_line_id.tax_id, line.sale_line_id.price_unit * (1-(line.sale_line_id.discount or 0.0)/100.0), line.product_qty, line.product_id.id, line.picking_id.partner_id.id)['taxes']:
+                val += c.get('amount', 0.0)
+            total += val
+        return total
+    
+    def total_get_thanhtien(self, move_lines):
+        total = 0.0
+        for line in move_lines:
+            val = line.product_qty*line.sale_price
+            total += val
+        return total
+        
     def get_partner_address(self, order):
         address = ''
         if order.partner_id:
