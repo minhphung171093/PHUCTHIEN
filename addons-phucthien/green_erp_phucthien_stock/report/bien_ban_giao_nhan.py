@@ -30,8 +30,23 @@ class Parser(report_sxw.rml_parse):
             'get_ngay_hethan':self.get_ngay_hethan,
             'get_nhietdo_di':self.get_nhietdo_di,
             'get_nhietdo_den': self.get_nhietdo_den,
+            'get_date':self.get_date,
         })
         
+
+    def get_date(self, date=False):
+        res={}
+        if not date:
+            date = time.strftime('%Y-%m-%d')
+        day = date[8:10],
+        month = date[5:7],
+        year = date[:4],
+        res={
+            'day' : day,
+            'month' : month,
+            'year' : year,
+            }
+        return res
     
     def get_partner_address(self, picking):
         address = ''

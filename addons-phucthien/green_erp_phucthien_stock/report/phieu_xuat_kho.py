@@ -10,6 +10,8 @@ from openerp import pooler
 from openerp.osv import osv
 from openerp.tools.translate import _
 import random
+# from green_erp_phucthien_stock.report import amount_to_text_en
+from green_erp_phucthien_stock.report import amount_to_text_vn
 DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 DATE_FORMAT = "%Y-%m-%d"
 
@@ -23,13 +25,29 @@ class Parser(report_sxw.rml_parse):
         super(Parser, self).__init__(cr, uid, name, context=context)
         pool = pooler.get_pool(self.cr.dbname)
         self.localcontext.update({
+            'convert':self.convert,
             'get_partner_address':self.get_partner_address,
             'get_date_hd': self.get_date_hd,
+            'get_date': self.get_date,
             'get_tax': self.get_tax,
             'total_get_tax': self.total_get_tax,
             'total_get_thanhtien': self.total_get_thanhtien,
         })
-        
+
+    def get_date(self, date=False):
+        res={}
+        if not date:
+            date = time.strftime('%Y-%m-%d')
+        day = date[8:10],
+        month = date[5:7],
+        year = date[:4],
+        res={
+            'day' : day,
+            'month' : month,
+            'year' : year,
+            }
+        return res
+       
     def get_date_hd(self,date):
         if not date:
             date = time.strftime('%Y-%m-%d')
@@ -67,5 +85,12 @@ class Parser(report_sxw.rml_parse):
             address += order.partner_id.state_id and ', ' + order.partner_id.state_id.name or ''
             address += order.partner_id.country_id and ', ' + order.partner_id.country_id.name or ''
         return address
+    def convert(self, amount):
+        amount_text = amount_to_text_vn.amount_to_text(amount, 'vn')
+        if amount_text and len(amount_text)>1:
+            amount = amount_text[1:]
+            head = amount_text[:1]
+            amount_text = head.upper()+amount
+        return amount_text
     
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

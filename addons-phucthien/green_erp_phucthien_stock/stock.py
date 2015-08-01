@@ -236,6 +236,7 @@ class stock_picking(osv.osv):
         'ngay_nhan':fields.date('Ngày nhận lại', track_visibility='onchange'),
         'daidien_khachhang':fields.char('Đại diện khách hàng nhận', track_visibility='onchange'),
         'nguoi_giao_hang':fields.char('Người giao hàng', track_visibility='onchange'),
+        'ly_do_xuat_id': fields.many2one('ly.do.xuat', 'Lý do xuất', track_visibility='onchange'),
         'state_receive':fields.selection([('draft','Tạo mới'),('da_gui','Đã gửi'),('da_nhan','Đã nhận')],'Trạng thái',required=True, track_visibility='onchange'),
         'nhiet_do':fields.char('Nhiệt độ', track_visibility='onchange'),
         'so_luong_thung':fields.char('Số lượng thùng', track_visibility='onchange'),
@@ -381,6 +382,25 @@ class loai_thung(osv.osv):
     
     
 loai_thung()
+
+class ly_do_xuat(osv.osv):
+    _name = 'ly.do.xuat'
+    
+    _columns = {
+        'name': fields.char('Tên',required=True),
+
+    }
+ly_do_xuat()
+
+class so_lan_in(osv.osv):
+    _name = 'so.lan.in'
+    
+    _columns = {
+        'name': fields.integer('Số lần in hiện tại trong tháng'),
+        'thang': fields.integer('Tháng'),
+
+    }
+so_lan_in()
 
 class dulieu_donghang(osv.osv):
     _name = 'dulieu.donghang'

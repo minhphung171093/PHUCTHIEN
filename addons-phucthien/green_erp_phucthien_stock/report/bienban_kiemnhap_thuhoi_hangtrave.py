@@ -67,7 +67,7 @@ class Parser(report_sxw.rml_parse):
     def get_qty(self,o,product_id):
         invoice_obj = self.pool.get('account.invoice')
         vals = {
-            'qty': '',
+            'qty': 0,
         }
         sql ='''
             select acl.product_id, sum(acl.quantity) as qty
