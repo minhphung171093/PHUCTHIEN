@@ -89,9 +89,9 @@
           			<field name="street2"/>
                 </xpath>
                 <xpath expr="//field[@name='name']" position="after">
-          			<field name="gsk_code"/>
-          			<field name="kv_benh_vien"/>
-                </xpath>
+                	<field name="gsk_code"/>
+            		<field name="kv_benh_vien"/>
+                </xpath>  
             </field>
         </record>
         

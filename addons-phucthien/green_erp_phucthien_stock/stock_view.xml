@@ -122,6 +122,90 @@
         </record>
 		<menuitem id="menu_loai_thung" name="Loại thùng" action="action_loai_thung" parent="stock.menu_stock_warehouse_mgmt" sequence="600"/>
 		
+		<record id="loai_congtac_phi_tree_view" model="ir.ui.view">
+			<field name="name">loai.congtac.phi.tree</field>
+			<field name="model">product.product</field>
+			<field name="arch" type="xml">
+				<tree string="Loai cong tac phi">
+					<field name="name"/>
+					<field name="categ_id"/>
+					<field name="default_code"/>
+					<field name="list_price"/>
+					<field name="hr_expense_ok"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="loai_congtac_phi_form_view" model="ir.ui.view">
+            <field name="name">loai.congtac.phi.form</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+	            <form string="Loai cong tac phi" version="7.0"> 
+	            	<sheet>
+	            		<div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name" string="Tên sản phẩm"/>
+                            </div>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                            <label for="categ_id" class="oe_edit_only"/>
+                            <h2><field name="categ_id"/></h2>
+                            <label for="default_code" class="oe_edit_only"/>
+                            <h4><field name="default_code"/></h4>
+                            <div name="options" groups="base.group_user">
+                                <field name="hr_expense_ok"/>
+                                <label for="hr_expense_ok"/>
+                            </div>
+                        </div>
+                        <div class="oe_right oe_button_box" name="buttons">
+                        </div>
+                        <notebook>
+                            <page string="Thông tin">
+                                <group>
+                                    <group>
+                                        <field name="list_price"/>
+                                    </group>
+                            	</group>
+                          	</page>
+                        </notebook>
+		         	</sheet>
+		         </form>
+			</field>
+		</record>
+		
+		<record id="action_loai_congtac_phi" model="ir.actions.act_window">
+            <field name="name">Loai cong tac phi</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="loai_congtac_phi_tree_view"/>
+            <field name="context">{"default_hr_expense_ok":1}</field>
+            <field name="domain">[('hr_expense_ok','=',True)]</field>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a new expense category. 
+             </p>
+            </field>
+        </record>
+        
+        <record id="action_loai_congtac_phi1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="loai_congtac_phi_tree_view"/>
+            <field name="act_window_id" ref="action_loai_congtac_phi"/>
+        </record>
+        <record id="action_loai_congtac_phi2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="loai_congtac_phi_form_view"/>
+            <field name="act_window_id" ref="action_loai_congtac_phi"/>
+        </record>
+       
+        <menuitem id="hr_expense.menu_hr_product" name="Loại công tác phí" parent="hr.menu_hr_configuration" 
+        action="action_loai_congtac_phi"/>
+		
 		<record id="dulieu_donghang_tree_view" model="ir.ui.view">
 			<field name="name">dulieu.donghang.tree</field>
 			<field name="model">dulieu.donghang</field>

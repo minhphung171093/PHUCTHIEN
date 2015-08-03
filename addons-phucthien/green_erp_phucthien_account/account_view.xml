@@ -14,19 +14,19 @@
             </field>
         </record>
         
-        <record model="ir.ui.view" id="view_invoice_form_remove_editable_2">
+   <!--     <record model="ir.ui.view" id="view_invoice_form_remove_editable_2">
 	        <field name="name">view.invoice.form.remove.editable.2</field>
 	        <field name="model">account.invoice</field>
 	        <field name="inherit_id" ref="general_account.view_invoice_form_remove_editable"/>
 	        <field name="arch" type="xml">
 	        	<xpath expr="//page[@string='Reconciliations']" position="replace">
 	        		<page string="Reconciliations" invisible="1">
-                            <field name="reconciliation_move_ids" invisible="1">
-                    		</field>
+                            <field name="reconciliation_move_ids"/>
                     </page>
 	        	</xpath>
         	</field>
-        </record>
+        </record>  -->
+        
         <record id="invoice_tree" model="ir.ui.view">
             <field name="name">account.invoice.tree</field>
             <field name="model">account.invoice</field>

@@ -166,8 +166,7 @@
 	            
 	            <xpath expr="//page[@string='Payments']" position="after">
 	        		<page string="Reconciliations">
-                            <field name="reconciliation_move_ids">
-                    		</field>
+                            <field name="reconciliation_move_ids" invisible = '1'/>
                     </page>
                 </xpath>
                 
