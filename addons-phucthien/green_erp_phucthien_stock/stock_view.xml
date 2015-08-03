@@ -27,6 +27,7 @@
                 	<field name="ngay_nhan" attrs="{'invisible':[('type','!=','out')]}"/>
                 	<field name="daidien_khachhang" attrs="{'invisible':[('type','!=','out')]}"/>
                 	<field name="nguoi_giao_hang" attrs="{'invisible':[('type','!=','out')]}"/>
+                	<field name="ly_do_xuat_id" attrs="{'invisible':[('type','!=','out')]}"/>
                 	<field name="nhiet_do" attrs="{'invisible':[('type','!=','in')]}"/>
                 	<field name="so_luong_thung" attrs="{'invisible':[('type','!=','in')]}"/>
                 	<field name="time_nhan" attrs="{'invisible':[('type','!=','in')]}"/>
@@ -42,6 +43,7 @@
 	                    <field name="message_ids" widget="mail_thread"/>
                 	</div>
                 </xpath>
+                
             </field>
         </record>
 		
@@ -319,5 +321,74 @@
                 </xpath>
 			</field>
 		</record>
+		
+    <record model='ir.ui.view' id='view_ly_do_xuat_tree'>
+            <field name="name">ly.do.xuat.tree</field>
+            <field name="model">ly.do.xuat</field>
+            <field name="arch" type="xml">
+                <tree string="Lý do xuất">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_ly_do_xuat_form'>
+            <field name="name">ly.do.xuat.form</field>
+            <field name="model">ly.do.xuat</field>
+            <field name="arch" type="xml">
+                <form string="Lý do xuất">
+                	<group>
+	                    <field name="name"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+      
+       	<record id="action_ly_do_xuat" model="ir.actions.act_window">
+            <field name="name">Lý do xuất</field>
+            <field name="res_model">ly.do.xuat</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create
+              </p>
+            </field>
+        </record>
+       <menuitem name="Lý do xuất" action="action_ly_do_xuat" parent="base.menu_base_config" id = "ly_do_xuat_menu" sequence="27"/>
+
+    <record model='ir.ui.view' id='view_so_lan_in_tree'>
+            <field name="name">so.lan.in.tree</field>
+            <field name="model">so.lan.in</field>
+            <field name="arch" type="xml">
+                <tree string="Số lần in">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_so_lan_in_form'>
+            <field name="name">so.lan.in.form</field>
+            <field name="model">so.lan.in</field>
+            <field name="arch" type="xml">
+                <form string="Số lần in">
+                	<group>
+	                    <field name="name"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+      
+       	<record id="action_so_lan_in" model="ir.actions.act_window">
+            <field name="name">Số lần in</field>
+            <field name="res_model">so.lan.in</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create
+              </p>
+            </field>
+        </record>
+       <menuitem name="Số lần in" action="action_so_lan_in" parent="base.menu_base_config" id = "so_lan_in_menu" sequence="28"/>
+		
     </data>
 </openerp>

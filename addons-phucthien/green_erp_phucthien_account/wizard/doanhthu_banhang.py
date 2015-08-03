@@ -40,6 +40,8 @@ class tonghop_doanhthu_banhang(osv.osv_memory):
         'amount_to': fields.float('Đến'),
         'hd_from': fields.char('Số hóa đơn từ'),
         'hd_to': fields.char('Đến'),
+        'khu_vuc_ids': fields.many2many('kv.benh.vien','doanhthubanhang_khu_vuc_ref','dtbh_id','khu_vuc_id', 'Khu vực'),
+#         'khu_vuc':fields.many2one('kv.benh.vien','Khu vực'),
     }
     
     _defaults = {

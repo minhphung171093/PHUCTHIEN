@@ -24,6 +24,7 @@ class Parser(report_sxw.rml_parse):
         res_user_obj = pool.get('res.users').browse(cr, uid, uid)
         self.localcontext.update({
             'get_date_hd': self.get_date_hd,
+            'get_thua_thieu':self.get_thua_thieu,
         })
     
     
@@ -34,5 +35,28 @@ class Parser(report_sxw.rml_parse):
             return date.strftime('%m/%Y')
         else:
             return ''
+
+    def get_thua_thieu(self,hethong,thucte,dongia):
+        res={}
+
+        if hethong > thucte:
+            sl_thieu = hethong - thucte
+            tt_thieu = sl_thieu * dongia
+            sl_thua = 0
+            tt_thua = 0 
+        else:
+            sl_thua = thucte - hethong
+            tt_thua = sl_thua * dongia
+            sl_thieu = 0
+            tt_thieu = 0 
+        res = {
+               'sl_thieu':sl_thieu,
+               'tt_thieu':tt_thieu,          
+               'sl_thua':sl_thua,
+               'tt_thua':tt_thua,            
+               }
+        return res
+       
+
         
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

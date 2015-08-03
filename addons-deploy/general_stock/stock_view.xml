@@ -248,7 +248,7 @@
 	                                    <field name="date_expected"/>
 	                                    <field name="product_uos" groups="product.group_uos" invisible="1"/>
 	                                    <field name="scrapped" invisible="1"/>
-	                                    <field name="prodlot_id" groups="stock.group_production_lot" invisible="0"/>
+	                                    <field name="prodlot_id" groups="stock.group_production_lot" invisible="0" domain="[('product_id','=',product_id)]"/>
 	                                    <field name="state" readonly="1"/>
 	                                    <button icon="gtk-justify-fill"
 					                    	string="Theo ngày nhập"
