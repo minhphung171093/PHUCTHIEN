@@ -1091,7 +1091,7 @@ class stock_picking(osv.osv):
             }, readonly=True),
                 
         #Thanh: Set Journal always required
-        'stock_journal_id': fields.many2one('stock.journal','Stock Journal', required=True, select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}),
+        'stock_journal_id': fields.many2one('stock.journal','Stock Journal', required=True, select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
         
         'return': fields.selection([('none', 'Normal'), ('customer', 'Return from Customer'),('internal','Return Internal'), ('supplier', 'Return to Supplier')], 'Type', required=True, select=True, help="Type specifies whether the Picking has been returned or not."),
         'write_date':  fields.datetime('Last Modification', readonly=True),
@@ -1709,17 +1709,17 @@ class stock_picking_in(osv.osv):
           store={
                 'stock.picking.in': (lambda self, cr, uid, ids, c={}: ids, ['move_lines'], 20),
                 'stock.move': (_get_stock_move, ['price_unit','product_qty','picking_id'], 20),
-            }),
+            }, track_visibility='onchange'),
         'tax_amount': fields.function(_amount_all, string='Tax Amount', digit=(16,2), multi='all',
           store={
                 'stock.picking.in': (lambda self, cr, uid, ids, c={}: ids, ['move_lines'], 20),
                 'stock.move': (_get_stock_move, ['price_unit','product_qty','picking_id'], 20),
-            }),
+            }, track_visibility='onchange'),
         'total_amount': fields.function(_amount_all, string='Total Amount', digit=(16,2), multi='all',
           store={
                 'stock.picking.in': (lambda self, cr, uid, ids, c={}: ids, ['move_lines'], 20),
                 'stock.move': (_get_stock_move, ['price_unit','product_qty','picking_id'], 20),
-            }),
+            }, track_visibility='onchange'),
         
         #Thanh: Add these field to help searching datas easily
         'date_done_user_tz': fields.function(_compute_date_user_tz, type='date', method=True, string='Date Done', store={
@@ -1730,7 +1730,7 @@ class stock_picking_in(osv.osv):
                 'stock.picking.in': (lambda self, cr, uid, ids, c={}: ids, ['date_done'], 10),
             }, multi='tz'),
                 
-        'stock_journal_id': fields.many2one('stock.journal','Stock Journal', required=True, select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}),
+        'stock_journal_id': fields.many2one('stock.journal','Stock Journal', required=True, select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
         'return': fields.selection([('none', 'Normal'), ('customer', 'Return from Customer'), ('supplier', 'Return to Supplier')], 'Type', required=True, select=True, help="Type specifies whether the Picking has been returned or not."),
         'write_date':  fields.datetime('Last Modification', readonly=True),
         'create_date': fields.datetime('Creation Date', readonly=True),
@@ -1909,7 +1909,7 @@ class stock_picking_out(osv.osv):
                 'stock.picking.out': (lambda self, cr, uid, ids, c={}: ids, ['date_done'], 10),
             }, multi='tz'),
                 
-        'stock_journal_id': fields.many2one('stock.journal','Stock Journal', required=True, select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}),
+        'stock_journal_id': fields.many2one('stock.journal','Stock Journal', required=True, select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
         'return': fields.selection([('none', 'Normal'), ('customer', 'Return from Customer'), ('supplier', 'Return to Supplier')], 'Type', required=True, select=True, help="Type specifies whether the Picking has been returned or not."),
         'write_date':  fields.datetime('Last Modification', readonly=True),
         'create_date': fields.datetime('Creation Date', readonly=True),

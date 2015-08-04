@@ -19,14 +19,74 @@ from openerp import SUPERUSER_ID
 
 class stock_picking_out(osv.osv):
     _inherit = 'stock.picking.out'
-    
+    def _set_minimum_date(self, cr, uid, ids, name, value, arg, context=None):
+        """ Calculates planned date if it is less than 'value'.
+        @param name: Name of field
+        @param value: Value of field
+        @param arg: User defined argument
+        @return: True or False
+        """
+        if not value:
+            return False
+        if isinstance(ids, (int, long)):
+            ids = [ids]
+        for pick in self.browse(cr, uid, ids, context=context):
+            sql_str = """update stock_move set
+                    date_expected='%s'
+                where
+                    picking_id=%s """ % (value, pick.id)
+            if pick.min_date:
+                sql_str += " and (date_expected='" + pick.min_date + "')"
+            cr.execute(sql_str)
+        return True
+    def get_min_max_date(self, cr, uid, ids, field_name, arg, context=None):
+        """ Finds minimum and maximum dates for picking.
+        @return: Dictionary of values
+        """
+        res = {}
+        for id in ids:
+            res[id] = {'min_date': False, 'max_date': False}
+        if not ids:
+            return res
+        cr.execute("""select
+                picking_id,
+                min(date_expected),
+                max(date_expected)
+            from
+                stock_move
+            where
+                picking_id IN %s
+            group by
+                picking_id""",(tuple(ids),))
+        for pick, dt1, dt2 in cr.fetchall():
+            res[pick]['min_date'] = dt1
+            res[pick]['max_date'] = dt2
+        return res
     _columns = {
-        'description': fields.text('Description'),
-        'ngay_gui':fields.date('Ngày gửi'),
-        'ngay_nhan':fields.date('Ngày nhận lại'),
-        'daidien_khachhang':fields.char('Đại diện khách hàng nhận'),
-        'nguoi_giao_hang':fields.char('Người giao hàng'),
-        'state_receive':fields.selection([('draft','Tạo mới'),('da_gui','Đã gửi'),('da_nhan','Đã nhận')],'Trạng thái',required=True),
+        'description': fields.text('Description', track_visibility='onchange'),
+        'ngay_gui':fields.date('Ngày gửi', track_visibility='onchange'),
+        'ngay_nhan':fields.date('Ngày nhận lại', track_visibility='onchange'),
+        'daidien_khachhang':fields.char('Đại diện khách hàng nhận', track_visibility='onchange'),
+        'nguoi_giao_hang':fields.char('Người giao hàng', track_visibility='onchange'),
+        'state_receive':fields.selection([('draft','Tạo mới'),('da_gui','Đã gửi'),('da_nhan','Đã nhận')],'Trạng thái',required=True, track_visibility='onchange'),
+        'picking_packaging_line': fields.one2many('stock.picking.packaging','picking_id','Đóng gói', track_visibility='onchange'),
+        
+        'partner_id': fields.many2one('res.partner', 'Partner', states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+#         'stock_journal_id': fields.many2one('stock.journal','Stock Journal', select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+        'location_id': fields.many2one('stock.location', 'Location', states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, help="Keep empty if you produce at the location where the finished products are needed." \
+                "Set a location if you produce at a fixed location. This can be a partner location " \
+                "if you subcontract the manufacturing operations.", select=True, track_visibility='onchange'),
+        'location_dest_id': fields.many2one('stock.location', 'Dest. Location', states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, help="Location where the system will stock the finished products.", select=True, track_visibility='onchange'),
+        'date': fields.datetime('Creation Date', help="Creation date, usually the time of the order.", select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+        'min_date': fields.function(get_min_max_date, fnct_inv=_set_minimum_date, multi="min_max_date",
+                 store=True, type='datetime', string='Scheduled Time', select=1, help="Scheduled time for the shipment to be processed", track_visibility='onchange'),
+        'origin': fields.char('Source Document', size=64, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, help="Reference of the document", select=True, track_visibility='onchange'),
+        'move_lines': fields.one2many('stock.move', 'picking_id', 'Internal Moves', states={'done': [('readonly', True)], 'cancel': [('readonly', True)]}, track_visibility='onchange'),
+        'company_id': fields.many2one('res.company', 'Company', required=True, select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+        'move_type': fields.selection([('direct', 'Partial'), ('one', 'All at once')], 'Delivery Method', required=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, help="It specifies goods to be deliver partially or all at once", track_visibility='onchange'),
+        'date_done': fields.datetime('Date of Transfer', help="Date of Completion", states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+        'auto_picking': fields.boolean('Auto-Picking', states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+    
     }
     _defaults = {
                  'state_receive':'draft',
@@ -51,14 +111,73 @@ stock_picking_out()
 
 class stock_picking_in(osv.osv):
     _inherit = 'stock.picking.in'
-    
+    def _set_minimum_date(self, cr, uid, ids, name, value, arg, context=None):
+        """ Calculates planned date if it is less than 'value'.
+        @param name: Name of field
+        @param value: Value of field
+        @param arg: User defined argument
+        @return: True or False
+        """
+        if not value:
+            return False
+        if isinstance(ids, (int, long)):
+            ids = [ids]
+        for pick in self.browse(cr, uid, ids, context=context):
+            sql_str = """update stock_move set
+                    date_expected='%s'
+                where
+                    picking_id=%s """ % (value, pick.id)
+            if pick.min_date:
+                sql_str += " and (date_expected='" + pick.min_date + "')"
+            cr.execute(sql_str)
+        return True
+    def get_min_max_date(self, cr, uid, ids, field_name, arg, context=None):
+        """ Finds minimum and maximum dates for picking.
+        @return: Dictionary of values
+        """
+        res = {}
+        for id in ids:
+            res[id] = {'min_date': False, 'max_date': False}
+        if not ids:
+            return res
+        cr.execute("""select
+                picking_id,
+                min(date_expected),
+                max(date_expected)
+            from
+                stock_move
+            where
+                picking_id IN %s
+            group by
+                picking_id""",(tuple(ids),))
+        for pick, dt1, dt2 in cr.fetchall():
+            res[pick]['min_date'] = dt1
+            res[pick]['max_date'] = dt2
+        return res
     _columns = {
-        'description': fields.text('Description'),
-        'nhiet_do':fields.char('Nhiệt độ'),
-        'so_luong_thung':fields.char('Số lượng thùng'),
-        'time_nhan':fields.datetime('Thời gian nhận'),
-        'time_ketthuc':fields.datetime('Thời gian kết thúc'),
-        'sampham_lanh':fields.boolean('Sản phẩm lạnh'),
+        'description': fields.text('Description', track_visibility='onchange'),
+        'nhiet_do':fields.char('Nhiệt độ', track_visibility='onchange'),
+        'so_luong_thung':fields.char('Số lượng thùng', track_visibility='onchange'),
+        'time_nhan':fields.datetime('Thời gian nhận', track_visibility='onchange'),
+        'time_ketthuc':fields.datetime('Thời gian kết thúc', track_visibility='onchange'),
+        'sampham_lanh':fields.boolean('Sản phẩm lạnh', track_visibility='onchange'),
+        
+        'partner_id': fields.many2one('res.partner', 'Partner', states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+#         'stock_journal_id': fields.many2one('stock.journal','Stock Journal', select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+        'location_id': fields.many2one('stock.location', 'Location', states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, help="Keep empty if you produce at the location where the finished products are needed." \
+                "Set a location if you produce at a fixed location. This can be a partner location " \
+                "if you subcontract the manufacturing operations.", select=True, track_visibility='onchange'),
+        'location_dest_id': fields.many2one('stock.location', 'Dest. Location', states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, help="Location where the system will stock the finished products.", select=True, track_visibility='onchange'),
+        'date': fields.datetime('Creation Date', help="Creation date, usually the time of the order.", select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+        'min_date': fields.function(get_min_max_date, fnct_inv=_set_minimum_date, multi="min_max_date",
+                 store=True, type='datetime', string='Scheduled Time', select=1, help="Scheduled time for the shipment to be processed", track_visibility='onchange'),
+        'origin': fields.char('Source Document', size=64, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, help="Reference of the document", select=True, track_visibility='onchange'),
+        'move_lines': fields.one2many('stock.move', 'picking_id', 'Internal Moves', states={'done': [('readonly', True)], 'cancel': [('readonly', True)]}, track_visibility='onchange'),
+        'company_id': fields.many2one('res.company', 'Company', required=True, select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+        'move_type': fields.selection([('direct', 'Partial'), ('one', 'All at once')], 'Delivery Method', required=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, help="It specifies goods to be deliver partially or all at once", track_visibility='onchange'),
+        'date_done': fields.datetime('Date of Transfer', help="Date of Completion", states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+        'auto_picking': fields.boolean('Auto-Picking', states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+        
     }
      
         
@@ -67,21 +186,79 @@ stock_picking_in()
 
 class stock_picking(osv.osv):
     _inherit = 'stock.picking'
-    
+    def _set_minimum_date(self, cr, uid, ids, name, value, arg, context=None):
+        """ Calculates planned date if it is less than 'value'.
+        @param name: Name of field
+        @param value: Value of field
+        @param arg: User defined argument
+        @return: True or False
+        """
+        if not value:
+            return False
+        if isinstance(ids, (int, long)):
+            ids = [ids]
+        for pick in self.browse(cr, uid, ids, context=context):
+            sql_str = """update stock_move set
+                    date_expected='%s'
+                where
+                    picking_id=%s """ % (value, pick.id)
+            if pick.min_date:
+                sql_str += " and (date_expected='" + pick.min_date + "')"
+            cr.execute(sql_str)
+        return True
+    def get_min_max_date(self, cr, uid, ids, field_name, arg, context=None):
+        """ Finds minimum and maximum dates for picking.
+        @return: Dictionary of values
+        """
+        res = {}
+        for id in ids:
+            res[id] = {'min_date': False, 'max_date': False}
+        if not ids:
+            return res
+        cr.execute("""select
+                picking_id,
+                min(date_expected),
+                max(date_expected)
+            from
+                stock_move
+            where
+                picking_id IN %s
+            group by
+                picking_id""",(tuple(ids),))
+        for pick, dt1, dt2 in cr.fetchall():
+            res[pick]['min_date'] = dt1
+            res[pick]['max_date'] = dt2
+        return res
     _columns = {
-        'picking_packaging_line': fields.one2many('stock.picking.packaging','picking_id','Đóng gói'),
-        'description': fields.text('Description'),
-        'ngay_gui':fields.date('Ngày gửi'),
-        'ngay_nhan':fields.date('Ngày nhận lại'),
-        'daidien_khachhang':fields.char('Đại diện khách hàng nhận'),
-        'nguoi_giao_hang':fields.char('Người giao hàng'),
-        'state_receive':fields.selection([('draft','Tạo mới'),('da_gui','Đã gửi'),('da_nhan','Đã nhận')],'Trạng thái',required=True),
-        'nhiet_do':fields.char('Nhiệt độ'),
-        'so_luong_thung':fields.char('Số lượng thùng'),
-        'time_nhan':fields.datetime('Thời gian nhận'),
-        'time_ketthuc':fields.datetime('Thời gian kết thúc'),
-        'sampham_lanh':fields.boolean('Sản phẩm lạnh'),
+        'picking_packaging_line': fields.one2many('stock.picking.packaging','picking_id','Đóng gói', track_visibility='onchange'),
+        'description': fields.text('Description', track_visibility='onchange'),
+        'ngay_gui':fields.date('Ngày gửi', track_visibility='onchange'),
+        'ngay_nhan':fields.date('Ngày nhận lại', track_visibility='onchange'),
+        'daidien_khachhang':fields.char('Đại diện khách hàng nhận', track_visibility='onchange'),
+        'nguoi_giao_hang':fields.char('Người giao hàng', track_visibility='onchange'),
+        'ly_do_xuat_id': fields.many2one('ly.do.xuat', 'Lý do xuất', track_visibility='onchange'),
+        'state_receive':fields.selection([('draft','Tạo mới'),('da_gui','Đã gửi'),('da_nhan','Đã nhận')],'Trạng thái',required=True, track_visibility='onchange'),
+        'nhiet_do':fields.char('Nhiệt độ', track_visibility='onchange'),
+        'so_luong_thung':fields.char('Số lượng thùng', track_visibility='onchange'),
+        'time_nhan':fields.datetime('Thời gian nhận', track_visibility='onchange'),
+        'time_ketthuc':fields.datetime('Thời gian kết thúc', track_visibility='onchange'),
+        'sampham_lanh':fields.boolean('Sản phẩm lạnh', track_visibility='onchange'),
         
+        'partner_id': fields.many2one('res.partner', 'Partner', states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+#         'stock_journal_id': fields.many2one('stock.journal','Stock Journal', select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+        'location_id': fields.many2one('stock.location', 'Location', states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, help="Keep empty if you produce at the location where the finished products are needed." \
+                "Set a location if you produce at a fixed location. This can be a partner location " \
+                "if you subcontract the manufacturing operations.", select=True, track_visibility='onchange'),
+        'location_dest_id': fields.many2one('stock.location', 'Dest. Location', states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, help="Location where the system will stock the finished products.", select=True, track_visibility='onchange'),
+        'date': fields.datetime('Creation Date', help="Creation date, usually the time of the order.", select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+        'min_date': fields.function(get_min_max_date, fnct_inv=_set_minimum_date, multi="min_max_date",
+                 store=True, type='datetime', string='Scheduled Time', select=1, help="Scheduled time for the shipment to be processed", track_visibility='onchange'),
+        'origin': fields.char('Source Document', size=64, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, help="Reference of the document", select=True, track_visibility='onchange'),
+        'move_lines': fields.one2many('stock.move', 'picking_id', 'Internal Moves', states={'done': [('readonly', True)], 'cancel': [('readonly', True)]}, track_visibility='onchange'),
+        'company_id': fields.many2one('res.company', 'Company', required=True, select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+        'move_type': fields.selection([('direct', 'Partial'), ('one', 'All at once')], 'Delivery Method', required=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, help="It specifies goods to be deliver partially or all at once", track_visibility='onchange'),
+        'date_done': fields.datetime('Date of Transfer', help="Date of Completion", states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
+        'auto_picking': fields.boolean('Auto-Picking', states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
     }
     _defaults = {
                  'state_receive':'draft',
@@ -185,6 +362,8 @@ class stock_picking_packaging(osv.osv):
         'sl_da': fields.float('Số lượng đá'),
         'chi_phi_da': fields.float('Chi phí đá'),
         'employee_id': fields.many2one('hr.employee','Nhân viên đóng gói'),
+        'nhietdo_packaging_di':fields.char('Nhiệt độ khi đi'),
+        'nhietdo_packaging_den':fields.char('Nhiệt độ khi đến'),
     }
     
 stock_picking_packaging()
@@ -203,6 +382,25 @@ class loai_thung(osv.osv):
     
     
 loai_thung()
+
+class ly_do_xuat(osv.osv):
+    _name = 'ly.do.xuat'
+    
+    _columns = {
+        'name': fields.char('Tên',required=True),
+
+    }
+ly_do_xuat()
+
+class so_lan_in(osv.osv):
+    _name = 'so.lan.in'
+    
+    _columns = {
+        'name': fields.integer('Số lần in hiện tại trong tháng'),
+        'thang': fields.integer('Tháng'),
+
+    }
+so_lan_in()
 
 class dulieu_donghang(osv.osv):
     _name = 'dulieu.donghang'

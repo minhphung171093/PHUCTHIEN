@@ -55,18 +55,20 @@ class sale_order(osv.osv):
         'chiu_trach_nhiem_id': fields.many2one('res.users', 'Người chịu trách nhiệm',readonly=True),
         'remark':fields.text('Ghi chú'),
         'sale_reason_peding_id': fields.many2one('sale.reason.pending','Lý do không đươc duyệt'),
+        'dia_chi_kh':fields.text('Địa chỉ Khách hàng',readonly=True)
     }
     
     def onchange_partner_id(self, cr, uid, ids, part, context=None):
+        val=[]
         if not part:
             return {'value': {'partner_invoice_id': False, 'partner_shipping_id': False,  'payment_term': False, 'fiscal_position': False}}
 
-        part = self.pool.get('res.partner').browse(cr, uid, part, context=context)
-        addr = self.pool.get('res.partner').address_get(cr, uid, [part.id], ['delivery', 'invoice', 'contact'])
-        pricelist = part.property_product_pricelist and part.property_product_pricelist.id or False
-        payment_term = part.property_payment_term and part.property_payment_term.id or False
-        fiscal_position = part.property_account_position and part.property_account_position.id or False
-        dedicated_salesman = part.user_id and part.user_id.id or uid
+        partner = self.pool.get('res.partner').browse(cr, uid, part, context=context)
+        addr = self.pool.get('res.partner').address_get(cr, uid, [partner.id], ['delivery', 'invoice', 'contact'])
+        pricelist = partner.property_product_pricelist and partner.property_product_pricelist.id or False
+        payment_term = partner.property_payment_term and partner.property_payment_term.id or False
+        fiscal_position = partner.property_account_position and partner.property_account_position.id or False
+        dedicated_salesman = partner.user_id and partner.user_id.id or uid
         val = {
             'partner_invoice_id': addr['invoice'],
             'partner_shipping_id': addr['delivery'],
@@ -76,8 +78,31 @@ class sale_order(osv.osv):
         }
         if pricelist:
             val['pricelist_id'] = pricelist
+        if part:
+#             if partner.street2:
+#             country = part.country_id and country_id.name or False
+            val['dia_chi_kh']= partner.street + '/' +(partner.street2 or '') + '/' + partner.country_id.name
+#             else:
+#                 val['dia_chi_kh']= partner.street + '/' + partner.country_id.name
         return {'value': val}
+    def create(self, cr, uid, vals, context=None):
+        if 'partner_id' in vals:
+            part = self.pool.get('res.partner').browse(cr, uid, vals['partner_id'])
+            vals.update({
+                        'dia_chi_kh': part.street + '/' +(part.street2 or '') + '/' + part.country_id.name
+                         })
+        new_id = super(sale_order, self).create(cr, uid, vals, context)
+        sale = self.browse(cr, uid, new_id)
+        return new_id
     
+    def write(self, cr, uid, ids, vals, context=None):
+        if 'partner_id' in vals:
+            part = self.pool.get('res.partner').browse(cr, uid, vals['partner_id'])
+            vals.update({
+                        'dia_chi_kh': part.street + '/' +(part.street2 or '') + '/' + part.country_id.name
+                         })
+        new_write = super(sale_order, self).write(cr, uid, ids, vals, context=context) 
+        return new_write
     def action_button_confirm(self, cr, uid, ids, context=None):
         assert len(ids) == 1, 'This option should only be used for a single id at a time.'
         sale_rule_obj = self.pool.get('sale.order.rule')
@@ -578,12 +603,16 @@ class danhsach_canhtranh(osv.osv):
                 'name':fields.date('Ngày',required=True),
                 'product_id': fields.many2one('product.product', 'Product'),
                 'qty':fields.integer('Số lượng'),
+                'qty_con_lai':fields.integer('Số lượng còn lại'),
                 'sanpham_canhtranh1_id': fields.many2one('sanpham.canhtranh','Sản phẩm cạnh tranh'),
                 'soluong_canhtranh1':fields.integer('Số lượng cạnh tranh'),
+                'soluong_canhtranh1_conlai':fields.integer('Số lượng cạnh tranh còn lại'),
                 'sanpham_canhtranh2_id': fields.many2one('sanpham.canhtranh','Sản phẩm cạnh tranh'),
                 'soluong_canhtranh2':fields.integer('Số lượng cạnh tranh'),
+                'soluong_canhtranh2_conlai':fields.integer('Số lượng cạnh tranh còn lại'),
                 'sanpham_canhtranh3_id': fields.many2one('sanpham.canhtranh','Sản phẩm cạnh tranh'),
                 'soluong_canhtranh3':fields.integer('Số lượng cạnh tranh'),
+                'soluong_canhtranh3_conlai':fields.integer('Số lượng cạnh tranh còn lại'),
                 'partner_id': fields.many2one('res.partner','Khách hàng',required = True),
                 }
     

@@ -57,14 +57,13 @@
 		        <xpath expr="//field[@name='payment_term']" position="after">
                 	<field name="payment_mode_id" widget="selection"/>
                 </xpath>
-                <xpath expr="//field[@name='pricelist_id']" position="after">
-                	<field name="remark"/>
-                </xpath>
                 
                 <xpath expr="//button[@name='action_cancel']" position="replace">
                 	<button name="action_cancel" states="manual,progress,done" string="Cancel Order" type="object" groups="base.group_user"/>
             	</xpath>
-		        
+		     	<xpath expr="//field[@name='partner_id']" position="after">
+                	<field name="dia_chi_kh" />
+                </xpath>
             </field>
         </record>
         
@@ -89,6 +88,10 @@
           			<field name="street"/>
           			<field name="street2"/>
                 </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                	<field name="gsk_code"/>
+            		<field name="kv_benh_vien"/>
+                </xpath>  
             </field>
         </record>
         
@@ -182,12 +185,16 @@
           						<field name="name" />
 								<field name="product_id" />
 								<field name="qty"/>
+								<field name="qty_con_lai"/>
                                 <field name="sanpham_canhtranh1_id"/>
                                 <field name="soluong_canhtranh1"/>
+                                <field name="soluong_canhtranh1_conlai"/>
                                 <field name="sanpham_canhtranh2_id"/>
                                 <field name="soluong_canhtranh2"/>
+                                <field name="soluong_canhtranh2_conlai"/>
                                 <field name="sanpham_canhtranh3_id"/>
                                 <field name="soluong_canhtranh3"/>
+                                <field name="soluong_canhtranh3_conlai"/>
                             </tree>
           				</field>
 	                </page>

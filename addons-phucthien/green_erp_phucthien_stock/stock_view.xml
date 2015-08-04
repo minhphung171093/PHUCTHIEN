@@ -15,6 +15,8 @@
 								<field name="sl_da"/>
 								<field name="chi_phi_da"/>
 								<field name="employee_id"/>
+								<field name="nhietdo_packaging_di"/>
+								<field name="nhietdo_packaging_den"/>
 							</tree>
                         </field>
                     </page>
@@ -25,11 +27,23 @@
                 	<field name="ngay_nhan" attrs="{'invisible':[('type','!=','out')]}"/>
                 	<field name="daidien_khachhang" attrs="{'invisible':[('type','!=','out')]}"/>
                 	<field name="nguoi_giao_hang" attrs="{'invisible':[('type','!=','out')]}"/>
+                	<field name="ly_do_xuat_id" attrs="{'invisible':[('type','!=','out')]}"/>
                 	<field name="nhiet_do" attrs="{'invisible':[('type','!=','in')]}"/>
                 	<field name="so_luong_thung" attrs="{'invisible':[('type','!=','in')]}"/>
                 	<field name="time_nhan" attrs="{'invisible':[('type','!=','in')]}"/>
                 	<field name="time_ketthuc" attrs="{'invisible':[('type','!=','in')]}"/>
                 </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                	<field name="nhietdo_di" attrs="{'invisible':[('type','!=','out')]}"/>
+                	<field name="nhietdo_den" attrs="{'invisible':[('type','!=','out')]}"/>
+                </xpath>
+                <xpath expr="///sheet" position="after">
+                	<div class="oe_chatter">
+	                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+	                    <field name="message_ids" widget="mail_thread"/>
+                	</div>
+                </xpath>
+                
             </field>
         </record>
 		
@@ -109,6 +123,90 @@
             <field name="context">{}</field>
         </record>
 		<menuitem id="menu_loai_thung" name="Loại thùng" action="action_loai_thung" parent="stock.menu_stock_warehouse_mgmt" sequence="600"/>
+		
+		<record id="loai_congtac_phi_tree_view" model="ir.ui.view">
+			<field name="name">loai.congtac.phi.tree</field>
+			<field name="model">product.product</field>
+			<field name="arch" type="xml">
+				<tree string="Loai cong tac phi">
+					<field name="name"/>
+					<field name="categ_id"/>
+					<field name="default_code"/>
+					<field name="list_price"/>
+					<field name="hr_expense_ok"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="loai_congtac_phi_form_view" model="ir.ui.view">
+            <field name="name">loai.congtac.phi.form</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+	            <form string="Loai cong tac phi" version="7.0"> 
+	            	<sheet>
+	            		<div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name" string="Tên sản phẩm"/>
+                            </div>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                            <label for="categ_id" class="oe_edit_only"/>
+                            <h2><field name="categ_id"/></h2>
+                            <label for="default_code" class="oe_edit_only"/>
+                            <h4><field name="default_code"/></h4>
+                            <div name="options" groups="base.group_user">
+                                <field name="hr_expense_ok"/>
+                                <label for="hr_expense_ok"/>
+                            </div>
+                        </div>
+                        <div class="oe_right oe_button_box" name="buttons">
+                        </div>
+                        <notebook>
+                            <page string="Thông tin">
+                                <group>
+                                    <group>
+                                        <field name="list_price"/>
+                                    </group>
+                            	</group>
+                          	</page>
+                        </notebook>
+		         	</sheet>
+		         </form>
+			</field>
+		</record>
+		
+		<record id="action_loai_congtac_phi" model="ir.actions.act_window">
+            <field name="name">Loai cong tac phi</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="loai_congtac_phi_tree_view"/>
+            <field name="context">{"default_hr_expense_ok":1}</field>
+            <field name="domain">[('hr_expense_ok','=',True)]</field>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a new expense category. 
+             </p>
+            </field>
+        </record>
+        
+        <record id="action_loai_congtac_phi1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="loai_congtac_phi_tree_view"/>
+            <field name="act_window_id" ref="action_loai_congtac_phi"/>
+        </record>
+        <record id="action_loai_congtac_phi2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="loai_congtac_phi_form_view"/>
+            <field name="act_window_id" ref="action_loai_congtac_phi"/>
+        </record>
+       
+        <menuitem id="hr_expense.menu_hr_product" name="Loại công tác phí" parent="hr.menu_hr_configuration" 
+        action="action_loai_congtac_phi"/>
 		
 		<record id="dulieu_donghang_tree_view" model="ir.ui.view">
 			<field name="name">dulieu.donghang.tree</field>
@@ -215,7 +313,82 @@
 				<xpath expr="//field[@name='location_id']" position="attributes">
 				 <attribute name="context">{'phucthien_search_khochoxuly_formanager':1,'stock_journal_id':stock_journal_id,'location_id':'location'}</attribute>
 				</xpath>
+				<xpath expr="///sheet" position="after">
+                	<div class="oe_chatter">
+	                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+	                    <field name="message_ids" widget="mail_thread"/>
+                	</div>
+                </xpath>
 			</field>
 		</record>
+		
+    <record model='ir.ui.view' id='view_ly_do_xuat_tree'>
+            <field name="name">ly.do.xuat.tree</field>
+            <field name="model">ly.do.xuat</field>
+            <field name="arch" type="xml">
+                <tree string="Lý do xuất">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_ly_do_xuat_form'>
+            <field name="name">ly.do.xuat.form</field>
+            <field name="model">ly.do.xuat</field>
+            <field name="arch" type="xml">
+                <form string="Lý do xuất">
+                	<group>
+	                    <field name="name"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+      
+       	<record id="action_ly_do_xuat" model="ir.actions.act_window">
+            <field name="name">Lý do xuất</field>
+            <field name="res_model">ly.do.xuat</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create
+              </p>
+            </field>
+        </record>
+       <menuitem name="Lý do xuất" action="action_ly_do_xuat" parent="base.menu_base_config" id = "ly_do_xuat_menu" sequence="27"/>
+
+    <record model='ir.ui.view' id='view_so_lan_in_tree'>
+            <field name="name">so.lan.in.tree</field>
+            <field name="model">so.lan.in</field>
+            <field name="arch" type="xml">
+                <tree string="Số lần in">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_so_lan_in_form'>
+            <field name="name">so.lan.in.form</field>
+            <field name="model">so.lan.in</field>
+            <field name="arch" type="xml">
+                <form string="Số lần in">
+                	<group>
+	                    <field name="name"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+      
+       	<record id="action_so_lan_in" model="ir.actions.act_window">
+            <field name="name">Số lần in</field>
+            <field name="res_model">so.lan.in</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create
+              </p>
+            </field>
+        </record>
+       <menuitem name="Số lần in" action="action_so_lan_in" parent="base.menu_base_config" id = "so_lan_in_menu" sequence="28"/>
+		
     </data>
 </openerp>

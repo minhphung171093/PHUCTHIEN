@@ -114,7 +114,7 @@
             <field eval="7" name="priority"/>
             <field name="arch" type="xml">
             	<xpath expr="//label[@for='ean13']" position="before">
-	    			<field name="manufacturer_product_id"/>
+	    			<field name="manufacturer_product_id" />
 	    			<field name="product_country_id"/>
 	            </xpath>
             </field>
@@ -147,5 +147,6 @@
             	</xpath>
             </field>
        </record>
+
     </data>
 </openerp>

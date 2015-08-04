@@ -22,6 +22,7 @@ class Parser(report_sxw.rml_parse):
         self.context = context
         pool = pooler.get_pool(self.cr.dbname)
         res_user_obj = pool.get('res.users').browse(cr, uid, uid)
+        
         self.localcontext.update({
             'display_address_partner': self.display_address_partner,
             'convert': self.convert,
@@ -32,13 +33,62 @@ class Parser(report_sxw.rml_parse):
             'get_date_now': self.get_date_now,
             'get_total': self.get_total,
             'get_stt': self.get_stt,
+            'get_print':self.get_print,
         })
+
+    def get_print(self):
+        so_lan_in = self.pool.get('so.lan.in').search(self.cr,self.uid,[])
+        if not so_lan_in:
+            date = time.strftime('%Y-%m-%d')
+            month = date[5:7]
+            month = int(month)
+            so_lan = 0
+            self.pool.get('so.lan.in').create(self.cr, self.uid,{'name':1,'thang':month})
+            sql='''
+                select id from so_lan_in
+            '''
+            self.cr.execute(sql)
+            so_lan_id = self.cr.dictfetchone()['id']
+            so_lan = self.pool.get('so.lan.in').browse(self.cr, self.uid, so_lan_id)
+            sl = so_lan.name
+            sql='''
+                update so_lan_in set name  = name + 1
+            '''
+            self.cr.execute(sql)
+        else:
+            date = time.strftime('%Y-%m-%d')
+            month = date[5:7]
+            month = int(month)
+            sql='''
+                select id from so_lan_in
+            '''
+            self.cr.execute(sql)
+            so_lan_id = self.cr.dictfetchone()['id']
+            so_lan = self.pool.get('so.lan.in').browse(self.cr, self.uid, so_lan_id)
+            if so_lan:
+                if so_lan.thang == month:
+                    sl = so_lan.name
+                    self.pool.get('so.lan.in').write(self.cr, self.uid,[so_lan_id],{'name':sl+1})
+                else:
+                    self.pool.get('so.lan.in').write(self.cr, self.uid,[so_lan_id],{'name':1,'thang':month})
+                    sql='''
+                        select id from so_lan_in
+                    '''
+                    self.cr.execute(sql)
+                    so_lan_id = self.cr.dictfetchone()['id']
+                    so_lan = self.pool.get('so.lan.in').browse(self.cr, self.uid, so_lan_id)
+                    sl = so_lan.name
+                    sql='''
+                        update so_lan_in set name  = name + 1
+                    '''
+                    self.cr.execute(sql)
+        return sl
     
     def get_total(self):
         tong = 0
         for o in self.get_picking():
             for line in o.move_lines:
-                tong += line.purchase_line_id.price_unit * line.product_qty + self.get_tax_amount(line.purchase_line_id or False)
+                tong += line.purchase_line_id.price_unit * line.product_qty + self.get_tax_amount(line.purchase_line_id or 0)
         return tong
     def get_stt(self,seq_1,seq):
         stt = 1

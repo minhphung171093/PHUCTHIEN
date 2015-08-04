@@ -72,6 +72,7 @@ class Parser(report_sxw.rml_parse):
         categ_ids = wizard_data['categ_ids']
         loc_ids = wizard_data['loc_ids']
         nsx_ids = wizard_data['nsx_ids']
+        khu_vuc_ids = wizard_data['khu_vuc_ids']
         account_ids = wizard_data['account_ids']
         amount_from = wizard_data['amount_from']
         amount_to = wizard_data['amount_to']
@@ -81,7 +82,7 @@ class Parser(report_sxw.rml_parse):
             select ail.id as id,ai.partner_id as partner_id,ai.date_invoice as ngay_hd,ai.reference_number as so_hd,rp.internal_code as ma_kh,rp.name as ten_kh,pp.default_code as ma_sp,
                 pp.name_template as ten_sp,pu.name as dvt,spl.name as so_lo,spl.life_date as han_dung,ail.quantity as so_luong,ail.price_unit as gia_ban,
                 ail.price_unit*ail.quantity as dt_truocthue,at.amount_tax as tien_thue,(ail.price_unit*ail.quantity)+at.amount_tax as dt_sauthue,pt.standard_price as gia_von,
-                sl.name as loc_name,mp.name as nsx,aa.code as so_tk,aa.name as ten_tk, rurp.name as nvbh
+                sl.name as loc_name,mp.name as nsx,aa.code as so_tk,aa.name as ten_tk,kv.name as khu_vuc, rurp.name as nvbh,rp.gsk_code as gsk_code
                 from account_invoice_line ail
                     left join account_invoice ai on ail.invoice_id=ai.id
                     left join res_partner rp on ail.partner_id=rp.id
@@ -103,6 +104,7 @@ class Parser(report_sxw.rml_parse):
                     left join stock_location sl on sl.id=sm.location_id
                     left join manufacturer_product mp on pp.manufacturer_product_id = mp.id
                     left join account_account aa on ai.account_id = aa.id
+                    left join kv_benh_vien kv on kv.id=rp.kv_benh_vien
                 where ai.date_invoice between '%s' and '%s' and ai.state!='cancel' and ai.type='out_invoice' 
         '''%(date_from,date_to)
         if partner_ids:
@@ -163,6 +165,12 @@ class Parser(report_sxw.rml_parse):
             sql+='''
                 and ai.reference_number <= '%s' 
             '''%(hd_to)
+        if khu_vuc_ids:
+            khu_vuc_ids = str(khu_vuc_ids).replace('[', '(')
+            khu_vuc_ids = str(khu_vuc_ids).replace(']', ')')
+            sql+='''
+                and kv.id in %s 
+            '''%(khu_vuc_ids)
         sql+='''
              order by ai.date_invoice
         '''

@@ -29,7 +29,7 @@
     "complexity": "easy",
     "description": """
                     """,
-    "depends" : ['account','green_erp_phucthien_sale','report_aeroo'],
+    "depends" : ['account','green_erp_phucthien_sale','report_aeroo','general_account'],
     "demo" : [],
     "data" : [
             'wizard/doanhthu_banhang_view.xml',
