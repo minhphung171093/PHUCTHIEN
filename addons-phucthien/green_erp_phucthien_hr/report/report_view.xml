@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+#===========================================================================
+    # employee_payslip
+#===========================================================================   
+    	<record id="employee_payslip" model="ir.actions.report.xml">
+	        <field name="name">employee_payslip</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">vsis.employee.payslip</field>
+	        <field name="report_name">employee_payslip</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-ods</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
+	        <field name="parser_loc">green_erp_phucthien_hr/report/employee_payslip.py</field>
+	        <field name="report_rml">green_erp_phucthien_hr/report/employee_payslip.ods</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="employee_payslip" 
+			model="vsis.employee.payslip" 
+			name="employee_payslip"
+	        string="Employee Payslip"
+	        rml="green_erp_phucthien_hr/report/employee_payslip.ods"/> 
+	               	
+	</data>
+</openerp>

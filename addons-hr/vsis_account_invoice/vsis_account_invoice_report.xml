@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-
-        <report auto="False" id="vsis_report_sale_order" model="sale.order" name="sale.order"
-                rml="vsis_sale/report/vsis_sale_report.rml" string="Báo Giá" usage="default"/>
-
-    </data>
-</openerp>

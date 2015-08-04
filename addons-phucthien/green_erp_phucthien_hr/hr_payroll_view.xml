@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<!-- Salary rule category template --> 
+	    <record model="ir.ui.view" id="hr_template_filter">
+	        <field name="name">hr.template.filter</field>
+	        <field name="model">hr.template</field>
+	        <field name="type">search</field>
+	        <field name="arch" type="xml">
+	            <search string="Rule Category Template Search">		            			                
+	                <field name="name"/>		                
+	            </search>
+	        </field>
+	    </record>
+	
+	    <record model="ir.ui.view" id="hr_template_tree">
+	        <field name="name">hr.template.tree</field>
+	        <field name="model">hr.template</field>
+	        <field name="arch" type="xml">
+	            <tree string="Rule Category Template">
+	                <field name="name"/>
+	                <field name="template_line"/>		                
+	            </tree>
+	        </field>
+	    </record>
+	
+	    <record model="ir.ui.view" id="hr_template_form">
+	        <field name="name">hr.template.form</field>
+	        <field name="model">hr.template</field>
+	        <field name="arch" type="xml">
+	            <form string="Rule Category Template" version="7.0">
+	            	<group col="4">
+		                <field name="name"/>
+		                <separator sring="Template Line" colspan="4"/>
+		                <field name="template_line" colspan="4" nolabel="1">
+		                	<tree string="Template Line" editable="top">
+		                		<field name="name"/>
+		                		<field name="sequence"/>
+		                	</tree>
+		                </field>
+		            </group>		                
+	            </form>
+	        </field>
+		</record>
+	
+		<record id="hr_template_action" model="ir.actions.act_window">
+        	<field name="name">Rule Category Template</field>
+        	<field name="res_model">hr.template</field>
+        	<field name="view_type">form</field>
+        	<field name="view_id" ref="hr_template_tree"/>	        	
+    	</record>
+    	
+    	<menuitem id="hr_template_menu" parent="hr_payroll.payroll_configure" action="hr_template_action"/>
+	            
+	</data>      
+</openerp>

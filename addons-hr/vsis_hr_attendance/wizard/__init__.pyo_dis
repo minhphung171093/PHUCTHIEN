@@ -1,3 +1,0 @@
-# Embedded file name: D:\GSProject\GSOpenERP\Ver7x\Server\openerp\addons\gs_mkp_hr_report\wizard\__init__.py
-import hr_wizard
-import gs_purvey_insurance

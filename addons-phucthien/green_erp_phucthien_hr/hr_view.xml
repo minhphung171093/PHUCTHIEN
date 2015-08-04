@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+		<record model="ir.ui.view" id="hr_hr_employee_view_form2_inherit">
+	        <field name="name">hr.hr.employee.view.form2.inherit</field>
+	        <field name="model">hr.employee</field>
+	        <field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2"/>
+	        <field name="arch" type="xml">
+	        	<xpath expr="//group[@string='Contract']" position="replace">
+	        		<group string="Contract" invisible="1">
+                        <field name="medic_exam" invisible="1" string="Medical Exam"/>
+                        <field name="vehicle" invisible="1"/>
+                        <field name="vehicle_distance" invisible="1"/>
+                    </group>
+	        	</xpath>
+	        </field>
+	    </record>
+	    
+	    <record id="view_employee_form_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//page[@string='HR Settings']" position="before">
+	        		<page string="Tình trạng sức khỏe">
+                        <field name="tinhtrang_suckhoe_ids" nolabel='1'>
+							<tree editable='top'>
+								<field name="date"/>
+								<field name="name"/>
+							</tree>
+                        </field>
+                    </page>
+                    <page string='Family'>  
+	                	<group>
+	                		<field name="depend_qty"/>
+	                	</group>       		       		   
+	                    	<field name="family_ids" colspan="4" nolabel="1">
+		                        <form string="Family" version="7.0">
+		                        	<div class="oe_title">
+                        				<div class="oe_edit_only">
+				               				<label for="name" string="Full Name"/>(<field name="depend" class="oe_inline"/><label for="depend" string="Depend"/>)
+				               			</div>
+				               			<h1>
+				               				<field name="name" default_focus="1" placeholder="Name"/>
+				               			</h1>
+				               		</div>
+				               		<br/>
+				               		<group col="4" colspan="4">
+				               			<group string="Personal Information" colspan="2">
+				               				<field name="relation"/>
+				               				<field name="id_no"/>
+				               				<field name="birthday"/>														
+				               			</group>
+				               			<group string="Contact Information" colspan="2">
+						               		<field name="phone"/>
+						               		<field name="email" widget="email"/>	               	
+				              			</group>
+				              		</group>  		
+				                    <field name="note" placeholder="Notes..."/>  
+			               		</form>
+				                <tree string="Family">	
+				                	<field name="relation"/>		               		
+				               		<field name="name"/>			               						
+				               		<field name="depend"/>
+				               		<field name="id_no"/>
+				               		<field name="phone"/>
+				               		<field name="email"/>
+				               </tree>
+	                        </field>               		                		
+	                	</page> 
+	        	</xpath>
+	    	</field>
+	    </record>
+    </data>
+</openerp>

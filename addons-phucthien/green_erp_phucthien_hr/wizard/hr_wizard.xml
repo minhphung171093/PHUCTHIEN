@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+#===========================================================================
+# employee.payslip
+#===========================================================================	
+
+		<record model="ir.ui.view" id="vsis_employee_payslip">
+			<field name="name">vsis.employee.payslip.form</field>
+			<field name="model">vsis.employee.payslip</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Employee Payslip" version="7.0">	
+					<group col="2" colspan="4">						
+						<field name="template"/>
+					</group>					
+					<group col="4" colspan="4">		
+						<field name="date_start" on_change="check(date_stop,date_start)"/>	
+						<field name="date_stop" />											
+					</group>
+					<group col="4" colspan="4">						
+						<field name="department"/>
+					</group>		
+					<footer>
+	                        <button string="Print" name="print_report" type="object" class="oe_highlight"/> or
+	                        <button string="Cancel" class="oe_link" special="cancel"/>
+	                </footer>			
+				</form>
+			</field>
+		</record>	 
+		
+		 <record id="action_vsis_employee_payslip" model="ir.actions.act_window">
+            <field name="name">Employee Payslip</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vsis.employee.payslip</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+      
+     	<menuitem action="action_vsis_employee_payslip" id="menu_action_vsis_employee_payslip" 	parent="hr_payroll.menu_hr_root_payroll" icon = "STOCK_PRINT" />	
+
+	</data>
+</openerp>

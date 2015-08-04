@@ -143,6 +143,7 @@ class stock_inventory(osv.osv):
                         'product_id': line.product_id.id,
                         'product_uom': line.product_uom.id,
                         'prodlot_id': lot_id,
+                        'tracking_id': line.tracking_id and line.tracking_id.id or False,
                         'date': inv.date,
                         'state':'draft',
                         'date':inv.freeze_date,
@@ -264,6 +265,7 @@ class stock_inventory_line(osv.osv):
                 'stock.inventory.line': (lambda self, cr, uid, ids, c={}: ids, ['product_id','product_uom','product_qty'], 10),
             }, readonly=True, multi='pro_info'),
         'description': fields.char('Ghi chú', size=64),
+        'tracking_id': fields.many2one('stock.tracking', 'Kệ'),
             }
     
     def onchange_product_ean(self, cr, uid, ids, product_id, product_uom_id, product_ean= False, context=None):

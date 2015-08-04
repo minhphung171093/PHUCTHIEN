@@ -47,6 +47,7 @@
                                 <field name="product_uom" string="Base Uom" readonly="0"/>
                                 <field name="move_id" invisible="1"/>
                                 <field name="prod_lot_id"/>
+                                <field name="tracking_id"/>
                                 <field name="freeze_cost"/>
                                 <field name="product_qty" string="Sys Onhand" readonly="1"/>
                                 <field name="count_quantity" string="Count Qty" />
@@ -68,6 +69,7 @@
                                             <field name="product_uom" class="oe_inline" groups="product.group_uom"/>
                                         </div>
                                         <field name="prod_lot_id" groups="stock.group_production_lot"/>
+                                        <field name="tracking_id"/>
                                         <button name="%(stock.action_view_stock_inventory_line_split)d"
                                         string="Split inventory lines" groups="stock.group_inventory_valuation"
                                         type="action" icon="gtk-justify-fill"/>
