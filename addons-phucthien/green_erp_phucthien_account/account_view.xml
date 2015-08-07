@@ -39,7 +39,8 @@
 	                    <field name="partner_id" groups="base.group_user"/>
 	                    <field name="date_invoice"/>
 	                    <field name="number" invisible="1"/>
-	                    <field name="reference" invisible="1"/>
+	                    <field name="reference"/>
+	                    <field name="reference_number"/>
 	                    <field name="name" invisible="1"/>
 	                    <field name="journal_id" invisible="1"/>
 	                    <field name="period_id" invisible="1" groups="account.group_account_user"/>
