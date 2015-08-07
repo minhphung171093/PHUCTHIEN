@@ -64,12 +64,12 @@ class stock_picking_out(osv.osv):
         return res
     _columns = {
         'description': fields.text('Description', track_visibility='onchange'),
-        'ngay_gui':fields.date('Ngày gửi', track_visibility='onchange'),
-        'ngay_nhan':fields.date('Ngày nhận lại', track_visibility='onchange'),
-        'daidien_khachhang':fields.char('Đại diện khách hàng nhận', track_visibility='onchange'),
-        'nguoi_giao_hang':fields.char('Người giao hàng', track_visibility='onchange'),
-        'state_receive':fields.selection([('draft','Tạo mới'),('da_gui','Đã gửi'),('da_nhan','Đã nhận')],'Trạng thái',required=True, track_visibility='onchange'),
-        'picking_packaging_line': fields.one2many('stock.picking.packaging','picking_id','Đóng gói', track_visibility='onchange'),
+        'ngay_gui':fields.date('Ngày gửi'),
+        'ngay_nhan':fields.date('Ngày nhận lại'),
+        'daidien_khachhang':fields.char('Đại diện khách hàng nhận'),
+        'nguoi_giao_hang':fields.char('Người giao hàng'),
+        'state_receive':fields.selection([('draft','Tạo mới'),('da_gui','Đã gửi'),('da_nhan','Đã nhận')],'Trạng thái',required=True),
+        'picking_packaging_line': fields.one2many('stock.picking.packaging','picking_id','Đóng gói'),
         
         'partner_id': fields.many2one('res.partner', 'Partner', states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
 #         'stock_journal_id': fields.many2one('stock.journal','Stock Journal', select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
@@ -156,11 +156,11 @@ class stock_picking_in(osv.osv):
         return res
     _columns = {
         'description': fields.text('Description', track_visibility='onchange'),
-        'nhiet_do':fields.char('Nhiệt độ', track_visibility='onchange'),
-        'so_luong_thung':fields.char('Số lượng thùng', track_visibility='onchange'),
-        'time_nhan':fields.datetime('Thời gian nhận', track_visibility='onchange'),
-        'time_ketthuc':fields.datetime('Thời gian kết thúc', track_visibility='onchange'),
-        'sampham_lanh':fields.boolean('Sản phẩm lạnh', track_visibility='onchange'),
+        'nhiet_do':fields.char('Nhiệt độ'),
+        'so_luong_thung':fields.char('Số lượng thùng'),
+        'time_nhan':fields.datetime('Thời gian nhận'),
+        'time_ketthuc':fields.datetime('Thời gian kết thúc'),
+        'sampham_lanh':fields.boolean('Sản phẩm lạnh'),
         
         'partner_id': fields.many2one('res.partner', 'Partner', states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
 #         'stock_journal_id': fields.many2one('stock.journal','Stock Journal', select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
@@ -230,19 +230,19 @@ class stock_picking(osv.osv):
             res[pick]['max_date'] = dt2
         return res
     _columns = {
-        'picking_packaging_line': fields.one2many('stock.picking.packaging','picking_id','Đóng gói', track_visibility='onchange'),
+        'picking_packaging_line': fields.one2many('stock.picking.packaging','picking_id','Đóng gói'),
         'description': fields.text('Description', track_visibility='onchange'),
-        'ngay_gui':fields.date('Ngày gửi', track_visibility='onchange'),
-        'ngay_nhan':fields.date('Ngày nhận lại', track_visibility='onchange'),
-        'daidien_khachhang':fields.char('Đại diện khách hàng nhận', track_visibility='onchange'),
-        'nguoi_giao_hang':fields.char('Người giao hàng', track_visibility='onchange'),
-        'ly_do_xuat_id': fields.many2one('ly.do.xuat', 'Lý do xuất', track_visibility='onchange'),
-        'state_receive':fields.selection([('draft','Tạo mới'),('da_gui','Đã gửi'),('da_nhan','Đã nhận')],'Trạng thái',required=True, track_visibility='onchange'),
-        'nhiet_do':fields.char('Nhiệt độ', track_visibility='onchange'),
-        'so_luong_thung':fields.char('Số lượng thùng', track_visibility='onchange'),
-        'time_nhan':fields.datetime('Thời gian nhận', track_visibility='onchange'),
-        'time_ketthuc':fields.datetime('Thời gian kết thúc', track_visibility='onchange'),
-        'sampham_lanh':fields.boolean('Sản phẩm lạnh', track_visibility='onchange'),
+        'ngay_gui':fields.date('Ngày gửi'),
+        'ngay_nhan':fields.date('Ngày nhận lại'),
+        'daidien_khachhang':fields.char('Đại diện khách hàng nhận'),
+        'nguoi_giao_hang':fields.char('Người giao hàng'),
+        'ly_do_xuat_id': fields.many2one('ly.do.xuat', 'Lý do xuất'),
+        'state_receive':fields.selection([('draft','Tạo mới'),('da_gui','Đã gửi'),('da_nhan','Đã nhận')],'Trạng thái',required=True,),
+        'nhiet_do':fields.char('Nhiệt độ'),
+        'so_luong_thung':fields.char('Số lượng thùng'),
+        'time_nhan':fields.datetime('Thời gian nhận'),
+        'time_ketthuc':fields.datetime('Thời gian kết thúc'),
+        'sampham_lanh':fields.boolean('Sản phẩm lạnh'),
         
         'partner_id': fields.many2one('res.partner', 'Partner', states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),
 #         'stock_journal_id': fields.many2one('stock.journal','Stock Journal', select=True, states={'done':[('readonly', True)], 'cancel':[('readonly',True)]}, track_visibility='onchange'),

@@ -129,9 +129,9 @@
 			<field name="model">product.product</field>
 			<field name="arch" type="xml">
 				<tree string="Loai cong tac phi">
-					<field name="name"/>
-					<field name="categ_id"/>
-					<field name="default_code"/>
+					<field name="name" string="Tên công tác phí"/>
+					<field name="categ_id" string="Loại công tác phí"/>
+					<field name="default_code" string="Mã công tác phí"/>
 					<field name="list_price"/>
 					<field name="hr_expense_ok"/>
 				</tree>
@@ -146,15 +146,15 @@
 	            	<sheet>
 	            		<div class="oe_title">
                             <div class="oe_edit_only">
-                                <label for="name" string="Tên sản phẩm"/>
+                                <label for="name" string="Tên công tác phí"/>
                             </div>
                             <h1>
-                                <field name="name"/>
+                                <field name="name" string="Tên công tác phí"/>
                             </h1>
                             <label for="categ_id" class="oe_edit_only"/>
-                            <h2><field name="categ_id"/></h2>
-                            <label for="default_code" class="oe_edit_only"/>
-                            <h4><field name="default_code"/></h4>
+                            <h2><field name="categ_id" string="Loại công tác phí"/></h2>
+                            <label for="default_code" class="oe_edit_only" string="Mã công tác phí"/>
+                            <h4><field name="default_code" string="Mã công tác phí"/></h4>
                             <div name="options" groups="base.group_user">
                                 <field name="hr_expense_ok"/>
                                 <label for="hr_expense_ok"/>

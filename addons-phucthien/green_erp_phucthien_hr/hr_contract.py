@@ -19,7 +19,15 @@ class hr_contract(osv.osv):
               'responsibility': fields.float('Responsibility', digits=(16,2), required=True, help="Responsibility Salary of the employee"),
               'travel_allowance': fields.float('Travel Allowance', digits=(16,2), required=True, help="Travel Allowance of the employee"),
               'phone_allowance': fields.float('Phone Allowance', digits=(16,2), required=True, help="Phone Allowance of the employee"),
+              'loai_hd_id':fields.many2one('loai.hd','Loại HĐ'),
               }
 hr_contract()
 
+class loai_hd(osv.osv):
+    _name = "loai.hd"    
+    _columns = {
+        'name' : fields.char('Loại HĐ', 128, required=True),
+        }         
+    
+loai_hd()
     

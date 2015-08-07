@@ -27,7 +27,7 @@
     "author" : "nguyentoanit@gmail.com",
     "website" : "http://incomtech.com.vn",
     'images': [],
-    'depends': ['stock','general_stock','report_aeroo','green_erp_phucthien_sale','green_erp_phucthien_account'],
+    'depends': ['stock','general_stock','report_aeroo','green_erp_phucthien_sale','green_erp_phucthien_account','mail'],
     'data': [
             'security/green_erp_phucthien_stock_security.xml',
             'security/ir.model.access.csv',

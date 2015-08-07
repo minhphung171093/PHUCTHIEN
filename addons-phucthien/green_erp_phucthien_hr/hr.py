@@ -30,15 +30,15 @@ class hr_family(osv.osv):
     _description = "Family"
     _order = "employee_id,name"
     _columns = {
-        'name' : fields.char("Name", size=128, required=True),
+        'name' : fields.char("Tên", size=128, required=True),
         'id_no' : fields.char("ID", size=128),
-        'birthday' : fields.date('Birthday'),
+        'birthday' : fields.date('Ngày sinh'),
         'email' : fields.char('Email', size=64),
-        'phone' : fields.char('Phone', size=32),
+        'phone' : fields.char('Số điện thoại', size=32),
         'employee_id': fields.many2one('hr.employee', 'Employee'),
-        'relation': fields.char('Relation'),
-        'note' : fields.text('Notes'),
-        'depend': fields.boolean('Depend'),
+        'relation': fields.char('Mối quan hệ'),
+        'note' : fields.text('Ghi chú'),
+        'depend': fields.boolean('Phụ thuộc'),
     } 
 hr_family()
 
@@ -64,11 +64,20 @@ class hr_employee(osv.osv):
 
     _columns={
               'tinhtrang_suckhoe_ids':fields.one2many('tinhtrang.suckhoe','employee_id','Tình trạng sức khỏe'),
-              'family_ids': fields.one2many('hr.family', 'employee_id','Family'),
+              'family_ids': fields.one2many('hr.family', 'employee_id','Người phụ thuộc'),
               'depend_qty': fields.function(_get_depend_qty,
                                       store={'hr.family': (_get_depend, ['depend'], 20),}, 
-                                      method=True, type='integer', string='Depend Qty', readonly=True),    
+                                      method=True, type='integer', string='Số người phụ thuộc', readonly=True),    
               }
 hr_employee()
+
+class dinhmuc_congtacphi(osv.osv):
+    _name= 'dinhmuc.congtacphi'
+    _columns={
+              'name':fields.many2one('hr.employee','Nhân viên',required=True),
+              'year':fields.integer('Năm',required=True),
+              'amount':fields.float('Giá trị',required=True)
+              }
+dinhmuc_congtacphi()
 
     

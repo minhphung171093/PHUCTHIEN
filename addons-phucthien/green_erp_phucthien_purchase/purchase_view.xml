@@ -11,7 +11,7 @@
 	    			<field name="partner_id" domain="[('customer','=',True)]"/>
 	            </xpath>
 	            <xpath expr="//button[@name='wkf_send_rfq']" position="replace">
-	            	<button name="wkf_send_rfq" states="approved" string="Send by Email" type="object" context="{'send_rfq':True}" class="oe_highlight"/>
+	            	<button name="wkf_send_rfq" states="draft,sent,approved" string="Send by Email" type="object" context="{'send_rfq':True}" class="oe_highlight"/>
 	            </xpath>
 	            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
 	    			<field name="approve"/>

@@ -12,8 +12,45 @@
 	        		<field name="travel_allowance"/>
 	        		<field name="phone_allowance"/>
 	        	</field>
+	        	<xpath expr="//label[@for='trial_date_start']" position="before">
+	        		<field name="loai_hd_id"/>
+	        	</xpath>
+	        	<xpath expr="//field[@name='type_id']" position="replace">
+	        		<field name="type_id" invisible="1"/>
+	        	</xpath>
 	        </field>
 	    </record>
+	    
+	    <record model="ir.ui.view" id="loai_hd_tree">
+	        <field name="name">loai.hd.tree</field>
+	        <field name="model">loai.hd</field>
+	        <field name="arch" type="xml">
+	            <tree string="Loại HĐ">
+	                <field name="name"/>
+	            </tree>
+	        </field>
+	    </record>
+	
+	    <record model="ir.ui.view" id="loai_hd_type_form">
+	        <field name="name">loai.hd.form</field>
+	        <field name="model">loai.hd</field>
+	        <field name="arch" type="xml">
+	            <form string="Loại HĐ" version="7.0">
+	            	<group col="4">
+		                <field name="name"/>
+		            </group>		                
+	            </form>
+	        </field>
+		</record>
+	
+		<record id="loai_hd_action" model="ir.actions.act_window">
+        	<field name="name">Loại HĐ</field>
+        	<field name="res_model">loai.hd</field>
+        	<field name="view_type">form</field>
+        	<field name="view_id" ref="loai_hd_tree"/>	        	
+    	</record>
+    	
+    	<menuitem id="loai_hd_menu" parent="hr_contract.next_id_56" action="loai_hd_action"/>    
 	    
     </data>
 </openerp>

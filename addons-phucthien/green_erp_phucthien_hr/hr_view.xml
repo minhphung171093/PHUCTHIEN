@@ -31,7 +31,7 @@
 							</tree>
                         </field>
                     </page>
-                    <page string='Family'>  
+                    <page string='Người phụ thuộc'>  
 	                	<group>
 	                		<field name="depend_qty"/>
 	                	</group>       		       		   
@@ -72,5 +72,42 @@
 	        	</xpath>
 	    	</field>
 	    </record>
+	    
+	    <record model="ir.ui.view" id="dinhmuc_congtacphi_tree">
+	        <field name="name">dinhmuc.congtacphi.tree</field>
+	        <field name="model">dinhmuc.congtacphi</field>
+	        <field name="arch" type="xml">
+	            <tree string="Định mức công tác phí">
+	                <field name="name"/>
+	                <field name="year"/>
+	                <field name="amount"/>		                
+	            </tree>
+	        </field>
+	    </record>
+	
+	    <record model="ir.ui.view" id="dinhmuc_congtacphi_form">
+	        <field name="name">dinhmuc.congtacphi.form</field>
+	        <field name="model">dinhmuc.congtacphi</field>
+	        <field name="arch" type="xml">
+	            <form string="Định mức công tác phí" version="7.0">
+	            	<sheet>
+		            	<group>
+	                		<field name="name"/>
+			                <field name="year"/>
+			                <field name="amount"/>
+			            </group>
+		            </sheet>		                
+	            </form>
+	        </field>
+		</record>
+	
+		<record id="dinhmuc_congtacphi_action" model="ir.actions.act_window">
+        	<field name="name">Định mức công tác phí</field>
+        	<field name="res_model">dinhmuc.congtacphi</field>
+        	<field name="view_type">form</field>
+        	<field name="view_id" ref="dinhmuc_congtacphi_tree"/>	        	
+    	</record>
+    	
+    	<menuitem id="dinhmuc_congtacphi_menu" parent="hr.menu_hr_configuration" action="dinhmuc_congtacphi_action"/>
     </data>
 </openerp>

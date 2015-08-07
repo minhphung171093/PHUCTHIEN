@@ -51,7 +51,7 @@ class hr_payslip(osv.osv):
         rule_ids = self.pool.get('hr.payroll.structure').get_all_rules(cr, uid, structure_ids, context=context)
         sorted_rule_ids = [id for id, sequence in sorted(rule_ids, key=lambda x:x[1])]
         
-        depend = {'name': 'DEPEND',
+        depend = {'name': 'Người phụ thuộc',
                   'code': 'DEPEND',}
         for contract in contract_obj.browse(cr, uid, contract_ids, context=context):
             for rule in rule_obj.browse(cr, uid, sorted_rule_ids, context=context):

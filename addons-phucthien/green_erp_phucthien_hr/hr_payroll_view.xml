@@ -51,6 +51,7 @@
     	</record>
     	
     	<menuitem id="hr_template_menu" parent="hr_payroll.payroll_configure" action="hr_template_action"/>
-	            
+	    
+	        
 	</data>      
 </openerp>
