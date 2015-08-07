@@ -42,6 +42,8 @@ class account_invoice(osv.osv):
         'payment_mode_id': fields.many2one('res.payment.mode', 'Payment mode'),
         'payment_state': fields.function(_get_payment_state,type='boolean', string='Payment Status'),
         'partner_code': fields.related('partner_id','internal_code', type='char', readonly=True, size=64, relation='res.partner', store=True, string='Mã'),
+        'product_id_relate': fields.related('invoice_line','product_id', type='many2one', readonly=True, relation='product.product', string='Sản phẩm'),
+        'categ_id_relate': fields.related('product_id_relate', 'categ_id', type='many2one', readonly=True, relation='product.category', string='Danh mục sản phẩm'),
     }
     
     def name_search(self, cr, user, name, args=None, operator='ilike', context=None, limit=100):
