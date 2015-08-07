@@ -28,7 +28,11 @@ class Parser(report_sxw.rml_parse):
             'get_date_hd': self.get_date_hd,
             'get_chungtu': self.get_chungtu,
             'get_qty':self.get_qty,
+            'get_bien_ban_thuhoi_hangtrave':self.get_bien_ban_thuhoi_hangtrave,
         })
+        
+    def get_bien_ban_thuhoi_hangtrave(self):
+        return self.pool.get('ir.sequence').get(self.cr, self.uid, 'bienban.thuhoi.hangtrave')
     
     def display_address_partner(self, partner):
         address = partner.street and partner.street + ' , ' or ''

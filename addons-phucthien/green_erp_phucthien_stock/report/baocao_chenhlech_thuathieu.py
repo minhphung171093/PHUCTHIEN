@@ -25,8 +25,11 @@ class Parser(report_sxw.rml_parse):
         self.localcontext.update({
             'get_date_hd': self.get_date_hd,
             'get_thua_thieu':self.get_thua_thieu,
+            'get_baocao_chenhlech': self.get_baocao_chenhlech,
         })
     
+    def get_baocao_chenhlech(self):
+        return self.pool.get('ir.sequence').get(self.cr, self.uid, 'chenhlech.thuathieu')
     
     def get_date_hd(self,date):
         if date:

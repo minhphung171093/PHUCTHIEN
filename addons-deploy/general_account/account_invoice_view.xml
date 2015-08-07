@@ -11,6 +11,7 @@
                 <field name="partner_id" position="after">
                 	<field name="date_invoice"/>
                 	<field name="reference_number"/>
+                	<field name="product_id_relate"/>
                 </field>
                  <filter string="Unpaid" position="after">
                  	<filter name="paid" string="Paid" domain="[('state','=','paid')]" help="paid Invoices"/>

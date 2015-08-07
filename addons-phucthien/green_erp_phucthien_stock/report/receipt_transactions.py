@@ -34,8 +34,19 @@ class Parser(report_sxw.rml_parse):
             'get_total': self.get_total,
             'get_stt': self.get_stt,
             'get_print':self.get_print,
+            'get_bien_ban_tp':self.get_bien_ban_tp,
+            'get_bien_ban_tp_lanh':self.get_bien_ban_tp_lanh,
+            
         })
-
+        
+        
+    def get_bien_ban_tp_lanh(self):
+        return self.pool.get('ir.sequence').get(self.cr, self.uid, 'bienban.thanhpham.lanh')
+    
+    def get_bien_ban_tp(self):
+        return self.pool.get('ir.sequence').get(self.cr, self.uid, 'bienban.thanhpham')
+    
+    
     def get_print(self):
         so_lan_in = self.pool.get('so.lan.in').search(self.cr,self.uid,[])
         if not so_lan_in:

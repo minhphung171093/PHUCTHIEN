@@ -24,7 +24,16 @@ class Parser(report_sxw.rml_parse):
         res_user_obj = pool.get('res.users').browse(cr, uid, uid)
         self.localcontext.update({
             'get_date_hd': self.get_date_hd,
+            'get_dieuchuyen_thanhpham_lanh': self.get_dieuchuyen_thanhpham_lanh,
+            'get_dieuchuyen_thanhpham': self.get_dieuchuyen_thanhpham,
         })
+        
+    def get_dieuchuyen_thanhpham_lanh(self):
+        return self.pool.get('ir.sequence').get(self.cr, self.uid, 'dieuchuyen.thanhpham.lanh')
+    
+    def get_dieuchuyen_thanhpham(self):
+        return self.pool.get('ir.sequence').get(self.cr, self.uid, 'dieuchuyen.thanhpham')
+    
     def get_date_hd(self,date):
         if date:
             date = date[:10]

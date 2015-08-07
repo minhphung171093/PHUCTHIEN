@@ -18,5 +18,138 @@
             <field name="reset_init_number">0001</field>
         </record>
         
+ <!--   Số biên bản thành phẩm lạnh -->
+        
+        <record id="seq_bienban_tplanh_name" model="ir.sequence.type">
+            <field name="name">Biên bản thành phẩm lạnh</field>
+            <field name="code">bienban.thanhpham.lanh</field>
+        </record>
+        
+        <record id="seq_bienban_tplanh_name_item" model="ir.sequence">
+            <field name="name">Biên bản thành phẩm lạnh</field>
+            <field name="code">bienban.thanhpham.lanh</field>
+            <field name="suffix">/KNTPL/%(month)s/%(year)s</field>
+            <field name="padding">3</field>
+            <field name="number_next_actual">001</field>
+            <field name="implementation">standard</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">month</field>
+            <field name="reset_init_number">001</field>
+        </record>
+        
+ <!--   Số biên bản thành phẩm -->
+        
+        <record id="seq_bienban_tp_name" model="ir.sequence.type">
+            <field name="name">Biên bản thành phẩm</field>
+            <field name="code">bienban.thanhpham</field>
+        </record>
+        
+        <record id="seq_bienban_tp_name_item" model="ir.sequence">
+            <field name="name">Biên bản thành phẩm</field>
+            <field name="code">bienban.thanhpham</field>
+            <field name="suffix">/KNTP/%(month)s/%(year)s</field>
+            <field name="padding">3</field>
+            <field name="number_next_actual">001</field>
+            <field name="implementation">standard</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">month</field>
+            <field name="reset_init_number">001</field>
+        </record>
+        
+  <!--   Số biên bản nhập thu hồi hàng trả về -->
+        
+        <record id="seq_bienban_nhapthuhoi_hangtrave_name" model="ir.sequence.type">
+            <field name="name">Biên bản nhập thu hồi hàng trả về</field>
+            <field name="code">bienban.thuhoi.hangtrave</field>
+        </record>
+        
+        <record id="seq_bienban_nhapthuhoi_hangtrave_name_item" model="ir.sequence">
+            <field name="name">Biên bản nhập thu hồi hàng trả về</field>
+            <field name="code">bienban.thuhoi.hangtrave</field>
+            <field name="suffix">/KNTH/%(month)s/%(year)s</field>
+            <field name="padding">3</field>
+            <field name="number_next_actual">001</field>
+            <field name="implementation">standard</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">month</field>
+            <field name="reset_init_number">001</field>
+        </record>
+        
+ <!--   Phiếu điều chuyển thành phẩm lạnh -->
+        
+        <record id="seq_dieuchuyen_thanhpham_lanh_name" model="ir.sequence.type">
+            <field name="name">Phiếu điều chuyển thành phẩm lạnh </field>
+            <field name="code">dieuchuyen.thanhpham.lanh</field>
+        </record>
+        
+        <record id="seq_dieuchuyen_thanhpham_lanh_name_item" model="ir.sequence">
+            <field name="name">Phiếu điều chuyển thành phẩm lạnh </field>
+            <field name="code">dieuchuyen.thanhpham.lanh</field>
+            <field name="suffix">/ĐCNBTPL/%(month)s/%(year)s</field>
+            <field name="padding">3</field>
+            <field name="number_next_actual">001</field>
+            <field name="implementation">standard</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">month</field>
+            <field name="reset_init_number">001</field>
+        </record>
+        
+ <!--   Phiếu điều chuyển thành phẩm -->
+        
+        <record id="seq_dieuchuyen_thanhpham_name" model="ir.sequence.type">
+            <field name="name">Phiếu điều chuyển thành phẩm </field>
+            <field name="code">dieuchuyen.thanhpham</field>
+        </record>
+        
+        <record id="seq_dieuchuyen_thanhpham_name_item" model="ir.sequence">
+            <field name="name">Phiếu điều chuyển thành phẩm </field>
+            <field name="code">dieuchuyen.thanhpham</field>
+            <field name="suffix">/ĐCNBTP/%(month)s/%(year)s</field>
+            <field name="padding">3</field>
+            <field name="number_next_actual">001</field>
+            <field name="implementation">standard</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">month</field>
+            <field name="reset_init_number">001</field>
+        </record>
+        
+ <!--   Biên bản giao nhận -->
+        
+        <record id="seq_bienban_giaonhan_name" model="ir.sequence.type">
+            <field name="name">Biên bản giao nhận</field>
+            <field name="code">bienban.giaonhan</field>
+        </record>
+        
+        <record id="seq_bienban_giaonhan_name_item" model="ir.sequence">
+            <field name="name">Biên bản giao nhận</field>
+            <field name="code">bienban.giaonhan</field>
+            <field name="suffix">/BBGN/%(month)s/%(year)s</field>
+            <field name="padding">3</field>
+            <field name="number_next_actual">001</field>
+            <field name="implementation">standard</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">month</field>
+            <field name="reset_init_number">001</field>
+        </record>
+        
+ <!--   Báo cáo chênh lệch thừa thiếu -->
+        
+        <record id="seq_baocao_chenhlech_thuathieu_name" model="ir.sequence.type">
+            <field name="name">Báo cáo chênh lệch thừa thiếu</field>
+            <field name="code">chenhlech.thuathieu</field>
+        </record>
+        
+        <record id="seq_baocao_chenhlech_thuathieu_name_item" model="ir.sequence">
+            <field name="name">Báo cáo chênh lệch thừa thiếu</field>
+            <field name="code">chenhlech.thuathieu</field>
+            <field name="suffix">/CLTT/%(month)s/%(year)s</field>
+            <field name="padding">3</field>
+            <field name="number_next_actual">001</field>
+            <field name="implementation">standard</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">month</field>
+            <field name="reset_init_number">001</field>
+        </record>
+        
 	</data>
 </openerp>

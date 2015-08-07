@@ -31,8 +31,11 @@ class Parser(report_sxw.rml_parse):
             'get_nhietdo_di':self.get_nhietdo_di,
             'get_nhietdo_den': self.get_nhietdo_den,
             'get_date':self.get_date,
+            'get_bienban_giaonhan': self.get_bienban_giaonhan,
         })
-        
+       
+    def get_bienban_giaonhan(self):
+        return self.pool.get('ir.sequence').get(self.cr, self.uid, 'bienban.giaonhan') 
 
     def get_date(self, date=False):
         res={}
