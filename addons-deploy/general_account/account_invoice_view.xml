@@ -33,47 +33,6 @@
     	</record>
 	    	
         <!-- Chinh sua Hoa don khach hang -->
-        	<record model="ir.ui.view" id="account.invoice_tree">
-	        <field name="name">account.invoice.tree</field>
-	        <field name="model">account.invoice</field>
-	        <field name="arch" type="xml">
-		        <tree colors="blue:state == 'draft';black:state in ('proforma','proforma2','open');gray:state == 'cancel'" string="Invoice">
-	                <field name="partner_id" groups="base.group_user"/>
-	                <field name="rel_invoice_id" invisible="context.get('type') and context['type'] in ['out_invoice','in_invoice','in_refund'] or False"/>
-	                <field name="date_invoice"/>
-	                <field name="number" invisible="1"/>
-	                <field name="reference" invisible="1"/>
-	                <field name="name" invisible="1"/>
-	                <field name="journal_id" invisible="1"/>
-	                <field name="period_id" invisible="1" groups="account.group_account_user"/>
-	                <field name="company_id" groups="base.group_multi_company" widget="selection"/>
-	                <field name="user_id" invisible="1"/>
-	                <field name="date_due" invisible="1"/>
-	                <field name="origin" invisible="1"/>
-	                <field name="currency_id" groups="base.group_multi_currency"/>
-	                <field name="residual" sum="Residual Amount"/>
-	                <field name="amount_untaxed" sum="Untaxed Amount"/>
-	                <field name="amount_total" sum="Total Amount"/>
-	                <field name="state"/>
-	            </tree>
-            </field>
-	    	</record>
-	    	
-        	<record model="ir.ui.view" id="view_invoice_tree_general_modify">
-	        <field name="name">view.invoice.tree.general.modify</field>
-	        <field name="model">account.invoice</field>
-	        <field name="inherit_id" ref="account.invoice_tree"/>
-	        <field name="arch" type="xml">
-	        	<xpath expr="//field[@name='partner_id']" position="before">
-	        		<field name="shop_id"/>
-	        	</xpath>
-	        	<xpath expr="//field[@name='reference']" position="replace">
-	        		<field name="reference"/>
-	        		<field name="reference_number"/>
-        		</xpath>
-	        </field>
-	    	</record>
-	    	
         <record model="ir.ui.view" id="view_invoice_form_remove_editable">
 	        <field name="name">view.invoice.form.remove.editable</field>
 	        <field name="model">account.invoice</field>
