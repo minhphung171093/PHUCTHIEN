@@ -32,8 +32,19 @@ class Parser(report_sxw.rml_parse):
             'get_nhietdo_den': self.get_nhietdo_den,
             'get_date':self.get_date,
             'get_bienban_giaonhan': self.get_bienban_giaonhan,
+            'get_nhanvien_donggoi': self.get_nhanvien_donggoi,
+            'get_so_thung': self.get_so_thung,
+            
         })
        
+    def get_nhanvien_donggoi(self, picking):
+        nhan_vien = picking.picking_packaging_line[0]
+        return nhan_vien.employee_id.name
+    
+    def get_so_thung(self, picking):
+        thung = picking.picking_packaging_line[0]
+        return thung.loai_thung_id.name
+    
     def get_bienban_giaonhan(self):
         return self.pool.get('ir.sequence').get(self.cr, self.uid, 'bienban.giaonhan') 
 
