@@ -1,2 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_phucthien_stock_5,stock_picking_packaging,model_stock_picking_packaging,stock.group_stock_user,True,True,True,True
+access_phucthien_stock_6,ve.sinh.kho,model_ve_sinh_kho,stock.group_stock_user,True,True,True,True
+access_phucthien_stock_7,ve.sinh.kho.line,model_ve_sinh_kho_line,stock.group_stock_user,True,True,True,True
+access_phucthien_stock_8,phongchong.moi.mot,model_phongchong_moi_mot,stock.group_stock_user,True,True,True,True
+access_phucthien_stock_9,suachua.hanhdong.line,model_suachua_hanhdong_line,stock.group_stock_user,True,True,True,True
+access_phucthien_stock_10,suachua.hanhdong,model_suachua_hanhdong,stock.group_stock_user,True,True,True,True

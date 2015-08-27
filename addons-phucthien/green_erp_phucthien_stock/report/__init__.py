@@ -34,6 +34,6 @@ import bien_ban_giao_nhan
 import phieu_xuat_kho
 import dulieu_donghang_report
 import report_stock_move
-
-
+import ve_sinh_kho
+import suachua_hanhdong
 

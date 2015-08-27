@@ -40,6 +40,8 @@
             'report/baocao_chenhlech_thuathieu_view.xml',
             'report/bienban_kiemkekho_view.xml',
             'report/phieu_dieuchuyen_noibo_view.xml',
+            'report/ve_sinh_kho_view.xml',
+            'report/suachua_hanhdong_view.xml',
             'stock_view.xml',
             'sequence.xml',
             'wizard/change_saleperson_view.xml',

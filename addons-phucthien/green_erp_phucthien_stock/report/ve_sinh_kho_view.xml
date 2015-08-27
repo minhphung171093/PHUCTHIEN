@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	    <record id="ve_sinh_kho_duoc_report" model="ir.actions.report.xml">
+	        <field name="name">ve_sinh_kho_duoc_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">ve.sinh.kho</field>
+	        <field name="report_name">Vệ sinh kho dược</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-doc'),('compatible_types','=','oo-odt')]"/>
+	        <field name="parser_loc">green_erp_phucthien_stock/report/ve_sinh_kho.py</field>
+	        <field name="report_rml">green_erp_phucthien_stock/report/ve_sinh_kho_duoc.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="ve_sinh_kho_duoc_report" 
+			model="ve.sinh.kho" 
+			name="ve_sinh_kho_duoc_report"
+	        string="Vệ sinh kho dược"
+	        rml="green_erp_phucthien_stock/report/ve_sinh_kho_duoc.odt"/>
+	    
+	    <record id="ve_sinh_kho_lanh_report" model="ir.actions.report.xml">
+	        <field name="name">ve_sinh_kho_lanh_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">ve.sinh.kho</field>
+	        <field name="report_name">Vệ sinh kho lạnh</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-doc'),('compatible_types','=','oo-odt')]"/>
+	        <field name="parser_loc">green_erp_phucthien_stock/report/ve_sinh_kho.py</field>
+	        <field name="report_rml">green_erp_phucthien_stock/report/ve_sinh_kho_lanh.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="False"
+			id="ve_sinh_kho_lanh_report" 
+			model="ve.sinh.kho" 
+			name="ve_sinh_kho_lanh_report"
+	        string="Vệ sinh kho lạnh"
+	        rml="green_erp_phucthien_stock/report/ve_sinh_kho_lanh.odt"/>
+	    
+	    <record id="phongchong_moi_mot_report" model="ir.actions.report.xml">
+	        <field name="name">phongchong_moi_mot_report</field>
+	        <field name="type">ir.actions.report.xml</field>
+	        <field name="model">phongchong.moi.mot</field>
+	        <field name="report_name">Phòng chống mối mọt, côn trùng và loài gặm nhấm</field>
+	        <field name="report_type">aeroo</field>
+	        <field name="in_format">oo-odt</field>
+	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-doc'),('compatible_types','=','oo-odt')]"/>
+	        <field name="parser_loc">green_erp_phucthien_stock/report/ve_sinh_kho.py</field>
+	        <field name="report_rml">green_erp_phucthien_stock/report/phongchong_moimot.odt</field>
+	        <field name="parser_state">loc</field>
+	        <field name="tml_source">file</field>
+	        <field name="attachment_use" eval="0"/>
+    	</record>		    
+		
+		<report 
+			auto="False" 
+			menu="True"
+			id="phongchong_moi_mot_report" 
+			model="phongchong.moi.mot" 
+			name="phongchong_moi_mot_report"
+	        string="Phòng chống mối mọt, côn trùng và loài gặm nhấm"
+	        rml="green_erp_phucthien_stock/report/phongchong_moimot.odt"/>
+	    
+	    
+	</data>
+</openerp>
