@@ -975,4 +975,118 @@ class chuyenkho_noibo_line(osv.osv):
     }
 
 chuyenkho_noibo_line()
+
+class ve_sinh_kho(osv.osv):
+    _name = "ve.sinh.kho"
+    
+    _columns = {
+        'name': fields.date('Ngày', required=True, states={'da_kiemtra': [('readonly', True)]}),
+        'thoigian_di': fields.char('Thời gian khi di dời hàng đi', size=1024, states={'da_kiemtra': [('readonly', True)]}),
+        'thoigian_ve': fields.char('Thời gian khi di dời hàng về', size=1024, states={'da_kiemtra': [('readonly', True)]}),
+        'nhietdo_di': fields.char('Nhiệt độ', size=1024, states={'da_kiemtra': [('readonly', True)]}),
+        'nhietdo_ve': fields.char('Nhiệt độ', size=1024, states={'da_kiemtra': [('readonly', True)]}),
+        'location_id': fields.many2one('stock.location', 'Kho', required=True, states={'da_kiemtra': [('readonly', True)]}),
+        'type': fields.selection([('kho_duoc','Kho dược'),('kho_lanh','Kho lạnh')],'Loại', states={'da_kiemtra': [('readonly', True)]}),
+        'vesinhkho_line': fields.one2many('ve.sinh.kho.line', 'vesinh_kho_id', 'Nội dung', states={'da_kiemtra': [('readonly', True)]}),
+        'user_id': fields.many2one('res.users', 'Người thực hiện', states={'da_kiemtra': [('readonly', True)]}),
+        'nguoi_kiemtra_id': fields.many2one('res.users', 'Người kiểm tra', readonly=True),
+        'state': fields.selection([('draft','Mới tạo'),('da_kiemtra','Đã kiểm tra')],'Trạng thái', readonly=True),
+    }
+    
+    def _get_vesinhkho_line(self, cr, uid, context=None):
+        vals = []
+        keys = []
+        if context.get('default_type',False) and context['default_type']=='kho_duoc':
+            keys = ['Dọn quang','Vệ sinh cửa','Vệ sinh vách ngăn','Vệ sinh giá kệ','Vệ sinh tủ','Vệ sinh sàn']
+        if context.get('default_type',False) and context['default_type']=='kho_lanh':
+            keys = ['Vệ sinh kệ','Vệ sinh thảm','Vệ sinh vách pallet','Vệ sinh sàn','Vệ sinh vách ngăn','Vệ sinh cửa kho']
+        for key in keys:
+            vals.append((0,0,{'noi_dung': key}))
+        return vals
+    
+    _defaults = {
+        'name': time.strftime('%Y-%m-%d'),
+        'user_id': lambda self, cr, uid, c:uid,
+        'vesinhkho_line': _get_vesinhkho_line,
+        'state': 'draft',
+    }
+    
+    def kiem_tra(self, cr, uid, ids, context=None):
+        return self.write(cr, uid, ids, {'state': 'da_kiemtra','nguoi_kiemtra_id': uid})
+    
+    def in_phieu(self, cr, uid, ids, context=None):
+        vsk = self.browse(cr, uid, ids[0])
+        if vsk.type=='kho_duoc':
+            report_name = 've_sinh_kho_duoc_report'
+        else:
+            report_name = 've_sinh_kho_lanh_report'
+        return {
+            'type': 'ir.actions.report.xml',
+            'report_name': report_name,
+        }
+    
+ve_sinh_kho()
+
+class ve_sinh_kho_line(osv.osv):
+    _name = "ve.sinh.kho.line"
+    
+    _columns = {
+        'vesinh_kho_id': fields.many2one('ve.sinh.kho', 'Vệ sinh kho', ondelete='cascade'),
+        'noi_dung': fields.text('Nội dung', required=True),
+        'thu_hien': fields.text('Thực hiện'),
+        'tinhtrang_sauvesinh': fields.text('Tình trạng sau vệ sinh'),
+        'ghi_chu': fields.text('Ghi chú'),
+    }
+    
+ve_sinh_kho_line()
+
+class phongchong_moi_mot(osv.osv):
+    _name = "phongchong.moi.mot"
+    
+    _columns = {
+        'name': fields.date('Ngày', required=True),
+        'khuvuc_thuhien': fields.text('Khu vực thực hiện', required=True),
+        'bienphap_thuchien': fields.text('Biện pháp thực hiện', required=True),
+        'tinhtrang_sauxuly': fields.text('Tình trạng sau xử lý', required=True),
+        'ghi_chu': fields.text('Ghi chú'),
+        'user_id': fields.many2one('res.users', 'Người kiểm tra', required=True),
+    }
+    
+    _defaults = {
+        'name': time.strftime('%Y-%m-%d'),
+        'user_id': lambda self, cr, uid, c:uid,
+    }
+    
+phongchong_moi_mot()
+
+class suachua_hanhdong(osv.osv):
+    _name = "suachua.hanhdong"
+    
+    _columns = {
+        'name': fields.char('Bộ phận', size=1024, required=True),
+        'ngay_kt': fields.date('Khu vực thực hiện', required=True),
+        'ngay_bc': fields.date('Biện pháp thực hiện', required=True),
+        'sc_hd_line': fields.one2many('suachua.hanhdong.line', 'sc_hd_id', 'Nội dung'),
+    }
+    
+    _defaults = {
+    }
+    
+suachua_hanhdong()
+
+class suachua_hanhdong_line(osv.osv):
+    _name = "suachua.hanhdong.line"
+    
+    _columns = {
+        'name': fields.char('Số', size=1024, required=True),
+        'doan_thanhtra': fields.text('Ghi nhận đoàn thanh tra'),
+        'nguyen_nhan': fields.text('Nguyên Nhân'),
+        'hanh_dong': fields.text('Hành Động'),
+        'thoi_gian': fields.text('Thời Gian'),
+        'tinh_trang': fields.text('Tình Trạng'),
+        'sc_hd_id': fields.many2one('suachua.hanhdong', 'Sửa chữa hành động', ondelete='cascade'),
+    }
+    
+suachua_hanhdong_line()
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

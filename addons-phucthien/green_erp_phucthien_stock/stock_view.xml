@@ -390,8 +390,8 @@
 		         </form>
 			</field>
 		</record>
-		
-		<record id="action_chuyenkho_noibo" model="ir.actions.act_window">
+	                
+	    <record id="action_chuyenkho_noibo" model="ir.actions.act_window">
             <field name="name">Chuyển kho nội bộ</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">chuyenkho.noibo</field>
@@ -403,5 +403,273 @@
         </record>
 		<menuitem action="action_chuyenkho_noibo" id="menu_action_chuyenkho_noibo" parent="stock.menu_stock_warehouse_mgmt" sequence="2"/>
 			
+		<!-- Vệ sinh kho dược -->
+		<record id="ve_sinh_kho_filter" model="ir.ui.view">
+            <field name="name">ve.sinh.kho.select</field>
+            <field name="model">ve.sinh.kho</field>
+            <field name="arch" type="xml">
+                <search string="Vệ sinh kho">
+                    <field name="name"/>
+                    <field name="location_id"/>
+                    <field name="state"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Kho" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'location_id'}"/>
+                        <filter string="Trạng thái" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+		
+		<record id="ve_sinh_kho_duoc_tree_view" model="ir.ui.view">
+			<field name="name">ve.sinh.kho.tree</field>
+			<field name="model">ve.sinh.kho</field>
+			<field name="arch" type="xml">
+				<tree string="Vệ sinh kho dược">
+					<field name="name"/>
+					<field name="location_id"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="ve_sinh_kho_duoc_form_view" model="ir.ui.view">
+            <field name="name">ve.sinh.kho.form</field>
+            <field name="model">ve.sinh.kho</field>
+            <field name="arch" type="xml">
+	            <form string="Vệ sinh kho dược" version="7.0"> 
+					<header>
+						<button name="kiem_tra" states='draft' string="Đã kiểm tra" type="object" class="oe_highlight" groups="stock.group_stock_manager"/>
+						<button name="in_phieu" string="In phiếu" type="object" class="oe_highlight"/>
+						<field name="state" widget="statusbar" statusbar_visible="draft,da_kiemtra"/>
+						<field name="type" invisible='1'/>
+					</header>
+	            	<sheet>
+	                    <group col='4' colspan='2'>
+	                    	<field name="name"/>
+	                        <field name="location_id" domain="[('name','like','dược')]"/>
+	                        <field name="user_id"/>
+	                        <field name="nguoi_kiemtra_id"/>
+	                    </group>
+						<group string="Nội dung">
+	          				<field name = "vesinhkho_line" nolabel="1">
+	          					<tree editable='bottom'>
+									<field name="noi_dung" />
+	                                <field name="thu_hien"/>
+	                                <field name="tinhtrang_sauvesinh"/>
+	                                <field name="ghi_chu"/>
+	                            </tree>
+	          				</field>
+	                	</group>
+		         	</sheet>
+		         </form>
+			</field>
+		</record>
+		
+		<record id="action_ve_sinh_kho_duoc" model="ir.actions.act_window">
+            <field name="name">Vệ sinh kho dược</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ve.sinh.kho</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="ve_sinh_kho_duoc_tree_view"/>
+            <field name="domain">[('type','=','kho_duoc')]</field>
+            <field name="context">{'default_type':'kho_duoc'}</field>
+        </record>
+        <record id="action_ve_sinh_kho_duoc1" model="ir.actions.act_window.view">
+            <field eval="0" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="ve_sinh_kho_duoc_tree_view"/>
+            <field name="act_window_id" ref="action_ve_sinh_kho_duoc"/>
+        </record>
+        <record id="action_ve_sinh_kho_duoc2" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="ve_sinh_kho_duoc_form_view"/>
+            <field name="act_window_id" ref="action_ve_sinh_kho_duoc"/>
+        </record>
+        
+        <!-- Vệ sinh kho lạnh-->
+		<record id="ve_sinh_kho_lanh_tree_view" model="ir.ui.view">
+			<field name="name">ve.sinh.kho.lanh.tree</field>
+			<field name="model">ve.sinh.kho</field>
+			<field name="arch" type="xml">
+				<tree string="Vệ sinh kho lạnh">
+					<field name="name"/>
+					<field name="location_id"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="ve_sinh_kho_lanh_form_view" model="ir.ui.view">
+            <field name="name">ve.sinh.kho.lanh.form</field>
+            <field name="model">ve.sinh.kho</field>
+            <field name="arch" type="xml">
+	            <form string="Vệ sinh kho lạnh" version="7.0"> 
+					<header>
+						<button name="kiem_tra" states='draft' string="Đã kiểm tra" type="object" class="oe_highlight" groups="stock.group_stock_manager"/>
+						<button name="in_phieu" string="In phiếu" type="object" class="oe_highlight"/>
+						<field name="state" widget="statusbar" statusbar_visible="draft,da_kiemtra"/>
+						<field name="type" invisible='1'/>
+					</header>
+	            	<sheet>
+	                    <group col='4' colspan='2'>
+	                    	<field name="name"/>
+	                        <field name="location_id" domain="[('name','like','lạnh')]"/>
+	                        <field name="thoigian_di"/>
+	                        <field name="nhietdo_di"/>
+	                        <field name="thoigian_ve"/>
+	                        <field name="nhietdo_ve"/>
+	                        <field name="user_id"/>
+	                        <field name="nguoi_kiemtra_id"/>
+	                    </group>
+						<group string="Nội dung">
+	          				<field name = "vesinhkho_line" nolabel="1">
+	          					<tree editable='bottom'>
+									<field name="noi_dung" />
+	                                <field name="thu_hien"/>
+	                                <field name="tinhtrang_sauvesinh"/>
+	                                <field name="ghi_chu"/>
+	                            </tree>
+	          				</field>
+	                	</group>
+		         	</sheet>
+		         </form>
+			</field>
+		</record>
+		
+		<record id="action_ve_sinh_kho_lanh" model="ir.actions.act_window">
+            <field name="name">Vệ sinh kho lạnh</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ve.sinh.kho</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="ve_sinh_kho_lanh_tree_view"/>
+            <field name="domain">[('type','=','kho_lanh')]</field>
+            <field name="context">{'default_type':'kho_lanh'}</field>
+        </record>
+        <record id="action_ve_sinh_kho_lanh1" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="ve_sinh_kho_lanh_tree_view"/>
+            <field name="act_window_id" ref="action_ve_sinh_kho_lanh"/>
+        </record>
+        <record id="action_ve_sinh_kho_lanh2" model="ir.actions.act_window.view">
+            <field eval="3" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="ve_sinh_kho_lanh_form_view"/>
+            <field name="act_window_id" ref="action_ve_sinh_kho_lanh"/>
+        </record>
+        
+        <!-- Phòng chống mối mọt -->
+        <record id="phongchong_moi_mot_filter" model="ir.ui.view">
+            <field name="name">phongchong.moi.mot.select</field>
+            <field name="model">phongchong.moi.mot</field>
+            <field name="arch" type="xml">
+                <search string="Phòng chống mối mọt">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Tháng" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'name'}"/>
+                        <filter string="Người xử lý" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'user_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+		
+		<record id="phongchong_moi_mot_tree_view" model="ir.ui.view">
+			<field name="name">phongchong.moi.mot.tree</field>
+			<field name="model">phongchong.moi.mot</field>
+			<field name="arch" type="xml">
+				<tree string="Phòng chống mối mọt" editable='top'>
+					<field name="name"/>
+					<field name="khuvuc_thuhien"/>
+					<field name="bienphap_thuchien"/>
+					<field name="tinhtrang_sauxuly"/>
+					<field name="user_id"/>
+					<field name="ghi_chu"/>
+				</tree>
+			</field>
+		</record>
+		<record id="action_phongchong_moi_mot" model="ir.actions.act_window">
+            <field name="name">Phòng chống mối mọt</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">phongchong.moi.mot</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="phongchong_moi_mot_tree_view"/>
+        </record>
+        
+        <menuitem id="menu_ve_sinh_kho" name="Vệ sinh kho" parent="stock.menu_stock_root" sequence="3"/>
+		<menuitem id="menu_ve_sinh_kho_duoc" name="Vệ sinh kho dược" action="action_ve_sinh_kho_duoc" parent="menu_ve_sinh_kho" sequence="10"/>
+		<menuitem id="menu_ve_sinh_kho_lanh" name="Vệ sinh kho lạnh" action="action_ve_sinh_kho_lanh" parent="menu_ve_sinh_kho" sequence="20"/>
+		<menuitem id="menu_action_phongchong_moi_mot" name="Phòng chống mối mọt" action="action_phongchong_moi_mot" parent="menu_ve_sinh_kho" sequence="30"/>
+		
+		<!-- BÁO CÁO KẾ HOẠCH SỬA CHỮA VÀ HÀNH ĐỘNG -->
+        <record id="suachua_hanhdong_filter" model="ir.ui.view">
+            <field name="name">suachua.hanhdong.select</field>
+            <field name="model">suachua.hanhdong</field>
+            <field name="arch" type="xml">
+                <search string="Báo cáo sửa chữa hành động">
+                    <field name="name"/>
+                    <field name="ngay_kt"/>
+                    <field name="ngay_bc"/>
+               </search>
+            </field>
+        </record>
+		
+		<record id="suachua_hanhdong_tree_view" model="ir.ui.view">
+			<field name="name">suachua.hanhdong.tree</field>
+			<field name="model">suachua.hanhdong</field>
+			<field name="arch" type="xml">
+				<tree string="Báo cáo sửa chữa hành động">
+					<field name="name"/>
+                    <field name="ngay_kt"/>
+                    <field name="ngay_bc"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="suachua_hanhdong_form_view" model="ir.ui.view">
+            <field name="name">suachua.hanhdong.form</field>
+            <field name="model">suachua.hanhdong</field>
+            <field name="arch" type="xml">
+	            <form string="Báo cáo sửa chữa hành động" version="7.0"> 
+	            	<sheet>
+	                    <group col='4' colspan='2'>
+	                    	<field name="name"/>
+	                    	<newline/>
+	                        <field name="ngay_kt"/>
+	                        <field name="ngay_bc"/>
+	                    </group>
+						<group string="Nội dung">
+	          				<field name = "sc_hd_line" nolabel="1">
+	          					<tree editable='bottom'>
+									<field name="name" />
+	                                <field name="doan_thanhtra"/>
+	                                <field name="nguyen_nhan"/>
+	                                <field name="hanh_dong"/>
+	                                <field name="thoi_gian"/>
+	                                <field name="tinh_trang"/>
+	                            </tree>
+	          				</field>
+	                	</group>
+		         	</sheet>
+		         </form>
+			</field>
+		</record>
+		
+		<record id="action_suachua_hanhdong" model="ir.actions.act_window">
+            <field name="name">Báo cáo sửa chữa hành động</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">suachua.hanhdong</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="suachua_hanhdong_tree_view"/>
+        </record>
+        
+        <menuitem id="menu_bao_cao_suachua_hanhdong" name="Báo cáo sửa chữa hành động" parent="stock.menu_stock_root" sequence="3"/>
+		<menuitem id="menu_action_suachua_hanhdong" name="Báo cáo sửa chữa hành động" action="action_suachua_hanhdong" parent="menu_bao_cao_suachua_hanhdong" sequence="10"/>
+		
     </data>
 </openerp>
