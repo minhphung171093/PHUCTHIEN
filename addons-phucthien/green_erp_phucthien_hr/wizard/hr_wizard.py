@@ -16,11 +16,11 @@ from dateutil import relativedelta
 class wizard_employee_payslip(osv.osv_memory):
     _name = 'vsis.employee.payslip'
     _columns = {
-                'template':fields.many2one('hr.template',"Template"),
-                'date_start': fields.date('Start Date'),
-                'date_stop': fields.date('End Date'),
+                'template':fields.many2one('hr.template',"Mẫu"),
+                'date_start': fields.date('Từ ngày'),
+                'date_stop': fields.date('Đến ngày'),
                 'department': fields.many2many('hr.department','att_department_rel_pay', 
-                                                 'department_id','att_id','Deparment',required = True),                           
+                                                 'department_id','att_id','Phòng ban',required = True),                           
     }
     
     _defaults = {

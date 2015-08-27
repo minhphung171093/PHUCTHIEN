@@ -19,35 +19,19 @@
 #
 ##############################################################################
 
-
 {
-    'name': 'GreenERP Phuc Thien Stock',
-    'version': '1.1',
+    'name': 'Phucthien MENU',
+    'version': '1.0',
     'category': 'GreenERP',
-    "author" : "nguyentoanit@gmail.com",
-    "website" : "http://incomtech.com.vn",
-    'images': [],
-    'depends': ['stock','general_stock','report_aeroo','green_erp_phucthien_sale','green_erp_phucthien_account','mail'],
+    'sequence': 14,
+    'author': 'nguyentoanit@gmail.com',
+    'website' : 'http://incomtech.com/',
+    'depends': ['base'],
     'data': [
-            'security/green_erp_phucthien_stock_security.xml',
-            'security/ir.model.access.csv',
-            'report/phieu_xuat_kho.xml',
-            'report/bien_ban_giao_nhan.xml',
-            'report/dulieu_donghang_report_view.xml',
-            'report/report_stock_move_view.xml',
-            'report/bienban_kiemkho_thanhpham_view.xml',
-            'report/bienban_kiemnhap_thuhoi_hangtrave_view.xml',
-            'report/baocao_chenhlech_thuathieu_view.xml',
-            'report/bienban_kiemkekho_view.xml',
-            'report/phieu_dieuchuyen_noibo_view.xml',
-            'stock_view.xml',
-            'sequence.xml',
-            'wizard/dulieu_donghang_report_view.xml',
-            ],
-    'demo': [],
-    'test': [
+            'ir_ui_menu_view.xml',
     ],
     'installable': True,
     'auto_install': False,
+    'application': True,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

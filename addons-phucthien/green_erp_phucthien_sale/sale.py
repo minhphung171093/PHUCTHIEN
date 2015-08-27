@@ -564,12 +564,12 @@ class remind_work(osv.osv):
     _name = "remind.work"
     _inherit = ['mail.thread']
     _columns = {
-        'name': fields.char('Subject', required=True,readonly=True, states={'draft': [('readonly', False)]}),
-        'date_start': fields.datetime('Date Time Start',readonly=True, states={'draft': [('readonly', False)]}),
-        'date_end': fields.datetime('Date Time End',readonly=True, states={'draft': [('readonly', False)]}),
-        'user_id': fields.many2one('res.users', 'Asign to',required=True,readonly=True, states={'draft': [('readonly', False)]}),
+        'name': fields.char('Chủ đề', required=True,readonly=True, states={'draft': [('readonly', False)]}),
+        'date_start': fields.datetime('Thời gian bắt đầu',readonly=True, states={'draft': [('readonly', False)]}),
+        'date_end': fields.datetime('Thời gian kết thúc',readonly=True, states={'draft': [('readonly', False)]}),
+        'user_id': fields.many2one('res.users', 'Gán cho',required=True,readonly=True, states={'draft': [('readonly', False)]}),
         'situation_id': fields.many2one('remind.work.situation', 'Tình trạng công việc',readonly=True, states={'draft': [('readonly', False)]}),
-        'note':fields.text('Note',readonly=True, states={'draft': [('readonly', False)]}),
+        'note':fields.text('Nội dung',readonly=True, states={'draft': [('readonly', False)]}),
         'state': fields.selection([ ('draft', 'Draft'),
                                     ('open', 'Open'),
                                     ('cancel', 'Cancelled'),

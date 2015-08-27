@@ -192,6 +192,232 @@ class stock_location(osv.osv):
         result['total_price'] = total_price
         return result   
     
+    def _product_reserve_tracking(self, cr, uid, ids,prodlot_id,tracking_id, product_id, product_qty, context=None, lock=False):
+        """
+        Attempt to find a quantity ``product_qty`` (in the product's default uom or the uom passed in ``context``) of product ``product_id``
+        in locations with id ``ids`` and their child locations. If ``lock`` is True, the stock.move lines
+        of product with id ``product_id`` in the searched location will be write-locked using Postgres's
+        "FOR UPDATE NOWAIT" option until the transaction is committed or rolled back, to prevent reservin
+        twice the same products.
+        If ``lock`` is True and the lock cannot be obtained (because another transaction has locked some of
+        the same stock.move lines), a log line will be output and False will be returned, as if there was
+        not enough stock.
+
+        :param product_id: Id of product to reserve
+        :param product_qty: Quantity of product to reserve (in the product's default uom or the uom passed in ``context``)
+        :param lock: if True, the stock.move lines of product with id ``product_id`` in all locations (and children locations) with ``ids`` will
+                     be write-locked using postgres's "FOR UPDATE NOWAIT" option until the transaction is committed or rolled back. This is
+                     to prevent reserving twice the same products.
+        :param context: optional context dictionary: if a 'uom' key is present it will be used instead of the default product uom to
+                        compute the ``product_qty`` and in the return value.
+        :return: List of tuples in the form (qty, location_id) with the (partial) quantities that can be taken in each location to
+                 reach the requested product_qty (``qty`` is expressed in the default uom of the product), of False if enough
+                 products could not be found, or the lock could not be obtained (and ``lock`` was True).
+        """
+        result = []
+        amount = 0.0
+        if context is None:
+            context = {}
+        uom_obj = self.pool.get('product.uom')
+        uom_rounding = self.pool.get('product.product').browse(cr, uid, product_id, context=context).uom_id.rounding
+        if context.get('uom'):
+            uom_rounding = uom_obj.browse(cr, uid, context.get('uom'), context=context).rounding
+
+        locations_ids = self.search(cr, uid, [('location_id', 'child_of', ids)])
+        if locations_ids:
+            # Fetch only the locations in which this product has ever been processed (in or out)
+            cr.execute("""SELECT l.id FROM stock_location l WHERE l.id in %s AND
+                        EXISTS (SELECT 1 FROM stock_move m WHERE m.product_id = %s AND m.prodlot_id = %s AND m.tracking_id = %s
+                                AND ((state = 'done' AND m.location_dest_id = l.id)
+                                    OR (state in ('done','assigned') AND m.location_id = l.id)))
+                       """, (tuple(locations_ids), product_id,prodlot_id,tracking_id))
+            locations_ids = [i for (i,) in cr.fetchall()]
+        for id in locations_ids:
+            if lock:
+                try:
+                    # Must lock with a separate select query because FOR UPDATE can't be used with
+                    # aggregation/group by's (when individual rows aren't identifiable).
+                    # We use a SAVEPOINT to be able to rollback this part of the transaction without
+                    # failing the whole transaction in case the LOCK cannot be acquired.
+                    cr.execute("SAVEPOINT stock_location_product_reserve")
+                    cr.execute("""SELECT id FROM stock_move
+                                  WHERE product_id=%s AND prodlot_id = %s AND tracking_id = %s AND
+                                          (
+                                            (location_dest_id=%s AND
+                                             location_id<>%s AND
+                                             state='done')
+                                            OR
+                                            (location_id=%s AND
+                                             location_dest_id<>%s AND
+                                             state in ('done', 'assigned'))
+                                          )
+                                  FOR UPDATE of stock_move NOWAIT""", (product_id,prodlot_id,tracking_id, id, id, id, id), log_exceptions=False)
+                except Exception:
+                    # Here it's likely that the FOR UPDATE NOWAIT failed to get the LOCK,
+                    # so we ROLLBACK to the SAVEPOINT to restore the transaction to its earlier
+                    # state, we return False as if the products were not available, and log it:
+                    cr.execute("ROLLBACK TO stock_location_product_reserve")
+                    _logger.warning("Failed attempt to reserve %s x product %s, likely due to another transaction already in progress. Next attempt is likely to work. Detailed error available at DEBUG level.", product_qty, product_id)
+                    _logger.debug("Trace of the failed product reservation attempt: ", exc_info=True)
+                    return False
+
+            # XXX TODO: rewrite this with one single query, possibly even the quantity conversion
+            cr.execute("""SELECT product_uom, sum(product_qty) AS product_qty
+                          FROM stock_move
+                          WHERE location_dest_id=%s AND
+                                location_id<>%s AND
+                                product_id=%s AND prodlot_id = %s AND tracking_id = %s AND 
+                                state='done'
+                          GROUP BY product_uom
+                       """,
+                       (id, id, product_id,prodlot_id,tracking_id))
+            results = cr.dictfetchall()
+            cr.execute("""SELECT product_uom,-sum(product_qty) AS product_qty
+                          FROM stock_move
+                          WHERE location_id=%s AND
+                                location_dest_id<>%s AND
+                                product_id=%s AND prodlot_id = %s AND tracking_id = %s AND
+                                state in ('done', 'assigned')
+                          GROUP BY product_uom
+                       """,
+                       (id, id, product_id,prodlot_id,tracking_id))
+            results += cr.dictfetchall()
+            total = 0.0
+            results2 = 0.0
+            for r in results:
+                amount = uom_obj._compute_qty(cr, uid, r['product_uom'], r['product_qty'], context.get('uom', False))
+                results2 += amount
+                total += amount
+            if total <= 0.0:
+                continue
+
+            amount = results2
+            compare_qty = float_compare(amount, 0, precision_rounding=uom_rounding)
+            if compare_qty == 1:
+                if amount > min(total, product_qty):
+                    amount = min(product_qty, total)
+                result.append((amount, id))
+                product_qty -= amount
+                total -= amount
+                if product_qty <= 0.0:
+                    return result
+                if total <= 0.0:
+                    continue
+        return False
+    
+    def _product_reserve(self, cr, uid, ids,prodlot_id, product_id, product_qty, context=None, lock=False):
+        """
+        Attempt to find a quantity ``product_qty`` (in the product's default uom or the uom passed in ``context``) of product ``product_id``
+        in locations with id ``ids`` and their child locations. If ``lock`` is True, the stock.move lines
+        of product with id ``product_id`` in the searched location will be write-locked using Postgres's
+        "FOR UPDATE NOWAIT" option until the transaction is committed or rolled back, to prevent reservin
+        twice the same products.
+        If ``lock`` is True and the lock cannot be obtained (because another transaction has locked some of
+        the same stock.move lines), a log line will be output and False will be returned, as if there was
+        not enough stock.
+
+        :param product_id: Id of product to reserve
+        :param product_qty: Quantity of product to reserve (in the product's default uom or the uom passed in ``context``)
+        :param lock: if True, the stock.move lines of product with id ``product_id`` in all locations (and children locations) with ``ids`` will
+                     be write-locked using postgres's "FOR UPDATE NOWAIT" option until the transaction is committed or rolled back. This is
+                     to prevent reserving twice the same products.
+        :param context: optional context dictionary: if a 'uom' key is present it will be used instead of the default product uom to
+                        compute the ``product_qty`` and in the return value.
+        :return: List of tuples in the form (qty, location_id) with the (partial) quantities that can be taken in each location to
+                 reach the requested product_qty (``qty`` is expressed in the default uom of the product), of False if enough
+                 products could not be found, or the lock could not be obtained (and ``lock`` was True).
+        """
+        result = []
+        amount = 0.0
+        if context is None:
+            context = {}
+        uom_obj = self.pool.get('product.uom')
+        uom_rounding = self.pool.get('product.product').browse(cr, uid, product_id, context=context).uom_id.rounding
+        if context.get('uom'):
+            uom_rounding = uom_obj.browse(cr, uid, context.get('uom'), context=context).rounding
+
+        locations_ids = self.search(cr, uid, [('location_id', 'child_of', ids)])
+        if locations_ids:
+            # Fetch only the locations in which this product has ever been processed (in or out)
+            cr.execute("""SELECT l.id FROM stock_location l WHERE l.id in %s AND
+                        EXISTS (SELECT 1 FROM stock_move m WHERE m.product_id = %s AND m.prodlot_id = %s
+                                AND ((state = 'done' AND m.location_dest_id = l.id)
+                                    OR (state in ('done','assigned') AND m.location_id = l.id)))
+                       """, (tuple(locations_ids), product_id,prodlot_id))
+            locations_ids = [i for (i,) in cr.fetchall()]
+        for id in locations_ids:
+            if lock:
+                try:
+                    # Must lock with a separate select query because FOR UPDATE can't be used with
+                    # aggregation/group by's (when individual rows aren't identifiable).
+                    # We use a SAVEPOINT to be able to rollback this part of the transaction without
+                    # failing the whole transaction in case the LOCK cannot be acquired.
+                    cr.execute("SAVEPOINT stock_location_product_reserve")
+                    cr.execute("""SELECT id FROM stock_move
+                                  WHERE product_id=%s AND prodlot_id = %s AND
+                                          (
+                                            (location_dest_id=%s AND
+                                             location_id<>%s AND
+                                             state='done')
+                                            OR
+                                            (location_id=%s AND
+                                             location_dest_id<>%s AND
+                                             state in ('done', 'assigned'))
+                                          )
+                                  FOR UPDATE of stock_move NOWAIT""", (product_id,prodlot_id, id, id, id, id), log_exceptions=False)
+                except Exception:
+                    # Here it's likely that the FOR UPDATE NOWAIT failed to get the LOCK,
+                    # so we ROLLBACK to the SAVEPOINT to restore the transaction to its earlier
+                    # state, we return False as if the products were not available, and log it:
+                    cr.execute("ROLLBACK TO stock_location_product_reserve")
+                    _logger.warning("Failed attempt to reserve %s x product %s, likely due to another transaction already in progress. Next attempt is likely to work. Detailed error available at DEBUG level.", product_qty, product_id)
+                    _logger.debug("Trace of the failed product reservation attempt: ", exc_info=True)
+                    return False
+
+            # XXX TODO: rewrite this with one single query, possibly even the quantity conversion
+            cr.execute("""SELECT product_uom, sum(product_qty) AS product_qty
+                          FROM stock_move
+                          WHERE location_dest_id=%s AND
+                                location_id<>%s AND
+                                product_id=%s AND prodlot_id = %s AND
+                                state='done'
+                          GROUP BY product_uom
+                       """,
+                       (id, id, product_id,prodlot_id))
+            results = cr.dictfetchall()
+            cr.execute("""SELECT product_uom,-sum(product_qty) AS product_qty
+                          FROM stock_move
+                          WHERE location_id=%s AND
+                                location_dest_id<>%s AND
+                                product_id=%s AND prodlot_id = %s AND
+                                state in ('done', 'assigned')
+                          GROUP BY product_uom
+                       """,
+                       (id, id, product_id,prodlot_id))
+            results += cr.dictfetchall()
+            total = 0.0
+            results2 = 0.0
+            for r in results:
+                amount = uom_obj._compute_qty(cr, uid, r['product_uom'], r['product_qty'], context.get('uom', False))
+                results2 += amount
+                total += amount
+            if total <= 0.0:
+                continue
+
+            amount = results2
+            compare_qty = float_compare(amount, 0, precision_rounding=uom_rounding)
+            if compare_qty == 1:
+                if amount > min(total, product_qty):
+                    amount = min(product_qty, total)
+                result.append((amount, id))
+                product_qty -= amount
+                total -= amount
+                if product_qty <= 0.0:
+                    return result
+                if total <= 0.0:
+                    continue
+        return False
+    
 stock_location()
 
 class stock_warehouse(osv.osv):
@@ -519,6 +745,7 @@ class stock_move(osv.osv):
             cr.execute('update stock_move set prodlot_id = %s where id = %s',(lot_id,move.id))
         return True
     
+    
     def check_assign(self, cr, uid, ids, context=None):
         """ Checks the product type and accordingly writes the state.
         @return: No. of moves done
@@ -536,7 +763,12 @@ class stock_move(osv.osv):
                 continue
             if move.state in ('confirmed', 'waiting'):
                 # Important: we must pass lock=True to _product_reserve() to avoid race conditions and double reservations
-                res = self.pool.get('stock.location')._product_reserve(cr, uid, [move.location_id.id], move.product_id.id, move.product_qty, {'uom': move.product_uom.id}, lock=True)
+                if not move.prodlot_id:
+                    raise osv.except_osv(_('Warning!'),_("Please input Prodlot"))
+                if not move.tracking_id:
+                    res = self.pool.get('stock.location')._product_reserve(cr, uid, [move.location_id.id],move.prodlot_id.id, move.product_id.id, move.product_qty, {'uom': move.product_uom.id}, lock=True)
+                else:
+                    res = self.pool.get('stock.location')._product_reserve_tracking(cr, uid, [move.location_id.id],move.prodlot_id.id,move.tracking_id.id, move.product_id.id, move.product_qty, {'uom': move.product_uom.id}, lock=True)
                 if res:
                     #_product_available_test depends on the next status for correct functioning
                     #the test does not work correctly if the same product occurs multiple times
@@ -556,7 +788,7 @@ class stock_move(osv.osv):
                         done.append(move_id)
                 #Thanh: Raise Error if not enough Stock, inactive temporary
                 else:
-                    raise osv.except_osv(_('Warning!'),_("Not enough stock for Product '%s'.\nPlease ask for an Internal Moves to Location '%s'")%(move.product_id.name,move.location_id.name))
+                    raise osv.except_osv(_('Warning!'),_("Not enough stock for Product '%s'.\nPlease ask for an Internal Moves to Location '%s' and Prodlot '%s'")%(move.product_id.name,move.location_id.name,move.prodlot_id.name))
         if done:
             count += len(done)
             self.write(cr, uid, done, {'state': 'assigned'})
@@ -1360,6 +1592,7 @@ class stock_picking(osv.osv):
                 'source_id':move_line.id,
                 #Hung moi them so lo vao invoice line
                 'prodlot_id':move_line.prodlot_id.id,
+                'adjust_price':move_line.purchase_line_id and move_line.purchase_line_id.adjust_price or 0.0, 
             }
 
         else:
@@ -1916,6 +2149,8 @@ class stock_picking_out(osv.osv):
         'write_uid':  fields.many2one('res.users', 'Updated by', readonly=True),
         'create_uid': fields.many2one('res.users', 'Created by', readonly=True),
         'return_reason_id': fields.many2one('stock.return.reason', 'Return Reason'),
+        'nhietdo_di':fields.char('Nhiệt độ khi đi'),
+        'nhietdo_den':fields.char('Nhiệt độ khi đến'),
     }
     
     _defaults = {    

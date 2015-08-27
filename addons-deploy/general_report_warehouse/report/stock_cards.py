@@ -27,6 +27,7 @@ class Parser(report_sxw.rml_parse):
         self.warehouse_name = False
         self.product_id = False
         self.product_name = False
+        self.prod_lot_id = False
         self.company_name = False
         self.company_address = False
         self.date_start = False
@@ -107,6 +108,7 @@ class Parser(report_sxw.rml_parse):
         self.warehouse_name = wizard_data['warehouse_id'] and wizard_data['warehouse_id'][1]
         self.product_id = wizard_data['product_id'][0]
         self.product_name = wizard_data['product_id'][1]
+        self.prod_lot_id = wizard_data['prod_lot_id'][0]
         self.date_start = wizard_data['date_start']
         self.date_end = wizard_data['date_end']
         self.location_id = wizard_data['location_id'][0]
@@ -170,33 +172,37 @@ class Parser(report_sxw.rml_parse):
         location_ids = location_obj.search(self.cr, self.uid, [('id','child_of',self.location_id),('usage','=','internal')])
         location_ids = (','.join(map(str, location_ids)))
         sql = '''
-            SELECT date,name_template,note,journal_name,picking_name,nhap_qty,xuat_qty
+            SELECT date,name_template,note,journal_name,picking_name,name,nhap_qty,xuat_qty
             FROM
             (
-                SELECT
-                    date(timezone('UTC',stm.date)),pp.name_template,stm.note,x.journal_name,x.picking_name,
-                    case when loc2.usage = 'internal' and loc2.id in (%s)
-                        then stm.primary_qty
-                    else
-                        0.0 end nhap_qty,
-                    case when loc1.usage = 'internal' and loc1.id in (%s)
-                        then stm.primary_qty 
-                    else 
-                        0.0 end xuat_qty
-                FROM stock_move stm 
-                join stock_location loc1 on stm.location_id=loc1.id
-                join stock_location loc2 on stm.location_dest_id=loc2.id 
-                join product_product pp on stm.product_id = pp.id   
-                join (select sj.name journal_name,
-                         sp.name picking_name,sp.id
-                      from stock_picking sp inner join stock_journal sj on sp.stock_journal_id = sj.id)x
-                      on stm.picking_id = x.id            
-                WHERE stm.state= 'done'               
-                      and stm.product_id = %s
-                      and date(timezone('UTC',stm.date)) between '%s' and '%s'
-                order by date(timezone('UTC',stm.date))) x
-                where (nhap_qty !=0 or xuat_qty!= 0)
-        '''%(location_ids,location_ids,self.product_id,self.date_start,self.date_end)
+            SELECT
+                date(timezone('UTC',stm.date)),pp.name_template,stm.note,x.journal_name,x.picking_name,x.name,
+                case when loc2.usage = 'internal' and loc2.id in (%s)
+                then stm.primary_qty
+                else
+                0.0 end nhap_qty,
+                case when loc1.usage = 'internal' and loc1.id in (%s)
+                then stm.primary_qty 
+                else 
+                0.0 end xuat_qty
+            FROM stock_move stm 
+            join stock_location loc1 on stm.location_id=loc1.id
+            join stock_location loc2 on stm.location_dest_id=loc2.id 
+            join product_product pp on stm.product_id = pp.id   
+            join (select sj.name journal_name,
+                 sp.name picking_name,sp.id, rp.name
+                  from stock_picking sp 
+                  inner join stock_journal sj on sp.stock_journal_id = sj.id
+                  left join res_partner rp on sp.partner_id = rp.id
+                  )x
+                  on stm.picking_id = x.id            
+            WHERE stm.state= 'done'               
+                  and stm.product_id = %s
+                  and stm.prodlot_id = %s
+                  and date(timezone('UTC',stm.date)) between '%s' and '%s'
+            order by date(timezone('UTC',stm.date))) x
+            where (nhap_qty !=0 or xuat_qty!= 0)
+        '''%(location_ids,location_ids,self.product_id,self.prod_lot_id,self.date_start,self.date_end)
         self.cr.execute(sql)
         res =[]
         for i in self.cr.dictfetchall():
@@ -206,6 +212,7 @@ class Parser(report_sxw.rml_parse):
             res.append(
                    {'date':self.get_vietname_date(i['date']),
                    'des':i['picking_name'],
+                   'name':i['name'],
                    'journal_name':i['journal_name'],
                    'nhap_qty':i['nhap_qty'] or 0.0,
                    'xuat_qty':i['xuat_qty'] or 0.0,

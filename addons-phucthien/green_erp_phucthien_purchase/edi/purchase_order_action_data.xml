@@ -20,17 +20,19 @@
     <p>Please process order below and feedback to us:</p>
     <table width="100%">
 		<tr align="left" width="100%" height="36px" style="background-color: rgb(238, 76, 140) ; color: rgb(255, 255, 255); font-size: 12px">
-	            <th width="25%" align ="center">Sản Phẩm</th>
-		      	<th width="25%" align ="center">Mô Tả</th>
-		      	<th width="9%" align ="center">SL</th>
-	            <th width="9%" align ="center">ĐVT</th>
-		      	<th width="16%" align ="center">Giá</th>
-		      	<th width="16%" align ="center">Tổng tiền</th>
+	            <th width="20%" align ="center">Sản Phẩm</th>
+		      	<th width="20%" align ="center">Mô Tả</th>
+		      	<th width="20%" align ="center">Khách hàng</th>
+		      	<th width="8%" align ="center">SL</th>
+	            <th width="8%" align ="center">ĐVT</th>
+		      	<th width="10%" align ="center">Giá</th>
+		      	<th width="14%" align ="center">Tổng tiền</th>
 		 </tr>
 	% for line in object.order_line:
 	  	<tr align="center"  width="100%"  style= font-size: 8px">
               	<td  align ="left">${line.product_id.name}</td>
 	      		<td  align ="left">${line.name}</td>
+	      		<td  align ="left">${line.partner_id.name}</td>
 	      		<td  align ="center">${line.product_qty}</td>			  
               	<td  align ="center">${line.product_uom.name}</td>
               	<td  align ="right">${line.price_unit}</td>
@@ -42,6 +44,9 @@
        &nbsp;&nbsp;<strong>REFERENCES</strong><br />
        &nbsp;&nbsp;Order number: <strong>${object.name}</strong><br />
        &nbsp;&nbsp;Order date: ${object.date_order}<br />
+       &nbsp;&nbsp;Untaxed Amount: ${object.amount_untaxed}<br />
+       &nbsp;&nbsp;Tax Amount: ${object.amount_tax}<br />
+       &nbsp;&nbsp;Total Amount: ${object.amount_total}<br />
     </p>
     <p>If you have any question, do not hesitate to contact us.</p>
     <p>Please give me the information of product price and expiration date.</p>

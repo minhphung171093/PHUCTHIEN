@@ -4,22 +4,7 @@
     
         <!-- Modify Invoice Line --> 
         
-        <record model="ir.ui.view" id="view_account_invoice_add_date_filter">
-            <field name="model">account.invoice</field>
-            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
-            <field name="arch" type="xml">
-                <field name="partner_id" position="after">
-                	<field name="date_invoice"/>
-                	<field name="reference_number"/>
-                	<field name="product_id_relate"/>
-                </field>
-                 <filter string="Unpaid" position="after">
-                 	<filter name="paid" string="Paid" domain="[('state','=','paid')]" help="paid Invoices"/>
-                 	<filter string="Date" domain="[]" context="{'group_by':'day_user_tz'}"/>
-                	<filter string="Month" domain="[]" context="{'group_by':'date_user_tz'}"/>
-                 </filter>
-            </field>
-        </record>
+        
         
         <record model="ir.ui.view" id="view_invoice_line_form_add_discount_type">
 	        <field name="name">view.invoice.line.form.add.discount.type</field>
@@ -106,8 +91,11 @@
 	            <xpath expr="//tree[@string='Invoice Lines']" position="attributes">
 	            	<attribute name="editable"></attribute>
 	            </xpath>
-	             <xpath expr="//field[@name='invoice_line']/tree[@string='Invoice Lines']/field[@name='quantity']" position="before">
+	            <xpath expr="//field[@name='invoice_line']/tree[@string='Invoice Lines']/field[@name='quantity']" position="before">
 	            	<field name="prodlot_id"/>
+	            </xpath>
+	            <xpath expr="//field[@name='invoice_line']/tree[@string='Invoice Lines']/field[@name='account_analytic_id']" position="replace">
+	            	<field name="account_analytic_id" invisible="1"/>
 	            </xpath>
 	            
 	            

@@ -10,10 +10,14 @@
 					<page string="Đóng gói" attrs="{'invisible':[('type','!=','out')]}">
 						<field name="picking_packaging_line" nolabel='1'>
 							<tree editable='top'>
-								<field name="loai_thung_id"/>
-								<field name="sl_thung"/>
-								<field name="sl_da"/>
-								<field name="chi_phi_da"/>
+								<field name="loai_thung_id" on_change="onchange_loai_thung_id(loai_thung_id, context)"/>
+								<field name="sl_thung" sum="Số lượng thùng"/>
+								<field name="chi_phi_thung" sum="Chi phí thùng"/>
+								<field name="sl_da" sum="Số lượng đá"/>
+								<field name="chi_phi_da" sum="Chi phí đá"/>
+								<field name="sl_nhietke" sum="Số lượng Nhiệt kế"/>
+								<field name="chi_phi_nhiet_ke" sum="Chi phí nhiệt kế"/>
+								<field name="chi_phi_gui_hang" sum="Chi phí gửi hàng"/>
 								<field name="employee_id"/>
 								<field name="nhietdo_packaging_di"/>
 								<field name="nhietdo_packaging_den"/>
@@ -84,6 +88,7 @@
 					<field name="the_tich"/>
 					<field name="sl_da"/>
 					<field name="chi_phi_da"/>
+					<field name="chi_phi_thung"/>
 				</tree>
 			</field>
 		</record>
@@ -105,6 +110,7 @@
 							<group>
 								<field name="sl_da"/>
 								<field name="chi_phi_da"/>
+								<field name="chi_phi_thung"/>
 							</group>
 						</div>
 		         	</sheet>
@@ -208,103 +214,6 @@
         <menuitem id="hr_expense.menu_hr_product" name="Loại công tác phí" parent="hr.menu_hr_configuration" 
         action="action_loai_congtac_phi"/>
 		
-		<record id="dulieu_donghang_tree_view" model="ir.ui.view">
-			<field name="name">dulieu.donghang.tree</field>
-			<field name="model">dulieu.donghang</field>
-			<field name="arch" type="xml">
-				<tree string="Dữ liệu đóng hàng" colors="gray:so_phap_ly== False;red:so_phap_ly== True">
-					<field name="name"/>
-					<field name="partner_id"/>
-					<field name="saleperson_id"/>
-					<field name="sl_nhietke"/>
-					<field name="chi_phi_nhiet_ke"/>
-					<field name="chi_phi_gui_hang"/>
-					<field name="ngay_gui"/>
-					<field name="ngay_nhan"/>
-					<field name="daidien_khachhang"/>
-					<field name="state" invisible="1"/>
-					<field name="so_phap_ly" invisible="1"/>
-					<button name="status_send" attrs="{'invisible':[('state','!=','draft')]}" string="Send" icon="gtk-go-up" type="object" class="oe_highlight"/>
-					<button name="status_receive" attrs="{'invisible':[('state','!=','da_gui')]}" string="Receive" icon="gtk-goto-bottom" type="object" class="oe_highlight"/>
-				</tree>
-			</field>
-		</record>
-		
-		<record id="view_dulieu_donghang_filter" model="ir.ui.view">
-            <field name="name">dulieu.donghang.select</field>
-            <field name="model">dulieu.donghang</field>
-            <field name="arch" type="xml">
-                <search string="Search Dữ liệu đóng hàng">
-                    <field name="name" string="Phiếu xuất" filter_domain="['|',('name','ilike',self),('client_order_ref','ilike',self)]"/>
-                    <field name="partner_id"/>
-                    <field name="saleperson_id"/>
-                    <group expand="0" string="Group By...">
-                        <filter string="Nhân viên kinh doanh" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'saleperson_id'}"/>
-                        <filter string="Khách hàng" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'partner_id'}"/>
-                        <filter string="Sổ pháp lý" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'so_phap_ly'}"/>
-                        <filter string="Status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
-                    </group>
-               </search>
-            </field>
-        </record>
-		
-		<record id="dulieu_donghang_form_view" model="ir.ui.view">
-            <field name="name">dulieu.donghang.form</field>
-            <field name="model">dulieu.donghang</field>
-            <field name="arch" type="xml">
-	            <form string="Dữ liệu đóng hàng" version="7.0"> 
-					<header>
-						<button name="status_send" attrs="{'invisible':[('state','!=','draft')]}" string="Đã gửi"  type="object" class="oe_highlight"/>
-						<button name="status_receive" attrs="{'invisible':[('state','!=','da_gui')]}" string="Đã nhận" type="object" class="oe_highlight"/>
-						<field name="state" widget="statusbar" statusbar_visible="draft,da_gui,da_nhan"/>
-					</header>
-	            	<sheet>
-	                    <group col='4' colspan='2'>
-	                    	<field name="name"/>
-	                        <field name="picking_id" class="oe_inline" on_change="onchange_picking_id(picking_id, context)"/>
-		            		<field name="partner_id"/>
-		            		<field name="saleperson_id"/>
-	                    </group>
-	                    <group col='4' colspan='2'>
-	                    	
-	                    	<field name="ngay_gui"/>
-	                    	<field name="ngay_nhan"/>
-	                    	<field name="daidien_khachhang"/>
-	                    	<field name="shipper_id"/>
-						</group>
-						<group col='4' colspan='2'>
-	                    	<field name="sl_nhietke"/>
-	                    	<field name="chi_phi_nhiet_ke"/>
-	                    	<field name="chi_phi_gui_hang"/>
-	                    	<field name="so_phap_ly"/>
-						</group>
-						<group string="Quy cách đóng gói">
-	          				<field name = "dulieu_donghang_line" nolabel="1">
-	          					<tree editable='top'>
-									<field name="loai_thung_id" />
-	                                <field name="sl_thung"/>
-	                                <field name="sl_da" sum="Tổng số lượng đá"/>
-	                                <field name="chi_phi_da" sum="Tổng chi phí đá" />
-	                            </tree>
-	          				</field>
-	                	</group>
-		         	</sheet>
-		         </form>
-			</field>
-		</record>
-		
-		<record id="action_dulieu_donghang" model="ir.actions.act_window">
-            <field name="name">Dữ liệu đóng hàng</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">dulieu.donghang</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="dulieu_donghang_tree_view"/>
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
-        </record>
-		<menuitem id="menu_dulieu_donghang" name="Dữ liệu đóng hàng" action="action_dulieu_donghang" parent="stock.menu_stock_warehouse_mgmt" sequence="601"/>
-		
 		<record id="phucthien_view_picking_subinventory_form" model="ir.ui.view">
 			<field name="name">stock.picking.phucthien.form</field>
 			<field name="model">stock.picking</field>
@@ -389,6 +298,110 @@
             </field>
         </record>
        <menuitem name="Số lần in" action="action_so_lan_in" parent="base.menu_base_config" id = "so_lan_in_menu" sequence="28"/>
+	   
+	   <!--chuyen kho noi bo lam moi-->
+	   <record id="chuyenkho_noibo_tree_view" model="ir.ui.view">
+			<field name="name">chuyenkho.noibo.tree</field>
+			<field name="model">chuyenkho.noibo</field>
+			<field name="arch" type="xml">
+				<tree string="Chuyển kho nội bộ">
+					<field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="origin"/>
+                    <field name="date"/>
+                    <field name="location_id"/>
+                    <field name="location_dest_id"/>
+                    <field name="state"/>
+				</tree>
+			</field>
+		</record>
 		
+		<record id="chuyenkho_noibo_filter" model="ir.ui.view">
+            <field name="name">chuyenkho.noibo.select</field>
+            <field name="model">chuyenkho.noibo</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm chuyển kho nội bộ">
+                    <field name="name" string="Phiếu xuất"/>
+                    <field name="partner_id"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Khách hàng" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+		
+		<record id="chuyenkho_noibo_form_view" model="ir.ui.view">
+            <field name="name">chuyenkho.noibo.form</field>
+            <field name="model">chuyenkho.noibo</field>
+            <field name="arch" type="xml">
+	            <form string="Chuyển kho nội bộ" version="7.0"> 
+					<header>
+						<button name="force_assign" states="draft" string="Confirm" type="object" class="oe_highlight" groups="base.group_user"/>
+						<button name="action_assign" states="confirmed" string="Check Availability" type="object" class="oe_highlight"/>
+						<button name="action_process" states="assigned" string="Confirm &amp; Transfer" groups="stock.group_stock_user" type="object" class="oe_highlight"/>
+						<button name="action_cancel" states="done" string="Cancel Transfer" type="object"/>
+						<field name="state" widget="statusbar" statusbar_visible="draft,da_gui,da_nhan"/>
+					</header>
+	            	<sheet>
+	            		<h1>
+	                        <field name="name" class="oe_inline" attrs="{'invisible': [('name','=','/')]}" readonly="1"/>
+	                    </h1>
+	                    <group>
+	                        <group>
+	                            <field name="partner_id"/>
+	                            <field name="location_id"/>
+	                            <field name="location_dest_id"/>
+	                        </group>
+	                        <group>
+	                            <field name="date"/>
+	                            <field name="origin" placeholder="e.g. PO0032" class="oe_inline"/>
+	                            <field name="nhietdo_di"/>
+	                            <field name="nhietdo_den"/>
+	                        </group>
+	                    </group>
+	                    <notebook>
+	                        <page string="Products">
+	                            <field name="lines" string="Stock Move" context="{'default_location_id':location_id,
+	                            'default_location_dest_id':location_dest_id}" options='{"reload_on_button": true}'>
+		                            <tree editable='top'>
+										<field name="product_id" on_change="onchange_product_id(product_id,location_id,location_dest_id, False)"/>
+		                                <field name="name"/>
+		                                <field name="date"/>
+		                                <field name="date_expected" invisible="1"/>
+		                                <field name="product_uom"/>
+		                                <field name="product_qty"/>
+		                                <field name="location_id"/>
+	                            		<field name="location_dest_id"/>
+		                                <field name="prodlot_id" domain="[('product_id','=?',product_id)]" on_change="onchange_lot_id(prodlot_id,product_qty, location_id, product_id, product_uom)"/>
+		                                <field name="source_tracking_id"/>
+		                                <field name="dest_tracking_id"/>
+		                                <field name="state"/>
+		                            </tree>
+	                            </field>
+	                            <field name="note" placeholder="Add an internal note..." class="oe_inline"/>
+	                        </page>
+	                    </notebook>
+		         	</sheet>
+		         	<div class="oe_chatter">
+	                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+	                    <field name="message_ids" widget="mail_thread"/>
+	                </div>
+		         </form>
+			</field>
+		</record>
+		
+		<record id="action_chuyenkho_noibo" model="ir.actions.act_window">
+            <field name="name">Chuyển kho nội bộ</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">chuyenkho.noibo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="chuyenkho_noibo_tree_view"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+		<menuitem action="action_chuyenkho_noibo" id="menu_action_chuyenkho_noibo" parent="stock.menu_stock_warehouse_mgmt" sequence="2"/>
+			
     </data>
 </openerp>

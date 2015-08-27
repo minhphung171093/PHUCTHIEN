@@ -11,15 +11,15 @@ class dulieu_donghang_report(osv.osv_memory):
     _name = "dulieu.donghang.report"
     _columns = {
         'partner_id': fields.many2one('res.partner', string='Khách hàng',domain="[('customer','=',True)]"),
-        'saleperson_id':fields.many2one('res.users', 'Nhân viên kinh doanh'),
         'da_nhan':fields.boolean('Đã nhận'),
         'chua_nhan':fields.boolean('Chưa nhận'),
-        'tu_ngay':fields.date('Từ ngày'),
-        'den_ngay':fields.date('Đến ngày'),
+        'tu_ngay':fields.date('Từ ngày', required=True),
+        'den_ngay':fields.date('Đến ngày',required=True),
         
     }
     _defaults = {
-        'saleperson_id': lambda self, cr, uid, context: uid,
+        'tu_ngay': time.strftime('%Y-%m-%d'),
+        'den_ngay': time.strftime('%Y-%m-%d'),
     }
     
     def print_report(self, cr, uid, ids, context=None):

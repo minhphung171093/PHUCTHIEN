@@ -61,6 +61,7 @@ class stock_cards_report(osv.osv_memory):
         'date_end':fields.date('Date End',required=True),
         'warehouse_id':fields.many2one('stock.warehouse','Warehouse',required=False),
         'product_id':fields.many2one('product.product','Product',required=True),
+        'prod_lot_id':fields.many2one('stock.production.lot','Số lô'),
         'location_id': fields.many2one('stock.location', 'Location',required=True, select=True,domain=[('usage','=','internal')]),
      }
     _defaults = {

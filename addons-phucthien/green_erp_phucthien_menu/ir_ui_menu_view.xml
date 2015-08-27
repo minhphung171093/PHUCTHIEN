@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    	<record id="edit_menu_access_inherit" model="ir.ui.view">
+            <field name="name">ir.ui.menu.form.inherit</field>
+            <field name="model">ir.ui.menu</field>
+            <field name="inherit_id" ref="base.edit_menu_access"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='sequence']" position="after">
+                    <field name="active"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

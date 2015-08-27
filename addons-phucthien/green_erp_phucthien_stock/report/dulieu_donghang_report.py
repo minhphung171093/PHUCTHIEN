@@ -49,35 +49,45 @@ class Parser(report_sxw.rml_parse):
     def get_data(self):
         res = []
         wizard_data = self.localcontext['data']['form']
-        partner_id = wizard_data['partner_id'] and 'and dh.partner_id = '+ str(wizard_data['partner_id'][0]) or ''
-        saleperson_id = wizard_data['saleperson_id'] and 'and dh.saleperson_id = '+ str(wizard_data['saleperson_id'][0]) or ''
-        da_nhan = wizard_data['da_nhan']  and 'and dh.ngay_nhan is not null' or ''
-        chua_nhan = wizard_data['chua_nhan']  and 'and dh.ngay_nhan is null' or ''
-        tu_ngay = wizard_data['tu_ngay'] and 'and dh.ngay_gui >= '+"'"+ wizard_data['tu_ngay']+"'" or ''
-        den_ngay = wizard_data['den_ngay'] and 'and dh.ngay_gui <= ' +"'"+ wizard_data['den_ngay']+"'"  or ''
+        partner_id = wizard_data['partner_id']
+        da_nhan = wizard_data['da_nhan']
+        chua_nhan = wizard_data['chua_nhan']
+        tu_ngay = wizard_data['tu_ngay']
+        den_ngay = wizard_data['den_ngay']
         sql ='''
-            SELECT dh.id, dh.name as so_phieu, sp.name as so_phieuxuat, rp.name as ten_kh, uid.name as ten_nvkd, dh.ngay_gui, dh.ngay_nhan,
-                   dh.sl_nhietke, dh.chi_phi_nhiet_ke, dh.chi_phi_gui_hang, SUM(dhl.sl_da) as sl_da, SUM(dhl.chi_phi_da) as chi_phi_da
-            FROM dulieu_donghang_line dhl
-            LEFT JOIN loai_thung lt ON dhl.loai_thung_id = lt.id
-            LEFT JOIN dulieu_donghang dh ON dhl.dulieu_donghang_id = dh.id
-            INNER JOIN stock_picking sp ON dh.picking_id = sp.id
-            INNER JOIN res_partner rp ON dh.partner_id = rp.id
-            INNER JOIN res_users ru ON dh.saleperson_id = ru.id
-            INNER JOIN res_partner uid ON ru.partner_id = uid.id
-            WHERE 1=1 %s %s %s %s %s %s
-            GROUP BY dh.id, dh.name, sp.name, rp.name, uid.name, dh.ngay_gui, dh.ngay_nhan,
-                   dh.sl_nhietke, dh.chi_phi_nhiet_ke, dh.chi_phi_gui_hang
-            ORDER BY dh.name
-        ''' %(partner_id,saleperson_id,da_nhan,chua_nhan, tu_ngay, den_ngay)
+            select spp.id , sp.name as so_phieuxuat, rp.name as ten_kh, ep.name_related as ten_nvdg, sp.ngay_gui, sp.ngay_nhan,
+               sum(spp.sl_nhietke) as sl_nhietke, sum(spp.chi_phi_nhiet_ke) as chi_phi_nhiet_ke, sum(spp.chi_phi_gui_hang) as chi_phi_gui_hang, 
+               sum(spp.sl_da) as sl_da, sum(spp.chi_phi_da) as chi_phi_da,sum(spp.chi_phi_thung) as chi_phi_thung
+            from stock_picking_packaging spp
+            left join stock_picking sp on sp.id = spp.picking_id
+            left join loai_thung lt ON spp.loai_thung_id = lt.id
+            left join res_partner rp ON sp.partner_id = rp.id
+            left join hr_employee ep ON spp.employee_id = ep.id
+            where sp.ngay_gui >= '%s' and (sp.ngay_nhan is null or sp.ngay_nhan <= '%s')
+        ''' %(tu_ngay, den_ngay)
+        if partner_id:
+            sql+='''
+                and rp.id = %s 
+            '''%(partner_ids)
+        if da_nhan:
+            sql+='''
+                and sp.ngay_nhan is not null
+            '''
+        if chua_nhan:
+            sql+='''
+                and sp.ngay_nhan is null
+            '''    
+        sql+='''
+             group by spp.id, sp.name, rp.name, ep.name_related, sp.ngay_gui, sp.ngay_nhan
+             order by sp.name
+        '''
         self.cr.execute(sql)
         for line in self.cr.dictfetchall():
             res.append({
                         'id': line['id'],
-                        'so_phieu': line['so_phieu'],
                         'so_phieuxuat': line['so_phieuxuat'],
                         'ten_kh':line['ten_kh'],
-                        'ten_nvkd':line['ten_nvkd'],
+                        'ten_nvdg':line['ten_nvdg'],
                         'ngay_gui':self.get_vietname_date(line['ngay_gui']),
                         'ngay_nhan':self.get_vietname_date(line['ngay_nhan']),
                         'sl_nhietke':line['sl_nhietke'],
@@ -85,23 +95,24 @@ class Parser(report_sxw.rml_parse):
                         'chi_phi_gui_hang': line['chi_phi_gui_hang'],
                         'sl_da': line['sl_da'],
                         'chi_phi_da':line['chi_phi_da'],
+                        'chi_phi_thung':line['chi_phi_thung'],
                     })
         return res
     
-    def get_loaithung(self,dh_id):
+    def get_loaithung(self,spp_id):
         result = []
         sql ='''
-            SELECT  lt.name as loai_thung, dhl.sl_thung,dhl.sl_da, dhl.chi_phi_da
-            FROM dulieu_donghang_line dhl
-            LEFT JOIN dulieu_donghang dh ON dhl.dulieu_donghang_id = dh.id
-            LEFT JOIN loai_thung lt ON dhl.loai_thung_id = lt.id
-            WHERE dh.id = %s
-        ''' %(dh_id)
+            SELECT  lt.name as loai_thung,spp.chi_phi_thung, spp.sl_thung,spp.sl_da, spp.chi_phi_da
+            FROM stock_picking_packaging spp
+            LEFT JOIN loai_thung lt ON spp.loai_thung_id = lt.id
+            WHERE spp.id = %s
+        ''' %(spp_id)
         self.cr.execute(sql)
         for line in self.cr.dictfetchall():
             result.append({
                         'loai_thung': line['loai_thung'],
                         'sl_thung': line['sl_thung'],
+                        'chi_phi_thung': line['chi_phi_thung'],
                         'sl_da':line['sl_da'],
                         'chi_phi_da':line['chi_phi_da'],
                     })

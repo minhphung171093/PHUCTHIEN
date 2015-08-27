@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 	<data>
-	    <record id="phieu_dieuchuyen_noibo_thanhphamlanh" model="ir.actions.report.xml">
-	        <field name="name">phieu_dieuchuyen_noibo_thanhphamlanh</field>
+	    <record id="dieuchuyen_noibo_thanhphamlanh" model="ir.actions.report.xml">
+	        <field name="name">dieuchuyen_noibo_thanhphamlanh</field>
 	        <field name="type">ir.actions.report.xml</field>
-	        <field name="model">stock.picking</field>
-	        <field name="report_name">phieu_dieuchuyen_noibo_thanhphamlanh</field>
+	        <field name="model">chuyenkho.noibo</field>
+	        <field name="report_name">dieuchuyen_noibo_thanhphamlanh</field>
 	        <field name="report_type">aeroo</field>
 	        <field name="in_format">oo-ods</field>
 	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
@@ -19,17 +19,17 @@
 		<report 
 			auto="False" 
 			menu="True"
-			id="phieu_dieuchuyen_noibo_thanhphamlanh" 
-			model="stock.picking" 
-			name="phieu_dieuchuyen_noibo_thanhphamlanh"
+			id="dieuchuyen_noibo_thanhphamlanh" 
+			model="chuyenkho.noibo" 
+			name="dieuchuyen_noibo_thanhphamlanh"
 	        string="Phiếu điều chuyển thành phẩm lạnh"
 	        rml="green_erp_phucthien_stock/report/phieu_dieuchuyen_noibo_thanhphamlanh.ods"/>	
 	       
-	    <record id="phieu_dieuchuyen_noibo_thanhpham" model="ir.actions.report.xml">
-	        <field name="name">phieu_dieuchuyen_noibo_thanhpham</field>
+	    <record id="dieuchuyen_noibo_thanhpham" model="ir.actions.report.xml">
+	        <field name="name">dieuchuyen_noibo_thanhpham</field>
 	        <field name="type">ir.actions.report.xml</field>
-	        <field name="model">stock.picking</field>
-	        <field name="report_name">phieu_dieuchuyen_noibo_thanhpham</field>
+	        <field name="model">chuyenkho.noibo</field>
+	        <field name="report_name">dieuchuyen_noibo_thanhpham</field>
 	        <field name="report_type">aeroo</field>
 	        <field name="in_format">oo-ods</field>
 	        <field name="out_format" model="report.mimetypes" search="[('code','=','oo-xls'),('compatible_types','=','oo-ods')]"/>
@@ -43,9 +43,9 @@
 		<report 
 			auto="False" 
 			menu="True"
-			id="phieu_dieuchuyen_noibo_thanhpham" 
-			model="stock.picking" 
-			name="phieu_dieuchuyen_noibo_thanhpham"
+			id="dieuchuyen_noibo_thanhpham" 
+			model="chuyenkho.noibo" 
+			name="dieuchuyen_noibo_thanhpham"
 	        string="Phiếu điều chuyển thành phẩm"
 	        rml="green_erp_phucthien_stock/report/phieu_dieuchuyen_noibo_thanhpham.ods"/>	
 	</data>

@@ -126,13 +126,26 @@ purchase_order()
 class purchase_order_line(osv.osv):
     _inherit = "purchase.order.line"
     
+    def _amount_line(self, cr, uid, ids, prop, arg, context=None):
+        res = {}
+        cur_obj=self.pool.get('res.currency')
+        tax_obj = self.pool.get('account.tax')
+        for line in self.browse(cr, uid, ids, context=context):
+            taxes = tax_obj.compute_all(cr, uid, line.taxes_id, line.price_unit, line.product_qty, line.product_id, line.order_id.partner_id)
+            cur = line.order_id.pricelist_id.currency_id
+            res[line.id] = cur_obj.round(cr, uid, cur, taxes['total']) + line.adjust_price
+        return res
+    
     _columns = {
         'partner_id': fields.many2one('res.partner','Khách hàng'),
         'approve': fields.boolean('Approve'),
+        'adjust_price':fields.float('Điều chỉnh đơn giá'),
+        'price_subtotal': fields.function(_amount_line, string='Subtotal', digits_compute= dp.get_precision('Account')),
     }
     
     _defaults = {
         'approve': True,
+        'adjust_price':0.0
     }
     
 purchase_order_line()

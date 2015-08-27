@@ -697,7 +697,7 @@ class account_invoice_line(osv.osv):
                 
             if line.invoice_id:
                 cur = line.invoice_id.currency_id
-                res[line.id]['price_subtotal'] = cur_obj.round(cr, uid, cur, res[line.id]['price_subtotal'])
+                res[line.id]['price_subtotal'] = cur_obj.round(cr, uid, cur, res[line.id]['price_subtotal']) + line.adjust_price
                 res[line.id]['amount_tax'] = cur_obj.round(cr, uid, cur, res[line.id]['amount_tax'])
         return res
     
@@ -740,6 +740,7 @@ class account_invoice_line(osv.osv):
             }, readonly=True, multi='pro_info'),
         #Hung them so lo trên line
         'prodlot_id': fields.many2one('stock.production.lot', 'Số lô', ondelete='restrict'),
+        'adjust_price':fields.float('Adjust Price'),
     }
     
     _defaults = {

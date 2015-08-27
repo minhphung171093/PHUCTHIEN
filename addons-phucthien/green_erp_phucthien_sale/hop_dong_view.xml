@@ -8,12 +8,9 @@
 			<field name="arch" type="xml">
 				<tree string="Hợp đồng" colors="gray:hd_gan_hh== False;red:hd_gan_hh== True">
 					<field name="name"/>
-					<field name="company_id"/>
 					<field name="partner_id"/>
-					<field name="tu_ngay"/>
+					<field name="ngay_gui"/>
 					<field name="den_ngay"/>
-					<field name="amount_total"/>
-					<field name="type"/>
 					<field name="state"/>
 					<field name="hd_gan_hh" invisible="1"/>
 				</tree>

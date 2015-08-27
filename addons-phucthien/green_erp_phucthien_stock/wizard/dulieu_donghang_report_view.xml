@@ -10,13 +10,12 @@
                     <group >
                     	<group>
                     		<field name="partner_id" />
-                    		<field name="saleperson_id" />
                     		<field name="da_nhan" />
+                    		<field name="chua_nhan" />
                     	</group>
                     	<group>
                     		<field name="tu_ngay" />
                     		<field name="den_ngay" />
-                    		<field name="chua_nhan" />
                     	</group>
                     </group>
                     <footer>

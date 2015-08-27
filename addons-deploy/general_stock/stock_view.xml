@@ -248,8 +248,8 @@
 	                                    <field name="date_expected"/>
 	                                    <field name="product_uos" groups="product.group_uos" invisible="1"/>
 	                                    <field name="scrapped" invisible="1"/>
-	                                    <field name="prodlot_id" groups="stock.group_production_lot" invisible="0" domain="[('product_id','=',product_id)]"/>
-	                                    <field name="state" readonly="1"/>
+	                                    <field name="prodlot_id" groups="stock.group_production_lot" domain="[('product_id','=',product_id)]"/>
+	                                    <field name="tracking_id" groups="stock.group_tracking_lot" invisible="0"/>
 	                                    <button icon="gtk-justify-fill"
 					                    	string="Theo ngày nhập"
 					                    	name="theo_ngay_nhap" type="object"
@@ -260,9 +260,8 @@
 					                    	name="theo_han_su_dung" type="object"
 					                    	invisible="context.get('search_source_type',False) and context.get('search_source_type')=='production' and 0 or 1"
 					                    	states="draft,waiting,confirmed,assigned"/>
-	                                    <field name="tracking_id" groups="stock.group_tracking_lot" invisible="1"/>
 	                                    <field name="name" invisible="1"/>          
-	                                    <field name="state" invisible="1"/>                          
+	                                    <field name="state" readonly="1"/>                       
 	                                </tree>
 	                            </field>
 	                            <field name="note" placeholder="Add an internal note..." class="oe_inline"/>
@@ -766,7 +765,7 @@
                     	attrs="{'invisible':['|',('type','!=','out'),('state','=','done')]}"
                     	states="draft,waiting,confirmed,assigned"/>
                 -->
-                     <field groups="stock.group_tracking_lot" name="tracking_id" invisible="1"/>
+                     <field groups="stock.group_tracking_lot" name="tracking_id"/>
                      
                      <button name="setlast_tracking" string="Put in current pack" type="object"
                         attrs="{'invisible': [('tracking_id','&lt;&gt;',False)]}"

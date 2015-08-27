@@ -28,22 +28,19 @@ class Parser(report_sxw.rml_parse):
             'get_so_hd':self.get_so_hd,
             'get_ngay_hd':self.get_ngay_hd,
             'get_ngay_hethan':self.get_ngay_hethan,
-            'get_nhietdo_di':self.get_nhietdo_di,
-            'get_nhietdo_den': self.get_nhietdo_den,
             'get_date':self.get_date,
             'get_bienban_giaonhan': self.get_bienban_giaonhan,
             'get_nhanvien_donggoi': self.get_nhanvien_donggoi,
             'get_so_thung': self.get_so_thung,
+            'get_line':self.get_line,
             
         })
        
     def get_nhanvien_donggoi(self, picking):
-        nhan_vien = picking.picking_packaging_line[0]
-        return nhan_vien.employee_id.name
+        return picking.picking_packaging_line and picking.picking_packaging_line[0].employee_id.name or ''
     
     def get_so_thung(self, picking):
-        thung = picking.picking_packaging_line[0]
-        return thung.loai_thung_id.name
+        return picking.picking_packaging_line and picking.picking_packaging_line[0].loai_thung_id.name or ''
     
     def get_bienban_giaonhan(self):
         return self.pool.get('ir.sequence').get(self.cr, self.uid, 'bienban.giaonhan') 
@@ -79,42 +76,46 @@ class Parser(report_sxw.rml_parse):
             so_hd = ''
         return so_hd
     
-    def get_ngay_hd(self, picking):
-        invoice_ids = self.pool.get('account.invoice').search(self.cr,self.uid,[('name','=',picking.name)])
-        if invoice_ids:
-            invoice = self.pool.get('account.invoice').browse(self.cr,self.uid,invoice_ids[0])
-            if invoice.date_invoice:
-                ngay_hd = datetime.strptime(invoice.date_invoice, DATE_FORMAT)
-                ngay_hd = ngay_hd.strftime('%d-%m-%Y')
-            else:
-                ngay_hd = ''
+    def get_line(self,picking):
+        res = []
+        sql= '''
+            select ac.reference_number as shd, ac.date_invoice as nhd, pt.name as sp,pu.name as dvt, acl.quantity, 
+                spl.name as slo, spl.life_date as hdung
+            from account_invoice_line acl
+            left join account_invoice ac on acl.invoice_id = ac.id
+            left join product_template pt on acl.product_id = pt.id
+            left join product_uom pu on pt.uom_id = pu.id
+            left join stock_production_lot spl on acl.prodlot_id = spl.id
+            where ac.name= '%s'
+        '''%(picking.name)
+        self.cr.execute(sql)
+        for line in self.cr.dictfetchall():
+            res.append({
+                        'shd': line['shd'],
+                        'nhd': line['nhd'],
+                        'sp': line['sp'],
+                        'dvt':line['dvt'],
+                        'quantity':line['quantity'],
+                        'slo':line['slo'],
+                        'hdung':line['hdung'],
+                    })
+        return res
+    def get_ngay_hd(self, date):
+        if date:
+            ngay_hd = datetime.strptime(date, DATE_FORMAT)
+            ngay_hd = ngay_hd.strftime('%d-%m-%Y')
         else:
             ngay_hd = ''
         return ngay_hd
     
-    def get_ngay_hethan(self, prodlot):
-        if prodlot and prodlot.life_date:
-            ngay_hh = datetime.strptime(prodlot.life_date, DATETIME_FORMAT)
-            ngay_hh = ngay_hh.strftime('%d-%m-%Y')
+    def get_ngay_hethan(self, life_date):
+        if life_date:
+            ngay_hh = datetime.strptime(life_date, DATETIME_FORMAT)
+            ngay_hh = ngay_hh.strftime('%m-%Y')
         else:
             ngay_hh = ''
         return ngay_hh
     
-    def get_nhietdo_di(self, picking):
-        nhietdo_di = ''
-        if picking.picking_packaging_line:
-            package = picking.picking_packaging_line[0]
-            nhietdo_di = package.nhietdo_packaging_di
-                
-        return nhietdo_di
-    
-    def get_nhietdo_den(self, picking):
-        nhietdo_den = ''
-        if picking.picking_packaging_line:
-            package = picking.picking_packaging_line[0]
-            nhietdo_den = package.nhietdo_packaging_den
-                
-        return nhietdo_den
     
     
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
