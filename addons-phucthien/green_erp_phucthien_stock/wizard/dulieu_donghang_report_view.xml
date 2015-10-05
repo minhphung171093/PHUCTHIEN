@@ -36,7 +36,7 @@
             <field name="view_id" ref="view_dulieu_donghang_report"/>
             <field name="target">new</field>
         </record>
-        <menuitem id="menu_dulieu_donghang_report" name="Báo cáo dữ liệu đóng hàng" action="action_dulieu_donghang_report" parent="stock.menu_stock_warehouse_mgmt" sequence="602"/>
+        <menuitem id="menu_dulieu_donghang_report" name="Báo cáo dữ liệu đóng hàng" action="action_dulieu_donghang_report" parent="base.menu_sales" sequence="14"/>
         
     </data>
 </openerp>

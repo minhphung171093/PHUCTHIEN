@@ -67,7 +67,9 @@ class stock_picking_out(osv.osv):
         'ngay_gui':fields.date('Ngày gửi'),
         'ngay_nhan':fields.date('Ngày nhận lại'),
         'daidien_khachhang':fields.char('Đại diện khách hàng nhận'),
-        'nguoi_giao_hang':fields.char('Người giao hàng'),
+        'nguoi_giao_hang':fields.many2one('hr.employee','Người giao hàng'),
+        'nguoi_van_chuyen':fields.many2one('hr.employee','Người vận chuyển'),
+        'phuongtien_giaohang':fields.char('Phương tiện giao hàng'),
         'state_receive':fields.selection([('draft','Tạo mới'),('da_gui','Đã gửi'),('da_nhan','Đã nhận')],'Trạng thái',required=True),
         'picking_packaging_line': fields.one2many('stock.picking.packaging','picking_id','Đóng gói'),
         
@@ -91,6 +93,15 @@ class stock_picking_out(osv.osv):
     _defaults = {
                  'state_receive':'draft',
                  }
+    
+    def on_change_nguoivanchuyen(self, cr, uid, ids, nguoi_van_chuyen):
+        value ={}
+        if not nguoi_van_chuyen:
+            value.update({'phuongtien_giaohang':False})
+        else:
+            employee = self.pool.get('hr.employee').browse(cr, uid, nguoi_van_chuyen)
+            value.update({'phuongtien_giaohang':employee.phuongtien_giaohang})
+        return {'value': value}
     
     def status_send(self, cr, uid, ids, context=None):
         return self.write(cr, uid, ids, {'ngay_gui':datetime.now().strftime('%Y-%m-%d'),'state_receive':'da_gui'})
@@ -235,7 +246,9 @@ class stock_picking(osv.osv):
         'ngay_gui':fields.date('Ngày gửi'),
         'ngay_nhan':fields.date('Ngày nhận lại'),
         'daidien_khachhang':fields.char('Đại diện khách hàng nhận'),
-        'nguoi_giao_hang':fields.char('Người giao hàng'),
+        'nguoi_giao_hang':fields.many2one('hr.employee','Người giao hàng'),
+        'nguoi_van_chuyen':fields.many2one('hr.employee','Người vận chuyển'),
+        'phuongtien_giaohang':fields.char('Phương tiện giao hàng'),
         'ly_do_xuat_id': fields.many2one('ly.do.xuat', 'Lý do xuất'),
         'state_receive':fields.selection([('draft','Tạo mới'),('da_gui','Đã gửi'),('da_nhan','Đã nhận')],'Trạng thái',required=True,),
         'nhiet_do':fields.char('Nhiệt độ'),
@@ -375,16 +388,17 @@ class stock_picking_packaging(osv.osv):
     _columns = {
         'picking_id':fields.many2one('stock.picking', string='Đóng gói'),
         'loai_thung_id': fields.many2one('loai.thung', string='Loại thùng'),
-        'sl_thung': fields.integer('Số lượng thùng'),
-        'chi_phi_thung': fields.float('Chi phí thùng'),
-        'sl_da': fields.float('Số lượng đá'),
-        'chi_phi_da': fields.float('Chi phí đá'),
-        'sl_nhietke': fields.integer('Số lượng nhiệt kế'),
-        'chi_phi_nhiet_ke': fields.float('Chi phí nhiệt kế'),
-        'chi_phi_gui_hang': fields.float('Chi phí gửi hàng'),
-        'employee_id': fields.many2one('hr.employee','Nhân viên giao hàng'),
-        'nhietdo_packaging_di':fields.char('Nhiệt độ khi đi'),
-        'nhietdo_packaging_den':fields.char('Nhiệt độ khi đến'),
+        'sl_thung': fields.integer('SL thùng'),
+        'chi_phi_thung': fields.float('CP thùng'),
+        'sl_da': fields.float('SL đá'),
+        'chi_phi_da': fields.float('CP đá'),
+        'sl_nhietke': fields.integer('SL nhiệt kế'),
+        'sl_nhietke_conlai': fields.integer('SL nhiệt kế còn lại'),
+        'chi_phi_nhiet_ke': fields.float('CP nhiệt kế'),
+        'chi_phi_gui_hang': fields.float('CP gửi hàng'),
+        'employee_id': fields.many2one('hr.employee','NV giao hàng'),
+        'nhietdo_packaging_di':fields.char('Nhiệt độ đi'),
+        'nhietdo_packaging_den':fields.char('Nhiệt độ đến'),
     }
     
 stock_picking_packaging()
@@ -1064,8 +1078,8 @@ class suachua_hanhdong(osv.osv):
     
     _columns = {
         'name': fields.char('Bộ phận', size=1024, required=True),
-        'ngay_kt': fields.date('Khu vực thực hiện', required=True),
-        'ngay_bc': fields.date('Biện pháp thực hiện', required=True),
+        'ngay_kt': fields.date('Ngày kiểm tra', required=True),
+        'ngay_bc': fields.date('Ngày báo cáo', required=True),
         'sc_hd_line': fields.one2many('suachua.hanhdong.line', 'sc_hd_id', 'Nội dung'),
     }
     

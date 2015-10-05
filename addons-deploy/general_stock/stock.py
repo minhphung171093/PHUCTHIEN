@@ -1993,11 +1993,33 @@ class stock_picking_in(osv.osv):
                         'report_name': 'bienban_kiemkho_thanhpham',
                     }
     
-    def create(self, cr, uid, vals, context=None):
+    def create(self, cr, user, vals, context=None):
         context = context or {}
         if context.get('no_create',False):
             raise osv.except_osv(_('Creation Error!'), _('You cannot create a Picking in this menu'))
-        return super(stock_picking_in, self).create(cr, uid, vals, context=context)
+        context.update({'sequence_obj_ids':[]})
+        if ('name' not in vals) or (vals.get('name')=='/'):
+#             seq_obj_name =  self._name
+            if vals.get('stock_journal_id',False):
+                journal = self.pool.get('stock.journal').browse(cr, user, vals['stock_journal_id'])
+                if not journal.sequence_id:
+                    raise osv.except_osv(_('Warning!'), _('Please define Sequence for Stock Journal.'))
+                
+                if journal.source_type in ['in','return_customer']:
+                    cr.execute('SELECT warehouse_id FROM stock_location WHERE id=%s'%(vals['location_dest_id']))
+                    warehouse_id = cr.fetchone()
+                    if warehouse_id and warehouse_id[0]:
+                        context['sequence_obj_ids'].append(['warehouse',warehouse_id[0]])
+                if journal.source_type in ['out','return_supplier','internal']:
+                    cr.execute('SELECT warehouse_id FROM stock_location WHERE id=%s'%(vals['location_id']))
+                    warehouse_id = cr.fetchone()
+                    if warehouse_id and warehouse_id[0]:
+                        context['sequence_obj_ids'].append(['warehouse',warehouse_id[0]])
+                        
+                vals['name'] = self.pool.get('ir.sequence').get_id(cr, user, journal.sequence_id.id, code_or_id='id', context=context)
+                
+        new_id = super(osv.osv, self).create(cr, user, vals, context)
+        return new_id
     
 class stock_picking_out(osv.osv):
     _inherit = 'stock.picking.out'
@@ -2166,12 +2188,34 @@ class stock_picking_out(osv.osv):
             }
     
     
-    def create(self, cr, uid, vals, context=None):
+    def create(self, cr, user, vals, context=None):
         context = context or {}
         if context.get('no_create',False):
             raise osv.except_osv(_('Creation Error!'), _('You cannot create a Picking in this menu'))
-        return super(stock_picking_out, self).create(cr, uid, vals, context=context)
-
+        context.update({'sequence_obj_ids':[]})
+        if ('name' not in vals) or (vals.get('name')=='/'):
+#             seq_obj_name =  self._name
+            if vals.get('stock_journal_id',False):
+                journal = self.pool.get('stock.journal').browse(cr, user, vals['stock_journal_id'])
+                if not journal.sequence_id:
+                    raise osv.except_osv(_('Warning!'), _('Please define Sequence for Stock Journal.'))
+                
+                if journal.source_type in ['in','return_customer']:
+                    cr.execute('SELECT warehouse_id FROM stock_location WHERE id=%s'%(vals['location_dest_id']))
+                    warehouse_id = cr.fetchone()
+                    if warehouse_id and warehouse_id[0]:
+                        context['sequence_obj_ids'].append(['warehouse',warehouse_id[0]])
+                if journal.source_type in ['out','return_supplier','internal']:
+                    cr.execute('SELECT warehouse_id FROM stock_location WHERE id=%s'%(vals['location_id']))
+                    warehouse_id = cr.fetchone()
+                    if warehouse_id and warehouse_id[0]:
+                        context['sequence_obj_ids'].append(['warehouse',warehouse_id[0]])
+                        
+                vals['name'] = self.pool.get('ir.sequence').get_id(cr, user, journal.sequence_id.id, code_or_id='id', context=context)
+                
+        new_id = super(osv.osv, self).create(cr, user, vals, context)
+        return new_id
+    
 #Wizard
 class stock_partial_picking_line(osv.TransientModel):
     _inherit = "stock.partial.picking.line"

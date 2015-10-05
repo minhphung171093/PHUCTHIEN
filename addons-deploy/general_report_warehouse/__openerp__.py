@@ -22,12 +22,6 @@
                     
         "report/report_view.xml",
         "wizard/stock_report.xml",
-#         "wizard/export_file.xml",
-        
-#         "stock_transact_detail.xml",
-#         "stock_onhand_analysis.xml",
-#         "rep_product_list.xml",
-        
         'menu.xml',
     ],
     "test" : [

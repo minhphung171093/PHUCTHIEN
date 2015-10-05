@@ -68,6 +68,7 @@ class hr_employee(osv.osv):
               'depend_qty': fields.function(_get_depend_qty,
                                       store={'hr.family': (_get_depend, ['depend'], 20),}, 
                                       method=True, type='integer', string='Số người phụ thuộc', readonly=True),    
+              'phuongtien_giaohang':fields.char('Phương tiện đi lại'),
               }
 hr_employee()
 

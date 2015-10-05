@@ -70,7 +70,7 @@ class hop_dong(osv.osv):
                                  ,('mua','Hợp đồng mua'),('ky_gui','Hợp đồng ký gửi'),('tai_tro','Hợp đồng tài trợ')
                                  ,('khac','Hợp đồng khác')],'Loại hợp đồng' ,required=True,readonly=True, states={'moi_tao': [('readonly', False)]}),
         'tu_ngay':fields.date('Từ ngày',required = True,readonly=True, states={'moi_tao': [('readonly', False)]}),
-        'den_ngay':fields.date('Đến ngày'),
+        'den_ngay':fields.date('Ngày hết hạn'),
         'company_id': fields.many2one('res.company','Công ty',required = True,readonly=True, states={'moi_tao': [('readonly', False)]}),
         'partner_id': fields.many2one('res.partner','Khách hàng',required = True,domain="['&',('customer','=',True),('is_hop_dong','=',True)]",readonly=True, states={'moi_tao': [('readonly', False)]}),
         'phuc_luc_hd_thau':fields.text('Phụ lục hợp đồng thầu',readonly=True, states={'moi_tao': [('readonly', False)]}),

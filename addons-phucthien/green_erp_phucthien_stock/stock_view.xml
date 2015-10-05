@@ -11,13 +11,14 @@
 						<field name="picking_packaging_line" nolabel='1'>
 							<tree editable='top'>
 								<field name="loai_thung_id" on_change="onchange_loai_thung_id(loai_thung_id, context)"/>
-								<field name="sl_thung" sum="Số lượng thùng"/>
-								<field name="chi_phi_thung" sum="Chi phí thùng"/>
-								<field name="sl_da" sum="Số lượng đá"/>
-								<field name="chi_phi_da" sum="Chi phí đá"/>
-								<field name="sl_nhietke" sum="Số lượng Nhiệt kế"/>
-								<field name="chi_phi_nhiet_ke" sum="Chi phí nhiệt kế"/>
-								<field name="chi_phi_gui_hang" sum="Chi phí gửi hàng"/>
+								<field name="sl_thung" sum="SL thùng"/>
+								<field name="chi_phi_thung" sum="CP thùng"/>
+								<field name="sl_da" sum="SL đá"/>
+								<field name="chi_phi_da" sum="CP đá"/>
+								<field name="sl_nhietke" sum="SL Nhiệt kế"/>
+								<field name="sl_nhietke_conlai" sum="SL Nhiệt kế Còn lại"/>
+								<field name="chi_phi_nhiet_ke" sum="CP nhiệt kế"/>
+								<field name="chi_phi_gui_hang" sum="CP gửi hàng"/>
 								<field name="employee_id"/>
 								<field name="nhietdo_packaging_di"/>
 								<field name="nhietdo_packaging_den"/>
@@ -25,12 +26,16 @@
                         </field>
                     </page>
                 </xpath>
-                <xpath expr="//field[@name='origin']" position="after">
+                <xpath expr="//field[@name='stock_journal_id']" position="after">
                 	<field name="description" attrs="{'invisible':[('type','!=','out')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="after">
                 	<field name="ngay_gui" attrs="{'invisible':[('type','!=','out')]}"/>
                 	<field name="ngay_nhan" attrs="{'invisible':[('type','!=','out')]}"/>
                 	<field name="daidien_khachhang" attrs="{'invisible':[('type','!=','out')]}"/>
                 	<field name="nguoi_giao_hang" attrs="{'invisible':[('type','!=','out')]}"/>
+                	<field name="nguoi_van_chuyen" attrs="{'invisible':[('type','!=','out')]}" on_change="on_change_nguoivanchuyen(nguoi_van_chuyen)"/>
+                	<field name="phuongtien_giaohang" attrs="{'invisible':[('type','!=','out')]}"/>
                 	<field name="ly_do_xuat_id" attrs="{'invisible':[('type','!=','out')]}"/>
                 	<field name="nhiet_do" attrs="{'invisible':[('type','!=','in')]}"/>
                 	<field name="so_luong_thung" attrs="{'invisible':[('type','!=','in')]}"/>

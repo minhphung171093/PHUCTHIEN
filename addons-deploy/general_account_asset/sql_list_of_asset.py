@@ -77,8 +77,8 @@ class sql_list_of_asset(osv.osv):
             swh.name warehouse,aas.note, aas.salvage_value hold_value,
             aas.method_time, aas.method_number, aas.method_period, aaa.name account_analytic
           from account_asset_asset aas 
-              join stock_warehouse swh on aas.warehouse_id = swh.id
-              join account_analytic_account aaa on aaa.id = aas.account_analytic_id
+              left join stock_warehouse swh on aas.warehouse_id = swh.id
+              left join account_analytic_account aaa on aaa.id = aas.account_analytic_id
           where aas.asset_type = _type and aas.purchase_date between _sdate and _edate
           order by aas.code
          loop

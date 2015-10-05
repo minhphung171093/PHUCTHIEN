@@ -53,6 +53,10 @@ class Parser(report_sxw.rml_parse):
             'get_sum_rcv':self.get_sum_rcv,
             'get_sum_issue':self.get_sum_issue,
             'get_ton_cuoi':self.get_ton_cuoi,
+            'get_hd':self.get_hd,
+            'get_solo':self.get_solo,
+            'get_date_hd':self.get_date_hd,
+            'get_so_hd':self.get_so_hd
             
         })
         
@@ -131,6 +135,42 @@ class Parser(report_sxw.rml_parse):
             return item['name']
         return False
     
+    def get_solo(self):
+        if not self.prod_lot_id:
+            self.get_header()
+        sql ='''
+            SELECT name
+            FROM stock_production_lot
+                where id = %s
+            '''%(self.prod_lot_id)
+        self.cr.execute(sql)
+        for item in  self.cr.dictfetchall():
+            return item['name']
+        return False
+    
+    def get_hd(self):
+        if not self.prod_lot_id:
+            self.get_header()
+        sql ='''
+            SELECT life_date
+            FROM stock_production_lot
+                where id = %s
+            '''%(self.prod_lot_id)
+        self.cr.execute(sql)
+        for item in  self.cr.dictfetchall():
+            return item['life_date']
+        return False
+    
+    
+    def get_date_hd(self,date):
+        if not date:
+            date = time.strftime('%Y-%m-%d')
+        else:
+            date = date[:10]
+        date = datetime.strptime(date, DATE_FORMAT)
+        return date.strftime('%m/%Y')
+    
+    
     def get_fist(self):
         if self.location_id:
             self.get_header()
@@ -164,6 +204,15 @@ class Parser(report_sxw.rml_parse):
         previous = self.cr.fetchone()
         self.qty_fist = previous and previous[0] or 0.0
         return self.qty_fist
+    
+    def get_so_hd(self, picking_name):
+        invoice_ids = self.pool.get('account.invoice').search(self.cr,self.uid,[('name','=',picking_name)])
+        if invoice_ids:
+            invoice = self.pool.get('account.invoice').browse(self.cr,self.uid,invoice_ids[0])
+            so_hd = invoice.number
+        else:
+            so_hd = ''
+        return so_hd
         
     def get_line(self):
         if self.location_id:
@@ -176,7 +225,8 @@ class Parser(report_sxw.rml_parse):
             FROM
             (
             SELECT
-                date(timezone('UTC',stm.date)),pp.name_template,stm.note,x.journal_name,x.picking_name,x.name,
+                date(timezone('UTC',stm.date)),pp.name_template,stm.note,x.journal_name,
+                case when x.picking_name is not null then x.picking_name else y.name end as picking_name,x.name,
                 case when loc2.usage = 'internal' and loc2.id in (%s)
                 then stm.primary_qty
                 else
@@ -186,16 +236,19 @@ class Parser(report_sxw.rml_parse):
                 else 
                 0.0 end xuat_qty
             FROM stock_move stm 
-            join stock_location loc1 on stm.location_id=loc1.id
-            join stock_location loc2 on stm.location_dest_id=loc2.id 
-            join product_product pp on stm.product_id = pp.id   
-            join (select sj.name journal_name,
+            left join stock_location loc1 on stm.location_id=loc1.id
+            left join stock_location loc2 on stm.location_dest_id=loc2.id 
+            left join product_product pp on stm.product_id = pp.id   
+            left join (select sj.name journal_name,
                  sp.name picking_name,sp.id, rp.name
                   from stock_picking sp 
-                  inner join stock_journal sj on sp.stock_journal_id = sj.id
+                  left join stock_journal sj on sp.stock_journal_id = sj.id
                   left join res_partner rp on sp.partner_id = rp.id
                   )x
-                  on stm.picking_id = x.id            
+                  on stm.picking_id = x.id     
+            left join (select cknbl.move_source_id,cknb.name
+                        from  chuyenkho_noibo_line cknbl 
+                        left join chuyenkho_noibo cknb on cknbl.chuyenkho_noibo_id = cknb.id) y on y.move_source_id = stm.id
             WHERE stm.state= 'done'               
                   and stm.product_id = %s
                   and stm.prodlot_id = %s

@@ -22,6 +22,9 @@
             <field name="model">hr.employee</field>
             <field name="inherit_id" ref="hr.view_employee_form"/>
             <field name="arch" type="xml">
+            	<xpath expr="//field[@name='address_home_id']" position="after">
+            		<field name="phuongtien_giaohang"/>
+            	</xpath>
             	<xpath expr="//page[@string='HR Settings']" position="before">
 	        		<page string="Tình trạng sức khỏe">
                         <field name="tinhtrang_suckhoe_ids" nolabel='1'>

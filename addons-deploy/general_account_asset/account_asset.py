@@ -48,6 +48,13 @@ class account_asset_asset(osv.osv):
     _inherit = 'account.asset.asset'
     _description = 'Asset'
 
+    def _amount_amortization(self, cr, uid, ids, name, args, context=None):
+        res = {}
+        for asset in self.browse(cr, uid, ids, context):
+            res[asset.id] = asset.purchase_value - asset.value_residual
+        return res
+
+
     _columns = {
         'warehouse_id': fields.many2one('stock.warehouse', 'Warehouse', readonly=True, states={'draft':[('readonly',False)]}),
         'account_analytic_id': fields.many2one('account.analytic.account', 'Analytic account'),
@@ -60,6 +67,7 @@ class account_asset_asset(osv.osv):
                                 ], 'Asset Type',size=32, readonly=True, required=True, states={'draft':[('readonly',False)]} ),
         'voucher_number':fields.char('Voucher Number', size=32,required=True),
         'voucher_date':fields.date('Voucher Date',),
+        'value_amortization': fields.function(_amount_amortization, method=True, digits_compute=dp.get_precision('Account'), string='Giá trị đã khấu hao'),
     }
     _defaults = {
         'asset_type': 'asset',

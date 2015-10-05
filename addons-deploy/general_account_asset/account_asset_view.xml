@@ -90,6 +90,7 @@
                                     <field name="purchase_value" widget="monetary" options="{'currency_field': 'currency_id'}" on_change="onchange_purchase_salvage_value(purchase_value, salvage_value)"/>
                                     <field name="salvage_value" widget="monetary" options="{'currency_field': 'currency_id'}" on_change="onchange_purchase_salvage_value(purchase_value, salvage_value)"/>
                                     <field name="value_residual" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="value_amortization" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                                     <field name="partner_id"/>
                                     <newline/>
 									<field name="voucher_number"/>

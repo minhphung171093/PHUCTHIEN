@@ -37,9 +37,21 @@ class Parser(report_sxw.rml_parse):
         super(Parser, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'get_data':self.get_data,
-            'get_loaithung':self.get_loaithung,
+            'get_date_from':self.get_date_from,
+            'get_date_to':self.get_date_to,
             
         })
+        
+    def get_date_from(self):
+        wizard_data = self.localcontext['data']['form']
+        date = datetime.strptime(wizard_data['tu_ngay'], DATE_FORMAT)
+        return date.strftime('%d/%m/%Y')
+    
+    def get_date_to(self):
+        wizard_data = self.localcontext['data']['form']
+        date = datetime.strptime(wizard_data['den_ngay'], DATE_FORMAT)
+        return date.strftime('%d/%m/%Y')
+    
     def get_vietname_date(self, date):
         if not date:
             return ''
@@ -55,20 +67,18 @@ class Parser(report_sxw.rml_parse):
         tu_ngay = wizard_data['tu_ngay']
         den_ngay = wizard_data['den_ngay']
         sql ='''
-            select spp.id , sp.name as so_phieuxuat, rp.name as ten_kh, ep.name_related as ten_nvdg, sp.ngay_gui, sp.ngay_nhan,
-               sum(spp.sl_nhietke) as sl_nhietke, sum(spp.chi_phi_nhiet_ke) as chi_phi_nhiet_ke, sum(spp.chi_phi_gui_hang) as chi_phi_gui_hang, 
-               sum(spp.sl_da) as sl_da, sum(spp.chi_phi_da) as chi_phi_da,sum(spp.chi_phi_thung) as chi_phi_thung
+            select sp.name as so_phieuxuat,sp.ngay_gui, rp.name as ten_kh,    
+                sum(spp.sl_nhietke_conlai) as sl_nhietke_conlai,
+                case when sp.ngay_nhan is not null then 'Da nhan' else 'Chua nhan' end as bb_giaonhan
             from stock_picking_packaging spp
             left join stock_picking sp on sp.id = spp.picking_id
-            left join loai_thung lt ON spp.loai_thung_id = lt.id
             left join res_partner rp ON sp.partner_id = rp.id
-            left join hr_employee ep ON spp.employee_id = ep.id
             where sp.ngay_gui >= '%s' and (sp.ngay_nhan is null or sp.ngay_nhan <= '%s')
         ''' %(tu_ngay, den_ngay)
         if partner_id:
             sql+='''
                 and rp.id = %s 
-            '''%(partner_ids)
+            '''%(partner_id[0])
         if da_nhan:
             sql+='''
                 and sp.ngay_nhan is not null
@@ -78,43 +88,17 @@ class Parser(report_sxw.rml_parse):
                 and sp.ngay_nhan is null
             '''    
         sql+='''
-             group by spp.id, sp.name, rp.name, ep.name_related, sp.ngay_gui, sp.ngay_nhan
-             order by sp.name
-        '''
+             group by sp.name,sp.ngay_gui, rp.name,case when sp.ngay_nhan is not null then 'Da nhan' else 'Chua nhan' end
+            order by sp.name
+            '''
         self.cr.execute(sql)
         for line in self.cr.dictfetchall():
             res.append({
-                        'id': line['id'],
                         'so_phieuxuat': line['so_phieuxuat'],
                         'ten_kh':line['ten_kh'],
-                        'ten_nvdg':line['ten_nvdg'],
                         'ngay_gui':self.get_vietname_date(line['ngay_gui']),
-                        'ngay_nhan':self.get_vietname_date(line['ngay_nhan']),
-                        'sl_nhietke':line['sl_nhietke'],
-                        'chi_phi_nhiet_ke':line['chi_phi_nhiet_ke'],
-                        'chi_phi_gui_hang': line['chi_phi_gui_hang'],
-                        'sl_da': line['sl_da'],
-                        'chi_phi_da':line['chi_phi_da'],
-                        'chi_phi_thung':line['chi_phi_thung'],
+                        'sl_nhietke_conlai':line['sl_nhietke_conlai'],
+                        'bb_giaonhan':line['bb_giaonhan'],
                     })
         return res
     
-    def get_loaithung(self,spp_id):
-        result = []
-        sql ='''
-            SELECT  lt.name as loai_thung,spp.chi_phi_thung, spp.sl_thung,spp.sl_da, spp.chi_phi_da
-            FROM stock_picking_packaging spp
-            LEFT JOIN loai_thung lt ON spp.loai_thung_id = lt.id
-            WHERE spp.id = %s
-        ''' %(spp_id)
-        self.cr.execute(sql)
-        for line in self.cr.dictfetchall():
-            result.append({
-                        'loai_thung': line['loai_thung'],
-                        'sl_thung': line['sl_thung'],
-                        'chi_phi_thung': line['chi_phi_thung'],
-                        'sl_da':line['sl_da'],
-                        'chi_phi_da':line['chi_phi_da'],
-                    })
-        return result
-

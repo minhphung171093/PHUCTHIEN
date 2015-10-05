@@ -78,7 +78,9 @@ class asset_asset_report(osv.osv):
                     aaa.id as account_analytic_id
                 from account_asset_depreciation_line dl
                     left join account_asset_asset a on (dl.asset_id=a.id)
-                    join account_analytic_account aaa on aaa.id = a.account_analytic_id
+                    left join account_analytic_account aaa on aaa.id = a.account_analytic_id
+                where CASE WHEN (select min(d.id) from account_asset_depreciation_line as d left join account_asset_asset as ac ON (ac.id=d.asset_id)
+                                where a.id=ac.id) = dl.id THEN a.purchase_value ELSE 0 END <> 0
                 group by 
                     dl.amount,dl.asset_id,dl.depreciation_date,dl.name,
                     a.purchase_date, dl.move_check, a.state, a.category_id, a.partner_id, a.company_id,
